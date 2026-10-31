@@ -13,7 +13,7 @@
  * variant" is a rule a model can follow; "be thorough" is not. Where a rule
  * has a known failure, the failure is named — see rule 4, which exists in this
  * shape because the model hid a cheaper fire blanket behind a dearer one of
- * the same size (docs/plan.md, M4's target list).
+ * the same size (docs/week14/plan.md, M4's target list).
  */
 export const SYSTEM_PROMPT = `You are the product assistant for CTI, answering questions about the CTI price masterlist — 1,027 products in workplace safety, facility and institutional equipment, priced in Philippine Pesos.
 

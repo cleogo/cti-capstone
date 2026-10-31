@@ -1,7 +1,7 @@
 /**
  * M3 exit-condition harness.
  *
- * Runs the demo-question set from docs/reflection-outline.md through the two
+ * Runs the demo-question set from docs/week14/reflection-outline.md through the two
  * retrieval tools directly — no model, no UI. The four assertion blocks are
  * the milestone's exit condition verbatim; the rest is printed for inspection.
  *

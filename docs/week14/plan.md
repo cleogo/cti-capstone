@@ -242,7 +242,7 @@ Replace the starter's single `getInformation` tool in `app/api/chat/route.ts`.
       (`lib/retrieval.ts`, over `lib/products.ts`)
 - [x] Implement `filterProducts` against the in-memory array, with
       `total_matching`
-- [x] Run the full demo-question set from `docs/reflection-outline.md` through
+- [x] Run the full demo-question set from `docs/week14/reflection-outline.md` through
       a harness — `scripts/eval.ts`, not the query CLI; the CLI only talks to
       the vector store and cannot exercise `filterProducts` at all
 - [x] Tune topK and hybrid merge weighting against failures. **The chunk
@@ -342,7 +342,7 @@ starter's raw API route.
 - [x] Test the conflicting-code warning on `FLA-001-13`
 - [x] Test related-item suggestions on a harness question
 
-**Exit condition:** the grounding questions from `docs/reflection-outline.md`
+**Exit condition:** the grounding questions from `docs/week14/reflection-outline.md`
 all behave — refusals refuse, the conflict warns, and no invented prices appear
 in ten consecutive varied questions.
 
@@ -761,7 +761,7 @@ depends on it.
       **Still 404 to an anonymous client at the end of M7 implementation** —
       this is a GitHub account action, no credential for it exists here, and
       it is the first item in `submission/SUBMIT.md`
-- [x] Write the one-page reflection from `docs/reflection-outline.md`, using
+- [x] Write the one-page reflection from `docs/week14/reflection-outline.md`, using
       what actually broke in M3 and M4 — **one page is ~500 words**.
       `submission/reflection.md`, 537 words, thesis-led
 - [x] Export the reflection to PDF — `submission/reflection.pdf`, A4
@@ -844,7 +844,7 @@ typography and a controllable single page with no new dependency.
 
 ### The reflection is one page — roughly 500 words
 
-`docs/reflection-outline.md` is raw material, not a draft. It holds far more
+`docs/week14/reflection-outline.md` is raw material, not a draft. It holds far more
 than fits. Writing it long and then cutting wastes an hour and usually produces
 a flattened summary of everything rather than an argument.
 

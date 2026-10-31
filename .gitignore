@@ -33,3 +33,9 @@ Ship+Your+Own+RAG_14.3.pdf
 
 # Submission artefacts - stay local, never in the public repo
 submission/
+
+# Capstone: staff-only material (costing, course PDF)
+private/
+
+# OCR cache from extract_catalogue_specs.py - holds raw sheet text, including sheet prices
+ocr_raw.json

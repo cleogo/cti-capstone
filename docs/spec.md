@@ -1,7 +1,7 @@
 # CTI Product Assistant — Spec
 
 What the application is and what its parts are contracted to do. This is a
-contract, not a sequence — see `docs/plan.md` for build order.
+contract, not a sequence — see `docs/week14/plan.md` for build order.
 
 ---
 
@@ -194,7 +194,7 @@ rules above.
 product code, price, or product name that did not appear in a tool result in
 the current turn — including one that appears in its own instructions. The
 first prompt illustrated a refusal with a made-up price and the model quoted
-that price to the customer (see `docs/plan.md`, M4). Prompt examples now
+that price to the customer (see `docs/week14/plan.md`, M4). Prompt examples now
 demonstrate format only.
 
 **B. A tool call is required before a refusal.** Refusing a question about

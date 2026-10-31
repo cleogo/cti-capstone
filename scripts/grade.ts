@@ -209,7 +209,7 @@ async function main() {
       turn.toolNames.includes('filterProducts'),
       `tools called: ${turn.toolNames.join(', ') || 'NONE'}`,
     );
-    // 214 is the catalog's real sub-500 count and the figure docs/plan.md
+    // 214 is the catalog's real sub-500 count and the figure docs/week14/plan.md
     // names as the correct answer. Pinned deliberately: the first graded run
     // reported "4 items" because the model invented a Fire Safety filter, and
     // an assertion that only checked "states its own total" passed it.

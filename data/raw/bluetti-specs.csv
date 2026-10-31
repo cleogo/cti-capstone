@@ -1,0 +1,19 @@
+product_name,capacity_wh,ac_output_w,power_lifting_w,total_outlets,ac_outlets,warranty_months,cell_efficiency_pct,ingress_protection,notes
+AC2P,230,300,600,5,,60,,,
+PREMIUM 30 V2,320,600,1500,9,,60,,,
+AC50P,504,700,1200,7,,60,,,
+AC70P,864,1000,2000,8,,60,,,
+PREMIUM 100 V2,1024,2000,2700,11,,60,,,
+AC180P,1440,1800,2700,11,,60,,,
+AC200PL,2304,2400,3600,13,,60,,,
+PREMIUM 200 V2,2073.6,2700,4050,9,,60,,,
+ELITE320,3200,1800,2700,,4 × 120 V / 15 A,60,,,
+APEX300,2764.8,3840,7680,,4 × 120 V / 20 A · TT-30R · L14-50R,60,,,
+B300K,2764.8,,,,,48,,,Expansion battery. Price list says it fits Premium 200 AC300 AC500 and APEX 300.
+PV60,,,,,,12,24.7,IP65,
+PV100,,,,,,12,25,IP65,Cell efficiency printed as 25% Max.
+PV130,,,,,,12,25,IP67,Cell efficiency printed as 25% Max.
+PV200,,,,,,12,25,IP67,Cell efficiency printed as 25% Max.
+PV220,,,,,,12,25,IP67,Cell efficiency and IP rating partly hidden by glare in the photo; read as 25% Max and IP67.
+PV350,,,,,,12,25,IP67,Cell efficiency printed as 25% Max.
+P090D-P150D,,,,,,,,,Links an expansion battery to Premium 200 or APEX 300.

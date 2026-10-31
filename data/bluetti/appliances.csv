@@ -1,0 +1,184 @@
+appliance,variant,running_w,surge_w,notes,user_types
+Air Conditioner,1.0 HP inverter,800,,Average running,Residential; Office; Café / Restaurant; Retail / Small Business; Salon / Beauty; Hotel / Rental; Sewing / Craft Business
+Air Conditioner,1.0 HP non-inverter,1300,1800,Average running,Residential; Office; Hotel / Rental
+Air Conditioner,2.0 HP inverter,1300,,Average running,Residential; Office; Café / Restaurant
+Air Fryer,Standard,1500,,Average running,Residential; Café / Restaurant
+Air Purifier,Standard,25,,Average,Residential; Office; Retail / Small Business; Hotel / Rental
+AM/FM auto cassette player,Standard,8,,Average,Residential; Garage / Automotive; Communication / Radio
+Amazon Echo,Standard,3,,Average,Residential; Office
+Amazon Echo Show,Standard,2,,Average,Residential; Office
+American-style Fridge Freezer,Standard,200,,Average; Average running,Residential; Retail / Small Business
+Bathroom Towel Heater,Standard,60,,Average,Residential
+Belt sander,"3""",1000,,Running,Workshop / Contractor; Garage / Automotive; Light Industrial / Workshop
+Blender,Standard,300,,Average,Residential; Café / Restaurant
+Blow dryer,Standard,1000,,Average (800–1800W),Residential; Salon / Beauty
+Bread Toaster,2 Slice,700,,Average,Residential; Café / Restaurant
+Bread Toaster,4 Slice,1200,,Average,Residential; Café / Restaurant
+CB radio,Standard,5,,Receiving mode,Communication / Radio
+CD player,Standard,35,,Average,Gaming / Entertainment
+Ceiling Fan,48 Inch,60,,Average,Residential; Hotel / Rental
+Ceiling fan,Standard (no blade size),40,,Average,Residential; Hotel / Rental
+Charger,Mobile phone,1,,Average; varies 1–5W,Residential; Garage / Automotive
+Circular saw,"7-1/4""",900,,Running,Workshop / Contractor; Light Industrial / Workshop
+Circular saw,"8-1/4""",1400,,Running,Workshop / Contractor; Light Industrial / Workshop
+Clock radio,Standard,1,,Average,Residential
+Clothes dryer,Electric (240V),4000,,Running; large units,Residential
+Clothes dryer,Gas heated,300,,Electric draw only,Residential
+Clothes dryer,Standard (unspecified),2000,,Average,Residential
+Coffee Maker,Standard drip,800,,Average,Residential; Café / Restaurant
+Commercial Coffee Grinder,Standard,400,,Average running,Café / Restaurant
+Computer Monitor,Standard (unspecified),25,,Average; varies 15–50W,Office; Retail / Small Business; Media / Events
+Corded Drill,Standard,600,,Running,Workshop / Contractor; Garage / Automotive; Light Industrial / Workshop
+Corded Electric Handheld Leaf Blower,Standard,2500,,Running,Workshop / Contractor; Cleaning / Janitorial
+Dehumidifier,Standard,240,,Average,Residential
+Desktop Computer,Gaming (Entry/Mid-Range),350,,RTX 4060/4070 class,Gaming / Entertainment
+Desktop Computer,Gaming (High-End),550,,RTX 4080/4090 class,Gaming / Entertainment
+Desktop Computer,Mid-range / Workstation,150,,Average; includes monitor,Office
+Desktop Computer,Standard / Office,100,,Average; tower + monitor,Office; Retail / Small Business; Media / Events
+Disc sander,"9""",1200,,Running,Workshop / Contractor; Light Industrial / Workshop
+Dishwasher,Standard,1200,,Average running (heating),Café / Restaurant
+Dishwasher (Commercial),Commercial,3000,,High-temp/sanitizing,Café / Restaurant
+Domestic Water Pump,Standard,200,,Running,Residential; Water / Utility
+Drill,"1""",1000,,Running,Workshop / Contractor; Garage / Automotive; Light Industrial / Workshop
+Drill,"1/2""",750,,Running,Workshop / Contractor; Garage / Automotive; Light Industrial / Workshop
+Drill,"1/4""",250,,Running,Workshop / Contractor; Garage / Automotive; Light Industrial / Workshop
+Electric blanket,Standard,200,,Average,Residential
+Electric clock,Standard,3,,Average,Residential
+Electric cooker with oven,Standard,1000,,Average,Residential; Café / Restaurant
+Electric Doorbell Transformer,Standard,2,,Average,Residential
+Electric fan,14-inch DC Motor,15,,Energy-efficient,Residential; Office
+Electric fan,14-inch standard,60,,Average,Residential; Office; Retail / Small Business; Garage / Automotive; Hotel / Rental; Sewing / Craft Business
+Electric Heater Fan,Standard,2000,,Running,Residential
+Electric Iron,Standard,800,,Average,Residential; Hotel / Rental; Sewing / Craft Business
+Electric Kettle,Standard,1200,,Running (boiling),Residential; Hotel / Rental
+Electric mower,Lawnmower,1000,,Running,Workshop / Contractor; Light Industrial / Workshop; Cleaning / Janitorial
+Electric Shaver,Standard,15,,Average,Residential; Salon / Beauty
+Electric stove,Standard (per burner),2000,,Average per burner,Residential; Café / Restaurant
+Espresso Coffee Machine,Standard,1300,,Running (heating),Residential; Café / Restaurant
+Exhaust Hood,Commercial,1000,,Average running,Café / Restaurant
+Extractor / Exhaust Fan,Standard,12,,Average,Residential; Office
+Food Dehydrator,Standard,800,,Average,Residential; Café / Restaurant
+Freezer / Fridge (by type),Bottom-Freezer (18–22 cu. ft.),150,,Average running,Residential; Café / Restaurant
+Freezer / Fridge (by type),Freezer - 15 cu. ft. (Upright/Chest),100,,Average running,Residential; Café / Restaurant
+Freezer / Fridge (by type),French Door (22–28 cu. ft.),150,,Average running,Residential; Café / Restaurant
+Freezer / Fridge (by type),Side-by-Side (22–26 cu. ft.),200,,Average running,Residential; Café / Restaurant
+Freezer / Fridge (by type),Top-Freezer (14–18 cu. ft.),100,,Average running,Residential; Café / Restaurant
+Fridge / Freezer,General (unspecified),150,,Average running,Residential; Café / Restaurant
+Fryer,Deep fryer,1000,,Average,Residential; Café / Restaurant
+Frying Pan,Electric,1200,,Running,Residential; Café / Restaurant
+Game Console,General (unspecified),120,,Average,Residential; Gaming / Entertainment
+Game Console,Nintendo Switch (docked),7,,Charger rating,Residential
+Game Console,Playstation 4 (original),130,,Average,Residential
+Game Console,Playstation 4 Pro,150,,Average,Residential
+Game Console,Playstation 4 Slim,85,,Average,Residential
+Game Console,Playstation 5,200,,Average gaming,Residential
+Game Console,Xbox One (original),120,,Average,Residential
+Game Console,Xbox One S,70,,Average,Residential
+Game Console,Xbox One X,180,,Average,Residential
+Game Console,Xbox Series S,75,,Average,Residential
+Game Console,Xbox Series X,200,,Average gaming,Residential
+Garage door opener,Standard,300,,Running,Residential; Workshop / Contractor; Garage / Automotive
+Guitar Amplifier,Standard,20,,Average,Residential; Gaming / Entertainment; Media / Events
+Hair Straightening Iron,Standard,75,,Average,Residential; Salon / Beauty; Hotel / Rental
+Hand Wash Oversink Water Heater,Standard,3000,,Running (instant),Residential; Water / Utility
+Handheld,Handheld,100,,Running,Cleaning / Janitorial
+Heated Bathroom Mirror,Standard,50,,Average,Residential; Salon / Beauty
+Heater,Electric water heater (tank),4000,,Running (240V),Residential; Water / Utility
+Heater,Engine block,150,,Average,Residential; Garage / Automotive
+Heater,Portable (space),1500,,Running,Residential
+Heater,Stock tank,100,,Average,Residential; Water / Utility
+Heater,Waterbed,400,,Average,Residential; Water / Utility
+Hedge trimmer,Standard,450,,Running,Workshop / Contractor; Cleaning / Janitorial
+Home Internet Router,Standard,5,,Average,Residential; Office; Retail / Small Business; Hotel / Rental; Communication / Radio
+Home Phone,Cordless,3,,Average,Residential; Office; Communication / Radio
+Home Sound System,Standard,95,,Average,Residential; Gaming / Entertainment; Media / Events
+Hot Plate,Standard,1200,,Running,Residential; Café / Restaurant
+Hot Water Dispenser,Standard,1200,,Running (heating),Residential; Café / Restaurant; Water / Utility
+Humidifier,Standard,35,,Average,Residential
+Ice Maker,Standard,300,,Average running,Café / Restaurant
+Induction Cooktop,Standard (per burner),1400,,Running,Residential; Café / Restaurant
+Inkjet Printer,Standard,20,,Average (printing),Office; Retail / Small Business
+Iron,Standard,1000,,Average,Residential; Sewing / Craft Business
+Laptop Computer,Gaming (average),175,,150–200W range,Office; Gaming / Entertainment; Media / Events
+Laptop Computer,Standard / Office,45,,Average,Office; Retail / Small Business; Sewing / Craft Business; Media / Events
+Large Office Printer,Standard,600,,Running,Office
+Lights (LED equivalents),100W Incandescent → LED eq.,14,,Running,Residential; Office
+Lights (LED equivalents),20W DC CFL → LED eq.,11,,Running,Residential; Office
+Lights (LED equivalents),25W CFL → LED eq.,14,,Running,Residential; Office
+Lights (LED equivalents),40W DC Halogen → LED eq.,6,,Running,Residential; Office
+Lights (LED equivalents),50W DC Incandescent → LED eq.,7,,Running,Residential; Office
+Lights (LED equivalents),CFL 100W eq. → LED,14,,Running,Residential; Office
+Lights (LED equivalents),CFL 40W eq. → LED,6,,Running,Residential; Office
+Lights (LED equivalents),CFL 60W eq. → LED,8,,Running,Residential; Office
+Lights (LED equivalents),CFL 75W eq. → LED,10,,Running,Residential; Office
+Lights (LED equivalents),LED Light Bulb (60W eq.),7,,Running,Residential; Office; Retail / Small Business; Garage / Automotive; Salon / Beauty; Sewing / Craft Business
+Mi Box,Android TV box,5,,Average,Residential; Gaming / Entertainment
+Microwave,Standard,600,,Average (cooking),Residential; Café / Restaurant
+Nintendo Switch (docked),Standard,7,,Charger rating,Gaming / Entertainment
+Oven,Electric,1000,,Average running,Residential; Café / Restaurant
+Paper Shredder,Standard,200,,Running,Office
+Pedestal Fan,Standard,50,,Average,Residential; Café / Restaurant
+Philips Hue Smart Bulb,Standard,8,,Average,Residential
+Phone Charger,Standard,4,,Average,Residential; Office
+Playstation 4 (original),Original,130,,Average,Gaming / Entertainment
+Playstation 4 Pro,Pro,150,,Average,Gaming / Entertainment
+Playstation 4 Slim,Slim,85,,Average,Gaming / Entertainment
+Playstation 5,Standard,200,,Average gaming,Gaming / Entertainment
+Popcorn Popper,Standard,250,,Running,Café / Restaurant
+POS / Cash Register,Standard,75,,Average running,Office; Retail / Small Business
+Power Shower,Electric,7500,,"Running (instant, 240V)",Water / Utility
+Projector,Standard,220,,Average,Residential; Office; Gaming / Entertainment; Media / Events
+Radiotelephone,Receiving mode,5,,Average,Communication / Radio
+Radiotelephone,Transmitting mode,40,,Average,Communication / Radio
+Refrigerator,16 cu. ft. (AC),100,,Average running,Residential; Café / Restaurant; Retail / Small Business; Hotel / Rental
+Refrigerator,20 cu. ft. (AC),120,,Average running,Residential; Café / Restaurant; Retail / Small Business
+Refrigerator,8-cu-ft non-inverter,160,,Average running,Residential; Café / Restaurant; Retail / Small Business; Hotel / Rental
+Rice Cooker,Small (3–6 cups),300,,Running (cooking),Residential; Café / Restaurant
+Rice Cooker,Standard (10 cups/1.8L),650,,Running (cooking),Residential; Café / Restaurant
+Satellite dish,Standard,30,,Average,Residential; Communication / Radio
+Scanner,Standard,10,,Average,Office
+Set Top Box,Standard,27,,Average,Office; Gaming / Entertainment
+Sewing machine,Standard,70,,Running,Workshop / Contractor; Sewing / Craft Business; Light Industrial / Workshop
+Sink waste disposal,Standard,450,,Running,Café / Restaurant; Cleaning / Janitorial
+Space Heater,Standard,2000,,Running,Residential
+Stand Fan,Standard,40,,Average,Residential
+Steam Iron,Standard,2200,,Running,Residential; Sewing / Craft Business
+Stereo,Standard,20,,Average,Residential; Office; Gaming / Entertainment; Media / Events
+Table fan,Standard,10,,Average,Residential; Sewing / Craft Business
+Television,"24"" LCD",40,,Average,Residential; Gaming / Entertainment
+Television,"24"" LED",30,,Average,Residential; Office; Gaming / Entertainment; Hotel / Rental; Media / Events
+Television,"32"" LCD",60,,Average,Residential; Gaming / Entertainment
+Television,"32"" LED",30,,Average,Residential; Office; Café / Restaurant; Retail / Small Business; Gaming / Entertainment; Hotel / Rental; Media / Events
+Television,"37"" LCD",70,,Average,Residential; Gaming / Entertainment
+Television,"37"" LED",60,,Average,Residential; Gaming / Entertainment
+Television,"42"" LCD",110,,Average,Residential; Gaming / Entertainment
+Television,"42"" LED",70,,Average,Residential; Gaming / Entertainment
+Television,"50"" LCD",140,,Average,Residential; Gaming / Entertainment
+Television,"50"" LED",90,,Average,Residential; Office; Café / Restaurant; Retail / Small Business; Gaming / Entertainment; Hotel / Rental; Media / Events
+Television,"65"" LED",120,,Average,Residential; Gaming / Entertainment; Media / Events
+Television,"82"" LED",228,,Average,Residential; Gaming / Entertainment; Media / Events
+Top Load Washing Machine,Standard,500,,Running (motor + heater),Residential
+Treadmill,Standard,280,,Running,Residential
+Tube Light,Standard (fluorescent),22,,Average,Residential; Office; Café / Restaurant; Retail / Small Business; Garage / Automotive
+Upright / Standard,Upright / Standard,200,,Running,Cleaning / Janitorial
+Vacuum cleaner,Handheld,100,,Running,Residential; Cleaning / Janitorial
+Vacuum cleaner,High Power,1600,,Running,Residential; Workshop / Contractor; Garage / Automotive; Light Industrial / Workshop; Cleaning / Janitorial
+Vacuum cleaner,Upright / Standard,200,,Running,Residential; Cleaning / Janitorial
+VCR,Standard,40,,Average,Residential; Gaming / Entertainment
+Waffle Iron,Standard,1200,,Running,Residential; Café / Restaurant
+Wall Mounted Fan,Standard,45,,Average,Residential
+Washing Machine,Front-load / Auto (standard),500,,Running,Residential
+Washing Machine,Front-load fully automatic,2600,,Running (with heater),Residential
+Washing Machine,Manual / Top-load (no heater),300,,Running,Residential
+Water Dispenser (Hot/Cold),Standard,250,,Average running,Office
+Water Filter and Cooler,Standard,70,,Average,Residential; Office; Café / Restaurant; Retail / Small Business; Hotel / Rental; Water / Utility
+Waterpik,Standard,100,,Running,Residential; Salon / Beauty; Water / Utility
+Weed eater,Standard,500,,Running,Workshop / Contractor; Light Industrial / Workshop; Cleaning / Janitorial
+Well Pump,1/3–1 HP,480,,Running,Residential; Water / Utility
+Wine cooler,18 bottles,83,,Average,Residential; Café / Restaurant; Hotel / Rental
+Xbox One (original),Original,120,,Average,Gaming / Entertainment
+Xbox One S,One S,70,,Average,Gaming / Entertainment
+Xbox One X,One X,180,,Average,Gaming / Entertainment
+Xbox Series S,Series S,75,,Average,Gaming / Entertainment
+Xbox Series X,Series X,200,,Average gaming,Gaming / Entertainment
+Zero Bulb,Night light,1,,Average,Residential; Hotel / Rental

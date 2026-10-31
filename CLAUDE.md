@@ -1,128 +1,129 @@
-# CTI Product Assistant
+# CTI Product Advisor (capstone)
 
-A public RAG chat app over the CTI price masterlist — 1,038 items of workplace
-safety, facility and institutional equipment. Built from the Next.js RAG
-starter for AIM Week 14 (graded).
+The Generative AI & Agentic AI capstone. It extends the Week 14 CTI Product
+Assistant — a tool-calling RAG chat over CTI's 1,038-item price masterlist —
+into an agentic advisor: product details, comparison, a power-station
+recommender, draft quotations and escalation to sales.
 
-**Read first:** `docs/spec.md` for contracts, `docs/plan.md` for build order and
-current progress. `docs/corpus-design-decisions.md` holds the rationale behind
-the corpus shape — consult it before changing anything about chunking or
-retrieval.
+This folder is standalone. The app, the planning docs and the data all live
+here, and the app runs from here. It started as a clone of
+`cti-product-assistant` at tag `week14-submission`; see
+`docs/week14-reference.md` for what that baseline is and where it lives.
+
+**Read first:**
+- `docs/capstone-prd.md` — the product spec; §16 traces every capstone
+  requirement to a section.
+- `docs/diagrams/14-work-breakdown-structure.jpg` and
+  `docs/diagrams/13-gantt-two-week-plan.jpg` — the WBS and the schedule.
+  Submission is **Sun 15 Nov 2026**. PRD §14 still says early December; the
+  Gantt supersedes it.
+- `docs/capstone-specification.md` — the course brief the capstone is graded on.
+- `docs/spec.md` — the Week 14 contracts the app still satisfies.
+- `docs/corpus-design-decisions.md` — read before changing chunking or retrieval.
 
 ---
 
 ## Stack
 
-<!-- Fill in during M1 -->
-Built from the course starter at `docs/14A-nextjs-rag` — Next.js 15, Vercel AI
-SDK v4, Upstash Vector. Keep its shape; replace its corpus and its single tool.
+Inherited from Week 14: Next.js 15 (App Router), TypeScript, Tailwind, Vercel
+AI SDK v4, Upstash Vector, OpenAI (`text-embedding-3-small` for embeddings).
 
-- Next.js 15 (App Router), TypeScript, Tailwind
-- AI SDK v4 — `streamText` + `tool()` server-side, `useChat` client-side.
-  Note the v4 API: `maxSteps`, `toDataStreamResponse()`, `toolInvocations`,
-  and zod schemas under `parameters` (not `inputSchema`).
-- Chat model: OpenAI GPT. Embeddings: `text-embedding-3-small`. Batch the seed
-  calls and retry on 429s; 1,038 records is enough to hit rate limits.
-- Vector store: **Upstash Vector** (hosted, serverless REST). Vercel's
-  filesystem is ephemeral, so no file-based store — FAISS, LanceDB, SQLite,
-  local Chroma — will survive deployment.
-- `filterProducts` **and exact code/name matching** use **no database** —
-  `products.json` is imported at module scope and scanned in plain JavaScript.
-  The corpus is ~1 MB and static.
-- Env: `OPENAI_API_KEY`, `UPSTASH_VECTOR_REST_URL`, `UPSTASH_VECTOR_REST_TOKEN`
-- Deployed on Vercel
+- AI SDK v4 API: `maxSteps`, `toDataStreamResponse()`, `toolInvocations`, zod
+  schemas under `parameters` (not `inputSchema`).
+- Vercel's filesystem is ephemeral — no file-based stores.
+- `products.json` is imported at module scope and scanned in plain JavaScript
+  for filtering and exact matching. No database for that.
+- The PRD adds Redis (session memory, demo inventory, tickets), Langfuse
+  tracing and caching. Add their env vars to `.env.example` as each lands.
 
 ## Workflow
 
-Build one milestone at a time through the `phase` skill — `/phase M1`. It
-clarifies, plans, previews how you'll verify, waits for your go, implements the
-whole milestone, then hands the checks back. `/phase-next` closes a verified
-milestone and opens the next. Do not implement a milestone outside this cycle.
+Build through the `phase` skill: `/phase <milestone>`, then `/phase-next` once
+verified. It reads `docs/plan.md`. **The capstone plan has not been written
+yet** — the Week 14 plan is archived at `docs/week14/plan.md`. Write the new
+`docs/plan.md` from the WBS before running `/phase`.
 
 ## Commands
 
 ```bash
 npm run dev                          # local dev server
-npm run seed                         # embed corpus into Upstash Vector
+npm run seed                         # embed corpus into Upstash Vector — see the index rule below
 python scripts/build_corpus.py       # regenerate corpus from the xlsx
 python scripts/build_pricelist_pdf.py  # rebuild the PDF, re-stamp page numbers
+python scripts/clean_bluetti.py      # data/raw/bluetti-* -> data/bluetti/
+python scripts/extract_catalogue_specs.py <sheet-folder>... --cache ocr_raw.json
 npx tsx scripts/query.ts "<query>"   # query the store directly, no UI
-npm run verify:prod                  # re-run the R1-R7 rubric evidence against prod
 ```
 
 ## Environment
 
-Env var names must match exactly between `.env.local` and Vercel project
-settings — mismatched production env vars are a known failure mode for this
-assignment. `.env.local` is gitignored and must never be committed.
+`.env.local` is gitignored and must never be committed. Env var names must
+match exactly between `.env.local` and the Vercel project.
+
+**The capstone needs its own Upstash index and its own Vercel project.** The
+Week 14 app is still live and graded, and reads its own index. Never run
+`npm run seed` against the Week 14 index — new records (knowledge sheets,
+Bluetti items) would change the live Week 14 app's answers.
 
 ---
 
 ## Layout
 
 ```
-app/
-  page.tsx          chat UI — useChat, streaming, sources
-  api/chat/route.ts streamText + the two tools
-lib/
-  seed.ts           embeds corpus/products.jsonl into Upstash
-corpus/           generated RAG corpus — see corpus/README.md
-  products.jsonl    1,038 product chunks; embed the `text` field
-  products.json     same records without text; imported by filterProducts
-  products.csv      same records, tabular; inspection only
-  categories.json   12 departments, 37 categories
-  guide/            prose docs; chunk by ## heading
+app/ lib/ corpus/      the app (Week 14 baseline, extended per the WBS)
+scripts/               corpus, PDF, Bluetti and catalogue-spec builders; eval and grade harnesses
 data/
-  cti-price-masterlist.pdf  printed price list; the `page` metadata points here
-scripts/
-  build_corpus.py   xlsx -> corpus (regenerates everything in corpus/)
-  build_pricelist_pdf.py  corpus -> data/*.pdf; stamps `page` back into corpus
-docs/               spec, plan, design decisions, reflection material
-  14A-nextjs-rag/   course starter, reference copy — do not edit
-  14A-chainlit-rag/ course starter, not used (FAISS is in-process)
+  raw/                 Bluetti inputs as supplied by CTI — edit these, not data/bluetti/
+  bluetti/             generated by clean_bluetti.py; README lists the source issues
+  catalogue-specs.*    generated by extract_catalogue_specs.py
+  cti-price-masterlist.pdf
+docs/
+  capstone-*.md        PRD, course spec, diagram sources
+  diagrams/            rendered diagrams, including the WBS and Gantt
+  week14/              archived Week 14 plan and reflection outline
+  week14-reference.md  where the Week 14 baseline lives
+  sources.md           where the source material came from
+private/               gitignored — staff-only material, never in the repo
 ```
 
 ---
 
 ## Rules
 
-**Do not re-chunk `products.jsonl`.** Each record is already one atomic
-product. Re-chunking splits names from prices and is the single fastest way to
-break retrieval.
+**`private/` never leaves this machine.** The costing formula, cost and margin
+data, and the course spec PDF go here. The repo will be public for grading; PRD §7.5 keeps cost data out of
+the public chatbot.
 
-**Never render a price from model output.** The sources panel reads `price_php`
-from chunk metadata. The embedding only locates a chunk; the metadata passes
-through verbatim, which is what makes the displayed number exact. Parsing a
-price out of generated text discards that guarantee.
+**The masterlist is final.** Catalogue-sheet data never overrides a masterlist
+code, name or price. Sheet prices are never output.
 
-**`price_php` is an integer.** Keep it numeric through ingest — `filterProducts`
-compares and sorts on it.
+**Do not re-chunk `products.jsonl`.** One record is one atomic product.
+Re-chunking splits names from prices.
 
-**Corpus generation is two stages, in order.** `build_corpus.py` writes
-`corpus/` from the xlsx; `build_pricelist_pdf.py` then renders
-`data/cti-price-masterlist.pdf` and stamps each record's `page` back into the
-corpus. Running stage 1 alone leaves every record without a `page`. Stage 2
-never touches the embedded `text`, so it needs no re-seed.
+**Never render a price from model output.** Prices on screen come from tool
+metadata (`price_php`), passed through verbatim. The same rule applies to
+quotation totals and VAT: compute them in code, never in the model.
 
-**Edit the corpus at the source.** `corpus/` is generated. Change
-`scripts/build_corpus.py` and regenerate; do not hand-edit the jsonl or csv.
-The guide documents in `corpus/guide/` are the exception — those are written by
-hand.
+**`price_php` is an integer.** Keep it numeric through ingest.
 
-**Two tools, not one.** `searchProducts` is semantic; `filterProducts` queries
-metadata. Price thresholds, superlatives and counts go to `filterProducts` —
-vector search answers those confidently and wrongly. Keep the tool descriptions
-sharp enough that routing is unambiguous.
+**Edit data at the source.** `corpus/`, `data/bluetti/` and
+`data/catalogue-specs.*` are generated. Change the inputs or the script and
+regenerate. Hand-written exceptions: `corpus/guide/`, the knowledge sheets.
 
-**Five product codes carry conflicting source data** (`FIR-002-50LBS-AFFF`,
-`LIF-002-05`, `LIF-001-09`, `LIF-003-01`, `FLA-001-13`). Records are flagged
-`data_quality_flag: "duplicate_code_conflict"`. The model warns and refers to
-the sales team rather than quoting a price. See `docs/data-quality-report.md`.
+**Corpus generation is two stages, in order:** `build_corpus.py`, then
+`build_pricelist_pdf.py` (stamps `page` back into the corpus).
 
-**The model refuses rather than estimates** on stock, lead time, discounts,
-delivery, warranty, and specs beyond the item name. The full list is in
-`corpus/guide/04-answering-price-questions.md`, which is in the corpus
-specifically so the refusal is retrievable.
+**Route by tool description.** Price thresholds, superlatives and counts go to
+`filterProducts`; vector search answers those confidently and wrongly. Every
+new tool needs a description sharp enough that routing is unambiguous.
+
+**Five product codes carry conflicting source data**, flagged
+`data_quality_flag: "duplicate_code_conflict"`. Warn and refer to sales rather
+than quoting a price. See `docs/data-quality-report.md`.
+
+**Refuse rather than estimate** on stock, lead time, discounts, delivery,
+warranty, and anything not on file. Items without a knowledge sheet get an
+honest "not on file", never an invented spec.
 
 **Prices are Philippine Pesos**, formatted `₱43,470.00`. Always quote the
 product code alongside a price.
@@ -131,14 +132,8 @@ product code alongside a price.
 
 ## Constraints
 
-- Stretch goals are capped at two by the brief: **hybrid retrieval** and
-  **suggested-prompt chips**. Do not add more.
-- Out of scope: auth, rate limiting, conversation persistence, ordering,
-  inventory, image display.
-- Keep it proportionate — this is an 8–12 hour project, not a product.
-
-## Publication
-
-Real CTI prices and product codes are **approved for publication** — no
-scrubbing needed. The repo starts private; it must be public or shared with the
-facilitator before M7 submission.
+- Scope is set by the PRD's tiers (§4): P0 first. P1 extras (F6–F8) only once
+  P0 evidence is done; fine-tuning only after that.
+- Evaluation evidence (`docs/evidence/`) must come from scripts that run the
+  code production ships, not from notebooks.
+- Two build weeks. Keep it proportionate.

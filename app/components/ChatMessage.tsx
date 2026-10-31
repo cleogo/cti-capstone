@@ -61,7 +61,7 @@ export function ChatMessage({ message }: { message: Message }) {
        * ever sees. Trade-off: on desktop, an EARLIER answer's sources are not
        * visible anywhere once a later turn has run, because the panel only
        * ever mirrors the latest turn. Accepted deliberately — see
-       * docs/plan.md, M5.
+       * docs/week14/plan.md, M5.
        */}
       {!isUser && sources.length > 0 && (
         <div className="mt-1 w-full max-w-full sm:max-w-[85%] lg:hidden">

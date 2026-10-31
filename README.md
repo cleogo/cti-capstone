@@ -1,170 +1,181 @@
-# CTI Product Assistant
+# CTI Product Advisor
 
-A RAG chat app that answers product and price questions over CTI's real price
-masterlist — 1,038 items of workplace safety, facility and institutional
-equipment, retrieved and quoted with the product code and price attached to
-every answer.
+CTI is a Philippine trading company. It sells about 1,000 items for workplace
+safety, rescue and disaster, facilities and households. The CTI Product
+Advisor is an agentic chat assistant for CTI clients. A client can ask:
 
-**Live:** https://cti-product-assistant.vercel.app
+- which items CTI sells
+- the price of an item
+- how two items are different
+- which Bluetti power station can run their appliances
 
-Ask it things like:
+The advisor answers from CTI's own data and makes a draft quotation. It sends
+each question that it cannot or must not answer to the CTI sales team.
 
-- "How much is MED-001-01?"
-- "What sizes do fire blankets come in and how much are they?"
-- "What safety equipment do you have under ₱500?"
-- "What do I need to outfit a construction site?"
+This project is the capstone for the Generative AI & Agentic AI course. It
+extends the Week 14 [CTI Product Assistant](https://github.com/cleogo/cti-product-assistant).
+The Week 14 app is a tool-calling RAG chat over CTI's 1,038-item price
+masterlist. It is live at https://cti-product-assistant.vercel.app.
 
-It will decline to answer about stock, lead time, discounts, delivery or
-warranty — the masterlist doesn't hold that data, and the assistant is built
-to say so rather than guess.
+## Origin
+
+This repo is a clone of
+[cleogo/cti-product-assistant](https://github.com/cleogo/cti-product-assistant)
+at tag `week14-submission` (commit `02ea4e9`). The commits up to and including
+`02ea4e9` are the Week 14 app. The commits after `02ea4e9` are the capstone
+work. [`docs/week14-reference.md`](docs/week14-reference.md) gives more
+information about the baseline.
+
+> **Status (31 Oct 2026): in progress.** The Week 14 app runs from this repo.
+> The Bluetti data and the catalogue-sheet data are clean and are in `data/`.
+> Work continues on the new tools, guardrails, caching and evaluation. The
+> submission date is Sun 15 Nov 2026. The capstone will have its own
+> deployment. Its URL will go here.
 
 ---
 
-## What it does
+## Features
 
-- **Two retrieval tools, not one.** `searchProducts` runs semantic search over
-  product chunks and the catalog guide, with exact code/name matches merged
-  ahead of vector hits. `filterProducts` queries the in-memory catalog
-  directly — no vector search — for price thresholds, superlatives, and
-  counts, and returns `total_matching` so an answer can say "214 items match"
-  instead of silently truncating to 20 and implying that's everything.
-- **Every price is exact by construction.** The UI renders `price_php` from
-  the tool's structured metadata, never from anything the model wrote. The
-  model can't hallucinate a price into a source card even if it hallucinates
-  one into prose.
-- **The model refuses instead of guessing.** Stock, lead time, discounts,
-  delivery, warranty, and specs beyond the item name are out of scope, and the
-  system prompt is built to decline those and point at CTI's sales team —
-  while still answering the part of the question the masterlist *does* cover.
-- **Five product codes carry genuinely conflicting source data** — the same
-  code with two different prices. Those get a warning and a referral to sales
-  instead of a picked (and possibly wrong) number. See
+| | Feature | State |
+|---|---|---|
+| F1 | Browse and search the catalogue by category, code, name or price | Built (Week 14) |
+| F2 | Product details from a knowledge sheet: specs, usage and advantages | In progress |
+| F3 | Side-by-side comparison of 2–4 products | In progress |
+| F4 | Power-station recommender: appliance checklist → load and runtime calculation → the smallest sufficient Bluetti | In progress |
+| F5 | Draft quotation, with VAT calculated backwards from VAT-inclusive prices | In progress |
+| F9 | Escalation to sales for each question that the advisor cannot or must not answer | In progress |
+
+[`docs/capstone-prd.md`](docs/capstone-prd.md) is the full specification. It
+has an acceptance test for each feature. The plan also has extra features: an
+updates sign-up, a staff quote queue, demo inventory and costing. These extras
+are P1. Work on them starts only after the core evidence is
+complete.
+
+## How the advisor stays honest
+
+The new tools obey the same rules as the Week 14 app.
+
+- **The model does not calculate numbers.** Each price on screen comes from
+  tool metadata, without changes. Code calculates the power-station load, the
+  runtime, the quotation totals and the VAT. Unit tests check that code. The
+  model explains the result. It does not do the arithmetic.
+- **The masterlist is final.** Catalogue sheets and supplier data add specs.
+  They never replace a masterlist code, name or price.
+- **The advisor does not invent specs.** For an item without a knowledge
+  sheet, the advisor gives the price, the code and an honest "not on file". It
+  also offers to send the question to sales.
+- **The advisor refuses to estimate.** Data about stock, lead time, discounts,
+  delivery and warranty is not on file. The advisor tells the client this and
+  refers the client to sales.
+- **Five product codes have conflicting source data.** Each of these codes
+  occurs at two prices. The advisor gives a warning and refers the client to
+  sales. It does not select one of the two prices. See
   [`docs/data-quality-report.md`](docs/data-quality-report.md).
-- **Streaming answers with live retrieval status**, sources shown as soon as
-  retrieval completes rather than when the message finishes, and a real
-  mobile layout — tables scroll inside their own container instead of
-  breaking the page.
+- **A quotation is a draft, not an order.** The advisor never places an order
+  and never changes stock. CTI sales confirm every sale.
 
-## The corpus: a spreadsheet that became a document
+## Architecture
 
-The source is a price masterlist, not prose — so the usual RAG shape did not
-fit, and two things were built rather than assumed.
+![System architecture](docs/diagrams/01-system-architecture.jpg)
 
-**Each record is one atomic product and is never re-chunked.** Splitting a row
-would separate a name from its price, which is the fastest way to quote a real
-price for the wrong item. Chunk size here is a property of the data, not a
-tuning knob. The reasoning is in
-[`docs/corpus-design-decisions.md`](docs/corpus-design-decisions.md).
+One Next.js route runs the input guards, the cache and the agent loop. The
+agent loop is Vercel AI SDK `streamText` with tools. The tools read the
+in-memory catalogue, Upstash Vector, the knowledge sheets and the Bluetti
+data. Each reply must pass output checks before it streams to the client.
+[`docs/diagrams/`](docs/diagrams/) has the other diagrams. These include the
+recommender flow, the VAT calculation and the two-week plan.
 
-**The price list is also a real document, and every source card cites its
-page.** A spreadsheet has no pages, so
-[`scripts/build_pricelist_pdf.py`](scripts/build_pricelist_pdf.py) renders one:
-[`data/cti-price-masterlist.pdf`](data/cti-price-masterlist.pdf), 26 pages,
-1,038 products grouped by department and category, with the five
-conflicting-price rows marked in the margin.
+**Why the AI SDK and not LangGraph:** The agent is one model with tools. The
+evaluation harness imports the same prompt, tools and retrieval code that
+production uses. PRD §7.4 gives the full reasons.
 
-The page numbers are *derived from that document*, not decorative. Pagination
-is computed in Python on a fixed unit grid, the stylesheet renders exactly that
-grid, and the build fails if the printed page count ever diverges from the
-computed one — so a card reading `Pricelist p.18` means page 18 of the PDF has
-that product on it. Verified by sampling 46 products and checking the extracted
-text of each cited page.
+## Data
 
-```bash
-python scripts/build_corpus.py         # 1. xlsx    -> corpus/
-python scripts/build_pricelist_pdf.py  # 2. corpus  -> data/*.pdf + page numbers
-```
+| Dataset | Size | Location |
+|---|---|---|
+| CTI price masterlist | 1,038 records, 12 departments, 37 categories | `corpus/`, [`data/cti-price-masterlist.pdf`](data/cti-price-masterlist.pdf) |
+| Bluetti catalogue | 25 items: power stations, home batteries, solar panels | [`data/bluetti/`](data/bluetti/) |
+| Appliance wattage table | 183 appliances, from CTI's sales calculator | `data/bluetti/appliances.csv` |
+| Catalogue-sheet specs | 1,038 records, extracted with OCR from CTI's printed sheets | `data/catalogue-specs.*`, reviewed in [`docs/catalogue-sheet-review.md`](docs/catalogue-sheet-review.md) |
 
-Stage 2 writes `page` into the corpus metadata but never into the embedded
-`text`: a page number is a locator, not something anyone searches for, and
-changing the text would mean re-embedding 1,038 chunks for no retrieval gain.
+Scripts generate all files in `corpus/`, `data/bluetti/` and
+`data/catalogue-specs.*`. To change these files, edit the inputs: `data/raw/`
+and the masterlist spreadsheet. Then run the scripts again.
+
+Each product record is one atomic product. Do not divide a record into smaller
+chunks. If you divide a row, the name and the price can go into different
+chunks. [`docs/corpus-design-decisions.md`](docs/corpus-design-decisions.md)
+explains the design of the corpus and the retrieval.
 
 ## Stack
 
-- **Next.js 15** (App Router) + **TypeScript**, **Vercel AI SDK v4**
-  (`streamText` + `tool()`), **Tailwind**
-- **Chat model:** OpenAI `gpt-4o-mini`. **Embeddings:** `text-embedding-3-small`
-- **Upstash Vector** — hosted, serverless — for the product and guide-document
-  embeddings
-- **No database for filtering or exact matching.** The 1,038-product corpus
-  (~1 MB) is imported as a plain JS array and scanned in-process. See
-  [`docs/corpus-design-decisions.md`](docs/corpus-design-decisions.md) for why
-  that's a deliberate trade-off, not a shortcut.
-- Deployed on **Vercel**
+- **Next.js 15** (App Router), **TypeScript**, **Tailwind**, **Vercel AI SDK v4**
+- **OpenAI** `gpt-4o-mini` for chat, `text-embedding-3-small` for embeddings
+- **Upstash Vector** for retrieval
+- Planned: **Upstash Redis** (session memory, escalation tickets, rate
+  limits, exact cache), **Langfuse** (tracing), **RAGAS** (RAG evaluation)
+- Deployment on **Vercel**
 
-## Repo layout
-
-```
-app/
-  page.tsx            chat UI — useChat, streaming, sources
-  components/          message rendering, source cards, empty state
-  api/chat/route.ts    streamText + the two tools
-lib/
-  prompt.ts            the system prompt
-  tools.ts             the two tool definitions
-  retrieval.ts         searchProducts / filterProducts implementations
-  products.ts          the in-memory catalog + duplicate handling
-  sources.ts           merges tool results into the UI's source list
-  seed.ts              embeds corpus/products.jsonl into Upstash
-corpus/                generated RAG corpus — see corpus/README.md
-  products.jsonl        1,038 product chunks, embedded
-  products.json          same records without embedded text, filtered in-process
-  guide/                 prose docs on pricing, codes, and the catalog
-data/
-  cti-price-masterlist.pdf   the printed price list; source cards cite its pages
-scripts/
-  build_corpus.py       xlsx -> corpus/ (regenerates everything in corpus/)
-  build_pricelist_pdf.py corpus -> data/*.pdf, and stamps page numbers back
-  query.ts              query the vector store directly, no UI
-  eval.ts               retrieval correctness harness, no model
-  grade.ts              full grading harness — real prompt, real tools, real model
-docs/
-  spec.md                contracts: tools, retrieval config, system prompt rules
-  plan.md                build log, milestone by milestone, with what surprised us
-  corpus-design-decisions.md   why the corpus and retrieval are shaped this way
-  data-quality-report.md       defects found in the source spreadsheet
-```
-
-## Running it locally
+## Run it locally
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in your own keys
-npm run seed                 # embeds corpus/products.jsonl into your Upstash index
+cp .env.example .env.local   # add your own keys
+npm run seed                 # embeds the corpus into your Upstash index
 npm run dev
 ```
 
-You'll need:
-
-| Variable | What it's for |
+| Variable | Purpose |
 |---|---|
 | `OPENAI_API_KEY` | Chat completions and embeddings |
 | `UPSTASH_VECTOR_REST_URL` | Your Upstash Vector index |
 | `UPSTASH_VECTOR_REST_TOKEN` | Upstash Vector REST token |
 
-`npm run seed` embeds all 1,038 products plus the guide documents — it batches
-the embedding calls and retries on rate limits, so it's safe to re-run if it
-gets interrupted partway.
+Use your own Upstash index. `npm run seed` writes to the index that these
+variables identify.
 
-### Useful scripts
+### Scripts
 
 ```bash
-npx tsx scripts/query.ts "stethoscope"   # query the vector store directly
+python scripts/build_corpus.py           # 1. masterlist xlsx -> corpus/
+python scripts/build_pricelist_pdf.py    # 2. corpus -> PDF, writes page numbers back
+python scripts/clean_bluetti.py          # data/raw/bluetti-* -> data/bluetti/
+npx tsx scripts/query.ts "stethoscope"   # queries the vector store without the UI
 npx tsx scripts/eval.ts                  # retrieval correctness, no model
-npx tsx scripts/grade.ts                 # full grading harness against the real model
-python scripts/build_corpus.py           # regenerate corpus/ from the source spreadsheet
-python scripts/build_pricelist_pdf.py    # rebuild the PDF and re-stamp page numbers
+npx tsx scripts/grade.ts                 # full grading harness with the real model
 ```
 
-## What's out of scope
+Run the two corpus stages in this order. Stage 2 writes the PDF page numbers
+back into the corpus.
 
-This is a price-quoting assistant, not an ordering system: no authentication,
-no rate limiting, no conversation persistence, no inventory, no order
-placement. It's built to say so when asked.
+## Repo layout
 
-## Where this came from
+```
+app/                   chat UI and the /api/chat route
+lib/                   prompt, tools, retrieval, in-memory catalogue, seed
+corpus/                generated RAG corpus (products and hand-written guide docs)
+data/
+  raw/                 Bluetti inputs as CTI supplied them
+  bluetti/             clean Bluetti products, appliances, solar limits
+  catalogue-specs.*    specs extracted from the catalogue sheets
+  cti-price-masterlist.pdf
+scripts/               corpus, PDF, Bluetti and spec builders, eval and grade harnesses
+docs/
+  capstone-prd.md      the capstone specification
+  diagrams/            architecture, flows, WBS and Gantt
+  spec.md              Week 14 contracts that the app still satisfies
+  week14/              the archived Week 14 plan and reflection
+  week14-reference.md  where the Week 14 baseline is
+```
 
-Built for a RAG assignment on the CTI price masterlist, from a Next.js/Vercel
-AI SDK course starter. The corpus is generated from CTI's real price
-spreadsheet — see `docs/` for the full design reasoning, what was tuned during
-retrieval, and what real usage against the deployed app revealed.
+## Limitations
+
+- Only items with a knowledge sheet have specs, usage and advantages. The
+  coverage is partial on purpose.
+- The default wattages are typical values. Real appliances are different, so
+  the client can enter the nameplate value.
+- Seven Bluetti items do not have a CTI price on file yet.
+- The advisor gives list prices and draft quotations. CTI sales confirm every
+  sale.
+- Staff-only material (the costing formula and cost data) is not in this repo
+  and is not in the public advisor.

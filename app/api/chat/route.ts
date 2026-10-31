@@ -8,7 +8,7 @@
  *
  * Model choice is M4's open question, decided by measurement: the prompt was
  * written against gpt-4o-mini first, and the escalation trigger to gpt-4o is
- * recorded in docs/plan.md rather than left to judgement after the fact.
+ * recorded in docs/week14/plan.md rather than left to judgement after the fact.
  */
 import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
