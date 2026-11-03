@@ -15,6 +15,7 @@ import { streamText } from 'ai';
 import { SYSTEM_PROMPT } from '@/lib/prompt';
 import { tools } from '@/lib/tools';
 import { CHAT_MODEL } from '@/lib/model';
+import { telemetry } from '@/lib/telemetry';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
@@ -27,6 +28,7 @@ export async function POST(req: Request) {
     // A turn may search, then filter, then answer. Three steps left no room
     // for the second tool call plus the text.
     maxSteps: 5,
+    experimental_telemetry: telemetry('chat'),
   });
 
   return result.toDataStreamResponse();

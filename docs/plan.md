@@ -75,25 +75,26 @@ still passes on them, with traces.
 **Gantt:** Mon 2 to Tue 3.
 
 **Files:**
-- Create: `instrumentation.ts`, `lib/redis.ts`, `scripts/trace-check.ts`
-- Modify: `.env.example`, `package.json`, `app/api/chat/route.ts`, `scripts/grade.ts`, `scripts/eval.ts`
+- Create: `instrumentation.ts`, `lib/redis.ts`, `lib/telemetry.ts`, `scripts/tracing.ts`, `scripts/trace-check.ts`
+- Modify: `.env.example`, `package.json`, `app/api/chat/route.ts`, `scripts/grade.ts`, `lib/seed.ts`, `lib/prompt.ts`. `scripts/eval.ts` is unchanged: it calls no chat model, so it has nothing to trace.
 
 **Interfaces:**
 - Produces: `redis: Redis` from `lib/redis.ts` (`@upstash/redis`, `Redis.fromEnv()`).
-- Produces: `TELEMETRY = { isEnabled: true, functionId: string }` passed as `experimental_telemetry` on every `streamText` and `generateText` call.
+- Produces: `telemetry(functionId, metadata?)` from `lib/telemetry.ts`, which returns `{ isEnabled: true, functionId, metadata }`. Pass it as `experimental_telemetry` on every `streamText` and `generateText` call.
+- Produces: `startTracing()` from `scripts/tracing.ts`, for scripts. `await sdk.shutdown()` before exit.
 
 Tasks:
 
-- [ ] Commit the current working tree (Bluetti cleaning, 18 prices, corpus rebuild) as one commit. WBS 2.6 is then done: every on-sale Bluetti item has a price. Decided 3 Nov: `docs/learn/` and `public/learn.html` are personal study material. They go in `.gitignore`, not in the commit.
+- [x] Commit the current working tree (Bluetti cleaning, 18 prices, corpus rebuild) as one commit. WBS 2.6 is then done: every on-sale Bluetti item has a price. Decided 3 Nov: `docs/learn/` and `public/learn.html` are personal study material. They go in `.gitignore`, not in the commit. Done: `899192c`.
 - [ ] The instructor approves the proposal (Gantt milestone Tue 3). User records the date here.
-- [ ] User creates a new Upstash Vector index (1536 dimensions, COSINE), a new Upstash Redis database and a Langfuse project. The Vercel project moves to M10 (decided 3 Nov). M1 runs locally.
-- [ ] `.env.local` gets these names: `OPENAI_API_KEY`, `UPSTASH_VECTOR_REST_URL`, `UPSTASH_VECTOR_REST_TOKEN`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_BASE_URL`, `CHAT_MODEL` (optional, defaults to `gpt-4o-mini`). Add all of them to `.env.example`. Vercel gets the same names in M10.
-- [ ] Before seeding, run a check that prints the vector index host and stops if it matches the Week 14 host. Then run `npm run seed`.
-- [ ] Install `langfuse-vercel`, `@vercel/otel`, `@opentelemetry/sdk-node`, `@upstash/redis`.
-- [ ] `instrumentation.ts`: `registerOTel({ serviceName: 'cti-capstone', traceExporter: new LangfuseExporter({ baseUrl: process.env.LANGFUSE_BASE_URL }) })`.
-- [ ] Route and scripts pass `experimental_telemetry`. Scripts start a `NodeSDK` with the same exporter and call `sdk.shutdown()` before exit, or traces are lost.
-- [ ] `package.json`: rename to `cti-capstone`. Add `"test": "tsx --test \"tests/**/*.test.ts\""`.
-- [ ] `scripts/trace-check.ts`: asks one question through `generateText` with telemetry, then prints the Langfuse trace URL.
+- [x] User creates a new Upstash Vector index (1536 dimensions, COSINE), a new Upstash Redis database and a Langfuse project. The Vercel project moves to M10 (decided 3 Nov). M1 runs locally.
+- [x] `.env.local` gets these names: `OPENAI_API_KEY`, `UPSTASH_VECTOR_REST_URL`, `UPSTASH_VECTOR_REST_TOKEN`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_BASE_URL`, `CHAT_MODEL` (optional, defaults to `gpt-4o-mini`). Add all of them to `.env.example`. Vercel gets the same names in M10.
+- [x] Before seeding, run a check that prints the vector index host and stops if it matches the Week 14 host. Then run `npm run seed`. The check is in `lib/seed.ts`. The index holds 1,076 vectors (1,056 products, 20 guide chunks).
+- [x] Install `@langfuse/otel`, `@vercel/otel`, `@opentelemetry/sdk-node`, `@upstash/redis`. `sdk-node` is pinned to `~0.223.0`: `@vercel/otel` 2.x needs `@opentelemetry/api` below 1.10, and `sdk-node` 0.300 needs 1.10.
+- [x] `instrumentation.ts`: `registerOTel({ serviceName: 'cti-capstone', spanProcessors: [new LangfuseSpanProcessor()] })`.
+- [x] Route and scripts pass `experimental_telemetry`. Scripts start a `NodeSDK` with the same processor and call `sdk.shutdown()` before exit, or traces are lost.
+- [x] `package.json`: rename to `cti-capstone`. Add `"test": "tsx --test \"tests/**/*.test.ts\""`.
+- [x] `scripts/trace-check.ts`: asks one question through `generateText` with telemetry, then prints the Langfuse trace URL. Run it with `npm run trace:check -- "<question>"`.
 - [x] ~~Deploy the capstone Vercel project.~~ Moved to M10 (decided 3 Nov).
 
 **Exit condition:** on the capstone index, `npx tsx scripts/eval.ts` reports
@@ -101,8 +102,19 @@ Tasks:
 server and one `grade.ts` run each show a trace in Langfuse with the tool calls.
 `git log` shows the data commit.
 
+**Exit condition: met 2026-11-03.** On the capstone index, `eval.ts` gave
+13/13 and `grade.ts` gave 65/65. A local chat and a `grade.ts` run each
+showed a Langfuse trace with the tool calls. `git log` shows `899192c`.
+Verified by user. The instructor-approval box stays open until the user
+records the date. The M1 code is not committed yet.
+
 **Budget:** 2 h. **Cap:** 3 h. A service that does not provision after 30 min
 is a blocker alert, not a debugging task.
+
+**Surprises (3 Nov):**
+- `langfuse-vercel` sends to the legacy ingestion API. New Langfuse orgs reject it ("Event type not accepted"), and the legacy read API returns 410. The fix: use `@langfuse/otel` (`LangfuseSpanProcessor`) and read traces through `/api/public/v2/observations`.
+- `grade.ts` gave 64/65 on the first run. "What do I need to outfit a construction site?" got no tool call in 5 of 5 runs. The cause was the data commit's new prompt opening, "plus BLUETTI power stations and solar panels". The Week 14 opening, with the count updated, gave a tool call in 5 of 5 runs. A separate Bluetti sentence still failed 5 of 5. The prompt no longer names BLUETTI, and Bluetti questions still route to `searchProducts`. Then `grade.ts` gave 65/65.
+- `products.jsonl` now holds 1,056 records (1,038 in Week 14) because of the Bluetti items.
 
 ---
 

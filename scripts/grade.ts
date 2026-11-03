@@ -30,6 +30,10 @@ import { generateText } from 'ai';
 import { SYSTEM_PROMPT } from '../lib/prompt';
 import { tools } from '../lib/tools';
 import { CHAT_MODEL } from '../lib/model';
+import { telemetry } from '../lib/telemetry';
+import { startTracing } from './tracing';
+
+const sdk = startTracing();
 
 const VERBOSE = process.argv.includes('--verbose');
 
@@ -49,6 +53,7 @@ async function ask(question: string): Promise<Turn> {
     prompt: question,
     tools,
     maxSteps: 5,
+    experimental_telemetry: telemetry('grade', { question }),
   });
 
   const toolNames: string[] = [];
@@ -334,10 +339,12 @@ async function main() {
     console.log('\nFailed checks:');
     for (const f of failures) console.log(`  - ${f}`);
   }
+  await sdk.shutdown();
   process.exit(failed === 0 ? 0 : 1);
 }
 
-main().catch((e) => {
+main().catch(async (e) => {
   console.error(e);
+  await sdk.shutdown();
   process.exit(1);
 });

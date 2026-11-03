@@ -1,5 +1,5 @@
 {
-  "name": "cti-product-assistant",
+  "name": "cti-capstone",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,12 +8,18 @@
     "start": "next start",
     "seed": "tsx lib/seed.ts",
     "verify:prod": "tsx scripts/verify-prod.ts",
-    "demo:check": "tsx scripts/demo-check.ts"
+    "demo:check": "tsx scripts/demo-check.ts",
+    "test": "tsx --test \"tests/**/*.test.ts\"",
+    "trace:check": "tsx scripts/trace-check.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.0",
     "@ai-sdk/react": "^1.2.0",
+    "@langfuse/otel": "^6.1.1",
+    "@opentelemetry/sdk-node": "^0.223.0",
+    "@upstash/redis": "^1.41.0",
     "@upstash/vector": "^1.2.0",
+    "@vercel/otel": "^2.2.1",
     "ai": "^4.3.0",
     "dotenv": "^16.4.0",
     "next": "^15.5.25",

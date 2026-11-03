@@ -450,7 +450,7 @@ Why the semantic cache is narrowed: at similarity ≥ 0.95, "cheapest headlight"
 ## **13. Deployment and operations (R2)**
 
 - **Hosting:** Vercel (already live). Public URL kept up through the grading window. /staff is password-protected (STAFF_PASSWORD env var, checked in middleware). The password is given to the grader with the submission.
-- **Secrets:** environment variables only, in Vercel project settings. .env.example lists every name: OPENAI_API_KEY, UPSTASH_VECTOR_REST_URL, UPSTASH_VECTOR_REST_TOKEN, UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LANGFUSE_HOST, STAFF_PASSWORD, CHAT_MODEL. Before submission, run a secret scan over the repo history (e.g. gitleaks).
+- **Secrets:** environment variables only, in Vercel project settings. .env.example lists every name: OPENAI_API_KEY, UPSTASH_VECTOR_REST_URL, UPSTASH_VECTOR_REST_TOKEN, UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LANGFUSE_BASE_URL, STAFF_PASSWORD, CHAT_MODEL. Before submission, run a secret scan over the repo history (e.g. gitleaks).
 - **Logging:** one structured JSON line per request: request id, session id (hashed), latency, tokens in/out, tools called, cache hit/miss, guardrail decisions, error class. PII masked, no secrets.
 - **Error handling:** every tool returns a typed error instead of throwing into the stream; the agent tells the client what failed and offers escalation. A vector-store outage falls back to exact code/name matching only, and says so.
 - **Rate limiting:** Upstash Ratelimit per IP on /api/chat, to protect the API budget on a public URL.

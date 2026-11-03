@@ -47,6 +47,8 @@ const GUIDE_DIR = path.join(process.cwd(), 'corpus', 'guide');
 // fewer round trips and less chance of hitting the rate limit.
 const BATCH_SIZE = 100;
 const MAX_RETRIES = 5;
+// Host prefix of the live Week 14 index. seed refuses to write to it.
+const WEEK14_INDEX = 'knowing-prawn-93743';
 
 type ProductRecord = {
   id: string;
@@ -202,6 +204,15 @@ async function main() {
   }
   if (!process.env.OPENAI_API_KEY) {
     console.error('Missing OPENAI_API_KEY in .env.local.');
+    process.exit(1);
+  }
+
+  // The Week 14 app is still live and graded on its own index. Seeding it
+  // with capstone records would change its answers.
+  const host = new URL(process.env.UPSTASH_VECTOR_REST_URL).host;
+  console.log(`Vector index: ${host}`);
+  if (host.startsWith(WEEK14_INDEX)) {
+    console.error('This is the Week 14 index. Stopping. Set the capstone index in .env.local.');
     process.exit(1);
   }
 
