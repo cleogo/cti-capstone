@@ -6,10 +6,14 @@ Inputs (data/raw/, as supplied by CTI):
   bluetti-prices.csv             CTI retail prices (SRP), product_name + srp_php
   bluetti-specs.csv              specs read off the photographed price list
                                  (data/bluetti/images), keyed by product_name
+  bluetti-web-specs.csv          surge, self-consumption and charging power from
+                                 official BLUETTI 230 V pages and manuals (not
+                                 from CTI), source URL per row, keyed by model
 
 Outputs (data/bluetti/):
   products.csv    one row per product; specs parsed from the name, calculator
-                  specs joined in where the workbook has them
+                  specs joined in where the workbook has them; on_sale = no
+                  for the NOT_SOLD items
   appliances.csv  the WATTAGE sheet deduplicated: one row per appliance/variant,
                   running and surge watts side by side, user types as a list
   solar.csv       the SOLAR PANEL RECOMMENDATION sheet, flattened
@@ -33,11 +37,21 @@ XLSX = RAW / "bluetti-leyte-calculator.xlsx"
 CATEGORY_CSV = RAW / "bluetti-category.csv"
 PRICES_CSV = RAW / "bluetti-prices.csv"
 SPECS_CSV = RAW / "bluetti-specs.csv"
+WEB_SPECS_CSV = RAW / "bluetti-web-specs.csv"
 OUT = ROOT / "data" / "bluetti"
 
 # The calculator's own defaults (Formula Reference sheet).
 DOD = 0.9
 INVERTER_EFFICIENCY = 0.85
+
+# In bluetti-category.csv but not in CTI's current catalogue: on hold, not sold
+# (decided 2026-10-31). The recommender must not offer them.
+NOT_SOLD = {"AC300", "AC500", "EP760", "HV800", "EP2000", "B500K", "B700"}
+
+# Calculator values replaced by the manufacturer's figure (decided 2026-10-31).
+# APEX 300: the workbook's 12,000 W is a US 240 V bypass rating, not a
+# charging rate. BLUETTI's EU manual gives 3,840 W (one AC input, 230 V, Turbo).
+CALC_OVERRIDES = {("APEX300", "ac_charge_w"): 3840}
 
 
 def norm(s):
@@ -60,6 +74,8 @@ def load_calculator_db(wb):
             "solar_charge_w": solar_w,
             "ac_charge_w": ac_w,
         }
+    for (model, col), value in CALC_OVERRIDES.items():
+        db[norm(model)][col] = value
     return db
 
 
@@ -80,6 +96,9 @@ def build_products(db):
             "category": category.strip(),
             "model": model,
             "name": name.strip(),
+            # The calculator and CTI's sales team call the PV panels "Sora".
+            "alias": f"Sora {model[2:].split()[0]}" if category.strip() == "Solar Panel" else "",
+            "on_sale": "no" if any(norm(m) in norm(model) for m in NOT_SOLD) else "yes",
             "rated_w": watts[0] if watts and not kw else "",
             "capacity_wh": wh[0] if wh else "",
             "rated_kw_options": " / ".join(kw),
@@ -88,6 +107,8 @@ def build_products(db):
             "self_consumption_w": "",
             "solar_charge_w": "",
             "ac_charge_w": "",
+            "surge_w": "",  # filled by apply_web_specs()
+            "web_source_url": "",
             "ac_output_w": "",  # these seven are filled by apply_specs()
             "power_lifting_w": "",
             "total_outlets": "",
@@ -172,6 +193,36 @@ def apply_specs(products, specs):
     return unmatched
 
 
+WEB_COLUMNS = ["self_consumption_w", "solar_charge_w", "ac_charge_w"]
+
+
+def apply_web_specs(products):
+    """Merge the researched manufacturer specs into products (exact model match).
+
+    CTI's calculator wins: a web value fills only a blank calculator column, so
+    the agent and the sales team give the same numbers. surge_w comes only
+    from the web file. Returns (model, column, calculator, web) disagreements.
+    """
+    with WEB_SPECS_CSV.open(encoding="utf-8-sig", newline="") as f:
+        rows = list(csv.DictReader(f))
+    by_model = {p["model"]: p for p in products}
+    disagreements = []
+    for row in rows:
+        assert row["model"] in by_model, f"web spec row {row['model']} matches no product"
+        p = by_model[row["model"]]
+        if row["surge_w"]:
+            p["surge_w"] = num(row["surge_w"])
+        for col in WEB_COLUMNS:
+            if not row[col]:
+                continue
+            if p[col] == "":
+                p[col] = num(row[col])
+            elif num(row[col]) != p[col]:
+                disagreements.append((p["model"], col, p[col], num(row[col])))
+        p["web_source_url"] = row["source_url"]
+    return disagreements
+
+
 def build_appliances(wb):
     ws = wb["WATTAGE"]
     groups = {}
@@ -238,8 +289,13 @@ def main():
     assert abs(runtime_hours(apex["calc_capacity_wh"], apex["self_consumption_w"], 150) - 12.438) < 0.001
 
     products = build_products(db)
+    assert sum(p["on_sale"] == "no" for p in products) == len(NOT_SOLD), "a NOT_SOLD name matches no product, or more than one"
     unmatched = apply_prices(products, load_prices())
     unmatched_specs = apply_specs(products, load_specs())
+    web_disagreements = apply_web_specs(products)
+    for p in products:
+        if p["on_sale"] == "no" and p["price_php"] != "":
+            print(f"PRICED BUT NOT SOLD {p['model']}: CTI may sell it again, check NOT_SOLD")
     appliances, conflicts = build_appliances(wb)
     solar = build_solar(wb)
 
@@ -257,6 +313,11 @@ def main():
         print(f"UNMATCHED PRICE {name} {srp}")
     for name in unmatched_specs:
         print(f"UNMATCHED SPEC {name}")
+    stations = [p for p in products if "Power Station" in p["category"] and p["on_sale"] == "yes"]
+    print(f"web specs      {sum(1 for p in stations if p['surge_w'] != '')} of {len(stations)} stations on sale have surge_w, "
+          f"{sum(1 for p in stations if p['self_consumption_w'] != '')} self_consumption_w")
+    for model, col, calc, web in web_disagreements:
+        print(f"CALC VS WEB {model} {col}: calculator {calc:g}, manufacturer {web:g} (calculator kept)")
     for c in conflicts:
         print("WATT CONFLICT", c)
     for p in products:
