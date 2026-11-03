@@ -6,13 +6,15 @@ source: CTI Price Masterlist
 
 # What CTI Sells — Catalog Overview
 
-CTI supplies **workplace safety, facility, and institutional equipment**. The
-masterlist holds 1,038 priced items across twelve departments. The typical
+CTI supplies **workplace safety, facility, and institutional equipment**, and
+BLUETTI power stations and solar panels. The catalog holds 1,056 priced items
+across thirteen departments: 1,038 from the price masterlist and 18 BLUETTI
+items from CTI's BLUETTI price list. The typical
 buyer is an organisation outfitting a site: a construction project, a factory,
 a school, a barangay or LGU, a clinic, or an office fit-out.
 
 Prices range from ₱10 (a hair net) to ₱885,830 (a customised wrestling mat).
-The median item is ₱2,710.
+The median item is ₱2,890.
 
 ## Departments
 
@@ -75,6 +77,13 @@ Standalone machines and devices: flashlights and headlights, megaphones,
 portable toilets, and vending and coffee machines (₱361,290–₱504,900, the
 highest-priced non-sports items in the catalog).
 
+### Power — 18 items
+BLUETTI portable power stations (₱13,209–₱95,646), the APEX300 and ELITE320
+power stations (₱100,900–₱127,999), PV solar panels from 60 W to 350 W
+(₱8,099–₱31,499, called "Sora" panels by CTI's sales team), and the B300K
+expansion battery with its cable. Each station lists its rated AC output and
+battery capacity in watt-hours. Codes start with PWR.
+
 ### Security — 3 items
 Barangay tanod vest, cap and baton.
 
@@ -96,3 +105,5 @@ related items rather than only the one asked about:
   kits (LIF-002).
 - **Barangay or LGU emergency response** — first aid kits, life jackets, life
   rings, rescue tubes, megaphones, modular tents, tanod equipment.
+- **Brownout or off-grid power** — a power station (PWR-001, PWR-002) plus
+  solar panels (PWR-003) to recharge it.

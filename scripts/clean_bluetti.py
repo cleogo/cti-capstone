@@ -6,9 +6,12 @@ Inputs (data/raw/, as supplied by CTI):
   bluetti-prices.csv             CTI retail prices (SRP), product_name + srp_php
   bluetti-specs.csv              specs read off the photographed price list
                                  (data/bluetti/images), keyed by product_name
-  bluetti-web-specs.csv          surge, self-consumption and charging power from
+  bluetti-web-specs.csv          self-consumption and charging power from
                                  official BLUETTI 230 V pages and manuals (not
-                                 from CTI), source URL per row, keyed by model
+                                 from CTI), source URL per row, keyed by model.
+                                 Its surge_w column is a research record only:
+                                 the app's start-up check uses rated_w as the
+                                 station limit
 
 Outputs (data/bluetti/):
   products.csv    one row per product; specs parsed from the name, calculator
@@ -53,6 +56,30 @@ NOT_SOLD = {"AC300", "AC500", "EP760", "HV800", "EP2000", "B500K", "B700"}
 # charging rate. BLUETTI's EU manual gives 3,840 W (one AC input, 230 V, Turbo).
 CALC_OVERRIDES = {("APEX300", "ac_charge_w"): 3840}
 
+# CTI catalogue codes for the items on sale (decided 2026-10-31). PWR follows
+# the masterlist pattern: one type prefix, one group per sub-type, never a brand.
+# build_corpus.py adds these items to the catalogue under these codes.
+CODES = {
+    "Premium 20 (AC2P)": "PWR-001-01",
+    "Premium 30 V2": "PWR-001-02",
+    "Premium 50 (AC50P)": "PWR-001-03",
+    "Premium 80 (AC70P)": "PWR-001-04",
+    "Premium 100 V2": "PWR-001-05",
+    "Premium 150 (AC180P)": "PWR-001-06",
+    "Premium 200 V2": "PWR-001-07",
+    "Premium 200 (AC200PL)": "PWR-001-08",
+    "APEX300": "PWR-002-01",
+    "ELITE320": "PWR-002-02",
+    "PV60 Solar Panel": "PWR-003-01",
+    "PV100 Solar Panel": "PWR-003-02",
+    "PV130 Solar Panel": "PWR-003-03",
+    "PV200 Solar Panel": "PWR-003-04",
+    "PV220 Solar Panel": "PWR-003-05",
+    "PV350 Solar Panel": "PWR-003-06",
+    "B300K LiFePO4 Battery 51.2V 54Ah": "PWR-004-01",
+    "P090D-P150D Battery Cable": "PWR-004-02",
+}
+
 
 def norm(s):
     return re.sub(r"[^A-Z0-9]", "", str(s).upper())
@@ -93,6 +120,7 @@ def build_products(db):
 
         rec = {
             "no": int(no),
+            "code": CODES.get(model, ""),
             "category": category.strip(),
             "model": model,
             "name": name.strip(),
@@ -107,8 +135,7 @@ def build_products(db):
             "self_consumption_w": "",
             "solar_charge_w": "",
             "ac_charge_w": "",
-            "surge_w": "",  # filled by apply_web_specs()
-            "web_source_url": "",
+            "web_source_url": "",  # filled by apply_web_specs()
             "ac_output_w": "",  # these seven are filled by apply_specs()
             "power_lifting_w": "",
             "total_outlets": "",
@@ -200,8 +227,7 @@ def apply_web_specs(products):
     """Merge the researched manufacturer specs into products (exact model match).
 
     CTI's calculator wins: a web value fills only a blank calculator column, so
-    the agent and the sales team give the same numbers. surge_w comes only
-    from the web file. Returns (model, column, calculator, web) disagreements.
+    the agent and the sales team give the same numbers. Returns (model, column, calculator, web) disagreements.
     """
     with WEB_SPECS_CSV.open(encoding="utf-8-sig", newline="") as f:
         rows = list(csv.DictReader(f))
@@ -210,8 +236,6 @@ def apply_web_specs(products):
     for row in rows:
         assert row["model"] in by_model, f"web spec row {row['model']} matches no product"
         p = by_model[row["model"]]
-        if row["surge_w"]:
-            p["surge_w"] = num(row["surge_w"])
         for col in WEB_COLUMNS:
             if not row[col]:
                 continue
@@ -290,6 +314,8 @@ def main():
 
     products = build_products(db)
     assert sum(p["on_sale"] == "no" for p in products) == len(NOT_SOLD), "a NOT_SOLD name matches no product, or more than one"
+    assert {p["model"] for p in products if p["code"]} == set(CODES), "a CODES model matches no product"
+    assert all(bool(p["code"]) == (p["on_sale"] == "yes") for p in products), "every item on sale needs a code, and only those"
     unmatched = apply_prices(products, load_prices())
     unmatched_specs = apply_specs(products, load_specs())
     web_disagreements = apply_web_specs(products)
@@ -314,8 +340,7 @@ def main():
     for name in unmatched_specs:
         print(f"UNMATCHED SPEC {name}")
     stations = [p for p in products if "Power Station" in p["category"] and p["on_sale"] == "yes"]
-    print(f"web specs      {sum(1 for p in stations if p['surge_w'] != '')} of {len(stations)} stations on sale have surge_w, "
-          f"{sum(1 for p in stations if p['self_consumption_w'] != '')} self_consumption_w")
+    print(f"web specs      {sum(1 for p in stations if p['self_consumption_w'] != '')} of {len(stations)} stations on sale have self_consumption_w")
     for model, col, calc, web in web_disagreements:
         print(f"CALC VS WEB {model} {col}: calculator {calc:g}, manufacturer {web:g} (calculator kept)")
     for c in conflicts:

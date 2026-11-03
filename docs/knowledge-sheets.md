@@ -33,8 +33,8 @@ items.
 
 ### Power stations (12, all model sheets)
 
-Bluetti items have no masterlist code. They key on the model in
-`data/bluetti/products.csv`. The 7 items with `on_sale = no` get no sheet.
+Bluetti items carry PWR codes (PWR-001 to PWR-004), set in
+`scripts/clean_bluetti.py`. The 7 items with `on_sale = no` get no sheet.
 
 | # | Slug | Covers |
 |---|---|---|

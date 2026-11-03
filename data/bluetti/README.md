@@ -9,7 +9,7 @@ Do not hand-edit the CSVs here. Fix the source and re-run.
 
 | File | Rows | What it holds |
 |---|---|---|
-| `products.csv` | 25 | Every Bluetti item. `on_sale` is `no` for the 7 items not in CTI's current catalogue (AC300, AC500, EP760, HV800, EP2000, B500K, B700). They stay on hold, and the recommender must not offer them. `alias` holds CTI's "Sora" name for each PV panel. `rated_w` and `capacity_wh` parsed from the product name. Calculator columns filled for the 6 models the workbook covers. `price_php` (integer pesos, SRP, VAT inclusive, effective 01 Aug 2026) filled for 18 items, read from the two photographed price-list pages in `images/`. The other 7 are blank. Seven more columns come from the same photos via `bluetti-specs.csv`: `ac_output_w`, `power_lifting_w`, `total_outlets` (Premium line), `ac_outlets` (ELITE320, APEX300), `warranty_months`, `cell_efficiency_pct` and `ingress_protection` (solar panels). The script checks the photo's capacity and AC output against the figures parsed from the name. |
+| `products.csv` | 25 | Every Bluetti item. `code` is the CTI catalogue code (PWR-001 to PWR-004) for the 18 items on sale. `build_corpus.py` adds those 18 to the catalogue. `on_sale` is `no` for the 7 items not in CTI's current catalogue (AC300, AC500, EP760, HV800, EP2000, B500K, B700). They stay on hold, and the recommender must not offer them. `alias` holds CTI's "Sora" name for each PV panel. `rated_w` and `capacity_wh` parsed from the product name. Calculator columns filled for the 6 models the workbook covers. `price_php` (integer pesos, SRP, VAT inclusive, effective 01 Aug 2026) filled for 18 items, read from the two photographed price-list pages in `images/`. The other 7 are blank. Seven more columns come from the same photos via `bluetti-specs.csv`: `ac_output_w`, `power_lifting_w`, `total_outlets` (Premium line), `ac_outlets` (ELITE320, APEX300), `warranty_months`, `cell_efficiency_pct` and `ingress_protection` (solar panels). The script checks the photo's capacity and AC output against the figures parsed from the name. |
 | `appliances.csv` | 183 | The WATTAGE sheet, deduplicated across user types. One row per appliance and variant, with `running_w` and `surge_w` side by side. `user_types` lists where the appliance appears (Residential, Office, Café / Restaurant, …). |
 | `solar.csv` | 7 | Solar input limits and recommended panel wiring per model. |
 
@@ -33,6 +33,9 @@ script asserts this.
    non-inverter split-type)" looks up 1,800 W. The WATTAGE sheet says 1,800 W
    is the 5-second start-up and 1,300 W is running. Runtime for that aircon is
    understated by about 28%. `appliances.csv` keeps the two values apart.
+   The app uses 1,300 W for runtime and 1,800 W only for the start-up check
+   (issue 6). Fix for CTI: point the dropdown's `Wattage Consumption` B8 at
+   `WATTAGE` D8 (1,300 W). The calculator and the app then agree again.
 2. **RUNNING TIME PER APPLIANCES ignores DOD, efficiency and self-consumption.**
    It divides raw capacity by watts. For a 150 W fridge on the APEX 300 it
    shows 18 h 26 min. The Runtime Calculator says 12 h 26 min. The two sheets
@@ -50,9 +53,11 @@ script asserts this.
    3,840 W. Charge time at that rate is about 1.2 h.
 5. **APEX 300 capacity:** the calculator uses 2,764 Wh, the product name says
    2,764.8 Wh. Harmless (0.03%), noted in `products.csv`.
-6. **Only one appliance has a surge value** (the non-inverter aircon). Fridges,
-   freezers, pumps and power tools also surge on start-up. A surge check needs
-   these values, or a documented multiplier.
+6. **The calculator has no surge check.** The app adds one. Peak load is the
+   running load with the largest surge gap swapped in (`surge_w` in place of
+   `running_w`). A station passes only if the peak load is at or below its
+   `rated_w`. Only one appliance has a surge value: the non-inverter aircon.
+   The app does not use manufacturer surge figures for stations.
 7. **Solar sheet says "Sora", the product list says "PV".** SOLAR PANEL
    RECOMMENDATION recommends "Sora 60/130/220". The product list and the price
    list use PV60 to PV350. Resolved: CTI states that Sora is its name for
@@ -72,20 +77,13 @@ They cover the 10 stations on sale.
   column. The one exception is the APEX 300 AC charging (issue 4). The script
   prints each other disagreement as `CALC VS WEB`. There are 6. The largest is
   the AC200PL solar input (500 W against 1,200 W).
-- **`surge_w`** comes only from this file. 8 of 10 stations have a value.
-- **Surge needs care.** For AC2P, Premium 30 V2, AC180P and APEX300, the
-  official page calls the figure "surge", but it equals the Power Lifting
-  figure. BLUETTI support, quoted on a community forum, gives lower limits for
-  the APEX300 by duration: 4,032–4,608 W for 2 min, 4,608–5,760 W for 10 s.
+- **The `surge_w` column is a research record.** The script does not export
+  it. The start-up check uses each station's `rated_w` as its limit (issue 6).
 - **Premium 200 V2 AC charging** (2,300 W) needs Turbo mode, which BLUETTI
   support must turn on. Standard mode is 1,200 W.
 
 ## Still missing for the recommender
 
-- Surge ratings for Premium 50 (AC50P) and Premium 200 V2. No official page
-  states one. Do not use `power_lifting_w` in their place: Power Lifting runs
-  resistive loads above the AC output at reduced voltage. It is not a start-up
-  surge limit.
 - PV220's cell efficiency and IP rating are partly hidden by glare in the photo.
   The values stored (25%, IP67) are inferred from the neighbouring panels.
 

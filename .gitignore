@@ -39,3 +39,7 @@ private/
 
 # OCR cache from extract_catalogue_specs.py - holds raw sheet text, including sheet prices
 ocr_raw.json
+
+# Personal study material - stays local
+docs/learn/
+public/learn.html

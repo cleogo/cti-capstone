@@ -16,8 +16,8 @@ export function EmptyState({ onPick }: { onPick: (prompt: string) => void }) {
       <div>
         <h2 className="text-base font-semibold text-slate-800">Ask about a CTI product or price</h2>
         <p className="mt-1 text-sm text-slate-500">
-          I search the CTI price masterlist — 1,038 items of workplace safety, facility and
-          institutional equipment — and quote list prices from it. I don&apos;t check stock,
+          I search the CTI catalog — 1,056 items of workplace safety, facility and
+          institutional equipment, plus BLUETTI power stations — and quote list prices from it. I don&apos;t check stock,
           quote discounts, or take orders.
         </p>
       </div>

@@ -31,7 +31,7 @@ import {
 export const tools = {
   searchProducts: tool({
     description:
-      'Find products by what they are. Semantic and keyword search across all 1,038 ' +
+      'Find products by what they are. Semantic and keyword search across all 1,056 ' +
       'product records and the catalog guide documents. ' +
       'USE FOR: naming or describing a product ("dual head stethoscope", "fire blanket"); ' +
       'looking up a product code ("MED-001-01"); asking what something costs; asking ' +

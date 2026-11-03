@@ -1,7 +1,8 @@
 /**
  * The two retrieval tools, as plain functions.
  *
- * `app/api/chat/route.ts` wraps these in AI SDK `tool()` definitions; the
+ * `lib/tools.ts` wraps these in AI SDK `tool()` definitions, which
+ * `app/api/chat/route.ts` hands to the model; the
  * eval harness in `scripts/eval.ts` calls them directly. Keeping the logic
  * here is what makes M3 testable without a UI or a model in the loop.
  *
@@ -10,6 +11,26 @@
  *
  * See docs/spec.md for the contracts and docs/corpus-design-decisions.md for
  * the tuning.
+ *
+ * BEGINNER'S MAP: this is STAGE 3 of 3, "retrieval" (the R in RAG).
+ * It runs on every chat message. The chat model calls one of these two
+ * functions as a TOOL, reads what comes back, and writes its answer from it.
+ *
+ * searchProducts, in order:
+ *   1. exact code match      ─┐ plain JavaScript over products.json,
+ *   2. name match            ─┘ no AI — these are "keyword" hits
+ *   3. vector search         ── embed the question, ask Upstash for the
+ *                               nearest product vectors ("semantic" hits)
+ *   4. fill variant families ── add sibling sizes the vector search missed
+ *   5. guide search          ── a second, filtered query for guide sections
+ *   → exact hits first, then everything else sorted by score
+ *
+ * Steps 1–2 + 3 together are HYBRID RETRIEVAL: keyword search is exact but
+ * literal; vector search understands meaning but is fuzzy. Each covers the
+ * other's blind spot.
+ *
+ * SCORE: how close two vectors are (cosine similarity), roughly 0 to 1.
+ * Higher = more similar meaning. 0.82 is a strong match here, 0.63 is weak.
  */
 import { Index } from '@upstash/vector';
 import { embed } from 'ai';
@@ -36,6 +57,8 @@ function store(): Index {
 }
 
 /**
+ * TOP-K = "give me the K closest results".
+ *
  * How many vectors to ask the store for, regardless of the caller's limit.
  *
  * Upstash's approximate search has poor recall at small topK on this index:
@@ -45,6 +68,11 @@ function store(): Index {
  * set is over-fetched here and truncated to the caller's limit below, which
  * costs one larger response and fixes recall outright. Measured and explained
  * in docs/corpus-design-decisions.md §9.
+ *
+ * Why: "approximate" search trades a little accuracy for speed, so it can
+ * miss the true best match when asked for only a few. Asking for many and
+ * keeping the best few ("over-fetching") is the fix. RECALL = how many of the
+ * right answers actually made it into the results.
  */
 const OVERFETCH_TOP_K = 150;
 
@@ -127,12 +155,15 @@ export async function searchProducts({
   department,
   limit,
 }: SearchArgs): Promise<SearchHit[]> {
+  // Clamp the requested limit to 1..20 so the model can't ask for 0 or 1,000.
   const k = Math.min(Math.max(limit ?? DEFAULT_SEARCH_LIMIT, 1), MAX_SEARCH_LIMIT);
 
   /** Exact matches, in the order found. These never lose their place to a score. */
   const exact: ProductHit[] = [];
   /** Everything ranked by score — semantic hits, variant fill-ins, guide sections. */
   const scored: SearchHit[] = [];
+  // DE-DUPLICATION: the same product can be found by several steps; `seen`
+  // makes sure it is only added the first (highest-priority) time.
   const seen = new Set<string>();
 
   const inDepartment = (p: Product) =>
@@ -181,6 +212,8 @@ export async function searchProducts({
   for (const p of contained) push(exact, p, 'name', 0.98);
 
   // 3. Vector search over products.
+  //    The question is embedded with the SAME model seed.ts used for the
+  //    products, so both live in the same "meaning space" and can be compared.
   const { embedding } = await embed({
     model: openai.embedding('text-embedding-3-small'),
     value: query,
@@ -188,9 +221,10 @@ export async function searchProducts({
   const results = await store().query({
     vector: embedding,
     topK: OVERFETCH_TOP_K,
-    includeMetadata: true,
+    includeMetadata: true, // return the stored name/price/text, not just ids
   });
 
+  // Results arrive sorted by score, highest first.
   const semantic: Array<{ p: Product; score: number; text?: string }> = [];
   for (const r of results) {
     const m = (r.metadata ?? {}) as Record<string, unknown>;
@@ -226,9 +260,11 @@ export async function searchProducts({
     vector: embedding,
     topK: MAX_GUIDE_HITS,
     includeMetadata: true,
-    filter: "doc_type = 'guide'",
+    filter: "doc_type = 'guide'", // METADATA FILTER: only search guide chunks
   });
   for (const r of guideResults) {
+    // SCORE THRESHOLD: a guide that is only loosely related would just add
+    // noise to a price answer, so anything under 0.70 is dropped.
     if (r.score < GUIDE_SCORE_FLOOR) continue;
     const m = (r.metadata ?? {}) as Record<string, unknown>;
     scored.push({
@@ -240,6 +276,8 @@ export async function searchProducts({
     });
   }
 
+  // MERGE + RANK: exact hits always first (in the order found), then every
+  // scored hit best-first, cut to the limit — but never cutting an exact hit.
   scored.sort((a, b) => b.score - a.score);
   return [...exact, ...scored].slice(0, Math.max(k, exact.length));
 }
@@ -261,6 +299,10 @@ export type FilterResult = {
 };
 
 /**
+ * The second tool. Questions like "under ₱500", "cheapest" or "how many"
+ * need exact maths and counting, which vector search can't do (it only knows
+ * "similar"). So this tool skips embeddings entirely and filters the numbers.
+ *
  * No network call, no embedding — a scan over the in-memory array.
  *
  * `total_matching` is counted before the limit is applied. It exists so the

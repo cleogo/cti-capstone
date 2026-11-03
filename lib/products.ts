@@ -32,11 +32,11 @@ export type Product = {
   page: number;
 };
 
-/** Every record as generated, 1,038 rows including both halves of each duplicate. */
+/** Every record as generated, 1,056 rows including both halves of each duplicate. */
 export const RECORDS = raw as Product[];
 
 /**
- * The catalog as distinct products — 1,027 entries.
+ * The catalog as distinct products — 1,045 entries.
  *
  * Eleven codes appear twice in the masterlist with identical name and price
  * (flagged `duplicate_code_identical`). Returning both makes the sources panel

@@ -3,8 +3,9 @@ import './globals.css';
 
 const TITLE = 'CTI Product Assistant';
 const DESCRIPTION =
-  'Ask about CTI products and prices from the price masterlist — 1,038 items of ' +
-  'workplace safety, facility and institutional equipment. Every answer quotes the ' +
+  'Ask about CTI products and prices from the CTI catalog — 1,056 items of ' +
+  'workplace safety, facility and institutional equipment, plus BLUETTI power ' +
+  'stations. Every answer quotes the ' +
   'product code and the exact listed price.';
 const SITE_URL = 'https://cti-product-assistant.vercel.app';
 

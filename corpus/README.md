@@ -11,8 +11,8 @@ python scripts/build_corpus.py
 
 | File | Purpose |
 |---|---|
-| `products.jsonl` | 1,038 retrieval chunks, one per product. Embed the `text` field; keep the rest as metadata. Read by the seed script. |
-| `products.json` | The same 1,038 products without the embedded text — 227 KB. Imported at module scope by the `filterProducts` tool and filtered in plain JavaScript. No database. |
+| `products.jsonl` | 1,056 retrieval chunks, one per product (1,038 masterlist rows and 18 BLUETTI items from `data/bluetti/products.csv`). Embed the `text` field; keep the rest as metadata. Read by the seed script. |
+| `products.json` | The same 1,056 products without the embedded text — 227 KB. Imported at module scope by the `filterProducts` tool and filtered in plain JavaScript. No database. |
 | `products.csv` | Same records, tabular. For inspection in a spreadsheet; not read by the app. |
 | `categories.json` | Department → category taxonomy with counts and price ranges. Use for filter options and the empty state. |
 | `data-issues.json` | Source-data defects found during the build. See `docs/data-quality-report.md`. |
@@ -61,7 +61,7 @@ than quote a price. See `guide/04-answering-price-questions.md`.
 
 ## Stats
 
-- 1,038 products, 1,022 distinct codes
-- 12 departments, 37 categories
-- ₱10 – ₱885,830, median ₱2,710
-- Average chunk length ~448 characters
+- 1,056 products (1,038 masterlist, 18 BLUETTI), 1,039 distinct codes
+- 13 departments, 41 categories
+- ₱10 – ₱885,830, median ₱2,890
+- Average chunk length ~450 characters

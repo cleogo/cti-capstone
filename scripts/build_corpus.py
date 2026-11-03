@@ -1,10 +1,33 @@
-"""Turn the CTI price masterlist into a RAG-ready corpus.
+"""Convert the CTI price masterlist into a RAG-ready corpus.
 
-Reads fixed-cti-masterlist.xlsx and writes corpus/products.jsonl (one
-retrieval chunk per product), corpus/products.csv (exact values for the
-filter tool) and corpus/categories.json.
+This script reads fixed-cti-masterlist.xlsx and writes three files:
+  - corpus/products.jsonl  -- one retrieval chunk for each product
+  - corpus/products.csv    -- exact values for the filter tool
+  - corpus/categories.json
 
 Run: python scripts/build_corpus.py
+
+BEGINNER'S MAP
+-----------------------------------------------------------
+STAGE 1 of 3 ("data preparation").
+This script runs offline on your machine. It never connects to OpenAI or
+to the database.
+
+    xlsx  --[THIS FILE]-->  corpus/*.jsonl  --[lib/seed.ts]-->  Upstash Vector
+                                                                     |
+                                 user question --[lib/retrieval.ts]--+
+
+Read the code in this order:
+  1. main()               -- the loop over the spreadsheet rows (bottom of file)
+  2. clean_text()         -- cleans messy source text
+  3. CATEGORIES           -- derives a category that the sheet does not have
+  4. extract_attributes() -- extracts facts from the product name
+  5. build_text()         -- converts one row into the sentence to embed
+  6. the duplicate check  -- flags bad source data and does not hide it
+
+Key word: a "chunk" is one piece of text with its own embedding. This
+script makes one chunk for each product. Thus a product's name and price
+can never be in two different chunks.
 """
 
 import csv
@@ -18,9 +41,15 @@ import openpyxl
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "fixed-cti-masterlist.xlsx"
+# Bluetti items on sale, with their PWR codes (scripts/clean_bluetti.py).
+BLUETTI = ROOT / "data" / "bluetti" / "products.csv"
 OUT = ROOT / "corpus"
 
 # Code prefixes carry the taxonomy; the sheet has no category column.
+# "Taxonomy" just means a grouping scheme: department -> category -> product.
+# We read the first two parts of a code ("MED-001" from "MED-001-01") and
+# look it up here. This is "deriving structure": adding a field the source
+# never had, so the bot can answer "show me Fire Safety items".
 CATEGORIES = {
     "MED-001": ("Medical & Clinic Equipment", "Medical"),
     "FUR-001": ("Office Tables & Desks", "Furniture"),
@@ -59,8 +88,14 @@ CATEGORIES = {
     "ORD-001": ("Assorted Safety Footwear", "Footwear"),
     "MEG-001": ("Megaphones", "Equipment"),
     "PLT-001": ("Portable Toilets", "Equipment"),
+    "PWR-001": ("Portable Power Stations", "Power"),
+    "PWR-002": ("Power Stations", "Power"),
+    "PWR-003": ("Solar Panels", "Power"),
+    "PWR-004": ("Power Station Batteries & Accessories", "Power"),
 }
 
+# Prices as words people actually use. An embedding can't do maths, so
+# "something cheap" only matches if the word "budget" is in the chunk text.
 PRICE_BANDS = [
     (0, 500, "budget"),
     (500, 2000, "standard"),
@@ -100,6 +135,9 @@ def number_to_words(n: int) -> str:
 
 def clean_text(value) -> str:
     """Strip the mojibake and stray separators the export left behind."""
+    # "Mojibake" = garbled characters from a bad text encoding, e.g. a "×"
+    # that came out as "�". Garbage in the text means garbage in the
+    # embedding, so cleaning happens before anything else.
     if value is None:
         return ""
     text = unicodedata.normalize("NFKC", str(value))
@@ -138,6 +176,10 @@ def parse_colors(raw: str):
 
 def extract_attributes(name: str):
     """Pull structured facts out of the free-text item name."""
+    # Each block below is a regular expression (regex): a text pattern.
+    # e.g. r"(\d+(?:\.\d+)?)\s*L\b" means "a number followed by L", so
+    # "TRASH BIN 120L" gives capacity_liters = 120. These facts go into the
+    # chunk text (searchable) and the metadata (displayable/filterable).
     attrs = {}
     upper = name.upper()
 
@@ -195,11 +237,26 @@ def extract_attributes(name: str):
 
 
 def build_text(rec) -> str:
-    """The sentence that actually gets embedded.
+    """The paragraph that the embedding model receives.
 
-    Every fact a user might phrase their question around has to appear as
-    natural language here -- the code with and without hyphens, the price as
-    digits and as words, the category, the colours, the attributes.
+    A user might phrase a question around any fact about a product. Each
+    fact must appear here in natural language:
+      - the code, with and without hyphens
+      - the price, as digits and as words
+      - the category
+      - the colours
+      - the attributes
+
+    This step is called "denormalising". A spreadsheet row stores facts in
+    separate cells. An embedding model understands sentences. So this
+    function flattens every cell into one readable paragraph.
+
+    The paragraph states the same fact in several forms on purpose
+    (MED-001-01 / MED00101 / MED 001 01). Each form is one more way for a
+    user's wording to land close to this chunk.
+
+    To see the result, compare one row of the xlsx with one line of
+    corpus/products.jsonl.
     """
     code = rec["code"]
     price = rec["price_php"]
@@ -231,6 +288,8 @@ def build_text(rec) -> str:
             "weight": "Weight/capacity", "pack_quantity": "Packaging",
             "material": "Material", "cut": "Cut", "size_class": "Intended user",
             "size_range": "Size range", "bundled_item": "Included free",
+            "model": "Model", "rated_output_w": "Rated AC output (W)",
+            "capacity_wh": "Battery capacity (Wh)", "also_known_as": "Also called",
         }
         for key, value in attrs.items():
             if key == "oshc_certified":
@@ -247,6 +306,8 @@ def build_text(rec) -> str:
 
 
 def main():
+    # STEP 1: read the spreadsheet. data_only=True gives cell values, not
+    # formulas. min_row=2 skips the header row.
     workbook = openpyxl.load_workbook(SOURCE, data_only=True)
     sheet = workbook.active
     rows = list(sheet.iter_rows(min_row=2, values_only=True))
@@ -255,12 +316,15 @@ def main():
     issues = []
     seen = defaultdict(list)
 
+    # STEP 2: turn every row into one record (one chunk).
     for index, row in enumerate(rows, start=2):
         raw_name, raw_color, code, price = row[0], row[1], row[3], row[4]
 
         name = title_case(clean_text(raw_name))
         code = clean_text(code).upper()
 
+        # Validation: a row with no name or no real price can't be answered
+        # truthfully, so it is logged in data-issues.json and skipped.
         if not name:
             issues.append({"row": index, "code": code, "issue": "missing item name"})
             continue
@@ -271,6 +335,10 @@ def main():
         group = "-".join(code.split("-")[:2])
         category, department = CATEGORIES.get(group, ("Uncategorized", "Other"))
 
+        # Everything except "text" becomes METADATA: exact values stored next
+        # to the vector. The vector is only used to *find* a chunk; the price
+        # shown on screen comes from price_php here, never from the AI's
+        # wording. "id" is code + row number because codes aren't unique.
         record = {
             "id": f"{code}::{index}",
             "code": code,
@@ -290,7 +358,49 @@ def main():
         records.append(record)
         seen[code].append(record)
 
+    # STEP 2b: add the Bluetti items on sale. They are not in the masterlist
+    # xlsx; CTI prices them on a separate price list. clean_bluetti.py gives
+    # each one a PWR code, and an item without a price is an error.
+    masterlist_count = len(records)
+    with BLUETTI.open(encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            if row["on_sale"] != "yes":
+                continue
+            code = row["code"]
+            assert code not in seen, f"{code} is already a masterlist code"
+            assert row["price_php"], f"{code} {row['model']} is on sale but has no price"
+            price = int(row["price_php"])
+            group = "-".join(code.split("-")[:2])
+            category, department = CATEGORIES[group]
+            attrs = {"model": row["model"]}
+            for key, column in (("rated_output_w", "rated_w"), ("capacity_wh", "capacity_wh"),
+                                ("also_known_as", "alias")):
+                if row[column]:
+                    value = row[column]
+                    attrs[key] = value if key == "also_known_as" else float(value) if "." in value else int(value)
+            record = {
+                "id": f"{code}::bluetti{row['no']}",
+                "code": code,
+                "code_group": group,
+                "name": row["name"],
+                "category": category,
+                "department": department,
+                "price_php": price,
+                "price_band": price_band(price),
+                "currency": "PHP",
+                "colors": [],
+                "attributes": attrs,
+                "source_row": int(row["no"]),
+                "source_file": "data/bluetti/products.csv",
+            }
+            record["text"] = build_text(record)
+            records.append(record)
+            seen[code].append(record)
+
+    # STEP 3: check data quality.
     # Duplicate codes are a real defect in the source sheet, not noise to hide.
+    # Same code + same data = harmless copy. Same code + different price =
+    # conflict; the flag tells the chatbot to warn instead of quoting a price.
     for code, group in seen.items():
         if len(group) < 2:
             continue
@@ -309,8 +419,11 @@ def main():
             for record in group:
                 record["data_quality_flag"] = "duplicate_code_identical"
 
+    # STEP 4: write the output files into corpus/.
     OUT.mkdir(exist_ok=True)
 
+    # JSONL = "JSON Lines": one JSON object per line. lib/seed.ts reads this
+    # file line by line and embeds each record's "text" field.
     with (OUT / "products.jsonl").open("w", encoding="utf-8") as handle:
         for record in records:
             handle.write(json.dumps(record, ensure_ascii=False) + "\n")
@@ -363,8 +476,8 @@ def main():
         json.dumps(issues, indent=2, ensure_ascii=False), encoding="utf-8")
 
     prices = sorted(r["price_php"] for r in records)
-    print(f"products written : {len(records)}")
-    print(f"skipped rows     : {len(rows) - len(records)}")
+    print(f"products written : {len(records)} ({masterlist_count} masterlist, {len(records) - masterlist_count} Bluetti)")
+    print(f"skipped rows     : {len(rows) - masterlist_count}")
     print(f"data issues      : {len(issues)}")
     print(f"departments      : {len(taxonomy)}")
     print(f"categories       : {len(CATEGORIES)}")

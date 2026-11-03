@@ -347,5 +347,42 @@
       }
     },
     "count": 64
+  },
+  "Power": {
+    "categories": {
+      "Portable Power Stations": {
+        "count": 8,
+        "code_groups": [
+          "PWR-001"
+        ],
+        "min_price": 13209,
+        "max_price": 95646
+      },
+      "Power Stations": {
+        "count": 2,
+        "code_groups": [
+          "PWR-002"
+        ],
+        "min_price": 100900,
+        "max_price": 127999
+      },
+      "Power Station Batteries & Accessories": {
+        "count": 2,
+        "code_groups": [
+          "PWR-004"
+        ],
+        "min_price": 5000,
+        "max_price": 81199
+      },
+      "Solar Panels": {
+        "count": 6,
+        "code_groups": [
+          "PWR-003"
+        ],
+        "min_price": 8099,
+        "max_price": 31499
+      }
+    },
+    "count": 18
   }
 }

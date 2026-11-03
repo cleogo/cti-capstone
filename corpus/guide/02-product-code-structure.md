@@ -55,6 +55,7 @@ Examples:
 | `ORD` | Assorted / ordinary safety footwear |
 | `PLT` | Portable toilets |
 | `PPE` | Gloves, cones, barriers, work boots |
+| `PWR` | Power stations, solar panels, batteries (BLUETTI) |
 | `RAI` | Rainwear |
 | `SAF` | Safety vests and safety shoes |
 | `SPO` | Sports and martial arts equipment |
@@ -82,6 +83,13 @@ The `PPE` prefix is broad and splits into meaningfully different sub-groups:
 - `PPE-012` — traffic cones
 - `PPE-014` — chains, barriers, caution tape
 - `PPE-018` — work boots
+
+`PWR` splits by product type, not by brand:
+
+- `PWR-001` — portable power stations
+- `PWR-002` — power stations (APEX300, ELITE320)
+- `PWR-003` — solar panels
+- `PWR-004` — expansion batteries and accessories
 
 Similarly `SAF-001` is safety vests while `SAF-002` is safety shoes, and
 `FIR-001` is general fire equipment while `FIR-002` is extinguishers
