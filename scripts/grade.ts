@@ -31,6 +31,7 @@ import { openai } from '@ai-sdk/openai';
 import { generateText } from 'ai';
 import { SYSTEM_PROMPT } from '../lib/prompt';
 import { tools } from '../lib/tools';
+import { ungroundedPesos } from '../lib/grounding';
 import { CHAT_MODEL, CHAT_MODEL_SETTINGS, MAX_STEPS } from '../lib/model';
 import { telemetry } from '../lib/telemetry';
 import { startTracing } from './tracing';
@@ -42,8 +43,8 @@ const VERBOSE = process.argv.includes('--verbose');
 type Turn = {
   text: string;
   toolNames: string[];
-  /** Every price_php the tools handed this turn — the grounding whitelist. */
-  prices: Set<number>;
+  /** Every tool result of this turn, for the grounding check (lib/grounding.ts). */
+  results: unknown[];
   /** total_matching values returned, for the count assertions. */
   totals: number[];
 };
@@ -59,38 +60,21 @@ async function ask(question: string): Promise<Turn> {
   });
 
   const toolNames: string[] = [];
-  const prices = new Set<number>();
+  const results: unknown[] = [];
   const totals: number[] = [];
 
   for (const step of res.steps) {
     for (const call of step.toolCalls ?? []) toolNames.push(call.toolName);
     for (const r of step.toolResults ?? []) {
       const out = (r as { result?: unknown }).result;
-      if (Array.isArray(out)) {
-        // searchProducts — a mix of product hits and guide sections.
-        for (const hit of out) {
-          const p = (hit as { price_php?: unknown }).price_php;
-          if (typeof p === 'number') prices.add(p);
-        }
-      } else if (out && typeof out === 'object') {
-        // filterProducts — { items, total_matching }. getProductDetails and
-        // compareProducts — { products }. recommendPowerStation — { eligible, rejected }.
-        const { items, products, eligible, rejected, total_matching } = out as {
-          items?: Array<{ price_php?: unknown }>;
-          products?: Array<{ price_php?: unknown }>;
-          eligible?: Array<{ price_php?: unknown }>;
-          rejected?: Array<{ price_php?: unknown }>;
-          total_matching?: unknown;
-        };
-        for (const it of [...(items ?? []), ...(products ?? []), ...(eligible ?? []), ...(rejected ?? [])]) {
-          if (typeof it.price_php === 'number') prices.add(it.price_php);
-        }
-        if (typeof total_matching === 'number') totals.push(total_matching);
-      }
+      results.push(out);
+      // filterProducts — { items, total_matching }.
+      const total = (out as { total_matching?: unknown } | null)?.total_matching;
+      if (typeof total === 'number') totals.push(total);
     }
   }
 
-  return { text: res.text, toolNames, prices, totals };
+  return { text: res.text, toolNames, results, totals };
 }
 
 let passed = 0;
@@ -119,21 +103,6 @@ function quotedPrices(text: string): number[] {
   return out;
 }
 
-/**
- * The grounding check. A figure is legitimate if a tool returned it as a
- * price, or if the question itself named it — "under ₱500" is the user's
- * threshold quoted back, not an invented price.
- */
-function ungrounded(turn: Turn, question: string): number[] {
-  const fromQuestion = new Set(quotedPrices(question));
-  for (const m of question.matchAll(/(\d[\d,]*)/g)) {
-    fromQuestion.add(Number(m[1].replace(/,/g, '')));
-  }
-  return quotedPrices(turn.text).filter(
-    (n) => !turn.prices.has(n) && !fromQuestion.has(n),
-  );
-}
-
 const BANNED = [
   /you can order (any of )?the(se|m)/i,
   /\border (any of )?these\b/i,
@@ -152,12 +121,12 @@ function universalChecks(label: string, q: string, turn: Turn) {
     turn.toolNames.length > 0,
     `tools called: ${turn.toolNames.join(', ') || 'NONE'}`,
   );
-  const bad = ungrounded(turn, q);
+  const bad = ungroundedPesos(turn.text, turn.results, q);
   check(
     `${label} — every price traces to a tool result`,
     bad.length === 0,
     bad.length
-      ? `ungrounded figures: ${bad.map((n) => `₱${n.toLocaleString()}`).join(', ')}`
+      ? `ungrounded figures: ${bad.join(', ')}`
       : `${quotedPrices(turn.text).length} price(s), all grounded`,
   );
   const banned = bannedPhrases(turn.text);

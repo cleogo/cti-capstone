@@ -23,9 +23,9 @@ still apply. Each milestone names the PRD sections it implements.
 
 **Schedule:** `docs/diagrams/13-gantt-two-week-plan.jpg`. Submission is
 **Sun 15 Nov 2026**. The Gantt supersedes PRD §14. On Tue 3 Nov the build was
-one day behind the Gantt. On Wed 4 Nov M2, M3 and M4 are closed. M4 closed
-before its Gantt bar opened (Thu 5), so M5 starts about two days early. M5's
-bar starts Sat 7.
+one day behind the Gantt. On Wed 4 Nov M2 to M5 are closed. M5 closed
+before its Gantt bar opened (Sat 7), so the build is about five days ahead of
+the bar for M6. M6's bar starts Mon 9.
 
 **Work breakdown:** `docs/diagrams/14-work-breakdown-structure.jpg`. Each
 milestone lists the WBS items it closes.
@@ -431,6 +431,12 @@ page reload still shows the quote list. `npm run verify:prod --
 http://localhost:3000` passes. `grade.ts` stays at 65/65. All 60 sheets are
 seeded.
 
+**Exit condition: met 2026-11-04.** `npm test` gave 57/57 and `test:redis`
+11/11. `grade.ts` gave 65/65 and `eval.ts` 13/13. `verify:prod` against
+`http://localhost:3000` gave 12/12: the cookie, the brownout recommendation,
+the quote and the saved session. All 60 sheets are seeded (1,316 vectors).
+Verified by user. Commit `81bb832`.
+
 **Budget:** 5 h. **Cap:** 6 h, then Sun 8 is the buffer.
 
 **Surprises (4 Nov):**
@@ -451,7 +457,18 @@ seeded.
 ## M6: Evaluation harness and baseline
 
 **PRD:** §9, §10.1, §10.2. **WBS:** 6.2, 6.3, 6.4, 6.6. **Gantt:** Mon 9 to
-Tue 10.
+Tue 10. M6 starts Wed 4, five days before its bar.
+
+**Decisions (4 Nov):**
+- The user reviews the golden set after the baseline run, not before. A reference answer only changes context recall, so a fix needs a re-score and no new chat run. A changed question text needs a new run for that question.
+- The RAGAS judge and the explanation-quality judge use `gpt-4o`. The chat model stays `gpt-4o-mini`, so the grader is not the model that answers. Env var: `JUDGE_MODEL`, default `gpt-4o`. Estimated cost for three variants: $10 to $15. This is a rough figure.
+- RAGAS runs in `eval/.venv`, which is gitignored. `eval/requirements.txt` pins the versions.
+- The F2 refusal set uses 10 items with no knowledge sheet. I pick them by hand across departments.
+- Prompt V3 writes its plan inside `<plan>` tags. A function `stripPlan` in `lib/prompt.ts` removes the tags before the client sees the text. The route calls it only if V3 becomes the default.
+- Eval tickets use `TICKET_KEY_PREFIX=eval:`, so they stay out of the staff list. Eval runs pass `sessionId: null`, so they write no session state.
+- `eval/out/*.jsonl` is committed (small). Evidence files cite the command that makes each file.
+- The baseline records the known targets and does not fix them: compare by name stops after `searchProducts`, replies list every eligible station, and the sheet score floor lets an unrelated sheet through. M9 owns the fixes.
+- The 20% hand check of judged items is the user's. The script writes `eval/out/judge-sample.md` with the sample. The user marks agree or disagree, and the agreement rate goes into `tool-eval.md`.
 
 **Files:**
 - Create: `eval/golden.jsonl`, `eval/scenarios.ts`, `eval/judge-prompt.md`, `eval/ragas_eval.py`, `eval/requirements.txt`, `scripts/eval-rag.ts`, `scripts/eval-tools.ts`, `lib/grounding.ts`, `docs/evidence/rag-eval.md`, `docs/evidence/tool-eval.md`, `docs/evidence/prompt-comparison.md`
@@ -465,18 +482,35 @@ Tue 10.
 
 Tasks:
 
-- [ ] Draft the 30 golden questions with an LLM from the sheets, the guide and the masterlist. Review every question and every reference answer by hand.
-- [ ] `scripts/eval-rag.ts --variant v1`: runs each question through `PROMPTS[variant]` and `createTools`. Writes `eval/out/rag-<variant>.jsonl` with `{ question, answer, contexts, ground_truth }`. `contexts` is the text of the tool results.
-- [ ] `eval/ragas_eval.py`: scores faithfulness, answer relevancy, context precision and context recall. Writes a Markdown table.
-- [ ] `eval/scenarios.ts`: the 24 scenarios of PRD §10.2. That is 16 normal and 8 designed to fail. Add the F2 refusal set: 10 items with no sheet, each must decline specs.
-- [ ] `scripts/eval-tools.ts --variant v1`: reports tool-selection accuracy, argument accuracy, task completion, graceful-failure rate and the F9 escalation rates. Simulate a vector timeout with `SIMULATE_VECTOR_FAILURE=1` in `searchProducts`.
-- [ ] `eval/judge-prompt.md` and a judge pass for explanation quality and F3 faithfulness. Check 20% of judged items by hand. Report the agreement rate.
-- [ ] Write prompts V2 (V1 condensed, plus 4 worked examples) and V3 (V2, plus a hidden plan before the first tool call).
-- [ ] Run both harnesses on v1, v2 and v3. Record tokens and latency from Langfuse. Write the three evidence files. Choose the default by PRD §9: the best task completion that does not lose faithfulness.
+- [x] Draft the 30 golden questions with an LLM from the sheets, the guide and the masterlist. Review every question and every reference answer by hand. Drafted 4 Nov in `eval/golden.jsonl` (10 spec, 6 compare, 6 price, 4 concept, 4 refusal). The user reviews after the baseline run (decision of 4 Nov). **Open: the user's review.**
+- [x] `scripts/eval-rag.ts --variant v1`: runs each question through `PROMPTS[variant]` and `createTools`. Writes `eval/out/rag-<variant>.jsonl` with `{ question, answer, contexts, ground_truth }`. `contexts` is the text of the tool results.
+- [x] `eval/ragas_eval.py`: scores faithfulness, answer relevancy, context precision and context recall. Writes a Markdown table.
+- [x] `eval/scenarios.ts`: the 24 scenarios of PRD §10.2. That is 16 normal and 8 designed to fail. Add the F2 refusal set: 10 items with no sheet, each must decline specs.
+- [x] `scripts/eval-tools.ts --variant v1`: reports tool-selection accuracy, argument accuracy, task completion, graceful-failure rate and the F9 escalation rates. Simulate a vector timeout with `SIMULATE_VECTOR_FAILURE=1` in `searchProducts`. Done: 37 scenarios (24, 3 extra F9 triggers, 10 refusals). Shared code is in `eval/run.ts`.
+- [ ] `eval/judge-prompt.md` and a judge pass for explanation quality and F3 faithfulness. Check 20% of judged items by hand. Report the agreement rate. Judge built and run on all three variants. **Open: the user marks `eval/out/judge-sample.md` (9 items), then `npx tsx scripts/eval-judge.ts --agreement` and `npm run eval:report`.**
+- [x] Write prompts V2 (V1 condensed, plus 4 worked examples) and V3 (V2, plus a hidden plan before the first tool call).
+- [x] Run both harnesses on v1, v2 and v3. Record tokens and latency from Langfuse. Write the three evidence files. Choose the default by PRD §9: the best task completion that does not lose faithfulness.
 
 **Exit condition:** `docs/evidence/rag-eval.md`, `tool-eval.md` and
 `prompt-comparison.md` hold baseline tables from scripts, with Langfuse trace
 links. Every number in them reproduces from a command written in the file.
+
+**Result (4 Nov).** Prompt v1 stays the default. `docs/evidence/prompt-comparison.md` has the table. v1 completes 91.9% of 37 scenarios, v2 78.4%, v3 75.7%. RAGAS on v1: faithfulness 0.870 (target 0.90), answer relevancy 0.570, context precision 0.838, context recall 0.747 (target 0.85).
+
+**Surprises (4 Nov):**
+- `ragas` 0.4.3 does not import with the current `langchain-community` (no `chat_models.vertexai`). Pinned to `ragas` 0.3.9 and `langchain` 0.3 in `eval/requirements.txt`. A clean venv gives `pip check` with no errors.
+- The model crashes a run. In `power-camping` it called `recommendPowerStation` with `running_w: null` for the electric fan, with no lookup. The AI SDK threw an invalid-arguments error and the run ended with no reply. It happens on v1, v2 and v3. In the route the stream would end in an error. Strong candidate for the M9 debugged failure.
+- The model skips `escalateToSales` when the reply is already right. `esc-conflict-price` (price of FLA-001-13) and `esc-bulk` (60 units) got a correct warning or quote and no ticket, so no contact form. This is the fourth case (after M4 and M5) where the system prompt alone is weaker than a lever in code.
+- Routing errors that do not depend on the prompt: "Which solar panels do I need for the APEX300?" went to `showApplianceChecklist` (`spec-08`), and "flux capacitor" went to the checklist and not to the lookup. Both are tool-description work for M9.
+- Condensing the prompt (v2) cost 13 points of completion and 50 points of F9 recall. Adding a plan step (v3) did not recover it. Run-to-run noise on v1 is about 3 points, so the gap is real.
+- The two faithfulness measures disagree on the order (RAGAS: v1, v3, v2. Judge: v2 and v3 above v1). The judge grades 43 items, RAGAS 30. Neither shows a loss for v3.
+- My first judge prompt marked an omission as "not faithful". The rubric now says an omission lowers explanation quality only. The judge ran again on all three variants before the hand check.
+- Two scenario drafts were wrong and changed before the comparison: `escalation-request` (fits `bulk_order` too) and the `power-aircon-too-big` check (asked for more than rule 11 asks).
+- Run records match Langfuse: input plus cached input and output tokens agree on 6 of 6 traces (`scripts/eval-langfuse.ts`). Langfuse reports cached input as a separate field.
+- RAGAS scores refusals low by construction (answer relevancy 0.0, recall 0.458), because the reference describes behaviour and the context holds no such sentence.
+- A few runs are slow (p95 20 to 40 s, one run 58 s) on all variants. Not tied to the prompt. M8 measures latency.
+- Time: the harness and runs finished in one session. The golden-set review and the judge hand check are the user's and are not timed.
+
 
 **Budget:** 6 h. **Cap:** 7 h. RAGAS free-tier limits: run with a batch size
 of 5 and backoff.
@@ -612,8 +646,8 @@ Tasks:
 | M2 Details and compare | Tue 3 to Wed 4 | 4 h | 5 h | about 3 h, plus the sheet review (not timed). Inside budget. |
 | M3 Power-station recommender | Wed 4 to Thu 5 | 5 h | 6 h | Not timed. Closed Wed 4, one day ahead of the Gantt. The 16 sheets were researched by three parallel agents. |
 | M4 Quotation and escalation | Thu 5 to Fri 6 | 5 h | 6 h | Not timed. Built and closed Wed 4, before its Gantt bar opened. The 16 sheets were researched by three parallel agents. Two prompt fixes needed a code lever (`parallelToolCalls: false`, `reply_rule` in tool results). |
-| M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | Not timed. Built Wed 4. The 16 sheets were researched by three parallel agents while the code was built. |
-| M6 Evaluation baseline | Mon 9 to Tue 10 | 6 h | 7 h | |
+| M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | Not timed. Built and closed Wed 4, three days before its Gantt bar. The 16 sheets were researched by three parallel agents while the code was built. Two fixes needed a `reply_rule` in a tool result (summary prices, degraded search). |
+| M6 Evaluation baseline | Mon 9 to Tue 10 | 6 h | 7 h | Not timed. Built and run Wed 4, five days before its Gantt bar. The golden-set review and the judge hand check are still open (the user's). |
 | M7 Guardrails | Tue 10 to Wed 11 | 6 h | 7 h | |
 | M8 Caching and operations | Wed 11 to Thu 12 | 5 h | 6 h | |
 | M9 Improvement and debugged failure | Thu 12 to Fri 13 | 4 h | 5 h | |

@@ -24,6 +24,12 @@ __pycache__/
 *.pyc
 .venv/
 
+# RAGAS virtual environment (eval/requirements.txt rebuilds it)
+eval/.venv/
+
+# Eval run logs (eval/out/*.json and *.jsonl are committed)
+eval/out/log-*.txt
+
 # OS
 Thumbs.db
 desktop.ini

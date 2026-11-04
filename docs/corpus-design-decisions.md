@@ -321,6 +321,29 @@ chunks, 1,188 vectors**. A type-sheet question such as "what is a class K
 extinguisher used for" returns its four sections at 0.83 to 0.86, well above
 the 0.60 floor.
 
+### Capstone M5: degraded search and a full sheet set
+
+**Retrieval has a fallback.** If the vector query fails, `searchProducts`
+runs `exactMatches` only (code match, then name match). It returns
+`degraded: true` and a `reply_rule` that tells the model to say that search
+is limited. The rule says it must not say "CTI does not carry it", because
+a failed search proves nothing about the catalogue. `SIMULATE_VECTOR_FAILURE=1`
+forces the path for tests and for the M6 graceful-failure rate.
+
+**A re-seed needs a wait.** After a re-seed, Upstash shows
+`pendingVectorCount` above 0 (876 on 4 Nov, about 3 minutes). A query in that
+time hangs, with no error and no timeout. Wait for 0 before an eval run or a
+demo.
+
+**The sheet score floor is too loose.** In M4, a discount question about
+PWR-001-06 showed the `auto-fire-off` sheet in the sources panel. 0.60 lets
+an unrelated sheet through. M6 measures the sheet score bands and sets the
+floor from data.
+
+Store composition after M5 (all 60 sheets): **1,056 products + 20 guide
+chunks + 240 sheet chunks = 1,316 vectors**. "What is a spine board used
+for" returns the `spine-board` sections at 0.84 to 0.88.
+
 ---
 
 ## 10. Data quality found in the source
