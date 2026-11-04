@@ -16,6 +16,7 @@ import {
   searchProducts,
   filterProducts,
   isGuideHit,
+  isProductHit,
   type SearchHit,
   type ProductHit,
 } from '../lib/retrieval';
@@ -38,7 +39,7 @@ function check(label: string, ok: boolean, detail: string) {
 }
 
 function products(hits: SearchHit[]): ProductHit[] {
-  return hits.filter((h): h is ProductHit => !isGuideHit(h));
+  return hits.filter(isProductHit);
 }
 
 function summarize(hits: SearchHit[]): string {
@@ -46,7 +47,9 @@ function summarize(hits: SearchHit[]): string {
     .map((h) =>
       isGuideHit(h)
         ? `[guide] ${h.title} / ${h.heading} (${h.score.toFixed(3)})`
-        : `${h.code} ${h.name} @ ${h.price_php} (${h.match} ${h.score.toFixed(3)})`
+        : !isProductHit(h)
+          ? `[sheet] ${h.slug} / ${h.section} (${h.score.toFixed(3)})`
+          : `${h.code} ${h.name} @ ${h.price_php} (${h.match} ${h.score.toFixed(3)})`
     )
     .join('\n        ');
 }

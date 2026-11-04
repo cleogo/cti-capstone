@@ -1,5 +1,5 @@
 /**
- * The two tools, as AI SDK definitions.
+ * The tools, as AI SDK definitions.
  *
  * Split out of app/api/chat/route.ts for the same reason as lib/prompt.ts:
  * `scripts/grade.ts` must route against the exact descriptions production
@@ -20,7 +20,7 @@ import {
   DEFAULT_FILTER_LIMIT,
   MAX_FILTER_LIMIT,
 } from '@/lib/retrieval';
-
+import { getProductDetails, compareProducts } from '@/lib/details';
 /**
  * Both descriptions name the other tool and say what does NOT belong to them.
  * Routing failures here are symmetric — "cheapest safety shoe" going to
@@ -43,7 +43,8 @@ export const tools = {
       'sample and cannot tell you how many items match anything. ' +
       'Exact code and name matches are returned first, and variant families are returned ' +
       'complete, so all five fire blanket sizes arrive together. Results may carry ' +
-      'data_quality_flag — see the rule about conflicting codes.',
+      'data_quality_flag — see the rule about conflicting codes. ' +
+      'Specs, usage or cautions for a product whose code you know: use getProductDetails.',
     parameters: z.object({
       query: z
         .string()
@@ -118,4 +119,44 @@ export const tools = {
     }),
     execute: async (args) => filterProducts(args),
   }),
+
+  getProductDetails: tool({
+    description:
+      'Get the knowledge sheet for ONE product by its exact code: specs, usage, advantages, ' +
+      'cautions and the source URL, plus its masterlist record and price. ' +
+      'USE FOR: "what are the specs of PWR-001-06", "what is X used for", "any cautions for X", ' +
+      'once you have a product code. ' +
+      'DO NOT USE FOR: a price question ("how much is MED-001-01") — use searchProducts; ' +
+      'finding a product by name or description, or when the user gives no code — call ' +
+      'searchProducts first to get the code. Two or more products: use compareProducts. ' +
+      'Returns status: "on_file" (a sheet exists), "not_on_file" (no sheet — say the specs are ' +
+      'not on file, give the code and price, offer to refer to sales; never fill in specs ' +
+      'yourself), or "unknown_code".',
+    parameters: z.object({
+      code: z.string().describe('one exact product code, e.g. "PWR-001-06"'),
+    }),
+    execute: async ({ code }) => getProductDetails(code),
+  }),
+
+  compareProducts: tool({
+    description:
+      'Compare 2 to 4 products side by side by their exact codes. Returns one row per spec ' +
+      'label with a value per product; null means "not on file" for that product. Prices come ' +
+      'from the masterlist; price_php is null for a code with conflicting records. ' +
+      'USE FOR: "compare PWR-001-06 and PWR-001-05", "which of A or B suits X", once ' +
+      'you have the codes. Never for "which is better quality" — no sheet rates quality. ' +
+      'DO NOT USE FOR: one product (use getProductDetails), finding products by description ' +
+      '(use searchProducts first to get the codes), or ranking by price or counting (use filterProducts).',
+    parameters: z.object({
+      codes: z.array(z.string()).min(2).max(4).describe('2 to 4 exact product codes'),
+    }),
+    execute: async ({ codes }) => {
+      try {
+        return compareProducts(codes);
+      } catch (e) {
+        return { error: e instanceof Error ? e.message : String(e) };
+      }
+    },
+  }),
+
 };

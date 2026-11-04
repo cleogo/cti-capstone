@@ -46,8 +46,8 @@ async function main() {
 `);
   for (const r of results.slice(0, SHOW)) {
     const m = (r.metadata ?? {}) as Record<string, unknown>;
-    const code = m.code ?? '(no code)';
-    const name = m.name ?? m.title ?? '(no name)';
+    const code = m.code ?? (m.doc_type === 'sheet' ? '[sheet]' : '(no code)');
+    const name = m.name ?? m.title ?? (m.doc_type === 'sheet' ? `${m.slug} / ${m.section}` : '(no name)');
     const price = m.price_php;
     const priceLabel = typeof price === 'number' ? `₱${price} (number)` : price !== undefined ? `${JSON.stringify(price)} (NOT a number!)` : 'n/a';
     const flag = m.data_quality_flag ? `  [${m.data_quality_flag}]` : '';

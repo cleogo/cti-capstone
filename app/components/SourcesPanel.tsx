@@ -25,7 +25,7 @@ export function SourcesPanel({ sources }: { sources: Source[] }) {
       ) : (
         <div className="space-y-1.5">
           {sources.map((s, i) => (
-            <SourceCard key={s.kind === 'product' ? s.code : `${s.title}::${s.heading}::${i}`} source={s} />
+            <SourceCard key={s.kind === 'product' ? s.code : s.kind === 'sheet' ? s.slug : `${s.title}::${s.heading}::${i}`} source={s} />
           ))}
         </div>
       )}

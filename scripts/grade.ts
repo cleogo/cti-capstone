@@ -71,12 +71,14 @@ async function ask(question: string): Promise<Turn> {
           if (typeof p === 'number') prices.add(p);
         }
       } else if (out && typeof out === 'object') {
-        // filterProducts — { items, total_matching }.
-        const { items, total_matching } = out as {
+        // filterProducts — { items, total_matching }. getProductDetails and
+        // compareProducts — { products }.
+        const { items, products, total_matching } = out as {
           items?: Array<{ price_php?: unknown }>;
+          products?: Array<{ price_php?: unknown }>;
           total_matching?: unknown;
         };
-        for (const it of items ?? []) {
+        for (const it of [...(items ?? []), ...(products ?? [])]) {
           if (typeof it.price_php === 'number') prices.add(it.price_php);
         }
         if (typeof total_matching === 'number') totals.push(total_matching);

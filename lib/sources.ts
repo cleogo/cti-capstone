@@ -29,7 +29,14 @@ export type GuideSource = {
   heading: string;
 };
 
-export type Source = ProductSource | GuideSource;
+export type SheetSource = {
+  kind: 'sheet';
+  slug: string;
+  /** The sheet's first source: the manufacturer page or manual it cites. */
+  url: string;
+};
+
+export type Source = ProductSource | GuideSource | SheetSource;
 
 function isProductLike(v: unknown): v is Record<string, unknown> {
   return (
@@ -42,6 +49,12 @@ function isProductLike(v: unknown): v is Record<string, unknown> {
 
 function isGuideLike(v: unknown): v is Record<string, unknown> {
   return !!v && typeof v === 'object' && (v as Record<string, unknown>).doc_type === 'guide';
+}
+
+function toSheet(slug: unknown, url: unknown): SheetSource | null {
+  return typeof slug === 'string' && slug && typeof url === 'string' && url
+    ? { kind: 'sheet', slug, url }
+    : null;
 }
 
 function toProduct(v: Record<string, unknown>): ProductSource {
@@ -74,18 +87,35 @@ function toGuide(v: Record<string, unknown>): GuideSource {
 export function sourcesFromMessage(message: Message): Source[] {
   const products = new Map<string, ProductSource>();
   const guides = new Map<string, GuideSource>();
+  const sheets = new Map<string, SheetSource>();
+  const addSheet = (sh: SheetSource | null) => {
+    if (sh && !sheets.has(sh.slug)) sheets.set(sh.slug, sh);
+  };
 
   for (const inv of message.toolInvocations ?? []) {
     if (inv.state !== 'result') continue;
     const result = inv.result as unknown;
+    const obj = (result && typeof result === 'object' ? result : {}) as Record<string, unknown>;
 
+    // searchProducts: an array. filterProducts: { items }. getProductDetails
+    // and compareProducts: { products }, with the sheet on the result
+    // (details) or on each product (compare).
     const rows: unknown[] = Array.isArray(result)
       ? result
-      : result && typeof result === 'object' && Array.isArray((result as { items?: unknown[] }).items)
-        ? (result as { items: unknown[] }).items
-        : [];
+      : Array.isArray(obj.items)
+        ? obj.items
+        : Array.isArray(obj.products)
+          ? obj.products
+          : [];
+
+    const sheet = obj.sheet as { slug?: unknown; sources?: unknown[] } | null | undefined;
+    if (sheet) addSheet(toSheet(sheet.slug, sheet.sources?.[0]));
 
     for (const row of rows) {
+      const r = (row ?? {}) as Record<string, unknown>;
+      if (r.doc_type === 'sheet') addSheet(toSheet(r.slug, r.source_url));
+      else if ('sheet_slug' in r) addSheet(toSheet(r.sheet_slug, r.source_url));
+
       if (isProductLike(row)) {
         const p = toProduct(row);
         if (!products.has(p.code)) products.set(p.code, p);
@@ -97,5 +127,5 @@ export function sourcesFromMessage(message: Message): Source[] {
     }
   }
 
-  return [...products.values(), ...guides.values()];
+  return [...products.values(), ...sheets.values(), ...guides.values()];
 }

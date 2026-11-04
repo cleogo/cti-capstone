@@ -295,6 +295,29 @@ band. Rewriting the template to lead with the product name would likely fix it
 and would cost a full re-seed. Not done — the exact-match layer already carries
 the lookups, and the milestone's exit condition is four categories passing.
 
+### Capstone M2: knowledge sheets as a third document type
+
+The capstone adds hand-written knowledge sheets (`corpus/sheets/*.md`) for
+specs, usage, advantages and cautions. Each sheet section is one chunk, id
+`sheet:<slug>#<section>`, metadata `doc_type: 'sheet'`. The metadata never
+holds a price. The masterlist stays the only price source.
+
+**A third filtered query, for the same reason as guides.** Sheet chunks lose
+their slots to product chunks in the main query, as guide chunks do. So
+`searchProducts` skips every `sheet` and `guide` hit in the main query and
+runs one filtered query per type. Sheets get topK 3 and a **0.60 floor**,
+set against `grade.ts` so that a sheet section does not enter a plain price
+answer. The score bands for sheets are not measured yet. M6 measures them.
+
+**Structured tools carry most spec questions, not retrieval.** A question
+with a product code goes to `getProductDetails` or `compareProducts`, which
+read `corpus/sheets.json` by code. Retrieval of sheet chunks is the fallback
+for a question that names a product by description. A compare by name still
+stops after `searchProducts` (3 of 3 runs on 3 Nov). M6 targets it.
+
+Store composition after M2: **1,056 products + 20 guide chunks + 48 sheet
+chunks = 1,124 vectors**.
+
 ---
 
 ## 10. Data quality found in the source
@@ -320,3 +343,4 @@ spreadsheet and would have surfaced as wrong prices in production.
 | Two tools | Correct aggregates and filters | More routing for the model to get wrong |
 | Hybrid retrieval | Reliable code lookup | Extra index, merge logic |
 | Added prose guides | Answers beyond lookups | Authoring effort, must be kept current |
+| Knowledge sheets by code, not by retrieval | Exact specs with a source link | 60 sheets to write and review by hand |

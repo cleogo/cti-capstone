@@ -40,6 +40,7 @@ import path from 'node:path';
 import { Index } from '@upstash/vector';
 import { embedMany } from 'ai';
 import { openai } from '@ai-sdk/openai';
+import { SHEETS } from './sheets';
 
 const PRODUCTS_PATH = path.join(process.cwd(), 'corpus', 'products.jsonl');
 const GUIDE_DIR = path.join(process.cwd(), 'corpus', 'guide');
@@ -64,6 +65,41 @@ type GuideChunk = {
   title: string;
   heading: string;
 };
+
+/** One knowledge-sheet section. Metadata never holds a price. */
+type SheetChunk = {
+  id: string;
+  text: string;
+  doc_type: 'sheet';
+  slug: string;
+  section: string;
+  codes: string[];
+  source_url: string;
+};
+
+/** Each sheet section is one chunk, led by the model name so the vector
+ * knows which product the section is about. */
+function loadSheetChunks(): SheetChunk[] {
+  return SHEETS.flatMap((s) => {
+    const name = s.specs.find((x) => /^models?$/i.test(x.label))?.value ?? s.slug;
+    const head = `${name} (${s.codes.join(', ')})`;
+    const sections: [string, string][] = [
+      ['Specs', s.specs.map((x) => `- ${x.label}: ${x.value}`).join('\n')],
+      ['Usage', s.usage],
+      ['Advantages', s.advantages],
+      ['Cautions', s.cautions],
+    ];
+    return sections.map(([section, body]) => ({
+      id: `sheet:${s.slug}#${section}`,
+      text: `${head}: ${section}\n${body}`,
+      doc_type: 'sheet' as const,
+      slug: s.slug,
+      section,
+      codes: s.codes,
+      source_url: s.sources[0],
+    }));
+  });
+}
 
 function parseLimitArg(): number | undefined {
   const idx = process.argv.findIndex((a) => a === '--limit' || a.startsWith('--limit='));
@@ -251,6 +287,19 @@ async function main() {
       return metadata;
     },
     'guide',
+  );
+
+  const sheetChunks = loadSheetChunks();
+  console.log(`  loaded ${sheetChunks.length} sheet chunk(s) from ${SHEETS.length} sheet(s)`);
+  await embedAndUpsert(
+    index,
+    sheetChunks.map((c) => c.id),
+    sheetChunks.map((c) => c.text),
+    (i) => {
+      const { text, ...metadata } = sheetChunks[i];
+      return metadata;
+    },
+    'sheets',
   );
 
   const info = await index.info();

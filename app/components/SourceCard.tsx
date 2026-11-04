@@ -22,6 +22,22 @@ export function SourceCard({ source }: { source: Source }) {
     );
   }
 
+  if (source.kind === 'sheet') {
+    return (
+      <div className="rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-xs">
+        <div className="font-medium text-sky-900">Knowledge sheet: {source.slug}</div>
+        <a
+          href={source.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block truncate text-sky-700 underline"
+        >
+          {new URL(source.url).hostname}
+        </a>
+      </div>
+    );
+  }
+
   const flagged = source.data_quality_flag === 'duplicate_code_conflict';
 
   return (

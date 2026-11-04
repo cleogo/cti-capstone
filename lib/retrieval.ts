@@ -88,6 +88,13 @@ const MAX_GUIDE_HITS = 3;
  * them cleanly and keeps prose out of a price answer.
  */
 const GUIDE_SCORE_FLOOR = 0.7;
+/** Sheet sections are context for a spec or usage question, not a list. */
+const MAX_SHEET_HITS = 3;
+/**
+ * Below this, a sheet section is noise in a price answer. Tuned against
+ * grade.ts, the same way as GUIDE_SCORE_FLOOR.
+ */
+const SHEET_SCORE_FLOOR = 0.6;
 /** More than a handful of name-containment hits is not an exact lookup. */
 const MAX_NAME_MATCHES = 5;
 
@@ -109,10 +116,25 @@ export type GuideHit = {
   score: number;
 };
 
-export type SearchHit = ProductHit | GuideHit;
+/** One section of a knowledge sheet. Never carries a price. */
+export type SheetHit = {
+  doc_type: 'sheet';
+  slug: string;
+  section: string;
+  codes: string[];
+  source_url: string;
+  text: string;
+  score: number;
+};
+
+export type SearchHit = ProductHit | GuideHit | SheetHit;
 
 export function isGuideHit(h: SearchHit): h is GuideHit {
   return (h as GuideHit).doc_type === 'guide';
+}
+
+export function isProductHit(h: SearchHit): h is ProductHit {
+  return !('doc_type' in h);
 }
 
 /**
@@ -228,7 +250,7 @@ export async function searchProducts({
   const semantic: Array<{ p: Product; score: number; text?: string }> = [];
   for (const r of results) {
     const m = (r.metadata ?? {}) as Record<string, unknown>;
-    if (m.doc_type === 'guide') continue; // guides come from their own query below
+    if (m.doc_type === 'guide' || m.doc_type === 'sheet') continue; // own queries below
     const id = String(m.id ?? r.id);
     // Identical duplicates are embedded but never surfaced twice.
     if (!CATALOG_IDS.has(id)) continue;
@@ -271,6 +293,28 @@ export async function searchProducts({
       doc_type: 'guide',
       title: String(m.title ?? ''),
       heading: String(m.heading ?? ''),
+      text: String(m.text ?? ''),
+      score: r.score,
+    });
+  }
+
+  // 6. Knowledge-sheet sections, from a third filtered query, for the same
+  //    reason as guides: 1,056 product chunks would take every slot.
+  const sheetResults = await store().query({
+    vector: embedding,
+    topK: MAX_SHEET_HITS,
+    includeMetadata: true,
+    filter: "doc_type = 'sheet'",
+  });
+  for (const r of sheetResults) {
+    if (r.score < SHEET_SCORE_FLOOR) continue;
+    const m = (r.metadata ?? {}) as Record<string, unknown>;
+    scored.push({
+      doc_type: 'sheet',
+      slug: String(m.slug ?? ''),
+      section: String(m.section ?? ''),
+      codes: Array.isArray(m.codes) ? (m.codes as string[]) : [],
+      source_url: String(m.source_url ?? ''),
       text: String(m.text ?? ''),
       score: r.score,
     });

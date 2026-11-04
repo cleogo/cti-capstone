@@ -127,7 +127,12 @@ Add knowledge sheets as a data source, and two tools that read them.
 
 **Files:**
 - Create: `corpus/sheets/<slug>.md` (12), `scripts/build-sheets.ts`, `corpus/sheets.json` (generated), `lib/sheets.ts`, `lib/details.ts`, `tests/sheets.test.ts`, `tests/details.test.ts`
-- Modify: `lib/tools.ts`, `lib/seed.ts`, `lib/sources.ts`, `app/components/SourceCard.tsx`, `package.json`
+- Modify: `lib/tools.ts`, `lib/seed.ts`, `lib/retrieval.ts`, `lib/sources.ts`, `app/components/SourceCard.tsx`, `package.json`
+
+**Decisions (3 Nov):**
+- `searchProducts` drops every vector hit that is not a product or a guide chunk. Sheet chunks need their own filtered query, as guide chunks have. So `lib/retrieval.ts` is in scope.
+- Sheet chunk metadata uses `doc_type: 'sheet'`, to match the existing `doc_type: 'guide'`.
+- B300K (PWR-004-01) and the PV panels (PWR-003-01 to 06) have no `web_source_url`. Their sheets cite the official bluettipower product pages.
 
 **Sheet format.** One file per sheet. Front matter, then four `##` sections
 in this order: Specs, Usage, Advantages, Cautions. Each Specs line is
@@ -161,10 +166,10 @@ sources:
 
 Tasks:
 
-- [ ] Write the 12 power-station sheets: rows 1 to 12 of `docs/knowledge-sheets.md`. Specs come from the manufacturer pages already in `data/bluetti/products.csv` (`web_source_url`). No prices. User reviews them before seeding.
-- [ ] Test first, `tests/sheets.test.ts`. The build function rejects: a missing section, a section out of order, a code not in `BY_CODE`, an empty `sources` list, and any `₱` in the sheet body. It accepts the example above.
-- [ ] `scripts/build-sheets.ts`: export `buildSheet(markdown: string): Sheet` (throws with the file name and the reason), read `corpus/sheets/*.md`, write `corpus/sheets.json`. Use a small hand parser for this front matter format. Add `"build:sheets"` to `package.json`.
-- [ ] Test first, `tests/details.test.ts`:
+- [x] Write the 12 power-station sheets: rows 1 to 12 of `docs/knowledge-sheets.md`. Specs come from the manufacturer pages already in `data/bluetti/products.csv` (`web_source_url`). No prices. User reviews them before seeding.
+- [x] Test first, `tests/sheets.test.ts`. The build function rejects: a missing section, a section out of order, a code not in `BY_CODE`, an empty `sources` list, and any `₱` in the sheet body. It accepts the example above.
+- [x] `scripts/build-sheets.ts`: export `buildSheet(markdown: string): Sheet` (throws with the file name and the reason), read `corpus/sheets/*.md`, write `corpus/sheets.json`. Use a small hand parser for this front matter format. Add `"build:sheets"` to `package.json`.
+- [x] Test first, `tests/details.test.ts`:
   - `getProductDetails('PWR-001-06')` gives `status 'on_file'`, price 58719, and the spec "Rated AC output: 1,800 W".
   - `getProductDetails('MED-001-01')` gives `status 'not_on_file'`, price 43470, `sheet null`.
   - `getProductDetails('XXX-999-99')` gives `status 'unknown_code'`.
@@ -172,12 +177,13 @@ Tasks:
   - `compareProducts(['PWR-001-06','PWR-001-05'])` has a "Capacity" row with both values. A label that only one sheet has gives `null` in the other column.
   - `compareProducts(['PWR-001-06','FLA-001-13'])` gives `price_php: null` for FLA-001-13.
   - `compareProducts` with 1 code or with 5 codes throws.
-- [ ] Implement `lib/sheets.ts` and `lib/details.ts`. Run `npm test`.
-- [ ] `lib/tools.ts`: add `getProductDetails` (`code: string`) and `compareProducts` (`codes: string[]`, 2 to 4). Each description says when to use `searchProducts` instead: when the user has no code or names a product by description.
-- [ ] `lib/seed.ts`: seed each sheet section as one chunk, id `sheet:<slug>#<section>`, metadata `{ kind: 'sheet', slug, section, codes }`. Never put a price in sheet metadata.
-- [ ] `lib/prompt.ts`: specs, usage, advantages and cautions come only from `getProductDetails`, `compareProducts` or a sheet section that `searchProducts` returns. If the status is `not_on_file`, say so, give the code and price, and offer escalation. In a comparison, write "choose A if…, choose B if…" from the rows only.
-- [ ] `lib/sources.ts` and `SourceCard.tsx`: a sheet source card shows the sheet's source URL. A product card still shows the price from metadata.
-- [ ] Re-seed the capstone index. Run `grade.ts` as a regression check.
+- [x] Implement `lib/sheets.ts` and `lib/details.ts`. Run `npm test`.
+- [x] `lib/tools.ts`: add `getProductDetails` (`code: string`) and `compareProducts` (`codes: string[]`, 2 to 4). Each description says when to use `searchProducts` instead: when the user has no code or names a product by description.
+- [x] `lib/retrieval.ts`: a third query filtered to `doc_type = 'sheet'`, with a score floor, merged like the guide sections.
+- [x] `lib/seed.ts`: seed each sheet section as one chunk, id `sheet:<slug>#<section>`, metadata `{ doc_type: 'sheet', slug, section, codes }`. Never put a price in sheet metadata.
+- [x] `lib/prompt.ts`: specs, usage, advantages and cautions come only from `getProductDetails`, `compareProducts` or a sheet section that `searchProducts` returns. If the status is `not_on_file`, say so, give the code and price, and offer escalation. In a comparison, write "choose A if…, choose B if…" from the rows only.
+- [x] `lib/sources.ts` and `SourceCard.tsx`: a sheet source card shows the sheet's source URL. A product card still shows the price from metadata.
+- [x] Re-seed the capstone index. Run `grade.ts` as a regression check. 65/65, and `eval.ts` 13/13.
 
 **Exit condition:** in the local app, "What are the specs of PWR-001-06?"
 shows the sheet values with the source link and ₱58,719.00. "Specs of
@@ -185,7 +191,23 @@ MED-001-01?" gives "not on file", the code and ₱43,470.00. "Compare
 PWR-001-06 and PWR-001-05" shows aligned rows with "not on file" where a
 sheet has no value. `npm test` passes. `grade.ts` stays at 65/65.
 
+**Exit condition: met 2026-11-04.** In the local app, the PWR-001-06 specs
+showed the sheet values, the source link and ₱58,719.00. MED-001-01 gave
+"not on file", the code and ₱43,470.00. The compare showed aligned rows. A
+"not on file" cell shows with PWR-001-03 or PWR-001-08 (see Surprises).
+`npm test` gave 14/14. `grade.ts` gave 65/65 and `eval.ts` 13/13 after the
+re-seed. Verified by user. The M2 code is not committed yet.
+
 **Budget:** 4 h (2 h of it is the 12 sheets). **Cap:** 5 h.
+
+**Surprises (3 Nov):**
+- The sheets hold no warranty rows. CLAUDE.md says to refuse warranty, and a sheet row would contradict that.
+- The data had conflicts that the sheets now state as cautions: the AC200PL surge (UK page 7,200 W, manual overload limits), the B300K variants (BLUETTI sells two, CTI's list names one fit), the PV350 efficiency and IP rating (CTI list 25% and IP67, BLUETTI page 23.4% and IP65), and the 120 V outlets on the APEX300 and ELITE320.
+- `grade.ts` fell to 62/65 with the new tools. (1) "How much is MED-001-01?" went to `getProductDetails` and answered "specs not on file". The description now sends price questions to `searchProducts`. (2) The grounding check only read `searchProducts` and `filterProducts` results, so prices from `getProductDetails` counted as invented. `grade.ts` now reads `products` too. (3) The quality refusal broke: with a compare tool available, the model asked for codes to compare. The M2 edit to rule 7 had dropped "no basis for judging quality" when it moved specs to rule 9. Restoring it was not enough, so rule 10 now says that a quality question is a refusal. Then 65/65.
+- With the M2 sheets, PWR-001-06 and PWR-001-05 share every spec label. The exit-condition compare still shows aligned rows, but no "not on file" cell. PWR-001-06 against PWR-001-03 (no surge figure) or PWR-001-08 (Expansion) shows one.
+- After seeding, "Compare PWR-001-06 and PWR-001-03" called `getProductDetails` twice and never called `compareProducts`. Rule 10 now says to call `compareProducts` once with all the codes. That fixed 8 of 8 runs with codes. A compare by name ("the Premium 150 and the ELITE320") still stops after `searchProducts` in 3 of 3 runs, and answers from the search results. This is a target for M6 (`compare` golden questions).
+- The index holds 1,124 vectors: 1,056 products, 20 guide chunks and 48 sheet chunks.
+- `docs/spec.md` rule 7 still says the masterlist holds no specs. M5 brings spec.md in line with the prompt.
 
 ---
 
@@ -509,8 +531,8 @@ Tasks:
 
 | Milestone | Dates | Budget | Cap | Actual |
 |---|---|---|---|---|
-| M1 Infrastructure and tracing | Tue 3 | 2 h | 3 h | |
-| M2 Details and compare | Tue 3 to Wed 4 | 4 h | 5 h | |
+| M1 Infrastructure and tracing | Tue 3 | 2 h | 3 h | 3 h (at cap: the Langfuse ingestion switch and the prompt regression) |
+| M2 Details and compare | Tue 3 to Wed 4 | 4 h | 5 h | about 3 h, plus the sheet review (not timed). Inside budget. |
 | M3 Power-station recommender | Wed 4 to Thu 5 | 5 h | 6 h | |
 | M4 Quotation and escalation | Thu 5 to Fri 6 | 5 h | 6 h | |
 | M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | |

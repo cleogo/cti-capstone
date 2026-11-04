@@ -26,7 +26,7 @@ export function SourceList({ sources }: { sources: Source[] }) {
       </div>
       <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
         {shown.map((s, i) => (
-          <SourceCard key={s.kind === 'product' ? s.code : `${s.title}::${s.heading}::${i}`} source={s} />
+          <SourceCard key={s.kind === 'product' ? s.code : s.kind === 'sheet' ? s.slug : `${s.title}::${s.heading}::${i}`} source={s} />
         ))}
       </div>
       {hiddenCount > 0 && (
