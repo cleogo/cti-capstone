@@ -22,8 +22,9 @@ Vector, Upstash Redis, Langfuse, RAGAS (Python), `node:test` through `tsx`.
 still apply. Each milestone names the PRD sections it implements.
 
 **Schedule:** `docs/diagrams/13-gantt-two-week-plan.jpg`. Submission is
-**Sun 15 Nov 2026**. The Gantt supersedes PRD §14. On Tue 3 Nov the build is
-one day behind the Gantt: the Mon 2 Langfuse bar is not done.
+**Sun 15 Nov 2026**. The Gantt supersedes PRD §14. On Tue 3 Nov the build was
+one day behind the Gantt. On Wed 4 Nov M2 and M3 are closed, so the build is
+one day ahead: M4's Gantt bar starts Thu 5.
 
 **Work breakdown:** `docs/diagrams/14-work-breakdown-structure.jpg`. Each
 milestone lists the WBS items it closes.
@@ -266,13 +267,22 @@ Tasks:
 - [x] `lib/tools.ts`: add `lookupApplianceWattage`, `recommendPowerStation` (zod: loads, `qty` an integer from 1 to 50, `hours` from 0.5 to 24) and `showApplianceChecklist` (`userType`). `showApplianceChecklist` has no `execute`: it is a client-side tool.
 - [x] `ApplianceChecklist.tsx` renders `checklistFor(userType)` with qty, hours and a watts override. Submit calls `addToolResult` with the selected loads. `RecommendationCard.tsx` renders the tool result: the smallest fit, one step up, the maths, and the rejected stations with reasons. All numbers come from the tool result.
 - [x] `lib/prompt.ts`: the flow. If the user listed appliances, look them up and recommend. Ask for hours only if the user gave none. If the user listed no appliances, show the checklist (see Decisions). Never do wattage arithmetic in prose. If nothing fits, suggest removing the largest load or escalating. For a medical or life-support device, give the numbers, say you cannot advise on life-critical power, and escalate (the tool arrives in M4).
-- [ ] Write sheets for rows 13 to 28. User reviews. Rebuild the sheets and re-seed. (Written and built 4 Nov. Review and seed are open.)
+- [x] Write sheets for rows 13 to 28. User reviews. Rebuild the sheets and re-seed. Seeded 4 Nov: the index holds 1,188 vectors (1,056 products, 20 guide chunks, 112 sheet chunks from 28 sheets).
 
 **Exit condition:** `npm test` passes, with 15 calculator cases. In the
 local app, "Which Bluetti for a 32-inch TV, two electric fans and a 16 cu ft
 ref, 8 hours of brownout?" calls `recommendPowerStation` and shows ELITE320
 (PWR-002-02) at ₱100,900.00, with the maths and the APEX300 rejection reason.
 "I need a power station" shows the checklist.
+
+**Exit condition: met 2026-11-04.** `npm test` gave 39/39, with the 15
+calculator cases. In the local app, the brownout question called
+`recommendPowerStation` and showed ELITE320 (PWR-002-02) at ₱100,900.00, with
+the maths and "APEX300: usable 2114.46 Wh < needed 2400 Wh". "I need a power
+station" showed the checklist, and a submit returned a recommendation card.
+`grade.ts` 65/65, `eval.ts` 13/13. Verified by user. The 16 fire sheets are
+seeded, and "what is a class K extinguisher used for" returns the
+`extinguisher-class-k` sections at 0.83 to 0.86. Commit `2873da7`.
 
 **Budget:** 5 h. **Cap:** 6 h. The client-side checklist tool can fail in AI
 SDK v4. If it fails, record why here. Then use a plain form that posts the
@@ -553,7 +563,7 @@ Tasks:
 |---|---|---|---|---|
 | M1 Infrastructure and tracing | Tue 3 | 2 h | 3 h | 3 h (at cap: the Langfuse ingestion switch and the prompt regression) |
 | M2 Details and compare | Tue 3 to Wed 4 | 4 h | 5 h | about 3 h, plus the sheet review (not timed). Inside budget. |
-| M3 Power-station recommender | Wed 4 to Thu 5 | 5 h | 6 h | |
+| M3 Power-station recommender | Wed 4 to Thu 5 | 5 h | 6 h | Not timed. Closed Wed 4, one day ahead of the Gantt. The 16 sheets were researched by three parallel agents. |
 | M4 Quotation and escalation | Thu 5 to Fri 6 | 5 h | 6 h | |
 | M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | |
 | M6 Evaluation baseline | Mon 9 to Tue 10 | 6 h | 7 h | |

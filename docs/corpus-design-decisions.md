@@ -316,7 +316,10 @@ for a question that names a product by description. A compare by name still
 stops after `searchProducts` (3 of 3 runs on 3 Nov). M6 targets it.
 
 Store composition after M2: **1,056 products + 20 guide chunks + 48 sheet
-chunks = 1,124 vectors**.
+chunks = 1,124 vectors**. After M3 (16 fire-safety type sheets): **112 sheet
+chunks, 1,188 vectors**. A type-sheet question such as "what is a class K
+extinguisher used for" returns its four sections at 0.83 to 0.86, well above
+the 0.60 floor.
 
 ---
 
