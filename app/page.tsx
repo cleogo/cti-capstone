@@ -7,10 +7,16 @@ import { SourcesPanel } from './components/SourcesPanel';
 import { sourcesFromMessage } from '@/lib/sources';
 
 export default function Page() {
-  const { messages, input, handleInputChange, handleSubmit, append, status, error, stop } =
-    useChat({ api: '/api/chat' });
+  const { messages, input, handleInputChange, handleSubmit, append, status, error, stop, addToolResult } =
+    useChat({ api: '/api/chat', maxSteps: 8 });
 
-  const isBusy = status === 'streaming' || status === 'submitted';
+  // A tool call with no result yet (the appliance checklist) must be answered
+  // before the next message, or the API rejects the history.
+  const awaitingTool = messages.some((m) =>
+    (m.toolInvocations ?? []).some((inv) => inv.toolName === 'showApplianceChecklist' && inv.state === 'call'),
+  );
+  const isStreaming = status === 'streaming' || status === 'submitted';
+  const isBusy = isStreaming || awaitingTool;
 
   // Latest assistant turn's sources, for the desktop panel — see
   // SourcesPanel.tsx for why only the latest turn.
@@ -37,7 +43,7 @@ export default function Page() {
           ) : (
             <ul className="mb-6 min-h-[200px] space-y-4">
               {messages.map((m) => (
-                <ChatMessage key={m.id} message={m} />
+                <ChatMessage key={m.id} message={m} addToolResult={addToolResult} />
               ))}
               {error && (
                 <li className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
@@ -52,10 +58,12 @@ export default function Page() {
               value={input}
               onChange={handleInputChange}
               className="min-w-0 flex-1 rounded-lg border border-slate-300 px-3 py-2 focus:border-cyan-500 focus:outline-none"
-              placeholder="Ask about a product, a price, or what's under ₱500…"
+              placeholder={
+                awaitingTool ? 'Tick your appliances above, or press Skip…' : "Ask about a product, a price, or what's under ₱500…"
+              }
               disabled={isBusy}
             />
-            {isBusy ? (
+            {isStreaming ? (
               <button
                 type="button"
                 onClick={stop}

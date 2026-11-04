@@ -25,9 +25,9 @@ export async function POST(req: Request) {
     system: SYSTEM_PROMPT,
     messages,
     tools,
-    // A turn may search, then filter, then answer. Three steps left no room
-    // for the second tool call plus the text.
-    maxSteps: 5,
+    // A turn may search, then filter, then answer. The power-station flow
+    // needs more: one lookup per appliance, then recommendPowerStation, then text.
+    maxSteps: 8,
     experimental_telemetry: telemetry('chat'),
   });
 

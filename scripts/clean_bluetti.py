@@ -20,6 +20,8 @@ Outputs (data/bluetti/):
   appliances.csv  the WATTAGE sheet deduplicated: one row per appliance/variant,
                   running and surge watts side by side, user types as a list
   solar.csv       the SOLAR PANEL RECOMMENDATION sheet, flattened
+  stations.json   the 10 on-sale power stations, numeric, for lib/power.ts
+  appliances.json appliances.csv as numbers and lists, for lib/appliances.ts
 
 The derived sheets (Runtime Calculator, RUNNING TIME PER APPLIANCES, Wattage
 Consumption) are not exported: they are views over the data above and the
@@ -29,6 +31,7 @@ Run: python scripts/clean_bluetti.py
 """
 
 import csv
+import json
 import re
 from pathlib import Path
 
@@ -299,6 +302,47 @@ def write(path, rows):
             w.writerow({k: int(v) if isinstance(v, float) and v.is_integer() else v for k, v in r.items()})
 
 
+def build_stations(products):
+    """The recommender's station table: on-sale power stations, numeric fields only.
+
+    capacity_wh is the calculator's figure when it has one, so the app and the
+    sales team's workbook give the same runtimes.
+    """
+    out = []
+    for p in products:
+        if "Power Station" not in p["category"] or p["on_sale"] != "yes":
+            continue
+        cap = p["calc_capacity_wh"] if p["calc_capacity_wh"] != "" else p["capacity_wh"]
+        for col in ("rated_w", "self_consumption_w", "price_php"):
+            assert p[col] != "", f"station {p['model']} has no {col}"
+        out.append({
+            "code": p["code"],
+            "model": p["model"],
+            "rated_w": float(p["rated_w"]),
+            "capacity_wh": float(cap),
+            "self_consumption_w": float(p["self_consumption_w"]),
+            "price_php": int(p["price_php"]),
+        })
+    return out
+
+
+def appliances_json(appliances):
+    return [{
+        "appliance": a["appliance"],
+        "variant": a["variant"],
+        "running_w": float(a["running_w"]),
+        "surge_w": float(a["surge_w"]) if a["surge_w"] != "" else None,
+        "user_types": a["user_types"].split("; "),
+    } for a in appliances if a["running_w"] != ""]
+
+
+def write_json(path, rows):
+    clean = lambda v: int(v) if isinstance(v, float) and v.is_integer() else v
+    with path.open("w", encoding="utf-8", newline="\n") as f:
+        json.dump([{k: clean(v) for k, v in r.items()} for r in rows], f, ensure_ascii=False, indent=1)
+        f.write("\n")
+
+
 def runtime_hours(capacity_wh, self_w, load_w):
     return capacity_wh * DOD * INVERTER_EFFICIENCY / (load_w + self_w)
 
@@ -329,6 +373,10 @@ def main():
     write(OUT / "products.csv", products)
     write(OUT / "appliances.csv", appliances)
     write(OUT / "solar.csv", solar)
+    stations = build_stations(products)
+    assert len(stations) == 10, f"expected 10 stations on sale, got {len(stations)}"
+    write_json(OUT / "stations.json", stations)
+    write_json(OUT / "appliances.json", appliances_json(appliances))
 
     print(f"products.csv   {len(products)} rows, {sum(1 for p in products if p['calc_model'])} with calculator specs")
     print(f"appliances.csv {len(appliances)} rows, {sum(1 for a in appliances if a['surge_w'])} with surge watts")

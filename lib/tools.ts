@@ -21,6 +21,23 @@ import {
   MAX_FILTER_LIMIT,
 } from '@/lib/retrieval';
 import { getProductDetails, compareProducts } from '@/lib/details';
+import { lookupApplianceWattage, USER_TYPES } from '@/lib/appliances';
+import { recommendPowerStation } from '@/lib/power';
+
+const LoadSchema = z.object({
+  name: z
+    .string()
+    .describe('appliance name AND variant, e.g. "Electric fan 14-inch standard" (the "suggested" name from lookupApplianceWattage)'),
+  running_w: z.number().positive().describe('running watts for ONE unit, from lookupApplianceWattage or from the user'),
+  surge_w: z
+    .number()
+    .positive()
+    .nullable()
+    .describe('start-up watts for one unit if the lookup gave one, else null'),
+  qty: z.number().int().min(1).max(50),
+  hours: z.number().min(0.5).max(24).describe('hours of use per day or per outage'),
+});
+
 /**
  * Both descriptions name the other tool and say what does NOT belong to them.
  * Routing failures here are symmetric — "cheapest safety shoe" going to
@@ -159,4 +176,60 @@ export const tools = {
     },
   }),
 
+  lookupApplianceWattage: tool({
+    description:
+      'Get the running watts (and start-up surge watts, if on file) of ONE appliance from CTI\'s ' +
+      'Bluetti wattage table. Understands client words: "ref", "aircon 1hp", "TV", "electric fan", ' +
+      '"bentilador". ' +
+      'USE FOR: every appliance the user names when they want a power station sized. Call it once per ' +
+      'appliance, before recommendPowerStation. ' +
+      'DO NOT USE FOR: CTI products or prices (use searchProducts), or when the user already gave the ' +
+      'watts ("my fan is 60 W") — use their figure. ' +
+      'Returns status "found" with matches (one row per variant), or "unknown". On "unknown", ask the ' +
+      'user for the watts from the appliance label. Never guess a wattage. ' +
+      'When all matches are one appliance, "suggested" holds the variant to use if the user named ' +
+      'no variant: pass its name, running_w and surge_w to recommendPowerStation unchanged. When ' +
+      'there is no "suggested", the matches are different appliances: ask the user which one.',
+    parameters: z.object({
+      query: z.string().describe('one appliance, e.g. "ref 16 cu ft", "aircon 1hp", "32 inch TV"'),
+    }),
+    execute: async ({ query }) => lookupApplianceWattage(query),
+  }),
+
+  recommendPowerStation: tool({
+    description:
+      'Size a BLUETTI power station for a list of loads. Code computes every figure: running watts, ' +
+      'start-up peak, energy needed, usable energy, runtime, and which stations fit, with the reason ' +
+      'each one fails. The app shows the result as a card. ' +
+      'USE FOR: "which power station for my ref and TV", "how long will X run". Call it after ' +
+      'lookupApplianceWattage gave you the watts for every appliance. ' +
+      'DO NOT USE FOR: a product\'s specs (use getProductDetails), or a power-station price alone ' +
+      '(use searchProducts). ' +
+      'Returns eligible (sorted cheapest first) and rejected stations. Never redo its arithmetic.',
+    parameters: z.object({
+      loads: z.array(LoadSchema).min(1).max(30),
+    }),
+    execute: async ({ loads }) => {
+      try {
+        return recommendPowerStation(loads);
+      } catch (e) {
+        return { error: e instanceof Error ? e.message : String(e) };
+      }
+    },
+  }),
+
+  showApplianceChecklist: tool({
+    description:
+      'Show the user a checklist of common appliances to tick, with quantity and hours. The user ' +
+      'submits it and you receive the selected loads. ' +
+      'USE FOR: the user wants a power station but names no appliances ("I need a power station", ' +
+      '"what Bluetti should I buy"). ' +
+      'DO NOT USE FOR: when the user already named appliances — look those up with ' +
+      'lookupApplianceWattage instead. ' +
+      `userType is one of: ${USER_TYPES.join(', ')}. Use Residential unless the user named a purpose.`,
+    parameters: z.object({
+      userType: z.string().describe('the purpose, e.g. "Residential", "Café / Restaurant"'),
+    }),
+    // No execute: the browser renders the checklist and returns the result.
+  }),
 };

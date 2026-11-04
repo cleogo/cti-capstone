@@ -52,7 +52,7 @@ async function ask(question: string): Promise<Turn> {
     system: SYSTEM_PROMPT,
     prompt: question,
     tools,
-    maxSteps: 5,
+    maxSteps: 8,
     experimental_telemetry: telemetry('grade', { question }),
   });
 
@@ -72,13 +72,15 @@ async function ask(question: string): Promise<Turn> {
         }
       } else if (out && typeof out === 'object') {
         // filterProducts — { items, total_matching }. getProductDetails and
-        // compareProducts — { products }.
-        const { items, products, total_matching } = out as {
+        // compareProducts — { products }. recommendPowerStation — { eligible, rejected }.
+        const { items, products, eligible, rejected, total_matching } = out as {
           items?: Array<{ price_php?: unknown }>;
           products?: Array<{ price_php?: unknown }>;
+          eligible?: Array<{ price_php?: unknown }>;
+          rejected?: Array<{ price_php?: unknown }>;
           total_matching?: unknown;
         };
-        for (const it of [...(items ?? []), ...(products ?? [])]) {
+        for (const it of [...(items ?? []), ...(products ?? []), ...(eligible ?? []), ...(rejected ?? [])]) {
           if (typeof it.price_php === 'number') prices.add(it.price_php);
         }
         if (typeof total_matching === 'number') totals.push(total_matching);

@@ -1,0 +1,82 @@
+[
+ {
+  "code": "PWR-001-01",
+  "model": "Premium 20 (AC2P)",
+  "rated_w": 300,
+  "capacity_wh": 230,
+  "self_consumption_w": 12,
+  "price_php": 13209
+ },
+ {
+  "code": "PWR-001-02",
+  "model": "Premium 30 V2",
+  "rated_w": 600,
+  "capacity_wh": 320,
+  "self_consumption_w": 7.5,
+  "price_php": 19899
+ },
+ {
+  "code": "PWR-001-03",
+  "model": "Premium 50 (AC50P)",
+  "rated_w": 700,
+  "capacity_wh": 504,
+  "self_consumption_w": 10,
+  "price_php": 24859
+ },
+ {
+  "code": "PWR-001-04",
+  "model": "Premium 80 (AC70P)",
+  "rated_w": 1000,
+  "capacity_wh": 864,
+  "self_consumption_w": 15,
+  "price_php": 31999
+ },
+ {
+  "code": "PWR-001-06",
+  "model": "Premium 150 (AC180P)",
+  "rated_w": 1800,
+  "capacity_wh": 1440,
+  "self_consumption_w": 15,
+  "price_php": 58719
+ },
+ {
+  "code": "PWR-001-05",
+  "model": "Premium 100 V2",
+  "rated_w": 2000,
+  "capacity_wh": 1024,
+  "self_consumption_w": 10,
+  "price_php": 51732
+ },
+ {
+  "code": "PWR-001-07",
+  "model": "Premium 200 V2",
+  "rated_w": 2700,
+  "capacity_wh": 2073.6,
+  "self_consumption_w": 10,
+  "price_php": 95646
+ },
+ {
+  "code": "PWR-001-08",
+  "model": "Premium 200 (AC200PL)",
+  "rated_w": 2400,
+  "capacity_wh": 2304,
+  "self_consumption_w": 18,
+  "price_php": 91451
+ },
+ {
+  "code": "PWR-002-01",
+  "model": "APEX300",
+  "rated_w": 3840,
+  "capacity_wh": 2764,
+  "self_consumption_w": 20,
+  "price_php": 127999
+ },
+ {
+  "code": "PWR-002-02",
+  "model": "ELITE320",
+  "rated_w": 1800,
+  "capacity_wh": 3200,
+  "self_consumption_w": 10,
+  "price_php": 100900
+ }
+]

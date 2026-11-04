@@ -1,0 +1,1848 @@
+[
+ {
+  "appliance": "Air Conditioner",
+  "variant": "1.0 HP inverter",
+  "running_w": 800,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Café / Restaurant",
+   "Retail / Small Business",
+   "Salon / Beauty",
+   "Hotel / Rental",
+   "Sewing / Craft Business"
+  ]
+ },
+ {
+  "appliance": "Air Conditioner",
+  "variant": "1.0 HP non-inverter",
+  "running_w": 1300,
+  "surge_w": 1800,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Air Conditioner",
+  "variant": "2.0 HP inverter",
+  "running_w": 1300,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Air Fryer",
+  "variant": "Standard",
+  "running_w": 1500,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Air Purifier",
+  "variant": "Standard",
+  "running_w": 25,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Retail / Small Business",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "AM/FM auto cassette player",
+  "variant": "Standard",
+  "running_w": 8,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Garage / Automotive",
+   "Communication / Radio"
+  ]
+ },
+ {
+  "appliance": "Amazon Echo",
+  "variant": "Standard",
+  "running_w": 3,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Amazon Echo Show",
+  "variant": "Standard",
+  "running_w": 2,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "American-style Fridge Freezer",
+  "variant": "Standard",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Retail / Small Business"
+  ]
+ },
+ {
+  "appliance": "Bathroom Towel Heater",
+  "variant": "Standard",
+  "running_w": 60,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Belt sander",
+  "variant": "3\"",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Garage / Automotive",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Blender",
+  "variant": "Standard",
+  "running_w": 300,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Blow dryer",
+  "variant": "Standard",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Salon / Beauty"
+  ]
+ },
+ {
+  "appliance": "Bread Toaster",
+  "variant": "2 Slice",
+  "running_w": 700,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Bread Toaster",
+  "variant": "4 Slice",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "CB radio",
+  "variant": "Standard",
+  "running_w": 5,
+  "surge_w": null,
+  "user_types": [
+   "Communication / Radio"
+  ]
+ },
+ {
+  "appliance": "CD player",
+  "variant": "Standard",
+  "running_w": 35,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Ceiling Fan",
+  "variant": "48 Inch",
+  "running_w": 60,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Ceiling fan",
+  "variant": "Standard (no blade size)",
+  "running_w": 40,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Charger",
+  "variant": "Mobile phone",
+  "running_w": 1,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Garage / Automotive"
+  ]
+ },
+ {
+  "appliance": "Circular saw",
+  "variant": "7-1/4\"",
+  "running_w": 900,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Circular saw",
+  "variant": "8-1/4\"",
+  "running_w": 1400,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Clock radio",
+  "variant": "Standard",
+  "running_w": 1,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Clothes dryer",
+  "variant": "Electric (240V)",
+  "running_w": 4000,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Clothes dryer",
+  "variant": "Gas heated",
+  "running_w": 300,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Clothes dryer",
+  "variant": "Standard (unspecified)",
+  "running_w": 2000,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Coffee Maker",
+  "variant": "Standard drip",
+  "running_w": 800,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Commercial Coffee Grinder",
+  "variant": "Standard",
+  "running_w": 400,
+  "surge_w": null,
+  "user_types": [
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Computer Monitor",
+  "variant": "Standard (unspecified)",
+  "running_w": 25,
+  "surge_w": null,
+  "user_types": [
+   "Office",
+   "Retail / Small Business",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Corded Drill",
+  "variant": "Standard",
+  "running_w": 600,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Garage / Automotive",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Corded Electric Handheld Leaf Blower",
+  "variant": "Standard",
+  "running_w": 2500,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Dehumidifier",
+  "variant": "Standard",
+  "running_w": 240,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Desktop Computer",
+  "variant": "Gaming (Entry/Mid-Range)",
+  "running_w": 350,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Desktop Computer",
+  "variant": "Gaming (High-End)",
+  "running_w": 550,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Desktop Computer",
+  "variant": "Mid-range / Workstation",
+  "running_w": 150,
+  "surge_w": null,
+  "user_types": [
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Desktop Computer",
+  "variant": "Standard / Office",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Office",
+   "Retail / Small Business",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Disc sander",
+  "variant": "9\"",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Dishwasher",
+  "variant": "Standard",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Dishwasher (Commercial)",
+  "variant": "Commercial",
+  "running_w": 3000,
+  "surge_w": null,
+  "user_types": [
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Domestic Water Pump",
+  "variant": "Standard",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Drill",
+  "variant": "1\"",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Garage / Automotive",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Drill",
+  "variant": "1/2\"",
+  "running_w": 750,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Garage / Automotive",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Drill",
+  "variant": "1/4\"",
+  "running_w": 250,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Garage / Automotive",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Electric blanket",
+  "variant": "Standard",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Electric clock",
+  "variant": "Standard",
+  "running_w": 3,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Electric cooker with oven",
+  "variant": "Standard",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Electric Doorbell Transformer",
+  "variant": "Standard",
+  "running_w": 2,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Electric fan",
+  "variant": "14-inch DC Motor",
+  "running_w": 15,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Electric fan",
+  "variant": "14-inch standard",
+  "running_w": 60,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Retail / Small Business",
+   "Garage / Automotive",
+   "Hotel / Rental",
+   "Sewing / Craft Business"
+  ]
+ },
+ {
+  "appliance": "Electric Heater Fan",
+  "variant": "Standard",
+  "running_w": 2000,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Electric Iron",
+  "variant": "Standard",
+  "running_w": 800,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Hotel / Rental",
+   "Sewing / Craft Business"
+  ]
+ },
+ {
+  "appliance": "Electric Kettle",
+  "variant": "Standard",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Electric mower",
+  "variant": "Lawnmower",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Light Industrial / Workshop",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Electric Shaver",
+  "variant": "Standard",
+  "running_w": 15,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Salon / Beauty"
+  ]
+ },
+ {
+  "appliance": "Electric stove",
+  "variant": "Standard (per burner)",
+  "running_w": 2000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Espresso Coffee Machine",
+  "variant": "Standard",
+  "running_w": 1300,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Exhaust Hood",
+  "variant": "Commercial",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Extractor / Exhaust Fan",
+  "variant": "Standard",
+  "running_w": 12,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Food Dehydrator",
+  "variant": "Standard",
+  "running_w": 800,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Freezer / Fridge (by type)",
+  "variant": "Bottom-Freezer (18–22 cu. ft.)",
+  "running_w": 150,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Freezer / Fridge (by type)",
+  "variant": "Freezer - 15 cu. ft. (Upright/Chest)",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Freezer / Fridge (by type)",
+  "variant": "French Door (22–28 cu. ft.)",
+  "running_w": 150,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Freezer / Fridge (by type)",
+  "variant": "Side-by-Side (22–26 cu. ft.)",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Freezer / Fridge (by type)",
+  "variant": "Top-Freezer (14–18 cu. ft.)",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Fridge / Freezer",
+  "variant": "General (unspecified)",
+  "running_w": 150,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Fryer",
+  "variant": "Deep fryer",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Frying Pan",
+  "variant": "Electric",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "General (unspecified)",
+  "running_w": 120,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Nintendo Switch (docked)",
+  "running_w": 7,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Playstation 4 (original)",
+  "running_w": 130,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Playstation 4 Pro",
+  "running_w": 150,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Playstation 4 Slim",
+  "running_w": 85,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Playstation 5",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Xbox One (original)",
+  "running_w": 120,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Xbox One S",
+  "running_w": 70,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Xbox One X",
+  "running_w": 180,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Xbox Series S",
+  "running_w": 75,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Game Console",
+  "variant": "Xbox Series X",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Garage door opener",
+  "variant": "Standard",
+  "running_w": 300,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Workshop / Contractor",
+   "Garage / Automotive"
+  ]
+ },
+ {
+  "appliance": "Guitar Amplifier",
+  "variant": "Standard",
+  "running_w": 20,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Hair Straightening Iron",
+  "variant": "Standard",
+  "running_w": 75,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Salon / Beauty",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Hand Wash Oversink Water Heater",
+  "variant": "Standard",
+  "running_w": 3000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Handheld",
+  "variant": "Handheld",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Heated Bathroom Mirror",
+  "variant": "Standard",
+  "running_w": 50,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Salon / Beauty"
+  ]
+ },
+ {
+  "appliance": "Heater",
+  "variant": "Electric water heater (tank)",
+  "running_w": 4000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Heater",
+  "variant": "Engine block",
+  "running_w": 150,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Garage / Automotive"
+  ]
+ },
+ {
+  "appliance": "Heater",
+  "variant": "Portable (space)",
+  "running_w": 1500,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Heater",
+  "variant": "Stock tank",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Heater",
+  "variant": "Waterbed",
+  "running_w": 400,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Hedge trimmer",
+  "variant": "Standard",
+  "running_w": 450,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Home Internet Router",
+  "variant": "Standard",
+  "running_w": 5,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Retail / Small Business",
+   "Hotel / Rental",
+   "Communication / Radio"
+  ]
+ },
+ {
+  "appliance": "Home Phone",
+  "variant": "Cordless",
+  "running_w": 3,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Communication / Radio"
+  ]
+ },
+ {
+  "appliance": "Home Sound System",
+  "variant": "Standard",
+  "running_w": 95,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Hot Plate",
+  "variant": "Standard",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Hot Water Dispenser",
+  "variant": "Standard",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Humidifier",
+  "variant": "Standard",
+  "running_w": 35,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Ice Maker",
+  "variant": "Standard",
+  "running_w": 300,
+  "surge_w": null,
+  "user_types": [
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Induction Cooktop",
+  "variant": "Standard (per burner)",
+  "running_w": 1400,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Inkjet Printer",
+  "variant": "Standard",
+  "running_w": 20,
+  "surge_w": null,
+  "user_types": [
+   "Office",
+   "Retail / Small Business"
+  ]
+ },
+ {
+  "appliance": "Iron",
+  "variant": "Standard",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Sewing / Craft Business"
+  ]
+ },
+ {
+  "appliance": "Laptop Computer",
+  "variant": "Gaming (average)",
+  "running_w": 175,
+  "surge_w": null,
+  "user_types": [
+   "Office",
+   "Gaming / Entertainment",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Laptop Computer",
+  "variant": "Standard / Office",
+  "running_w": 45,
+  "surge_w": null,
+  "user_types": [
+   "Office",
+   "Retail / Small Business",
+   "Sewing / Craft Business",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Large Office Printer",
+  "variant": "Standard",
+  "running_w": 600,
+  "surge_w": null,
+  "user_types": [
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "100W Incandescent → LED eq.",
+  "running_w": 14,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "20W DC CFL → LED eq.",
+  "running_w": 11,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "25W CFL → LED eq.",
+  "running_w": 14,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "40W DC Halogen → LED eq.",
+  "running_w": 6,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "50W DC Incandescent → LED eq.",
+  "running_w": 7,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "CFL 100W eq. → LED",
+  "running_w": 14,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "CFL 40W eq. → LED",
+  "running_w": 6,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "CFL 60W eq. → LED",
+  "running_w": 8,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "CFL 75W eq. → LED",
+  "running_w": 10,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Lights (LED equivalents)",
+  "variant": "LED Light Bulb (60W eq.)",
+  "running_w": 7,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Retail / Small Business",
+   "Garage / Automotive",
+   "Salon / Beauty",
+   "Sewing / Craft Business"
+  ]
+ },
+ {
+  "appliance": "Mi Box",
+  "variant": "Android TV box",
+  "running_w": 5,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Microwave",
+  "variant": "Standard",
+  "running_w": 600,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Nintendo Switch (docked)",
+  "variant": "Standard",
+  "running_w": 7,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Oven",
+  "variant": "Electric",
+  "running_w": 1000,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Paper Shredder",
+  "variant": "Standard",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Pedestal Fan",
+  "variant": "Standard",
+  "running_w": 50,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Philips Hue Smart Bulb",
+  "variant": "Standard",
+  "running_w": 8,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Phone Charger",
+  "variant": "Standard",
+  "running_w": 4,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Playstation 4 (original)",
+  "variant": "Original",
+  "running_w": 130,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Playstation 4 Pro",
+  "variant": "Pro",
+  "running_w": 150,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Playstation 4 Slim",
+  "variant": "Slim",
+  "running_w": 85,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Playstation 5",
+  "variant": "Standard",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Popcorn Popper",
+  "variant": "Standard",
+  "running_w": 250,
+  "surge_w": null,
+  "user_types": [
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "POS / Cash Register",
+  "variant": "Standard",
+  "running_w": 75,
+  "surge_w": null,
+  "user_types": [
+   "Office",
+   "Retail / Small Business"
+  ]
+ },
+ {
+  "appliance": "Power Shower",
+  "variant": "Electric",
+  "running_w": 7500,
+  "surge_w": null,
+  "user_types": [
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Projector",
+  "variant": "Standard",
+  "running_w": 220,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Gaming / Entertainment",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Radiotelephone",
+  "variant": "Receiving mode",
+  "running_w": 5,
+  "surge_w": null,
+  "user_types": [
+   "Communication / Radio"
+  ]
+ },
+ {
+  "appliance": "Radiotelephone",
+  "variant": "Transmitting mode",
+  "running_w": 40,
+  "surge_w": null,
+  "user_types": [
+   "Communication / Radio"
+  ]
+ },
+ {
+  "appliance": "Refrigerator",
+  "variant": "16 cu. ft. (AC)",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant",
+   "Retail / Small Business",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Refrigerator",
+  "variant": "20 cu. ft. (AC)",
+  "running_w": 120,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant",
+   "Retail / Small Business"
+  ]
+ },
+ {
+  "appliance": "Refrigerator",
+  "variant": "8-cu-ft non-inverter",
+  "running_w": 160,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant",
+   "Retail / Small Business",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Rice Cooker",
+  "variant": "Small (3–6 cups)",
+  "running_w": 300,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Rice Cooker",
+  "variant": "Standard (10 cups/1.8L)",
+  "running_w": 650,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Satellite dish",
+  "variant": "Standard",
+  "running_w": 30,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Communication / Radio"
+  ]
+ },
+ {
+  "appliance": "Scanner",
+  "variant": "Standard",
+  "running_w": 10,
+  "surge_w": null,
+  "user_types": [
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Set Top Box",
+  "variant": "Standard",
+  "running_w": 27,
+  "surge_w": null,
+  "user_types": [
+   "Office",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Sewing machine",
+  "variant": "Standard",
+  "running_w": 70,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Sewing / Craft Business",
+   "Light Industrial / Workshop"
+  ]
+ },
+ {
+  "appliance": "Sink waste disposal",
+  "variant": "Standard",
+  "running_w": 450,
+  "surge_w": null,
+  "user_types": [
+   "Café / Restaurant",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Space Heater",
+  "variant": "Standard",
+  "running_w": 2000,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Stand Fan",
+  "variant": "Standard",
+  "running_w": 40,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Steam Iron",
+  "variant": "Standard",
+  "running_w": 2200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Sewing / Craft Business"
+  ]
+ },
+ {
+  "appliance": "Stereo",
+  "variant": "Standard",
+  "running_w": 20,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Gaming / Entertainment",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Table fan",
+  "variant": "Standard",
+  "running_w": 10,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Sewing / Craft Business"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "24\" LCD",
+  "running_w": 40,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "24\" LED",
+  "running_w": 30,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Gaming / Entertainment",
+   "Hotel / Rental",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "32\" LCD",
+  "running_w": 60,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "32\" LED",
+  "running_w": 30,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Café / Restaurant",
+   "Retail / Small Business",
+   "Gaming / Entertainment",
+   "Hotel / Rental",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "37\" LCD",
+  "running_w": 70,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "37\" LED",
+  "running_w": 60,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "42\" LCD",
+  "running_w": 110,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "42\" LED",
+  "running_w": 70,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "50\" LCD",
+  "running_w": 140,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "50\" LED",
+  "running_w": 90,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Café / Restaurant",
+   "Retail / Small Business",
+   "Gaming / Entertainment",
+   "Hotel / Rental",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "65\" LED",
+  "running_w": 120,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Television",
+  "variant": "82\" LED",
+  "running_w": 228,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment",
+   "Media / Events"
+  ]
+ },
+ {
+  "appliance": "Top Load Washing Machine",
+  "variant": "Standard",
+  "running_w": 500,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Treadmill",
+  "variant": "Standard",
+  "running_w": 280,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Tube Light",
+  "variant": "Standard (fluorescent)",
+  "running_w": 22,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Café / Restaurant",
+   "Retail / Small Business",
+   "Garage / Automotive"
+  ]
+ },
+ {
+  "appliance": "Upright / Standard",
+  "variant": "Upright / Standard",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Vacuum cleaner",
+  "variant": "Handheld",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Vacuum cleaner",
+  "variant": "High Power",
+  "running_w": 1600,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Workshop / Contractor",
+   "Garage / Automotive",
+   "Light Industrial / Workshop",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Vacuum cleaner",
+  "variant": "Upright / Standard",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "VCR",
+  "variant": "Standard",
+  "running_w": 40,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Waffle Iron",
+  "variant": "Standard",
+  "running_w": 1200,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant"
+  ]
+ },
+ {
+  "appliance": "Wall Mounted Fan",
+  "variant": "Standard",
+  "running_w": 45,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Washing Machine",
+  "variant": "Front-load / Auto (standard)",
+  "running_w": 500,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Washing Machine",
+  "variant": "Front-load fully automatic",
+  "running_w": 2600,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Washing Machine",
+  "variant": "Manual / Top-load (no heater)",
+  "running_w": 300,
+  "surge_w": null,
+  "user_types": [
+   "Residential"
+  ]
+ },
+ {
+  "appliance": "Water Dispenser (Hot/Cold)",
+  "variant": "Standard",
+  "running_w": 250,
+  "surge_w": null,
+  "user_types": [
+   "Office"
+  ]
+ },
+ {
+  "appliance": "Water Filter and Cooler",
+  "variant": "Standard",
+  "running_w": 70,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Office",
+   "Café / Restaurant",
+   "Retail / Small Business",
+   "Hotel / Rental",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Waterpik",
+  "variant": "Standard",
+  "running_w": 100,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Salon / Beauty",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Weed eater",
+  "variant": "Standard",
+  "running_w": 500,
+  "surge_w": null,
+  "user_types": [
+   "Workshop / Contractor",
+   "Light Industrial / Workshop",
+   "Cleaning / Janitorial"
+  ]
+ },
+ {
+  "appliance": "Well Pump",
+  "variant": "1/3–1 HP",
+  "running_w": 480,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Water / Utility"
+  ]
+ },
+ {
+  "appliance": "Wine cooler",
+  "variant": "18 bottles",
+  "running_w": 83,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Café / Restaurant",
+   "Hotel / Rental"
+  ]
+ },
+ {
+  "appliance": "Xbox One (original)",
+  "variant": "Original",
+  "running_w": 120,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Xbox One S",
+  "variant": "One S",
+  "running_w": 70,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Xbox One X",
+  "variant": "One X",
+  "running_w": 180,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Xbox Series S",
+  "variant": "Series S",
+  "running_w": 75,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Xbox Series X",
+  "variant": "Series X",
+  "running_w": 200,
+  "surge_w": null,
+  "user_types": [
+   "Gaming / Entertainment"
+  ]
+ },
+ {
+  "appliance": "Zero Bulb",
+  "variant": "Night light",
+  "running_w": 1,
+  "surge_w": null,
+  "user_types": [
+   "Residential",
+   "Hotel / Rental"
+  ]
+ }
+]

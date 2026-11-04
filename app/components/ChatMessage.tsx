@@ -10,18 +10,37 @@
 import type { Message } from 'ai';
 import { Markdown } from './Markdown';
 import { SourceList } from './SourceList';
+import { ApplianceChecklist, type ChecklistResult } from './ApplianceChecklist';
+import { RecommendationCard } from './RecommendationCard';
 import { sourcesFromMessage } from '@/lib/sources';
 
 const TOOL_STATUS_LABEL: Record<string, string> = {
   searchProducts: 'Searching products…',
   filterProducts: 'Filtering the catalog…',
+  getProductDetails: 'Reading the product sheet…',
+  compareProducts: 'Comparing products…',
+  lookupApplianceWattage: 'Looking up appliance watts…',
+  recommendPowerStation: 'Sizing a power station…',
 };
 
-export function ChatMessage({ message }: { message: Message }) {
+/** A client-side tool waits for the user, not for the server. */
+const CLIENT_TOOLS = new Set(['showApplianceChecklist']);
+
+export type AddToolResult = (r: { toolCallId: string; result: unknown }) => void;
+
+export function ChatMessage({ message, addToolResult }: { message: Message; addToolResult?: AddToolResult }) {
   const isUser = message.role === 'user';
 
-  const runningTools = (message.toolInvocations ?? []).filter((inv) => inv.state === 'call');
+  const invocations = message.toolInvocations ?? [];
+  const runningTools = invocations.filter((inv) => inv.state === 'call' && !CLIENT_TOOLS.has(inv.toolName));
+  const cards = invocations.filter(
+    (inv) =>
+      (inv.toolName === 'showApplianceChecklist') ||
+      (inv.toolName === 'recommendPowerStation' && inv.state === 'result'),
+  );
   const sources = isUser ? [] : sourcesFromMessage(message);
+  // A turn that so far holds only a card (the checklist) has no text bubble.
+  const emptyBubble = !isUser && !message.content && runningTools.length === 0 && cards.length > 0;
 
   return (
     <li className={isUser ? 'flex justify-end' : 'flex flex-col items-start'}>
@@ -29,7 +48,7 @@ export function ChatMessage({ message }: { message: Message }) {
         className={
           isUser
             ? 'inline-block max-w-[85%] rounded-2xl bg-cyan-600 px-4 py-2 text-white'
-            : 'inline-block max-w-full rounded-2xl border border-slate-200 bg-white px-4 py-2 sm:max-w-[85%]'
+            : `inline-block max-w-full rounded-2xl border border-slate-200 bg-white px-4 py-2 sm:max-w-[85%]${emptyBubble ? ' hidden' : ''}`
         }
       >
         {isUser ? (
@@ -47,12 +66,34 @@ export function ChatMessage({ message }: { message: Message }) {
             ))}
             {message.content ? (
               <Markdown text={message.content} />
-            ) : runningTools.length === 0 ? (
+            ) : runningTools.length === 0 && cards.length === 0 ? (
               <span className="text-slate-400">…</span>
             ) : null}
           </>
         )}
       </div>
+
+      {cards.map((inv) => {
+        if (inv.toolName === 'recommendPowerStation' && inv.state === 'result') {
+          return <RecommendationCard key={inv.toolCallId} loads={inv.args.loads} result={inv.result} />;
+        }
+        if (inv.state === 'result') {
+          const r = inv.result as ChecklistResult;
+          return (
+            <div key={inv.toolCallId} className="mt-1 text-xs text-slate-500">
+              {'skipped' in r ? 'Checklist skipped.' : `Checklist sent: ${r.loads.length} appliance(s).`}
+            </div>
+          );
+        }
+        return (
+          <div key={inv.toolCallId} className="w-full sm:max-w-[85%]">
+            <ApplianceChecklist
+              userType={inv.args.userType}
+              onSubmit={(result) => addToolResult?.({ toolCallId: inv.toolCallId, result })}
+            />
+          </div>
+        );
+      })}
 
       {/*
        * lg:hidden — on desktop the side panel is the sources display; showing

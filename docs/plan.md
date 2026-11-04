@@ -221,7 +221,14 @@ deterministic sizing, recommendation.
 
 **Files:**
 - Create: `lib/power.ts`, `lib/appliances.ts`, `tests/power.test.ts`, `tests/appliances.test.ts`, `app/components/ApplianceChecklist.tsx`, `app/components/RecommendationCard.tsx`
-- Modify: `scripts/clean_bluetti.py` (also write `data/bluetti/stations.json` and `data/bluetti/appliances.json`), `lib/tools.ts`, `lib/prompt.ts`, `app/components/ChatMessage.tsx`
+- Modify: `scripts/clean_bluetti.py` (also write `data/bluetti/stations.json` and `data/bluetti/appliances.json`), `lib/tools.ts`, `lib/prompt.ts`, `app/components/ChatMessage.tsx`, `app/page.tsx`
+
+**Decisions (4 Nov):**
+- All 16 sheets (rows 13 to 28) stay in M3. The user accepts about 6.5 h against the 6 h cap.
+- If the user does not name a variant ("TV", "electric fan"), the model uses the variant with the highest `running_w` and says so in the reply. A system that is too big is safer than one that is too small.
+- If the user lists no appliances, the model calls `showApplianceChecklist` at once. It does not ask for the purpose first. The checklist has its own purpose selector (default Residential) and an hours field for each row. The exit condition "I need a power station shows the checklist" needs this.
+- The checklist has a search box. Residential has 132 rows, and nobody cuts the list down by hand.
+- The 10 extra calculator cases are computed with a separate Python script that does not import `lib/power.ts`. `docs/evidence/calculator-cases.md` shows the arithmetic for each case.
 
 **Interfaces:**
 - Produces in `lib/appliances.ts`:
@@ -245,21 +252,21 @@ deterministic sizing, recommendation.
 
 Tasks:
 
-- [ ] `clean_bluetti.py`: also write `stations.json` and `appliances.json` with numeric fields. Re-run it. Do not hand-edit the output.
-- [ ] Test first, `tests/power.test.ts`. These five cases are worked by hand from the real data:
+- [x] `clean_bluetti.py`: also write `stations.json` and `appliances.json` with numeric fields. Re-run it. Do not hand-edit the output.
+- [x] Test first, `tests/power.test.ts`. These five cases are worked by hand from the real data:
   - `workbook check`: APEX300 (PWR-002-01) with one 150 W fridge, 1 h. `runtime_h` 12.44, `usable_wh` 2114.46, `running_w` 170.
   - `small laptop load`: 45 W laptop, qty 1, 3 h. First eligible is PWR-001-01 (₱13,209). `running_w` 57, `energy_wh` 171, `usable_wh` 175.95, `runtime_h` 3.09.
   - `brownout night`: 32" LED TV 30 W ×1, 14" fan 60 W ×2, 16 cu ft fridge 100 W ×1, all 8 h. Only PWR-002-02 (ELITE320, ₱100,900) is eligible: `energy_wh` 2080, `usable_wh` 2448, `runtime_h` 9.42. APEX300 is rejected because `usable 2114.46 Wh < needed 2160 Wh`.
   - `aircon one hour`: 1.0 HP non-inverter (1300 W running, 1800 W surge), 1 h. Eligible order: PWR-001-08, PWR-001-07, PWR-002-01. PWR-002-02 is rejected on `peak 1810 W > rated 1800 W`. PWR-001-06 is rejected on peak 1815 W and on energy.
   - `aircon four hours`: same aircon, 4 h. No station is eligible. `eligible` is empty.
-  - Work 10 more cases by hand in `docs/evidence/calculator-cases.md` before you code them. Include: qty above 1, mixed hours, a load exactly at `rated_w ÷ 1.2`, and every station at least once.
-- [ ] Implement `lib/power.ts`. Run `npm test`: 15 of 15.
-- [ ] Test first, `tests/appliances.test.ts`: `maps ref to Refrigerator`, `maps aircon 1hp to both 1.0 HP variants`, `electric fan returns both fan variants`, `chest freezer` is found, `flux capacitor` returns `unknown`. `checklistFor('Residential')` is not empty and every item lists Residential.
-- [ ] Implement `lib/appliances.ts`: an alias map (ref, aircon, AC, TV, electric fan, bentilador, rice cooker), then a token match on `appliance` and `variant`. No edit-distance guessing.
-- [ ] `lib/tools.ts`: add `lookupApplianceWattage`, `recommendPowerStation` (zod: loads, `qty` an integer from 1 to 50, `hours` from 0.5 to 24) and `showApplianceChecklist` (`userType`). `showApplianceChecklist` has no `execute`: it is a client-side tool.
-- [ ] `ApplianceChecklist.tsx` renders `checklistFor(userType)` with qty, hours and a watts override. Submit calls `addToolResult` with the selected loads. `RecommendationCard.tsx` renders the tool result: the smallest fit, one step up, the maths, and the rejected stations with reasons. All numbers come from the tool result.
-- [ ] `lib/prompt.ts`: the flow. Ask for the purpose and hours. If the user already listed appliances, skip the checklist. Never do wattage arithmetic in prose. If nothing fits, suggest removing the largest load or escalating. For a medical or life-support device, give the numbers, say you cannot advise on life-critical power, and escalate (the tool arrives in M4).
-- [ ] Write sheets for rows 13 to 28. User reviews. Rebuild the sheets and re-seed.
+  - [x] Work 10 more cases by hand in `docs/evidence/calculator-cases.md` before you code them. Include: qty above 1, mixed hours, a load exactly at `rated_w ÷ 1.2`, and every station at least once. Done with `python scripts/calc_cases.py`: each of the 10 stations is the first eligible in one case.
+- [x] Implement `lib/power.ts`. Run `npm test`: 15 of 15 calculator cases (17 tests in the file, with a station-count test and a headroom-reason test).
+- [x] Test first, `tests/appliances.test.ts`: `maps ref to Refrigerator`, `maps aircon 1hp to both 1.0 HP variants`, `electric fan returns both fan variants`, `chest freezer` is found, `flux capacitor` returns `unknown`. `checklistFor('Residential')` is not empty and every item lists Residential.
+- [x] Implement `lib/appliances.ts`: an alias map (ref, aircon, AC, TV, electric fan, bentilador, rice cooker), then a token match on `appliance` and `variant`. No edit-distance guessing.
+- [x] `lib/tools.ts`: add `lookupApplianceWattage`, `recommendPowerStation` (zod: loads, `qty` an integer from 1 to 50, `hours` from 0.5 to 24) and `showApplianceChecklist` (`userType`). `showApplianceChecklist` has no `execute`: it is a client-side tool.
+- [x] `ApplianceChecklist.tsx` renders `checklistFor(userType)` with qty, hours and a watts override. Submit calls `addToolResult` with the selected loads. `RecommendationCard.tsx` renders the tool result: the smallest fit, one step up, the maths, and the rejected stations with reasons. All numbers come from the tool result.
+- [x] `lib/prompt.ts`: the flow. If the user listed appliances, look them up and recommend. Ask for hours only if the user gave none. If the user listed no appliances, show the checklist (see Decisions). Never do wattage arithmetic in prose. If nothing fits, suggest removing the largest load or escalating. For a medical or life-support device, give the numbers, say you cannot advise on life-critical power, and escalate (the tool arrives in M4).
+- [ ] Write sheets for rows 13 to 28. User reviews. Rebuild the sheets and re-seed. (Written and built 4 Nov. Review and seed are open.)
 
 **Exit condition:** `npm test` passes, with 15 calculator cases. In the
 local app, "Which Bluetti for a 32-inch TV, two electric fans and a 16 cu ft
@@ -270,6 +277,19 @@ ref, 8 hours of brownout?" calls `recommendPowerStation` and shows ELITE320
 **Budget:** 5 h. **Cap:** 6 h. The client-side checklist tool can fail in AI
 SDK v4. If it fails, record why here. Then use a plain form that posts the
 selection as a user message.
+
+**Surprises (4 Nov):**
+- The client-side tool works in AI SDK v4 (`@ai-sdk/react` 1.2.12): `addToolResult` plus `useChat({ maxSteps: 8 })`. No fallback was needed. An unanswered tool call breaks the next request, so the text input is disabled while a checklist is open, and the checklist has a Skip button.
+- With the prompt rule alone, "two electric fans" got the 15 W DC-motor variant, not the 60 W standard one. The answer was PWR-001-08, not ELITE320. Now code chooses: `lookupApplianceWattage` returns `suggested`, the highest-`running_w` variant, and the tool description says to pass it unchanged. Then the brownout question gave ELITE320 (32" LCD 60 W, standard fan 60 W, energy 2,320 Wh, usable 2,448 Wh). APEX300 was rejected with `usable 2114.46 Wh < needed 2400 Wh`. The interface now has `suggested` and `note` in the lookup result, and `rated_w` in `StationResult` (for the card).
+- `suggested` is set only when every match is one appliance. "fan" also matches "Electric Heater Fan" at 2,000 W, so a highest-wattage default across appliances would size the station for a heater.
+- CTI's wattage table has a surge figure for one row only: the 1.0 HP non-inverter aircon. Fridge compressors also have a start-up surge, but the table has no figure for them, so the peak check cannot see it. This goes into Limitations (PRD §21).
+- The route and `grade.ts` now use `maxSteps: 8`. The flow is one lookup per appliance, then the recommendation, then the text. 5 steps were too few.
+- The reply text lists every eligible station in a table, where rule 11 asks for the cheapest and the next one up. It also does not always say which variant it assumed. These are targets for M6.
+- "Anong Bluetti para sa sari-sari store ko?" opened the checklist with the purpose set to Retail / Small Business.
+- The 16 fire-safety sheets are type sheets. Each one cites 2 to 4 sources that were opened and read. The sources are USFA, U.S. OSHA, U.S. EPA SNAP, UNEP Ozone Secretariat, CPSC, BFP (through GMA News), CFA Victoria, NYC DCAS, UK fire guidance, and Amerex, Ansul and Kidde pages. `npm run build:sheets` gives 28 sheets and 75 codes. The capstone index is not re-seeded yet. It waits for the user's review.
+- The fire-ball and Auto Fire OFF sheets cite a 2023 U.S. CPSC warning. It says some balls labelled "AFO Auto Fire Off" can fail to put out a fire and do not meet NFPA 10. CTI sells FIR-001-06 and FIR-002-FB.
+- No allowed source loaded for the RA 9514 IRR text, NFPA 10 itself or cabinet mounting heights. The sheets cite no Philippine rule except the BFP statement on fire balls. U.S. OSHA rules are labelled "U.S." in every sheet.
+- FIR-001-36 "Bottle Fire Extinguisher": no reliable source defines the type. The sheet says that the masterlist states only the name and tells the client to ask CTI sales for the agent and size.
 
 ---
 

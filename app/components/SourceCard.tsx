@@ -8,7 +8,7 @@
  */
 import type { Source } from '@/lib/sources';
 
-function formatPeso(n: number): string {
+export function formatPeso(n: number): string {
   return `₱${n.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 

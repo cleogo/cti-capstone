@@ -1,5 +1,27 @@
 [
   {
+    "slug": "auto-fire-off",
+    "kind": "type",
+    "codes": [
+      "FIR-001-06"
+    ],
+    "sources": [
+      "https://www.cpsc.gov/Warnings/2023/CPSC-Warns-Consumers-to-Immediately-Stop-Using-Fire-Extinguisher-Balls-Due-to-Failure-to-Extinguish-Fires-and-Risk-of-Serious-Injury-or-Death-Sold-on-Amazon-com",
+      "https://afoball.com/fire-extinguisher-balls/",
+      "https://afoball.com/about/",
+      "https://digital-release.khon2.com/news/try-it-before-you-buy-it-auto-fire-off-afo-2"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Self-activating fire extinguishing ball"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. Auto Fire Off, or AFO, is a name used on fire extinguishing balls. An AFO ball is a self-activating extinguisher that holds a dry chemical powder. You can throw or roll it into a fire, or mount it on a wall. The masterlist states no size or weight, so ask CTI sales for these details.",
+    "advantages": "- It needs no pin and no training to use.\n- You can mount it for passive protection, or throw it at a fire.\n- Some AFO balls come with a stand that mounts to a wall.",
+    "cautions": "- In 2023, the U.S. Consumer Product Safety Commission told consumers to stop using some balls labelled AFO Auto Fire Off.\n- The CPSC found that these balls can fail to spread their chemicals and fail to put out a fire.\n- The CPSC found that these balls do not meet NFPA 10, the U.S. standard for portable fire extinguishers.\n- In a U.S. fire department test, an AFO ball put out part of a dumpster fire but not all of it.\n- The AFO maker does not generally advise throwing the ball at a flammable liquid (Class B) fire."
+  },
+  {
     "slug": "bluetti-apex-300",
     "kind": "model",
     "codes": [
@@ -594,5 +616,492 @@
     "usage": "Portable solar panels that charge a BLUETTI power station. Match the panels\nto the station's solar input limits. CTI's solar guide recommends one Sora\n220 for the Premium 30 V2 and Premium 50, two in series for the Premium 80\nand Premium 150, three in series for the Premium 200, and four (two in\nseries on each port) for the APEX300.",
     "advantages": "- One range from 60 W to 350 W, so a panel fits each station size.\n- Rated for outdoor use (IP65 or IP67).",
     "cautions": "- A panel delivers its rated power only in full sun. Real output is lower in\n  clouds, heat and at poor angles.\n- BLUETTI's own pages give some different figures: 23.4% efficiency and IP65\n  for the PV350. CTI's price list is the figure shown here. Confirm with CTI\n  sales if a rating matters.\n- Never exceed the station's solar voltage limit when wiring panels in\n  series."
+  },
+  {
+    "slug": "bottle-fire-extinguisher",
+    "kind": "type",
+    "codes": [
+      "FIR-001-36"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/",
+      "https://www.osha.gov/etools/evacuation-plans-procedures/emergency-standards/portable-extinguishers"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire extinguisher (the masterlist states no agent and no size)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. The masterlist states only the name of this product. Ask CTI sales for the agent and the size before you choose it. Each extinguisher label shows the classes of fire that it can put out. To use an extinguisher, pull the pin, aim low, squeeze the lever and sweep side to side.",
+    "advantages": "- A portable extinguisher can put out a small, contained fire.\n- Multipurpose extinguishers labelled A-B-C cover most home fires. Check the label to see which classes this unit covers.\n- You can recharge some extinguishers. Others need replacement when the pressure is too low.",
+    "cautions": "- Use an extinguisher only on a small, contained fire, and only when you have a clear escape route.\n- If you are not sure that it is safe, alert others, leave the building and call emergency services.\n- Check the pressure gauge if the unit has one. Look for damage, dents or rust on the body, hose and nozzle.\n- U.S. workplace rules (OSHA) require a qualified person to inspect and pressure test portable extinguishers.\n- Under OSHA rules, the employer must teach workers how to use a fire extinguisher."
+  },
+  {
+    "slug": "emergency-light-led",
+    "kind": "type",
+    "codes": [
+      "FIR-002-20A",
+      "FIR-002-20B"
+    ],
+    "sources": [
+      "https://www.warwickshire.gov.uk/fire-safety-home/emergency-lighting",
+      "https://www.gov.uk/workplace-fire-safety-your-responsibilities/fire-safety-equipment-drills-and-training",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.37"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Emergency light, LED"
+      },
+      {
+        "label": "Voltage",
+        "value": "6 V (FIR-002-20A), 12 V (FIR-002-20B)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. An emergency light comes on by itself when the power to the normal lighting fails. It lights escape routes and exits so that people can leave a building. The masterlist states only the voltage, so ask CTI sales for the runtime and the battery details.",
+    "advantages": "- It switches on when the power fails, with no action from anyone.\n- It helps keep exit routes lit so that people can see their way out.",
+    "cautions": "- UK fire guidance sets a minimum duration of one hour for an emergency escape lighting system.\n- Premises that people do not leave at once, such as sleeping accommodation, need at least three hours.\n- UK workplace rules require regular checks that the emergency lighting works, and a record of any faults.\n- Keep a log of all system tests and their results.\n- In U.S. workplaces, U.S. OSHA requires each exit route to have enough light to see along it."
+  },
+  {
+    "slug": "extinguisher-afff-portable",
+    "kind": "type",
+    "codes": [
+      "FIR-002-3LBS-AFFF",
+      "FIR-002-5LBS-AFFF",
+      "FIR-002-10LBS-AFFF",
+      "FIR-002-20LBS-AFFF"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/blog/firefighting-foams-pfas-vs-fluorine-free-foams/",
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.157",
+      "https://www.epa.gov/pfas/pfas-explained"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Portable fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "AFFF (aqueous film-forming foam)"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "3, 5, 10 and 20 lb"
+      },
+      {
+        "label": "Mounting",
+        "value": "wall type, with a free wall bracket (3, 5 lb) or wall hook (10, 20 lb)"
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit.\nAFFF is a firefighting foam for liquid fuel fires. The foam forms a blanket\nover the fuel. The blanket stops flammable vapors from escaping and helps\nprevent re-ignition. Class B fires involve flammable liquids such as gasoline,\noil, grease and oil-based paints. Read the label for the fire classes the unit\ncovers.",
+    "advantages": "- AFFF targets Class B liquid fuel fires.\n- The foam blanket holds back fuel vapors and helps stop the fire from flaring up again.\n- The range runs from 3 lb to 20 lb. The USFA advises the largest unit a user can safely operate.",
+    "cautions": "- AFFF has contained PFAS since the 1970s. PFAS do not break down naturally in the environment.\n- Studies link some PFAS to harmful health effects in people and animals. Fluorine-free foams contain no PFAS.\n- Use an extinguisher only on a small, contained fire. Make sure you have a clear escape route.\n- In workplaces, U.S. OSHA requires a monthly visual inspection and an annual maintenance check. AFFF units need a hydrostatic test every 5 years.\n- Check the gauge, and look for dents, rust or a damaged hose or nozzle."
+  },
+  {
+    "slug": "extinguisher-afff-wheeled",
+    "kind": "type",
+    "codes": [
+      "FIR-002-50LBS-AFFF",
+      "FIR-002-100LBS-AFFF",
+      "FIR-002-200LBS-AFFF"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/blog/firefighting-foams-pfas-vs-fluorine-free-foams/",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.157",
+      "https://www.epa.gov/pfas/pfas-explained",
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Wheeled fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "AFFF (aqueous film-forming foam)"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "50, 100 and 200 lb"
+      },
+      {
+        "label": "Mounting",
+        "value": "wheeled type"
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit.\nAFFF is a firefighting foam for liquid fuel fires. The foam forms a blanket\nover the fuel. The blanket stops flammable vapors from escaping and helps\nprevent re-ignition. Class B fires involve flammable liquids such as gasoline,\noil, grease and oil-based paints. Read the label for the fire classes the unit\ncovers.",
+    "advantages": "- AFFF targets Class B liquid fuel fires.\n- The foam blanket holds back fuel vapors and helps stop the fire from flaring up again.",
+    "cautions": "- The masterlist holds two conflicting records for FIR-002-50LBS-AFFF. One says AFFF 50 lb wheeled. The other says HCFC 50 lb wheeled. Confirm the agent and the price with CTI sales.\n- AFFF has contained PFAS since the 1970s. PFAS do not break down naturally in the environment.\n- Studies link some PFAS to harmful health effects in people and animals. Fluorine-free foams contain no PFAS.\n- U.S. OSHA requires employers to train staff in extinguisher use when hired and at least once a year.\n- In workplaces, U.S. OSHA requires a monthly visual inspection and an annual maintenance check. AFFF units need a hydrostatic test every 5 years."
+  },
+  {
+    "slug": "extinguisher-cabinet",
+    "kind": "type",
+    "codes": [
+      "FIR-002-CAB10",
+      "FIR-002-CAB20"
+    ],
+    "sources": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.157",
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire extinguisher cabinet"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "for a 10 lb extinguisher (FIR-002-CAB10) and for a 20 lb extinguisher (FIR-002-CAB20)"
+      }
+    ],
+    "usage": "These are general facts for this type of cabinet, not the datasheet of CTI's unit.\nA cabinet gives a portable extinguisher a fixed place on the wall. In\nworkplaces, U.S. OSHA requires employers to mount, locate and identify extinguishers\nso staff can reach them readily. OSHA also requires a used extinguisher to go\nback to its designated place.",
+    "advantages": "- A fixed cabinet gives staff one known place to find the extinguisher.\n- A cabinet helps keep the extinguisher in its designated place between uses.",
+    "cautions": "- Keep the cabinet front clear. Nothing should block or limit access to the extinguisher.\n- A cabinet does not replace upkeep. U.S. OSHA requires a monthly visual inspection and an annual maintenance check.\n- U.S. OSHA requires workplace extinguishers to stay fully charged and in working order.\n- Pick the cabinet that matches the extinguisher size. Confirm the fit of a specific unit with CTI sales."
+  },
+  {
+    "slug": "extinguisher-class-k",
+    "kind": "type",
+    "codes": [
+      "FIR-002-10LBS-CK",
+      "FIR-002-20LBS-CK"
+    ],
+    "sources": [
+      "https://www.osha.gov/etools/evacuation-plans-procedures/emergency-standards/portable-extinguishers/about",
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/",
+      "https://www.kidde.com/support/fire-extinguishers/classes",
+      "https://amerex-fire.com/products/fire-extinguishers/portable-fire-extinguishers/class-k"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Class K fire extinguisher (as named on the masterlist)"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "10 lb, 20 lb"
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit. Class K fires involve vegetable oils, animal oils and fats in cooking appliances. Class K extinguishers are often found in commercial kitchens. Many are wet chemical units that spray a fine mist, and some dry chemical units use potassium bicarbonate. One maker's Class K unit uses a potassium acetate base agent.",
+    "advantages": "- A wet chemical agent seals the fuel to stop vapors from igniting. It also cools the fire.\n- Range hoods and Class B extinguishers cannot always put out a deep fryer fire. NFPA 10 added the Class K rating for this hazard.\n- One maker designs its Class K units to supplement automatic kitchen suppression systems.",
+    "cautions": "- The masterlist name does not state the agent in CTI's unit.\n- The agents in many Class K extinguishers conduct electricity. Shut off power to the appliance before use.\n- U.S. OSHA says to use a Class K extinguisher only after the built-in hood suppression system activates.\n- U.S. OSHA guidance sets a maximum travel distance of 30 feet to a Class K extinguisher.\n- Inspect, test and maintain Class K extinguishers every year."
+  },
+  {
+    "slug": "extinguisher-co2",
+    "kind": "type",
+    "codes": [
+      "FIR-002-10LBS-CO2"
+    ],
+    "sources": [
+      "https://www.osha.gov/etools/evacuation-plans-procedures/emergency-standards/portable-extinguishers/about",
+      "https://femalifesafety.org/wp-content/uploads/2021/10/DryChemicalFireExtinguishers_HighValueAssets.pdf"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Portable fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "carbon dioxide (CO2)"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "10 lb (from the code)"
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit. CO2 extinguishers are designed for Class B and C fires only. Class B covers flammable liquids, and Class C covers energized electrical equipment. CO2 puts out a fire by displacing oxygen, and dry ice from the horn also cools it. You can recognize the type by its hard horn and the absence of a pressure gauge.",
+    "advantages": "- CO2 does not conduct electricity.\n- It discharges as a gas and leaves no residue.\n- NFPA 10 advises carbon dioxide or halogenated extinguishers for delicate electronics such as computers.",
+    "cautions": "- CO2 is not recommended for Class A fires. These fires may smolder and reignite after the CO2 dissipates.\n- Never use a CO2 extinguisher in a confined space with people present unless they wear respiratory protection.\n- Pieces of dry ice shoot from the horn during discharge."
+  },
+  {
+    "slug": "extinguisher-dry-chemical-portable",
+    "kind": "type",
+    "codes": [
+      "FIR-001-3LBS",
+      "FIR-001-5LBS",
+      "FIR-001-10LBS",
+      "FIR-001-15LBS",
+      "FIR-001-20LBS",
+      "FIR-002-1LB-DC",
+      "FIR-002-2LBS-DC",
+      "FIR-002-3LBS-DC",
+      "FIR-002-5LBS-DC",
+      "FIR-002-10LBS-DC",
+      "FIR-002-20LBS-DC"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/",
+      "https://pe.mcwane.com/groups/fire-suppression/amerex-fire/product/abc-fire-extinguisher-stored-pressure-dry-chemical/",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.157"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Portable fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "Dry chemical"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "1, 2, 3, 5, 10, 15 and 20 lb (15 lb in the FIR-001 range only)"
+      },
+      {
+        "label": "Mounting",
+        "value": "FIR-002 units are wall type, with a free wall bracket (1, 2, 3, 5 lb) or wall hook (10, 20 lb). FIR-001 names do not state a mounting."
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit.\nDry chemical is one of the common extinguishing agents. The label names the\nfire classes a unit covers, such as \"B-C\" or \"A-B-C\". ABC dry chemical is\nmonoammonium phosphate. It coats Class A fuels and breaks the chain reaction of\nClass B fires. The masterlist name does not say which dry chemical the unit\nholds, so read the label for its fire classes. To use it, pull the pin, aim low\nat the base of the fire, squeeze the lever and sweep.",
+    "advantages": "- If the label says ABC, the unit covers ordinary combustibles, flammable liquids and energized electrical equipment.\n- ABC dry chemical, as one maker states, does not conduct electricity back to the operator.\n- ABC units suit offices, schools, warehouses, retail areas and hotels.\n- The range runs from 1 lb to 20 lb. The USFA advises the largest unit a user can safely operate.",
+    "cautions": "- Use an extinguisher only on a small fire contained in one object. Make sure you have a clear escape route.\n- Young children and older adults should not use fire extinguishers. If in doubt, leave the building and call for help.\n- Check that nothing blocks the unit. Check the gauge, and look for dents, rust or a damaged hose or nozzle.\n- You can recharge some units. Others need replacement when the pressure is too low.\n- In workplaces, U.S. OSHA requires a monthly visual inspection and an annual maintenance check.\n- U.S. OSHA requires a hydrostatic test every 12 years for stored-pressure dry chemical units with mild steel shells. Owners must also empty and service these units every 6 years."
+  },
+  {
+    "slug": "extinguisher-dry-chemical-wheeled",
+    "kind": "type",
+    "codes": [
+      "FIR-001-50LBS",
+      "FIR-001-100LBS",
+      "FIR-001-200LBS",
+      "FIR-002-50LBS-DC",
+      "FIR-002-100LBS-DC",
+      "FIR-002-200LBS-DC"
+    ],
+    "sources": [
+      "https://www.amerex-fire.com/products/fire-extinguishers/wheeled-fire-extinguishers/dry-chemical",
+      "https://ansul.com/portable-fire-extinguishers-and-spill-control-products/wheeled-fire-extinguisher-units/redline_wheeled_units_fsp/redline-wheeled-units",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.157",
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Wheeled fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "Dry chemical"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "50, 100 and 200 lb"
+      },
+      {
+        "label": "Mounting",
+        "value": "FIR-002 units are wheeled type. FIR-001 names do not state a mounting."
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit.\nA wheeled unit holds a large volume of agent for high hazard areas. Makers\nlist uses such as airports, loading docks, fuel storage, spray paint booths\nand heavy manufacturing. Makers offer wheeled units with different dry\nchemicals, such as ABC and Purple K. The masterlist name does not say which\nagent the unit holds, so read the label for its fire classes.",
+    "advantages": "- Large agent capacity suits extra high hazard areas.\n- Makers design these units so that one person can move and operate them.\n- Some models use wide steel wheels to move over sandy or soft ground.",
+    "cautions": "- U.S. OSHA requires employers to train staff in extinguisher use when hired and at least once a year.\n- Use an extinguisher only on a small, contained fire. Make sure you have a clear escape route.\n- Check the gauge, and look for dents, rust or a damaged hose or nozzle.\n- In workplaces, U.S. OSHA requires a monthly visual inspection and an annual maintenance check.\n- U.S. OSHA requires a hydrostatic test every 12 years for stored-pressure dry chemical units with mild steel shells. Owners must also empty and service these units every 6 years."
+  },
+  {
+    "slug": "extinguisher-hcfc-ceiling",
+    "kind": "type",
+    "codes": [
+      "FIR-001-HCFC10LBS",
+      "FIR-001-HCFC20LBS",
+      "FIR-002-10LBS-HCFC-CT",
+      "FIR-002-20LBS-HCFC-CT"
+    ],
+    "sources": [
+      "https://www.ceasefire.in/product-page/automatic-fire-extinguishers-clean-agent-ceiling-mounted",
+      "https://femalifesafety.org/wp-content/uploads/2021/10/DryChemicalFireExtinguishers_HighValueAssets.pdf",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910SubpartLAppA",
+      "https://ozone.unep.org/treaties/montreal-protocol/articles/article-5-special-situation-developing-countries"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Ceiling-type fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "HCFC (hydrochlorofluorocarbon)"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "10 lb, 20 lb (FIR-001 sizes from the code)"
+      },
+      {
+        "label": "Mounting",
+        "value": "Ceiling type"
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit. A ceiling-mounted automatic extinguisher detects fire with a thermal sensor and activates on its own. It fixes to the ceiling with a bracket. One maker offers ceiling-mounted units filled with HCFC-123. HCFC agents are halocarbons, which the U.S. EPA accepts as halon substitutes.",
+    "advantages": "- An automatic ceiling unit activates in a fire by itself.\n- It needs no piping or ducting, so installation is quick.\n- Halogenated agents do not conduct electricity and leave no residue when they evaporate.",
+    "cautions": "- The masterlist name says ceiling type only. It does not state how CTI's unit activates.\n- U.S. OSHA guidance on fixed gaseous systems warns that some agents stay at hazardous levels after discharge.\n- U.S. OSHA says to ventilate a flooded area before people reenter without protective clothing and respirators.\n- U.S. OSHA notes that some halogenated hydrocarbons decompose at high temperatures.\n- Under the Montreal Protocol, developing countries must cut HCFC consumption to zero from 2030. A small servicing allowance runs to 2040."
+  },
+  {
+    "slug": "extinguisher-hcfc-portable",
+    "kind": "type",
+    "codes": [
+      "FIR-002-5LBS-HCFC",
+      "FIR-002-10LBS-HCFC",
+      "FIR-002-20LBS-HCFC"
+    ],
+    "sources": [
+      "https://femalifesafety.org/wp-content/uploads/2021/10/DryChemicalFireExtinguishers_HighValueAssets.pdf",
+      "https://docs.johnsoncontrols.com/specialhazards/api/khub/documents/vdU4NPlgYSUgqok2Xj1qOg/content",
+      "https://www.epa.gov/snap/substitutes-streaming-agents",
+      "https://ozone.unep.org/treaties/montreal-protocol/articles/article-5-special-situation-developing-countries"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Portable fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "HCFC (hydrochlorofluorocarbon)"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "5 lb, 10 lb, 20 lb"
+      },
+      {
+        "label": "Mounting",
+        "value": "Wall type, with a wall bracket (5 lb) or a wall hook (10 lb and 20 lb)"
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit. HCFC agents belong to the halocarbon group of halogenated agents. The U.S. EPA accepts these halocarbons as substitutes for halons. Halogenated extinguishers typically carry listings for Class A, B and C fires, depending on size. Units under 9.5 lb carry no Class A listing, but they still work on those fires.",
+    "advantages": "- NFPA 10 defines halogenated agents as electrically non-conducting.\n- They leave no residue when they evaporate. Dry chemical powder, by contrast, stays on surfaces and can harm electronics.\n- NFPA 10 advises carbon dioxide or halogenated extinguishers for delicate electronics such as computers.",
+    "cautions": "- HCFC agents have an ozone depletion potential above zero. The U.S. EPA lists 0.02 for HCFC-123.\n- The U.S. EPA SNAP program accepts HCFC Blend B and HCFC-123 streaming agents for non-residential uses only.\n- Under the Montreal Protocol, developing countries must cut HCFC consumption to zero from 2030. A small allowance for servicing existing fire protection equipment runs to 2040.\n- UL sets a minimum room volume for each clean agent extinguisher rating. More toxic agents need larger rooms.\n- One maker's table rates Halotron I, an HCFC agent based on HCFC-123, as more toxic than HFC-236fa."
+  },
+  {
+    "slug": "extinguisher-hfc236fa-ceiling",
+    "kind": "type",
+    "codes": [
+      "FIR-002-10LBS-HFC236FA-CT",
+      "FIR-002-20LBS-HFC236FA-CT"
+    ],
+    "sources": [
+      "https://www.ceasefire.in/product-page/automatic-fire-extinguishers-clean-agent-ceiling-mounted",
+      "https://docs.johnsoncontrols.com/specialhazards/api/khub/documents/vdU4NPlgYSUgqok2Xj1qOg/content",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910SubpartLAppA",
+      "https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016-amendment-montreal-protocol-agreed"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Ceiling-type fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "HFC-236fa"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "10 lb, 20 lb"
+      },
+      {
+        "label": "Mounting",
+        "value": "Ceiling type"
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit. A ceiling-mounted automatic extinguisher detects fire with a thermal sensor and activates on its own. It fixes to the ceiling with a bracket. One maker offers ceiling-mounted units filled with HFC-236fa. HFC-236fa is a colorless, odorless clean agent that discharges as a liquid and flashes to a gas.",
+    "advantages": "- An automatic ceiling unit activates in a fire by itself.\n- It needs no piping or ducting, so installation is quick.\n- HFC-236fa does not conduct electricity and leaves no residue.\n- It does not cause thermal shock damage to delicate electronics.",
+    "cautions": "- The masterlist name says ceiling type only. It does not state how CTI's unit activates.\n- U.S. OSHA guidance on fixed gaseous systems warns that some agents stay at hazardous levels after discharge.\n- U.S. OSHA says to ventilate a flooded area before people reenter without protective clothing and respirators.\n- U.S. OSHA notes that some halogenated hydrocarbons decompose at high temperatures.\n- The Kigali Amendment lists HFC-236fa as a controlled substance with a global warming potential of 9,810. Parties must cut HFC use in steps."
+  },
+  {
+    "slug": "extinguisher-hfc236fa-portable",
+    "kind": "type",
+    "codes": [
+      "FIR-002-5LBS-HFC236FA",
+      "FIR-002-10LBS-HFC236FA",
+      "FIR-002-20LBS-HFC236FA",
+      "FIR-002-50LBS-HFC236FA",
+      "FIR-002-10LBS-CO2HFC",
+      "FIR-002-20LBS-CO2HFC"
+    ],
+    "sources": [
+      "https://docs.johnsoncontrols.com/specialhazards/api/khub/documents/vdU4NPlgYSUgqok2Xj1qOg/content",
+      "https://femalifesafety.org/wp-content/uploads/2021/10/DryChemicalFireExtinguishers_HighValueAssets.pdf",
+      "https://www.epa.gov/snap/substitutes-streaming-agents",
+      "https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016-amendment-montreal-protocol-agreed"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Portable fire extinguisher"
+      },
+      {
+        "label": "Agent",
+        "value": "HFC-236fa. The FIR-002-10LBS-CO2HFC and FIR-002-20LBS-CO2HFC names state HFC-236fa only."
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "5 lb, 10 lb, 20 lb, 50 lb"
+      },
+      {
+        "label": "Mounting",
+        "value": "Wall type with a wall bracket (5 lb) or a wall hook (10 lb, 20 lb). Wheeled type (50 lb). The CO2HFC names state no mounting."
+      }
+    ],
+    "usage": "These are general facts for this type of extinguisher, not the datasheet of CTI's unit. HFC-236fa is a colorless, odorless clean agent that discharges as a liquid and flashes to a gas. Halogenated extinguishers typically carry listings for Class A, B and C fires, depending on size. Units under 9.5 lb carry no Class A listing. One maker lists computer rooms, laboratories and document storage rooms as typical uses.",
+    "advantages": "- HFC-236fa does not conduct electricity and leaves no residue.\n- It does not cause thermal shock damage to delicate electronics.\n- HFCs have zero ozone depletion potential because they contain no chlorine.\n- One maker's table rates HFC-236fa as less toxic than Halotron I or Halon 1211.",
+    "cautions": "- The U.S. EPA lists a global warming potential of 9,810 for HFC-236fa.\n- The Kigali Amendment adds HFC-236fa to the Montreal Protocol's controlled substances. It requires Parties to cut HFC production and consumption in steps.\n- The U.S. EPA SNAP program accepts HFC-236fa streaming agents for non-residential uses only.\n- UL sets a minimum room volume for each clean agent extinguisher rating. Larger ratings need larger rooms."
+  },
+  {
+    "slug": "fire-ball",
+    "kind": "type",
+    "codes": [
+      "FIR-002-FB"
+    ],
+    "sources": [
+      "https://afoball.com/fire-extinguisher-balls/",
+      "https://www.secura.net/risk-management/fire-ball",
+      "https://www.cpsc.gov/Warnings/2023/CPSC-Warns-Consumers-to-Immediately-Stop-Using-Fire-Extinguisher-Balls-Due-to-Failure-to-Extinguish-Fires-and-Risk-of-Serious-Injury-or-Death-Sold-on-Amazon-com",
+      "https://www.gmanetwork.com/news/topstories/nation/892454/prepare-buckets-of-water-sand-fire-extinguisher-on-new-year-s-eve-bfp/story"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire extinguishing ball"
+      },
+      {
+        "label": "Weight",
+        "value": "1.3 kg"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A fire extinguishing ball is a self-activating extinguisher that holds a dry chemical powder. You can throw or roll it into a fire. You can also mount it on a wall near a fire risk. Flame activates the ball, and it makes a loud noise when it activates.",
+    "advantages": "- It needs no pin and no training to use.\n- A mounted ball gives passive protection, so it can act on a fire with no one present.\n- The loud noise on activation also works as an alert.",
+    "cautions": "- A fire ball does not replace a fire extinguisher or a fire suppression system.\n- The Bureau of Fire Protection said fire balls activate only when a fire is already big.\n- The BFP does not advise fire balls for small fires. It promotes the fire extinguisher, which can put out a starting fire.\n- In 2023, the U.S. Consumer Product Safety Commission told consumers to stop using several brands of fire balls.\n- The CPSC found that these balls can fail to spread their powder and fail to put out a fire."
+  },
+  {
+    "slug": "fire-blanket",
+    "kind": "type",
+    "codes": [
+      "FIR-001-11A",
+      "FIR-001-11B",
+      "FIR-001-11C",
+      "FIR-001-11D",
+      "FIR-001-11E",
+      "FIR-002-A",
+      "FIR-002-B",
+      "FIR-002-C",
+      "FIR-002-D"
+    ],
+    "sources": [
+      "https://www.cfa.vic.gov.au/ArticleDocuments/534/CFA%20Fire%20Blankets%20Factsheet%20-%20June%202023T.pdf.aspx",
+      "https://www.nyc.gov/assets/dcas/downloads/pdf/general/2025/dcas-fire-blankets-critical-tool-for-office-safety-flyer-2025-march.pdf",
+      "https://knowledge.bsigroup.com/products/fire-blankets"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire blanket"
+      },
+      {
+        "label": "Sizes on the masterlist",
+        "value": "1.0x1.0 m (FIR-001-11A), 1.2x1.2 m (FIR-001-11B), 1.2x1.8 m (FIR-001-11C), 1.5x1.5 m (FIR-001-11D), 1.8x1.8 m (FIR-001-11E), 1.2x1.2 m (FIR-002-A), 1.5x1.5 m (FIR-002-B), 1.5x1.8 m (FIR-002-C), 1.8x1.8 m (FIR-002-D)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A fire blanket is fire-resistant fabric that smothers a small fire by cutting off its oxygen. Lay it over the fire to cover the flames, or wrap it around a person whose clothing is on fire. CTI sells the 1.2x1.2, 1.5x1.5 and 1.8x1.8 sizes in two product lines, FIR-001 and FIR-002. The two lines are different items, and each code has its own price on the masterlist.",
+    "advantages": "- It needs no special training to use.\n- It can put out a cooking fat fire.\n- It can protect a person whose clothes catch fire.",
+    "cautions": "- Use a fire blanket only on a small fire.\n- Mount it near the kitchen door, not next to the stove. A stove fire can block your way to it.\n- Call the fire service after you use a fire blanket, even if the fire is out.\n- Replace a fire blanket after use. The European standard BS EN 1869 covers blankets that are not reusable.\n- Inspect the blanket regularly to make sure that it is in good condition."
   }
 ]
