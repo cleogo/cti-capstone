@@ -37,7 +37,8 @@ function collect(value: unknown, numbers: Set<number>, strings: string[]): void 
     if (Number.isFinite(value)) numbers.add(value);
   } else if (typeof value === 'string') {
     strings.push(value);
-    for (const m of value.matchAll(NUMBER)) {
+    // The digits inside a product code are not figures: "PWR-001-06" must not ground "₱1" or "6 W".
+    for (const m of value.replace(CODE, ' ').matchAll(NUMBER)) {
       const n = toNumber(m[0]);
       if (Number.isFinite(n)) numbers.add(n);
     }
@@ -58,7 +59,7 @@ export function ungrounded(text: string, toolResults: unknown[], userText: strin
   const strings: string[] = [];
   for (const r of toolResults) collect(r, numbers, strings);
   // The user's own numbers: "my fan is 60 W", "under ₱500". These are quoted back, not invented.
-  for (const m of userText.matchAll(NUMBER)) numbers.add(toNumber(m[0]));
+  for (const m of userText.replace(CODE, ' ').matchAll(NUMBER)) numbers.add(toNumber(m[0]));
   const haystack = strings.join('\n') + '\n' + userText;
   // Codes can also arrive as an object key or a non-string leaf, so search the raw JSON too.
   const raw = JSON.stringify(toolResults);

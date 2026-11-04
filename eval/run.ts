@@ -15,6 +15,9 @@ import { PROMPTS, stripPlan, type PromptVersion } from '../lib/prompt';
 import { createTools } from '../lib/tools';
 import { CHAT_MODEL, CHAT_MODEL_SETTINGS, MAX_STEPS } from '../lib/model';
 import { telemetry } from '../lib/telemetry';
+import { maskPII } from '../lib/guardrails/pii';
+import { checkInput, GUARD_REPLIES } from '../lib/guardrails/input';
+import { reviewAnswer } from '../lib/guardrails/answer-guard';
 
 export type ToolCall = { name: string; args: Record<string, unknown> };
 
@@ -39,6 +42,8 @@ export type Transcript = {
   latencyMs: number;
   traceId: string;
   error: string | null;
+  /** Guards that fired (only with opts.guards): "injection", "grounding:regenerated" and so on. */
+  guardrails: string[];
 };
 
 export function traceUrl(traceId: string): string {
@@ -48,7 +53,7 @@ export function traceUrl(traceId: string): string {
 
 export async function runConversation(
   turns: string[],
-  opts: { variant: PromptVersion; id: string },
+  opts: { variant: PromptVersion; id: string; guards?: boolean },
 ): Promise<Transcript> {
   const tools = createTools({ sessionId: null });
   const messages: CoreMessage[] = [];
@@ -57,13 +62,31 @@ export async function runConversation(
   let tokensOut = 0;
   let traceId = '';
   let error: string | null = null;
+  const guardrails: string[] = [];
   const t0 = Date.now();
 
   await trace.getTracer('cti-eval').startActiveSpan(`eval:${opts.id}`, async (span) => {
     traceId = span.spanContext().traceId;
     try {
       for (const user of turns) {
-        messages.push({ role: 'user', content: user });
+        // With opts.guards, the turn goes through the M7 guards as the route runs them:
+        // mask, checkInput, and the answer check. The route checks the text of each
+        // step. Here only the final text is checked: generateText has no transform.
+        const masked = opts.guards ? maskPII(user) : { text: user, found: [] };
+        guardrails.push(...masked.found.map((k) => `pii:${k}`));
+        if (opts.guards) {
+          const previous = records.at(-1)?.text;
+          const v = await checkInput(masked.text, { previous });
+          if (v.error) guardrails.push('input-guard:error');
+          if (v.action !== 'allow' && v.guardrail) {
+            guardrails.push(v.guardrail);
+            const text = GUARD_REPLIES[v.guardrail];
+            messages.push({ role: 'user', content: masked.text }, { role: 'assistant', content: text });
+            records.push({ user, text, calls: [], results: [] });
+            continue;
+          }
+        }
+        messages.push({ role: 'user', content: masked.text });
         const res = await generateText({
           model: openai(CHAT_MODEL, CHAT_MODEL_SETTINGS),
           system: PROMPTS[opts.variant],
@@ -85,7 +108,14 @@ export async function runConversation(
             results.push({ name: r.toolName, result: r.result });
           }
         }
-        records.push({ user, text: stripPlan(res.text), calls, results });
+        let text = stripPlan(res.text);
+        if (opts.guards) {
+          const earlier = [...records.flatMap((r) => [r.user, ...r.results.map((x) => x.result)]), ...results.map((r) => r.result)];
+          const reviewed = await reviewAnswer(text, earlier, { userText: masked.text });
+          guardrails.push(...reviewed.events);
+          text = reviewed.text;
+        }
+        records.push({ user, text, calls, results });
       }
     } catch (e) {
       error = e instanceof Error ? e.message : String(e);
@@ -108,6 +138,7 @@ export async function runConversation(
     latencyMs: Date.now() - t0,
     traceId,
     error,
+    guardrails,
   };
 }
 

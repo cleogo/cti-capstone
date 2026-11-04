@@ -12,6 +12,7 @@ npm-debug.log*
 
 # Next.js
 .next/
+.next-*/
 out/
 build/
 next-env.d.ts

@@ -222,6 +222,27 @@ The model must follow these rules. Each number is the same rule in
 15. **Tool failures.** A `degraded: true` search result is reported to the
     customer. A `tool_failed` error is reported as a failed lookup, with an
     offer to retry or escalate. The model never fills the gap itself.
+16. **Safety claims (M7).** No claim that an item is certified, approved,
+    rated or compliant for a use unless a sheet in this turn's tool results
+    says so. The answer guard (`lib/guardrails/answer-guard.ts`) enforces
+    "certified" and "approved for" in code: a draft with either word and no
+    tool result that holds it is rewritten once, then replaced with the
+    sales fallback.
+
+### Runtime guardrails (M7)
+
+The route checks input and output in code, not only in the prompt:
+
+- Every user message is PII-masked (`[PHONE]`, `[EMAIL]`, `[TIN]`, `[CARD]`)
+  before the model call and before the log.
+- The latest user message goes through `checkInput`. Injection and unsafe
+  content get a fixed refusal. Off-topic gets a fixed redirect. No chat-model
+  call runs for either.
+- The text of each step is held until the step ends. Every ₱ figure, product
+  code and watt figure must appear in a tool result, the session memory or a
+  user message of the chat. The digits inside a product code do not count as
+  figures.
+- One JSON log line per request: `lib/log.ts`.
 
 ### Two cross-cutting constraints added in M4
 

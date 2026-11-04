@@ -1,0 +1,191 @@
+{
+  "model": "gpt-4o-mini",
+  "prompt": "v1",
+  "rounds": 2,
+  "runs": [
+    {
+      "question": "How much is PWR-001-06?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 4164,
+      "totalMs": 4486,
+      "events": [],
+      "text": "The price for the BLUETTI Premium 150 (AC180P) Portable Power Station (product code PWR-001-06) is ₱58,719.00."
+    },
+    {
+      "question": "How much is PWR-001-06?",
+      "guard": true,
+      "inputMs": 4147,
+      "firstTokenMs": 37973,
+      "totalMs": 37973,
+      "events": [],
+      "text": "The price for the BLUETTI Premium 150 (AC180P) Portable Power Station (product code PWR-001-06) is ₱58,719.00."
+    },
+    {
+      "question": "What are the specs of PWR-001-05?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 1572,
+      "totalMs": 4391,
+      "events": [],
+      "text": "The specifications for the BLUETTI Premium 100 V2 Portable Power Station (code PWR-001-05) are as follows:\n\n- **Model**: BLUETTI Premium 100 V2\n- **Capacity**: 1,024 Wh\n- **Rated AC Output**: 2,000 W\n- **Surge Power**: 3,600 W\n- **Power Lifting**: 2,700 W\n- **AC Charging Input**: 1,200 W\n- **Solar Input**: 1,000 W max, 12 to 60 V, 20 A\n- **Self-consumption**: About 10 W\n- **Total Outlets**: 11\n\n**Usage**: Suitable for high-power loads for a short time, such as power tools, kettles, microwaves, or refrigerators during a brownout. It is also appropriate for sites or homes needing 2,000 W without a large battery.\n\n**Advantages**:\n- 2,000 W rated output and a 3,600 W surge in a 1 kWh unit.\n- Solar input of up to 1,000 W, which is twice that of the Premium 150.\n\n**Cautions**:\n- The capacity is 1,024 Wh, meaning a 2,000 W load will deplete it in well under an hour.\n- The 2,300 W figure mentioned in some materials refers to AC input with bypass, not the charging rate.\n\nThe price for this product is ₱51,732.00. If you need further assistance, feel free to ask!"
+    },
+    {
+      "question": "What are the specs of PWR-001-05?",
+      "guard": true,
+      "inputMs": 14109,
+      "firstTokenMs": 19172,
+      "totalMs": 19172,
+      "events": [],
+      "text": "The specifications for the BLUETTI Premium 100 V2 Portable Power Station (code: PWR-001-05) are as follows:\n\n- **Model**: BLUETTI Premium 100 V2\n- **Capacity**: 1,024 Wh\n- **Rated AC Output**: 2,000 W\n- **Surge Power**: 3,600 W\n- **Power Lifting**: 2,700 W\n- **AC Charging Input**: 1,200 W\n- **Solar Input**: 1,000 W max, 12 to 60 V, 20 A\n- **Self-consumption**: About 10 W\n- **Total Outlets**: 11\n\n**Usage**: Suitable for high-power loads for a short time, such as power tools, a kettle, a microwave, or a refrigerator during a brownout. It is also appropriate for a site or home needing 2,000 W without a large battery.\n\n**Advantages**:\n- 2,000 W rated output and a 3,600 W surge in a 1 kWh unit.\n- Solar input of up to 1,000 W, which is twice that of the Premium 150.\n\n**Cautions**:\n- The capacity is 1,024 Wh, meaning a 2,000 W load will deplete it in well under an hour.\n- The 2,300 W figure mentioned in some materials refers to AC input with bypass, not the charging rate.\n\nThe price for this product is ₱51,732.00. For more details, you can visit the following links: [Bluetti EU](https://www.bluettipower.eu/products/premium-100-v2-portable-power-station) and [Bluetti UK](https://www.bluettipower.co.uk/products/premium-100-v2-portable-power-station)."
+    },
+    {
+      "question": "Compare PWR-001-06 and PWR-001-03",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 2616,
+      "totalMs": 4846,
+      "events": [],
+      "text": "Here is a comparison of the two BLUETTI portable power stations:\n\n| Feature | PWR-001-06 | PWR-001-03 |\n|---|---|---|\n| Model | BLUETTI Premium 150 (AC180P) | BLUETTI Premium 50 (AC50P) |\n| Capacity | 1,440 Wh | 504 Wh |\n| Rated AC output | 1,800 W | 700 W |\n| Surge power | 2,700 W | Not on file |\n| Power lifting | 2,700 W | 1,200 W |\n| AC charging input | 1,440 W | 600 W (Turbo) |\n| Solar input | 500 W max, 12 to 60 V, 10 A | 200 W max, 12 to 28 V, 8.5 A |\n| Self-consumption | about 15 W | about 9 W |\n| Total outlets | 11 | 7 |\n\nThe prices are as follows:\n- PWR-001-06: ₱58,719.00\n- PWR-001-03: ₱24,859.00\n\nChoose PWR-001-06 if you need higher capacity and output, while PWR-001-03 is suitable for lighter use with a lower price point."
+    },
+    {
+      "question": "Compare PWR-001-06 and PWR-001-03",
+      "guard": true,
+      "inputMs": 4025,
+      "firstTokenMs": 22341,
+      "totalMs": 22342,
+      "events": [
+        "moderation:error (The operation was aborted due to timeout)"
+      ],
+      "text": "Here is a comparison of the two BLUETTI portable power stations:\n\n| Feature | PWR-001-06 | PWR-001-03 |\n|---|---|---|\n| Model | BLUETTI Premium 150 (AC180P) | BLUETTI Premium 50 (AC50P) |\n| Capacity | 1,440 Wh | 504 Wh |\n| Rated AC output | 1,800 W | 700 W |\n| Surge power | 2,700 W | Not on file |\n| Power lifting | 2,700 W | 1,200 W |\n| AC charging input | 1,440 W | 600 W (Turbo) |\n| Solar input | 500 W max, 12 to 60 V, 10 A | 200 W max, 12 to 28 V, 8.5 A |\n| Self-consumption | about 15 W | about 9 W |\n| Total outlets | 11 | 7 |\n\nThe prices are as follows:\n- PWR-001-06: ₱58,719.00\n- PWR-001-03: ₱24,859.00\n\nChoose PWR-001-06 if you need higher capacity and output, while PWR-001-03 is suitable for lighter use with a lower price point."
+    },
+    {
+      "question": "What is a class K extinguisher used for?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 22645,
+      "totalMs": 22946,
+      "events": [],
+      "text": "The record does not state what a class K extinguisher is used for. I recommend referring to the sales team for detailed information on this type of extinguisher."
+    },
+    {
+      "question": "What is a class K extinguisher used for?",
+      "guard": true,
+      "inputMs": 22939,
+      "firstTokenMs": 29139,
+      "totalMs": 29140,
+      "events": [
+        "moderation:error (The operation was aborted due to timeout)"
+      ],
+      "text": "The record does not state what a class K extinguisher is used for. I recommend referring to the sales team for detailed information on this type of extinguisher."
+    },
+    {
+      "question": "Can I get a discount on MED-001-01?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 29930,
+      "totalMs": 30525,
+      "events": [],
+      "text": "The masterlist does not record any discounts, so I cannot provide that information. The price for product code MED-001-01, which is a Training Manikins set, Adult, full body, is ₱43,470.00. The sales team will follow up regarding your inquiry about discounts. You can leave your name and contact details in the form below."
+    },
+    {
+      "question": "Can I get a discount on MED-001-01?",
+      "guard": true,
+      "inputMs": 1110,
+      "firstTokenMs": 8364,
+      "totalMs": 8364,
+      "events": [],
+      "text": "The masterlist does not record any information about discounts. The product code for the item you inquired about is MED-001-01, and its price is ₱43,470.00. The sales team will follow up regarding your inquiry, and you can leave your name and contact information in the form below."
+    },
+    {
+      "question": "How much is PWR-001-06?",
+      "guard": true,
+      "inputMs": 809,
+      "firstTokenMs": 5531,
+      "totalMs": 5531,
+      "events": [],
+      "text": "The price for the BLUETTI Premium 150 (AC180P) Portable Power Station (product code PWR-001-06) is ₱58,719.00."
+    },
+    {
+      "question": "How much is PWR-001-06?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 2871,
+      "totalMs": 3210,
+      "events": [],
+      "text": "The price for the BLUETTI Premium 150 (AC180P) Portable Power Station (product code PWR-001-06) is ₱58,719.00."
+    },
+    {
+      "question": "What are the specs of PWR-001-05?",
+      "guard": true,
+      "inputMs": 10155,
+      "firstTokenMs": 24212,
+      "totalMs": 24212,
+      "events": [],
+      "text": "The specifications for the BLUETTI Premium 100 V2 Portable Power Station (code: PWR-001-05) are as follows:\n\n- **Model**: BLUETTI Premium 100 V2\n- **Capacity**: 1,024 Wh\n- **Rated AC Output**: 2,000 W\n- **Surge Power**: 3,600 W\n- **Power Lifting**: 2,700 W\n- **AC Charging Input**: 1,200 W\n- **Solar Input**: 1,000 W max, 12 to 60 V, 20 A\n- **Self-consumption**: About 10 W\n- **Total Outlets**: 11\n\n**Usage**: Suitable for high-power loads for a short time, such as power tools, a kettle, a microwave, or a refrigerator during a brownout. It is also appropriate for a site or home needing 2,000 W without a large battery.\n\n**Advantages**:\n- 2,000 W rated output and a 3,600 W surge in a 1 kWh unit.\n- Solar input of up to 1,000 W, which is twice that of the Premium 150.\n\n**Cautions**:\n- The capacity is 1,024 Wh, meaning a 2,000 W load will deplete it in well under an hour.\n- The 2,300 W figure mentioned in some materials refers to AC input with bypass, not the charging rate.\n\nThe price for this product is ₱51,732.00. If you need further assistance, feel free to ask!"
+    },
+    {
+      "question": "What are the specs of PWR-001-05?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 2669,
+      "totalMs": 5223,
+      "events": [],
+      "text": "The specifications for the BLUETTI Premium 100 V2 Portable Power Station (code: PWR-001-05) are as follows:\n\n- **Model**: BLUETTI Premium 100 V2\n- **Capacity**: 1,024 Wh\n- **Rated AC Output**: 2,000 W\n- **Surge Power**: 3,600 W\n- **Power Lifting**: 2,700 W\n- **AC Charging Input**: 1,200 W\n- **Solar Input**: 1,000 W max, 12 to 60 V, 20 A\n- **Self-consumption**: About 10 W\n- **Total Outlets**: 11\n\n**Usage**: Suitable for high-power loads for a short time, such as power tools, a kettle, a microwave, or a refrigerator during a brownout. It is also appropriate for a site or home needing 2,000 W without a large battery.\n\n**Advantages**:\n- 2,000 W rated output and a 3,600 W surge in a 1 kWh unit.\n- Solar input of up to 1,000 W, which is twice that of the Premium 150.\n\n**Cautions**:\n- The capacity is 1,024 Wh, meaning a 2,000 W load will deplete it in well under an hour.\n- The 2,300 W figure mentioned in some materials refers to AC input with bypass, not the charging rate.\n\nThe price for this product is ₱51,732.00."
+    },
+    {
+      "question": "Compare PWR-001-06 and PWR-001-03",
+      "guard": true,
+      "inputMs": 721,
+      "firstTokenMs": 5160,
+      "totalMs": 5161,
+      "events": [],
+      "text": "Here is a comparison of the two BLUETTI portable power stations:\n\n| Feature | PWR-001-06 | PWR-001-03 |\n|---|---|---|\n| Model | BLUETTI Premium 150 (AC180P) | BLUETTI Premium 50 (AC50P) |\n| Capacity | 1,440 Wh | 504 Wh |\n| Rated AC output | 1,800 W | 700 W |\n| Surge power | 2,700 W | Not on file |\n| Power lifting | 2,700 W | 1,200 W |\n| AC charging input | 1,440 W | 600 W (Turbo) |\n| Solar input | 500 W max, 12 to 60 V, 10 A | 200 W max, 12 to 28 V, 8.5 A |\n| Self-consumption | about 15 W | about 9 W |\n| Total outlets | 11 | 7 |\n\nThe prices are as follows:\n- PWR-001-06: ₱58,719.00\n- PWR-001-03: ₱24,859.00\n\nChoose PWR-001-06 if you need higher capacity and output, while PWR-001-03 is suitable for lighter use at a lower price."
+    },
+    {
+      "question": "Compare PWR-001-06 and PWR-001-03",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 1552,
+      "totalMs": 3992,
+      "events": [],
+      "text": "Here is a comparison of the two BLUETTI portable power stations:\n\n| Feature | PWR-001-06 | PWR-001-03 |\n|---|---|---|\n| Model | BLUETTI Premium 150 (AC180P) | BLUETTI Premium 50 (AC50P) |\n| Capacity | 1,440 Wh | 504 Wh |\n| Rated AC output | 1,800 W | 700 W |\n| Surge power | 2,700 W | Not on file |\n| Power lifting | 2,700 W | 1,200 W |\n| AC charging input | 1,440 W | 600 W (Turbo) |\n| Solar input | 500 W max, 12 to 60 V, 10 A | 200 W max, 12 to 28 V, 8.5 A |\n| Self-consumption | about 15 W | about 9 W |\n| Total outlets | 11 | 7 |\n\nThe prices are as follows:\n- PWR-001-06: ₱58,719.00\n- PWR-001-03: ₱24,859.00\n\nChoose PWR-001-06 if you need higher capacity and output, while PWR-001-03 is suitable for lighter use and a lower price."
+    },
+    {
+      "question": "What is a class K extinguisher used for?",
+      "guard": true,
+      "inputMs": 4043,
+      "firstTokenMs": 5468,
+      "totalMs": 5468,
+      "events": [],
+      "text": "The record does not state what a class K extinguisher is used for. I recommend referring to the sales team for detailed information on this type of extinguisher."
+    },
+    {
+      "question": "What is a class K extinguisher used for?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 703,
+      "totalMs": 957,
+      "events": [],
+      "text": "The record does not state what a class K extinguisher is used for. I recommend referring to the sales team for detailed information on this type of extinguisher."
+    },
+    {
+      "question": "Can I get a discount on MED-001-01?",
+      "guard": true,
+      "inputMs": 776,
+      "firstTokenMs": 10491,
+      "totalMs": 10491,
+      "events": [],
+      "text": "The masterlist does not record discount information, so I cannot provide an answer regarding that. However, I can tell you that the price for the Training Manikins set, Adult, full body (product code MED-001-01) is ₱43,470.00. \n\nThe sales team will follow up regarding your inquiry about discounts. You can leave your name and contact information in the form below."
+    },
+    {
+      "question": "Can I get a discount on MED-001-01?",
+      "guard": false,
+      "inputMs": 0,
+      "firstTokenMs": 9445,
+      "totalMs": 10060,
+      "events": [],
+      "text": "The masterlist does not record discount information, so I cannot provide an answer regarding that. However, I can tell you that the price for the Training Manikins set, Adult, full body (product code MED-001-01) is ₱43,470.00. \n\nThe sales team will follow up regarding your inquiry about discounts. You can leave your name and contact information in the form below."
+    }
+  ]
+}

@@ -10,6 +10,7 @@
  *   npx tsx scripts/eval-tools.ts --variant v1
  *   npx tsx scripts/eval-tools.ts --variant v1 --only single-lookup,taglish
  *   npx tsx scripts/eval-tools.ts --variant v1 --tag r2     a repeat run, written to tools-v1-r2.json
+ *   npx tsx scripts/eval-tools.ts --variant v1 --guards     with the M7 guards, written to tools-v1-guards.json
  */
 import { config } from 'dotenv';
 config({ path: '.env.local' });
@@ -41,7 +42,10 @@ export type ScenarioRow = {
   latency_ms: number;
   trace: string;
   error: string | null;
+  guardrails: string[];
 };
+
+const GUARDS = process.argv.includes('--guards');
 
 function subsequence(want: string[], got: string[]): boolean {
   let i = 0;
@@ -84,7 +88,7 @@ async function runOne(s: Scenario, variant: ReturnType<typeof parseVariant>): Pr
   }
   let t: Transcript;
   try {
-    t = await runConversation(s.turns, { variant, id: s.id });
+    t = await runConversation(s.turns, { variant, id: s.id, guards: GUARDS });
   } finally {
     for (const [k, v] of Object.entries(saved)) {
       if (v === undefined) delete process.env[k];
@@ -122,13 +126,15 @@ async function runOne(s: Scenario, variant: ReturnType<typeof parseVariant>): Pr
     latency_ms: t.latencyMs,
     trace: traceUrl(t.traceId),
     error: t.error,
+    guardrails: t.guardrails,
   };
   const failed = checks.filter((c) => !c.ok).map((c) => c.label);
   console.log(
     `  ${completed ? 'PASS' : 'FAIL'}  ${s.id.padEnd(26)} ${t.toolNames.join(', ') || 'no tools'}` +
       (failed.length ? `\n        failed: ${failed.join('; ')}` : '') +
       (t.error ? `\n        error: ${t.error}` : '') +
-      (bad.length ? `\n        ungrounded: ${bad.join(', ')}` : ''),
+      (bad.length ? `\n        ungrounded: ${bad.join(', ')}` : '') +
+      (t.guardrails.length ? `\n        guards: ${t.guardrails.join(', ')}` : ''),
   );
   return row;
 }
@@ -163,7 +169,7 @@ async function main() {
   const list = only ? SCENARIOS.filter((s) => only.has(s.id)) : SCENARIOS;
 
   const sdk = startTracing();
-  console.log(`Tool eval: ${list.length} scenarios, prompt ${variant}\n`);
+  console.log(`Tool eval: ${list.length} scenarios, prompt ${variant}${GUARDS ? ', M7 guards on' : ''}\n`);
 
   // Scenarios that set an env var run alone: process.env is shared.
   const parallel = list.filter((s) => !s.env);
@@ -187,7 +193,7 @@ async function main() {
 
   mkdirSync('eval/out', { recursive: true });
   const tagArg = process.argv.indexOf('--tag');
-  const tag = tagArg >= 0 ? `-${process.argv[tagArg + 1]}` : '';
+  const tag = (GUARDS ? '-guards' : '') + (tagArg >= 0 ? `-${process.argv[tagArg + 1]}` : '');
   const file = `eval/out/tools-${variant}${tag}${only ? '-partial' : ''}.json`;
   writeFileSync(file, JSON.stringify({ variant, rows }, null, 2));
   console.log(`\nWrote ${file}`);

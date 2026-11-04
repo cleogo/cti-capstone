@@ -23,6 +23,20 @@ test('allows figures from the user message', () => {
   assert.deepEqual(ungrounded('Your fan uses 60 W.', results, 'my fan is 60 W'), []);
 });
 
+test('passes a greeting with no figures', () => {
+  assert.deepEqual(ungrounded('Hello! How can I help you today?', [], 'hi'), []);
+});
+
+test('treats ₱58,719 and ₱58,719.00 as equal', () => {
+  const r = [{ price_php: 58719 }];
+  assert.deepEqual(ungrounded('₱58,719', r, ''), []);
+  assert.deepEqual(ungrounded('₱58,719.00', r, ''), []);
+});
+
+test('the digits in a product code do not ground a figure', () => {
+  assert.deepEqual(ungrounded('The price is ₱1.00 and it gives 6 W.', results, 'price of PWR-001-06?'), ['₱1', '6 W']);
+});
+
 test('flags a code no tool returned', () => {
   assert.deepEqual(ungrounded('Try PWR-009-99.', results, 'help'), ['PWR-009-99']);
 });
