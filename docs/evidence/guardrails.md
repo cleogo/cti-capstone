@@ -170,7 +170,9 @@ cold calls took 3.8 s and 4.1 s. So the steady cost is about 0.8 s before
 the model starts. Output moderation adds about 0.4 s at the end of each text
 step. With guards on, first token equals total time. The guard holds the
 text of the last step until the step ends (the PRD §11 cost). No rewrite fired in
-these runs. M8 repeats this measurement next to the cache table.
+these runs. The API was unstable again during M8, so this measurement runs
+again in M10, against the live URL. The M8 cache bench runs with every guard
+on (`docs/evidence/caching.md`).
 
 Moderation has a 5 s timeout and fails open. A timeout logs
 `moderation:error` or `input-guard:error`, and the message goes on. That

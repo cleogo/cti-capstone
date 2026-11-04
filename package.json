@@ -24,6 +24,7 @@
     "@ai-sdk/react": "^1.2.0",
     "@langfuse/otel": "^6.1.1",
     "@opentelemetry/sdk-node": "^0.223.0",
+    "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.41.0",
     "@upstash/vector": "^1.2.0",
     "@vercel/otel": "^2.2.1",

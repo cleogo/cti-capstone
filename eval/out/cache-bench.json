@@ -1,0 +1,931 @@
+{
+  "at": "2026-11-04T08:46:21.547Z",
+  "url": "http://localhost:3200",
+  "passes": [
+    {
+      "name": "on-cold",
+      "samples": [
+        {
+          "question": "What can you help me with?",
+          "ms": 1894.6220999999987,
+          "ttfbMs": 1894.5715999999993,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you deliver to Cebu?",
+          "ms": 47805.428900000006,
+          "ttfbMs": 28058.6953,
+          "cache": "miss",
+          "tokensIn": 5107,
+          "tokensOut": 23,
+          "status": 200
+        },
+        {
+          "question": "Can I pay by credit card?",
+          "ms": 34842.735,
+          "ttfbMs": 15577.272899999996,
+          "cache": "miss",
+          "tokensIn": 5108,
+          "tokensOut": 21,
+          "status": 200
+        },
+        {
+          "question": "What are your business hours?",
+          "ms": 2097.8125,
+          "ttfbMs": 2097.7679999999964,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you install the products you sell?",
+          "ms": 897.4780000000028,
+          "ttfbMs": 897.4328999999998,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Who are you?",
+          "ms": 873.2641000000003,
+          "ttfbMs": 873.2005000000063,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Can the public buy from CTI or only companies?",
+          "ms": 988.5482000000047,
+          "ttfbMs": 988.5062999999936,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you offer a warranty on your products?",
+          "ms": 3299.45689999999,
+          "ttfbMs": 2422.207500000004,
+          "cache": "miss",
+          "tokensIn": 5110,
+          "tokensOut": 26,
+          "status": 200
+        },
+        {
+          "question": "How much is MED-001-01?",
+          "ms": 4784.407400000011,
+          "ttfbMs": 2078.1896000000124,
+          "cache": "miss",
+          "tokensIn": 12245,
+          "tokensOut": 55,
+          "status": 200
+        },
+        {
+          "question": "What are the specs of PWR-001-06?",
+          "ms": 7135.051999999996,
+          "ttfbMs": 2434.620200000005,
+          "cache": "miss",
+          "tokensIn": 10721,
+          "tokensOut": 381,
+          "status": 200
+        },
+        {
+          "question": "What is a heat alarm used for?",
+          "ms": 25785.876300000004,
+          "ttfbMs": 24789.383499999996,
+          "cache": "miss",
+          "tokensIn": 5109,
+          "tokensOut": 30,
+          "status": 200
+        },
+        {
+          "question": "What is the cheapest fire extinguisher?",
+          "ms": 4369.07739999998,
+          "ttfbMs": 2110.1379000000015,
+          "cache": "miss",
+          "tokensIn": 10334,
+          "tokensOut": 128,
+          "status": 200
+        },
+        {
+          "question": "Show me stethoscopes",
+          "ms": 11318.70730000001,
+          "ttfbMs": 3527.0481000000145,
+          "cache": "miss",
+          "tokensIn": 12454,
+          "tokensOut": 102,
+          "status": 200
+        },
+        {
+          "question": "How much is the trash bin?",
+          "ms": 26695.574599999993,
+          "ttfbMs": 7734.203299999994,
+          "cache": "miss",
+          "tokensIn": 13009,
+          "tokensOut": 319,
+          "status": 200
+        },
+        {
+          "question": "Compare PWR-001-06 and PWR-001-05",
+          "ms": 21358.540299999993,
+          "ttfbMs": 18846.60149999999,
+          "cache": "miss",
+          "tokensIn": 10618,
+          "tokensOut": 176,
+          "status": 200
+        },
+        {
+          "question": "What is a class K extinguisher used for?",
+          "ms": 3718.8011000000115,
+          "ttfbMs": 2812.9474000000046,
+          "cache": "miss",
+          "tokensIn": 5112,
+          "tokensOut": 35,
+          "status": 200
+        },
+        {
+          "question": "Do you have fire blankets?",
+          "ms": 14384.391600000003,
+          "ttfbMs": 2223.970100000006,
+          "cache": "miss",
+          "tokensIn": 12953,
+          "tokensOut": 305,
+          "status": 200
+        },
+        {
+          "question": "What is the price of FIR-001-10LBS?",
+          "ms": 7361.767099999997,
+          "ttfbMs": 3352.899399999995,
+          "cache": "miss",
+          "tokensIn": 13135,
+          "tokensOut": 45,
+          "status": 200
+        },
+        {
+          "question": "What is a spine board used for?",
+          "ms": 3764.825199999992,
+          "ttfbMs": 2923.5552000000025,
+          "cache": "miss",
+          "tokensIn": 5109,
+          "tokensOut": 28,
+          "status": 200
+        },
+        {
+          "question": "List helmets under 1000 pesos",
+          "ms": 4726.842299999989,
+          "ttfbMs": 2221.973499999993,
+          "cache": "miss",
+          "tokensIn": 10502,
+          "tokensOut": 152,
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "on-repeat",
+      "samples": [
+        {
+          "question": "What can you help me with?",
+          "ms": 811.0278000000108,
+          "ttfbMs": 810.9740000000165,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you deliver to Cebu?",
+          "ms": 1326.8617000000086,
+          "ttfbMs": 1326.8373000000138,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Can I pay by credit card?",
+          "ms": 1672.4137999999803,
+          "ttfbMs": 1672.3724999999977,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What are your business hours?",
+          "ms": 946.4341999999888,
+          "ttfbMs": 946.414300000004,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you install the products you sell?",
+          "ms": 859.2453000000096,
+          "ttfbMs": 859.2206000000006,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Who are you?",
+          "ms": 888.8854999999749,
+          "ttfbMs": 888.861899999989,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Can the public buy from CTI or only companies?",
+          "ms": 1112.7603999999992,
+          "ttfbMs": 1112.7114000000001,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you offer a warranty on your products?",
+          "ms": 1435.0113999999885,
+          "ttfbMs": 1434.9858999999997,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "How much is MED-001-01?",
+          "ms": 1206.572199999995,
+          "ttfbMs": 1206.525800000003,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What are the specs of PWR-001-06?",
+          "ms": 1286.2388999999966,
+          "ttfbMs": 1286.2104999999865,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What is a heat alarm used for?",
+          "ms": 1357.7546999999904,
+          "ttfbMs": 1357.7318999999843,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What is the cheapest fire extinguisher?",
+          "ms": 1253.9095000000088,
+          "ttfbMs": 1253.88400000002,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Show me stethoscopes",
+          "ms": 26161.735399999976,
+          "ttfbMs": 17703.52609999999,
+          "cache": "miss",
+          "tokensIn": 12454,
+          "tokensOut": 102,
+          "status": 200
+        },
+        {
+          "question": "How much is the trash bin?",
+          "ms": 1406.1124999999884,
+          "ttfbMs": 1406.0764999999665,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Compare PWR-001-06 and PWR-001-05",
+          "ms": 1230.812099999981,
+          "ttfbMs": 1230.7792999999947,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What is a class K extinguisher used for?",
+          "ms": 1328.300500000012,
+          "ttfbMs": 1328.2553999999654,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you have fire blankets?",
+          "ms": 1290.4925999999978,
+          "ttfbMs": 1290.45769999997,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What is the price of FIR-001-10LBS?",
+          "ms": 1351.3144999999786,
+          "ttfbMs": 1351.2860999999684,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What is a spine board used for?",
+          "ms": 1261.5158999999985,
+          "ttfbMs": 1261.4972999999882,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "List helmets under 1000 pesos",
+          "ms": 1163.3200999999535,
+          "ttfbMs": 1163.2771000000066,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "on-paraphrase",
+      "samples": [
+        {
+          "question": "What kind of things can you assist me with?",
+          "ms": 841.3990999999805,
+          "ttfbMs": 841.3791999999667,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you ship orders to Cebu?",
+          "ms": 5463.1152,
+          "ttfbMs": 4418.072199999995,
+          "cache": "miss",
+          "tokensIn": 5108,
+          "tokensOut": 28,
+          "status": 200
+        },
+        {
+          "question": "Do you accept credit cards for payment?",
+          "ms": 770.1145000000251,
+          "ttfbMs": 770.0950000000303,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What time are you open?",
+          "ms": 779.4833000000217,
+          "ttfbMs": 779.4613000000245,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you also install what you sell?",
+          "ms": 815.1436000000103,
+          "ttfbMs": 815.1224999999977,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Who am I talking to?",
+          "ms": 813.8968999999925,
+          "ttfbMs": 813.8766000000178,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you sell to individuals or only to businesses?",
+          "ms": 874.6994000000414,
+          "ttfbMs": 874.6763999999966,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Is there a warranty on the products you sell?",
+          "ms": 3846.6825000000536,
+          "ttfbMs": 2833.092800000042,
+          "cache": "miss",
+          "tokensIn": 5111,
+          "tokensOut": 27,
+          "status": 200
+        },
+        {
+          "question": "What does MED-001-01 cost?",
+          "ms": 4687.399000000034,
+          "ttfbMs": 2102.958099999989,
+          "cache": "miss",
+          "tokensIn": 12245,
+          "tokensOut": 55,
+          "status": 200
+        },
+        {
+          "question": "Give me the specifications of PWR-001-06.",
+          "ms": 10575.304700000037,
+          "ttfbMs": 3098.3285000000033,
+          "cache": "miss",
+          "tokensIn": 10721,
+          "tokensOut": 330,
+          "status": 200
+        },
+        {
+          "question": "What are heat alarms for?",
+          "ms": 3946.0591999999597,
+          "ttfbMs": 3946.039300000004,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Which fire extinguisher is the cheapest?",
+          "ms": 5117.889599999995,
+          "ttfbMs": 2897.963800000027,
+          "cache": "miss",
+          "tokensIn": 10334,
+          "tokensOut": 104,
+          "status": 200
+        },
+        {
+          "question": "I am looking for a stethoscope",
+          "ms": 9227.146899999992,
+          "ttfbMs": 2952.8035999999847,
+          "cache": "miss",
+          "tokensIn": 12458,
+          "tokensOut": 82,
+          "status": 200
+        },
+        {
+          "question": "What is the price of the trash bin?",
+          "ms": 8083.494200000016,
+          "ttfbMs": 3263.867100000032,
+          "cache": "miss",
+          "tokensIn": 13013,
+          "tokensOut": 352,
+          "status": 200
+        },
+        {
+          "question": "PWR-001-06 versus PWR-001-05, what is the difference?",
+          "ms": 7412.735099999991,
+          "ttfbMs": 3164.1521000000066,
+          "cache": "miss",
+          "tokensIn": 10628,
+          "tokensOut": 339,
+          "status": 200
+        },
+        {
+          "question": "What is class K extinguisher good for?",
+          "ms": 12377.310300000012,
+          "ttfbMs": 12377.256300000008,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Are fire blankets sold here?",
+          "ms": 37811.446600000025,
+          "ttfbMs": 28737.355900000024,
+          "cache": "miss",
+          "tokensIn": 12953,
+          "tokensOut": 306,
+          "status": 200
+        },
+        {
+          "question": "FIR-001-10LBS price please",
+          "ms": 18389.600600000005,
+          "ttfbMs": 14791.038900000043,
+          "cache": "miss",
+          "tokensIn": 13129,
+          "tokensOut": 52,
+          "status": 200
+        },
+        {
+          "question": "What is a spine board for?",
+          "ms": 2932.3516999999993,
+          "ttfbMs": 2932.3295999999973,
+          "cache": "hit",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Which helmets cost less than 1000 pesos?",
+          "ms": 4552.811799999967,
+          "ttfbMs": 2166.8320999999996,
+          "cache": "miss",
+          "tokensIn": 10508,
+          "tokensOut": 140,
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "off-repeat",
+      "samples": [
+        {
+          "question": "What can you help me with?",
+          "ms": 863.6897000000463,
+          "ttfbMs": 863.6667000000016,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you deliver to Cebu?",
+          "ms": 2224.7840000000433,
+          "ttfbMs": 1708.0458000000217,
+          "cache": "skip",
+          "tokensIn": 5107,
+          "tokensOut": 23,
+          "status": 200
+        },
+        {
+          "question": "Can I pay by credit card?",
+          "ms": 2043.1443999999901,
+          "ttfbMs": 1514.1339000000153,
+          "cache": "skip",
+          "tokensIn": 5108,
+          "tokensOut": 21,
+          "status": 200
+        },
+        {
+          "question": "What are your business hours?",
+          "ms": 932.8896999999997,
+          "ttfbMs": 932.8677000000025,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you install the products you sell?",
+          "ms": 813.8683999999776,
+          "ttfbMs": 813.8446000000113,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Who are you?",
+          "ms": 840.570699999982,
+          "ttfbMs": 840.5481999999611,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Can the public buy from CTI or only companies?",
+          "ms": 906.532200000016,
+          "ttfbMs": 906.4916000000085,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you offer a warranty on your products?",
+          "ms": 2266.7088999999687,
+          "ttfbMs": 1722.0454999999492,
+          "cache": "skip",
+          "tokensIn": 5110,
+          "tokensOut": 26,
+          "status": 200
+        },
+        {
+          "question": "How much is MED-001-01?",
+          "ms": 10716.648099999991,
+          "ttfbMs": 1877.8792999999714,
+          "cache": "skip",
+          "tokensIn": 12245,
+          "tokensOut": 51,
+          "status": 200
+        },
+        {
+          "question": "What are the specs of PWR-001-06?",
+          "ms": 6552.697400000005,
+          "ttfbMs": 2222.2869000000064,
+          "cache": "skip",
+          "tokensIn": 10721,
+          "tokensOut": 330,
+          "status": 200
+        },
+        {
+          "question": "What is a heat alarm used for?",
+          "ms": 2339.295299999998,
+          "ttfbMs": 1728.2189999999828,
+          "cache": "skip",
+          "tokensIn": 5109,
+          "tokensOut": 30,
+          "status": 200
+        },
+        {
+          "question": "What is the cheapest fire extinguisher?",
+          "ms": 3861.8440999999875,
+          "ttfbMs": 2017.712899999984,
+          "cache": "skip",
+          "tokensIn": 10334,
+          "tokensOut": 71,
+          "status": 200
+        },
+        {
+          "question": "Show me stethoscopes",
+          "ms": 6116.142300000007,
+          "ttfbMs": 1990.3687999999966,
+          "cache": "skip",
+          "tokensIn": 12454,
+          "tokensOut": 102,
+          "status": 200
+        },
+        {
+          "question": "How much is the trash bin?",
+          "ms": 9800.829399999988,
+          "ttfbMs": 1684.222699999984,
+          "cache": "skip",
+          "tokensIn": 13009,
+          "tokensOut": 320,
+          "status": 200
+        },
+        {
+          "question": "Compare PWR-001-06 and PWR-001-05",
+          "ms": 28349.41460000002,
+          "ttfbMs": 13086.519299999985,
+          "cache": "skip",
+          "tokensIn": 10618,
+          "tokensOut": 180,
+          "status": 200
+        },
+        {
+          "question": "What is a class K extinguisher used for?",
+          "ms": 6949.925699999963,
+          "ttfbMs": 6294.014299999981,
+          "cache": "skip",
+          "tokensIn": 5112,
+          "tokensOut": 35,
+          "status": 200
+        },
+        {
+          "question": "Do you have fire blankets?",
+          "ms": 11318.43789999996,
+          "ttfbMs": 2040.7325999999885,
+          "cache": "skip",
+          "tokensIn": 12953,
+          "tokensOut": 305,
+          "status": 200
+        },
+        {
+          "question": "What is the price of FIR-001-10LBS?",
+          "ms": 27220.130200000014,
+          "ttfbMs": 2522.621700000018,
+          "cache": "skip",
+          "tokensIn": 13135,
+          "tokensOut": 53,
+          "status": 200
+        },
+        {
+          "question": "What is a spine board used for?",
+          "ms": 2732.6578000000445,
+          "ttfbMs": 1811.6615000000456,
+          "cache": "skip",
+          "tokensIn": 5109,
+          "tokensOut": 49,
+          "status": 200
+        },
+        {
+          "question": "List helmets under 1000 pesos",
+          "ms": 4023.9985999999335,
+          "ttfbMs": 1717.6975000000093,
+          "cache": "skip",
+          "tokensIn": 10502,
+          "tokensOut": 154,
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "off-paraphrase",
+      "samples": [
+        {
+          "question": "What kind of things can you assist me with?",
+          "ms": 964.7632999999914,
+          "ttfbMs": 964.7436999999918,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you ship orders to Cebu?",
+          "ms": 2419.391799999983,
+          "ttfbMs": 1643.7778999999864,
+          "cache": "skip",
+          "tokensIn": 5108,
+          "tokensOut": 28,
+          "status": 200
+        },
+        {
+          "question": "Do you accept credit cards for payment?",
+          "ms": 761.8802000000142,
+          "ttfbMs": 761.858499999973,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "What time are you open?",
+          "ms": 882.9091999999946,
+          "ttfbMs": 882.8852000000188,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you also install what you sell?",
+          "ms": 806.8431000000564,
+          "ttfbMs": 806.8191000000807,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Who am I talking to?",
+          "ms": 936.1897999999346,
+          "ttfbMs": 936.1696000000229,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Do you sell to individuals or only to businesses?",
+          "ms": 861.4475000000093,
+          "ttfbMs": 861.4267000000691,
+          "cache": "none",
+          "tokensIn": 0,
+          "tokensOut": 0,
+          "status": 200
+        },
+        {
+          "question": "Is there a warranty on the products you sell?",
+          "ms": 2111.1733999999706,
+          "ttfbMs": 1479.4862999999896,
+          "cache": "skip",
+          "tokensIn": 5111,
+          "tokensOut": 27,
+          "status": 200
+        },
+        {
+          "question": "What does MED-001-01 cost?",
+          "ms": 8829.299499999965,
+          "ttfbMs": 1887.558699999936,
+          "cache": "skip",
+          "tokensIn": 12245,
+          "tokensOut": 55,
+          "status": 200
+        },
+        {
+          "question": "Give me the specifications of PWR-001-06.",
+          "ms": 6428.566400000011,
+          "ttfbMs": 2590.4375999999465,
+          "cache": "skip",
+          "tokensIn": 10721,
+          "tokensOut": 371,
+          "status": 200
+        },
+        {
+          "question": "What are heat alarms for?",
+          "ms": 6970.324099999969,
+          "ttfbMs": 2162.026700000046,
+          "cache": "skip",
+          "tokensIn": 12499,
+          "tokensOut": 181,
+          "status": 200
+        },
+        {
+          "question": "Which fire extinguisher is the cheapest?",
+          "ms": 4132.305399999954,
+          "ttfbMs": 2067.7580999999773,
+          "cache": "skip",
+          "tokensIn": 10334,
+          "tokensOut": 107,
+          "status": 200
+        },
+        {
+          "question": "I am looking for a stethoscope",
+          "ms": 5537.453700000071,
+          "ttfbMs": 1631.3554000000004,
+          "cache": "skip",
+          "tokensIn": 12458,
+          "tokensOut": 82,
+          "status": 200
+        },
+        {
+          "question": "What is the price of the trash bin?",
+          "ms": 6205.669899999979,
+          "ttfbMs": 1542.1860999999335,
+          "cache": "skip",
+          "tokensIn": 13013,
+          "tokensOut": 352,
+          "status": 200
+        },
+        {
+          "question": "PWR-001-06 versus PWR-001-05, what is the difference?",
+          "ms": 5872.012100000051,
+          "ttfbMs": 1977.5117000000319,
+          "cache": "skip",
+          "tokensIn": 10628,
+          "tokensOut": 339,
+          "status": 200
+        },
+        {
+          "question": "What is class K extinguisher good for?",
+          "ms": 10195.026599999983,
+          "ttfbMs": 2599.160600000061,
+          "cache": "skip",
+          "tokensIn": 12816,
+          "tokensOut": 120,
+          "status": 200
+        },
+        {
+          "question": "Are fire blankets sold here?",
+          "ms": 38028.51429999992,
+          "ttfbMs": 20419.003999999957,
+          "cache": "skip",
+          "tokensIn": 12953,
+          "tokensOut": 306,
+          "status": 200
+        },
+        {
+          "question": "FIR-001-10LBS price please",
+          "ms": 22737.446800000034,
+          "ttfbMs": 14396.313399999985,
+          "cache": "skip",
+          "tokensIn": 13129,
+          "tokensOut": 64,
+          "status": 200
+        },
+        {
+          "question": "What is a spine board for?",
+          "ms": 18853.83850000007,
+          "ttfbMs": 1923.2275000000373,
+          "cache": "skip",
+          "tokensIn": 12367,
+          "tokensOut": 120,
+          "status": 200
+        },
+        {
+          "question": "Which helmets cost less than 1000 pesos?",
+          "ms": 4229.697800000082,
+          "ttfbMs": 1908.3289000000805,
+          "cache": "skip",
+          "tokensIn": 10508,
+          "tokensOut": 150,
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

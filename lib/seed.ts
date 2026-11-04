@@ -13,6 +13,9 @@
  * Pass --limit N to seed only the first N products (plus all guide chunks) —
  * useful as a cheap trial before the full run.
  *
+ * Re-seeding skips every chunk whose content hash is unchanged (M8, PRD §12).
+ * Pass --force to embed and upsert all of them anyway.
+ *
  * BEGINNER'S MAP: this is STAGE 2 of 3, the actual "indexing".
  *
  *   corpus/products.jsonl ─┐
@@ -41,6 +44,12 @@ import { Index } from '@upstash/vector';
 import { embedMany } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { SHEETS } from './sheets';
+import { contentHash } from './version';
+
+// --force embeds and upserts every chunk, even when its hash is unchanged.
+const FORCE = process.argv.includes('--force');
+// Chunks skipped because their hash is unchanged.
+let skipped = 0;
 
 const PRODUCTS_PATH = path.join(process.cwd(), 'corpus', 'products.jsonl');
 const GUIDE_DIR = path.join(process.cwd(), 'corpus', 'guide');
@@ -209,23 +218,30 @@ async function embedAndUpsert(
     const batchTexts = texts.slice(i, i + BATCH_SIZE);
     const batchNum = Math.floor(i / BATCH_SIZE) + 1;
     const totalBatches = Math.ceil(ids.length / BATCH_SIZE);
-    console.log(`  ${label} batch ${batchNum}/${totalBatches} (${batchIds.length} records)…`);
+    // 0. SKIP UNCHANGED (PRD §12): each stored chunk carries a content hash of
+    //    its text and metadata. A chunk with the same hash is not embedded again.
+    const hashes = batchIds.map((_, j) => contentHash(batchTexts[j], metadataFor(i + j)));
+    const stored = FORCE ? [] : await withRetry(() => index.fetch(batchIds, { includeMetadata: true }), `${label} fetch batch ${batchNum}`);
+    const todo = batchIds.map((_, j) => j).filter((j) => (stored[j]?.metadata as { hash?: string } | undefined)?.hash !== hashes[j]);
+    console.log(`  ${label} batch ${batchNum}/${totalBatches} (${todo.length} of ${batchIds.length} records changed)…`);
+    skipped += batchIds.length - todo.length;
+    if (todo.length === 0) continue;
 
     // 1. EMBED: send up to 100 texts, get back one vector per text, same order.
     //    The model name matters: retrieval.ts must embed questions with the
     //    SAME model, or question and product vectors live in different spaces.
     const { embeddings } = await withRetry(
-      () => embedMany({ model: openai.embedding('text-embedding-3-small'), values: batchTexts }),
+      () => embedMany({ model: openai.embedding('text-embedding-3-small'), values: todo.map((j) => batchTexts[j]) }),
       `${label} embed batch ${batchNum}`,
     );
 
     // 2. PACKAGE: each stored entry = id + vector + metadata. The vector is
     //    for finding; the metadata (text, name, price_php, ...) is what we
     //    read back and show once it has been found.
-    const vectors = batchIds.map((id, j) => ({
-      id,
-      vector: embeddings[j],
-      metadata: { text: batchTexts[j], ...metadataFor(i + j) },
+    const vectors = todo.map((j, k) => ({
+      id: batchIds[j],
+      vector: embeddings[k],
+      metadata: { text: batchTexts[j], ...metadataFor(i + j), hash: hashes[j] },
     }));
 
     // 3. STORE: write the batch into Upstash Vector.
@@ -303,7 +319,7 @@ async function main() {
   );
 
   const info = await index.info();
-  console.log(`Done. Index now holds ${info.vectorCount} vector(s).`);
+  console.log(`Done. ${skipped} chunk(s) skipped (hash unchanged). Index now holds ${info.vectorCount} vector(s).`);
 }
 
 main().catch((e) => {

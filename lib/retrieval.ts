@@ -33,8 +33,7 @@
  * Higher = more similar meaning. 0.82 is a strong match here, 0.63 is weak.
  */
 import { Index } from '@upstash/vector';
-import { embed } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { embedQuery } from '@/lib/cache';
 import {
   CATALOG,
   BY_CODE,
@@ -253,10 +252,8 @@ export async function searchProducts({
   // 3. Vector search over products.
   //    The question is embedded with the SAME model seed.ts used for the
   //    products, so both live in the same "meaning space" and can be compared.
-  const { embedding } = await embed({
-    model: openai.embedding('text-embedding-3-small'),
-    value: query,
-  });
+  //    embedQuery checks the Redis embedding cache (7 days) before OpenAI.
+  const embedding = await embedQuery(query);
   const results = await store().query({
     vector: embedding,
     topK: OVERFETCH_TOP_K,

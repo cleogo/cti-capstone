@@ -2,6 +2,8 @@
 const nextConfig = {
   // Excluded from the build — these are reference snapshots, not pages.
   pageExtensions: ['tsx', 'ts'],
+  // The Docker image runs the standalone server (Dockerfile). Vercel ignores this setting.
+  output: 'standalone',
   // A second dev server in this folder needs its own build folder (NEXT_DIST_DIR=.next-m7).
   // Two servers on one .next made the page reload mid-request in M4.
   distDir: process.env.NEXT_DIST_DIR || '.next',

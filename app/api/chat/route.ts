@@ -18,7 +18,10 @@
  *      chunks stream live, the text of each step is checked before release
  *      (lib/guardrails/answer-guard.ts).
  *   4. logRequest: one JSON line (lib/log.ts).
- * The rate limit (M8) goes in front of step 1.
+ * M8 adds the rate limit in front of step 1 (lib/ratelimit.ts, HTTP 429), and
+ * the response caches between steps 2 and 3 (lib/cache.ts). A hit replays the
+ * stored reply through the same answer-guard checks. A miss writes the
+ * reply after the turn. The `x-cache` header and the log line say which.
  * One "cti-chat" span wraps the request, so a blocked request also has a
  * Langfuse trace, and the model calls of an allowed request sit inside it.
  */
@@ -33,8 +36,23 @@ import { telemetry } from '@/lib/telemetry';
 import { getSession, saveSession, trimHistory, stripPrices, emptySession, type SessionState } from '@/lib/session';
 import { maskPII } from '@/lib/guardrails/pii';
 import { checkInput, GUARD_REPLIES } from '@/lib/guardrails/input';
-import { createAnswerGuard } from '@/lib/guardrails/answer-guard';
+import { createAnswerGuard, reviewAnswer } from '@/lib/guardrails/answer-guard';
 import { logRequest, sessionHash, type RequestLog } from '@/lib/log';
+import { checkRateLimit, clientIp } from '@/lib/ratelimit';
+import {
+  deleteExact,
+  embedQuery,
+  exactKey,
+  getExact,
+  getSemantic,
+  isCacheable,
+  isPolicyAnswer,
+  isStorable,
+  replayResponse,
+  setExact,
+  setSemantic,
+  type CachedReply,
+} from '@/lib/cache';
 import { SESSION_COOKIE } from '@/middleware';
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -42,6 +60,32 @@ const tracer = trace.getTracer('cti-chat');
 
 export async function POST(req: NextRequest) {
   const t0 = Date.now();
+
+  // 0. Rate limit (PRD §13), before any other work.
+  const limit = await checkRateLimit(clientIp(req.headers));
+  if (limit.error) console.error(`rate limit check failed open: ${limit.error}`);
+  if (!limit.ok) {
+    logRequest({
+      requestId: crypto.randomUUID(),
+      sessionHash: 'none',
+      traceId: '',
+      latencyMs: Date.now() - t0,
+      tokensIn: 0,
+      tokensOut: 0,
+      tools: [],
+      cache: 'skip',
+      guardrails: ['rate_limit'],
+      action: 'block',
+      error: null,
+    });
+    return new Response('Too many requests. Please wait a minute and try again.', {
+      status: 429,
+      headers: { 'Retry-After': String(limit.retryAfterS), 'Content-Type': 'text/plain; charset=utf-8' },
+    });
+  }
+
+  // The cache bench turns the caches off per request. Only when the server opts in.
+  const bench = process.env.ALLOW_BENCH_HEADERS === '1' && req.headers.get('x-bench-no-cache') === '1';
   const body = (await req.json()) as { messages: Message[] };
 
   const raw = req.cookies.get(SESSION_COOKIE)?.value;
@@ -60,7 +104,7 @@ export async function POST(req: NextRequest) {
       requestId: crypto.randomUUID(),
       sessionHash: sessionHash(sessionId),
       traceId: span.spanContext().traceId,
-      cache: 'skip' as const, // M8 adds the cache.
+      cache: 'skip' as RequestLog['cache'], // set to 'miss' or 'hit' below. The log reads it when finish() runs.
     };
     span.setAttributes({ 'langfuse.trace.name': 'chat', 'cti.request_id': base.requestId, 'cti.session_hash': base.sessionHash });
     let ended = false;
@@ -99,7 +143,29 @@ export async function POST(req: NextRequest) {
         guardrails.push('input-guard:error');
         console.error(`input guard failed open: ${verdict.error}`);
       }
-      return await answer({ messages, sessionId, userText, span, guardrails, finish });
+      // 3. Caches (M8). Only a first-turn question without PII, stock or quote intent.
+      const turnIndex = messages.filter((m) => m.role === 'user').length - 1;
+      let store: CacheStore | null = null;
+      if (!bench && isCacheable(userText, turnIndex)) {
+        base.cache = 'miss';
+        const looked = await lookupCache(userText, { span, guardrails });
+        if (looked.reply) {
+          base.cache = 'hit';
+          span.setAttribute('cti.cache', looked.layer);
+          finish({
+            tokensIn: 0,
+            tokensOut: 0,
+            tools: looked.reply.toolCalls.map((c) => c.toolName),
+            guardrails,
+            action: 'allow',
+            error: null,
+          });
+          return replayResponse(looked.reply, { 'x-cache': 'hit' });
+        }
+        store = { key: looked.key, embedding: looked.embedding };
+      }
+      span.setAttribute('cti.cache', base.cache);
+      return await answer({ messages, sessionId, userText, span, guardrails, finish, store, cacheHeader: base.cache });
     } catch (e) {
       finish({ tokensIn: 0, tokensOut: 0, tools: [], guardrails, action: 'allow', error: e instanceof Error ? e.message : String(e) });
       throw e;
@@ -109,6 +175,52 @@ export async function POST(req: NextRequest) {
 
 type Finish = (f: Omit<RequestLog, 'requestId' | 'sessionHash' | 'traceId' | 'cache' | 'latencyMs'>) => void;
 
+/** What a cache miss keeps, to write the reply after the turn: the exact key and the question embedding. */
+type CacheStore = { key: string; embedding: number[] | null };
+
+/**
+ * Look for a stored reply: the exact cache first, then the semantic policy
+ * cache. A hit goes through the same answer-guard checks as a fresh reply. If
+ * the check changes the text, the exact entry is deleted and the checked text
+ * is served.
+ */
+async function lookupCache(
+  question: string,
+  c: { span: Span; guardrails: string[] },
+): Promise<{ reply: CachedReply | null; layer: 'exact' | 'semantic' | 'none'; key: string; embedding: number[] | null }> {
+  const key = exactKey(question);
+  let reply = await getExact(key);
+  let layer: 'exact' | 'semantic' | 'none' = reply ? 'exact' : 'none';
+  let embedding: number[] | null = null;
+  if (!reply) {
+    try {
+      embedding = await embedQuery(question);
+      const s = await getSemantic(embedding);
+      if (s) {
+        reply = { text: s.text, toolCalls: [], toolResults: [] };
+        layer = 'semantic';
+      }
+    } catch (e) {
+      console.error(`semantic lookup failed: ${e instanceof Error ? e.message : String(e)}`);
+    }
+  }
+  if (!reply) return { reply: null, layer, key, embedding };
+
+  const checked = await reviewAnswer(reply.text, [...reply.toolResults], {
+    userText: question,
+    otel: context.active(),
+    report: (event, detail) => {
+      c.guardrails.push(`cache:${event}`);
+      c.span.addEvent(`cache:${event}`, { detail: detail.join(', ') });
+    },
+  });
+  if (checked.text !== reply.text) {
+    if (layer === 'exact') await deleteExact(key);
+    reply = { ...reply, text: checked.text };
+  }
+  return { reply, layer, key, embedding };
+}
+
 async function answer(a: {
   messages: Message[];
   sessionId: string | null;
@@ -116,8 +228,10 @@ async function answer(a: {
   span: Span;
   guardrails: string[];
   finish: Finish;
+  store: CacheStore | null;
+  cacheHeader: string;
 }) {
-  const { messages, sessionId, userText, span, guardrails, finish } = a;
+  const { messages, sessionId, userText, span, guardrails, finish, store, cacheHeader } = a;
   let state: SessionState = emptySession();
   let dropped: string[] = [];
   if (sessionId) {
@@ -162,7 +276,7 @@ async function answer(a: {
         span.addEvent(event, { detail: detail.join(', ') });
       },
     }),
-    onFinish: ({ usage, steps }) => {
+    onFinish: async ({ usage, steps }) => {
       finish({
         tokensIn: usage.promptTokens,
         tokensOut: usage.completionTokens,
@@ -171,6 +285,20 @@ async function answer(a: {
         action: 'allow',
         error: null,
       });
+      // Write the reply to the caches. Not when session memory shaped the answer.
+      if (store && memory === null) {
+        const calls = steps.flatMap((s) => s.toolCalls).map((c) => ({ toolCallId: c.toolCallId, toolName: c.toolName, args: c.args }));
+        const done = steps.flatMap((s) => s.toolResults);
+        const reply: CachedReply = {
+          text: steps.map((s) => s.text).join(''),
+          toolCalls: calls,
+          toolResults: calls.map((c) => done.find((r) => r.toolCallId === c.toolCallId)?.result),
+        };
+        if (isStorable(reply, guardrails)) {
+          await setExact(store.key, reply);
+          if (isPolicyAnswer(reply) && store.embedding) await setSemantic(userText, store.embedding, reply.text);
+        }
+      }
     },
     onError: ({ error }) => {
       finish({
@@ -184,7 +312,7 @@ async function answer(a: {
     },
   });
 
-  return result.toDataStreamResponse();
+  return result.toDataStreamResponse({ headers: { 'x-cache': cacheHeader } });
 }
 
 function maskMessage(m: Message, found: Set<string>): Message {
