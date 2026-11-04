@@ -87,9 +87,19 @@ Guide chunks carry `doc_type: "guide"`, `title`, and the section heading.
 
 ## Tools
 
-The model has exactly two retrieval tools. Tool descriptions must make the
-boundary unambiguous — vague descriptions are a named failure mode in the
-brief.
+The capstone has nine tools, defined in `lib/tools.ts` and built per request
+by `createTools({ sessionId })`. The two retrieval tools below keep their
+Week 14 contract. The capstone adds `getProductDetails`, `compareProducts`,
+`lookupApplianceWattage`, `recommendPowerStation`, `showApplianceChecklist`
+(client-side), `buildQuotation` and `escalateToSales` (`docs/plan.md`, M2 to
+M4). Tool descriptions must make the boundary unambiguous — vague
+descriptions are a named failure mode in the brief.
+
+**Errors (M5).** Every tool body runs inside `safeExecute`. A failure returns
+`{ error: "tool_failed", message }` and never throws into the stream. When the
+vector store fails, `searchProducts` returns
+`{ degraded: true, message, items }` with exact code and name matches only.
+`SIMULATE_VECTOR_FAILURE=1` forces that path for tests.
 
 ### `searchProducts`
 
@@ -164,31 +174,59 @@ material.
 
 ## System prompt contract
 
-The model must:
+The model must follow these rules. Each number is the same rule in
+`lib/prompt.ts` (prompt V1, M5). Change both together.
 
-1. Quote prices **only** from retrieved chunks. Never estimate, interpolate, or
+1. Quote prices **only** from tool results. Never estimate, interpolate, or
    recall a price from general knowledge.
 2. State the **product code** alongside every price.
 3. Format prices as `₱43,470.00`, with thousands separators.
-4. When several variants exist (sizes, capacities, chemical types), **list them
-   with prices** rather than picking one.
-5. When a retrieved chunk carries `data_quality_flag: "duplicate_code_conflict"`,
+4. When several variants exist (sizes, capacities, chemical types), **list every
+   one with its own price**. Never let one item stand in for another of the
+   same size.
+5. When a tool result carries `data_quality_flag: "duplicate_code_conflict"`,
    **warn** that the masterlist holds conflicting entries for that code and
    refer the user to the sales team. Do not pick a price.
-6. When retrieved items do not clearly match the question, **say so and ask for
+6. When tool results do not clearly match the question, **say so and ask for
    the product code** rather than answering from the closest match.
 7. **Refuse and redirect** on stock availability, lead time, discounts,
-   delivery cost, warranty, quality comparisons, and technical specs beyond the
-   item name. These are documented in
-   `corpus/guide/04-answering-price-questions.md`.
-8. Mention **related items** where the catalog overview documents a buying
-   pattern — a harness pairs with a lanyard, a welding mask with gloves and an
-   apron.
+   delivery cost, warranty, after-sales service, supplier, and quality
+   comparisons. Look the item up first, then give the code and price. For
+   commercial terms, call `escalateToSales` with reason `commercial_terms`.
+8. Mention **related items** only where a retrieved guide section documents a
+   buying pattern.
+9. **Specs, usage, advantages and cautions** come only from a knowledge sheet:
+   `getProductDetails`, `compareProducts`, or a sheet section that
+   `searchProducts` returns. Status `not_on_file` gives "not on file", the code
+   and the price, and an offer to escalate. This replaces the Week 14 rule
+   that refused all specs beyond the item name.
+10. **Compare** 2 to 4 products with one `compareProducts` call. Write "choose
+    A if…, choose B if…" from the rows only. A `null` value is "not on file".
+    A quality question is still a refusal under rule 7.
+11. **Power-station sizing.** Code does all the arithmetic. No appliances named:
+    show the checklist. Appliances named: one `lookupApplianceWattage` call per
+    appliance, then one `recommendPowerStation` call. Use the `suggested`
+    variant and say which one. Never calculate watts, watt-hours or runtime in
+    text. A life-critical device escalates with reason `life_critical`.
+12. **Quotations** come only from one `buildQuotation` call. Never add prices,
+    compute VAT or write a total in text. A bulk flag escalates with reason
+    `bulk_order`. After a quotation, the text is at most two sentences.
+13. **Escalation.** Call `escalateToSales` once for a trigger in its
+    description. Never ask for personal details in chat. The contact form
+    collects them.
+14. **Session memory.** A "Session memory" system message can give a summary,
+    the saved quote list and the last recommendation. It holds codes and
+    quantities only. "Add it to a quote" means the first eligible code of the
+    last recommendation. A change to the quote list sends every line again in
+    one `buildQuotation` call.
+15. **Tool failures.** A `degraded: true` search result is reported to the
+    customer. A `tool_failed` error is reported as a failed lookup, with an
+    offer to retry or escalate. The model never fills the gap itself.
 
 ### Two cross-cutting constraints added in M4
 
-Added after the first graded run, and binding on the prompt alongside the eight
-rules above.
+Added after the first graded run, and binding on the prompt alongside the
+numbered rules above.
 
 **A. Nothing in the prompt is a source of fact.** The model may not state a
 product code, price, or product name that did not appear in a tool result in
@@ -295,15 +333,20 @@ sitting beside it.
 - Env vars: named identically in `.env.local` and in Vercel project settings.
   Mismatched production env var names are a named failure mode in the brief.
 - `.env.local` gitignored. Verified before first push.
-- No user data persisted beyond the request.
+- Session memory (M5): the `cti_sid` cookie (random UUID, httpOnly,
+  SameSite=Lax, 7 days) keys `session:<id>` in Redis, TTL 7 days. It holds
+  codes, quantities, loads and a summary. No personal data.
+- Contact details reach Redis only through the contact form, with consent
+  (M4). They never pass through the model.
 
 ---
 
 ## Out of scope
 
-Authentication, rate limiting, conversation persistence, multi-turn memory
-beyond the current thread, ordering or quotation generation, image display,
-admin editing of the corpus.
+Authentication, ordering, image display, admin editing of the corpus. The
+capstone brings draft quotations (M4), session memory (M5) and rate limiting
+(M8) into scope. The chat history itself is not restored after a reload. Only
+the saved quote list is.
 
 Stretch goals are capped at two by the brief. Committed: **hybrid retrieval**
 (required by the corpus shape, already specified above) and **suggested-prompt

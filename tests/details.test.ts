@@ -45,7 +45,8 @@ test('a conflict code compares with no price', () => {
   const c = compareProducts(['PWR-001-06', 'FLA-001-13']);
   assert.equal(c.products[1].price_php, null);
   assert.equal(c.products[1].data_quality_flag, 'duplicate_code_conflict');
-  assert.equal(c.products[1].sheet_slug, null);
+  // M5 sheet row 45 covers FLA-001-13. The sheet gives specs, never a price.
+  assert.equal(c.products[1].sheet_slug, 'headlight');
 });
 
 test('compare needs 2 to 4 known codes', () => {

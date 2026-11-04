@@ -6,7 +6,7 @@ import type { Load, StationResult } from '@/lib/power';
 import { DOD, INVERTER_EFFICIENCY, HEADROOM } from '@/lib/power';
 import { formatPeso } from './SourceCard';
 
-type Result = { eligible: StationResult[]; rejected: StationResult[] } | { error: string };
+type Result = { eligible: StationResult[]; rejected: StationResult[] } | { error: string; message?: string };
 
 const n = (x: number) => x.toLocaleString('en-PH', { maximumFractionDigits: 2 });
 
@@ -25,7 +25,7 @@ function Pick({ r, label }: { r: StationResult; label: string }) {
 
 export function RecommendationCard({ loads, result }: { loads: Load[]; result: Result }) {
   if ('error' in result) {
-    return <div className="text-sm text-rose-700">Could not size a station: {result.error}</div>;
+    return <div className="text-sm text-rose-700">Could not size a station: {result.message ?? result.error}</div>;
   }
   const [first, next] = result.eligible;
 

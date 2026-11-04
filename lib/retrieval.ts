@@ -172,37 +172,31 @@ export type SearchArgs = {
   limit?: number;
 };
 
-export async function searchProducts({
-  query,
-  department,
-  limit,
-}: SearchArgs): Promise<SearchHit[]> {
-  // Clamp the requested limit to 1..20 so the model can't ask for 0 or 1,000.
-  const k = Math.min(Math.max(limit ?? DEFAULT_SEARCH_LIMIT, 1), MAX_SEARCH_LIMIT);
+type Pusher = (into: SearchHit[], p: Product, match: ProductHit['match'], score: number, text?: string) => void;
 
-  /** Exact matches, in the order found. These never lose their place to a score. */
-  const exact: ProductHit[] = [];
-  /** Everything ranked by score — semantic hits, variant fill-ins, guide sections. */
-  const scored: SearchHit[] = [];
-  // DE-DUPLICATION: the same product can be found by several steps; `seen`
-  // makes sure it is only added the first (highest-priority) time.
-  const seen = new Set<string>();
-
+function makePusher(department: string | undefined, seen: Set<string>): Pusher {
   const inDepartment = (p: Product) =>
     !department || p.department.toLowerCase() === department.toLowerCase();
-
-  const push = (
-    into: SearchHit[],
-    p: Product,
-    match: ProductHit['match'],
-    score: number,
-    text?: string,
-  ) => {
+  return (into, p, match, score, text) => {
     if (seen.has(p.id) || !inDepartment(p)) return;
     seen.add(p.id);
     into.push({ ...p, text, score, match });
   };
+}
 
+/**
+ * Steps 1 and 2 of searchProducts: exact code and name matches. No network
+ * call. The searchProducts tool also uses it alone when the vector store
+ * fails (PRD §13).
+ */
+export function exactMatches({ query, department }: Pick<SearchArgs, 'query' | 'department'>): ProductHit[] {
+  const exact: ProductHit[] = [];
+  const seen = new Set<string>();
+  pushExact(query, exact, makePusher(department, seen), seen);
+  return exact;
+}
+
+function pushExact(query: string, exact: SearchHit[], push: Pusher, seen: Set<string>) {
   // 1. Exact code. A code query must return its own record first, and a
   //    conflicting code must return every row it has so the model can warn.
   const code = extractCode(query);
@@ -232,6 +226,29 @@ export async function searchProducts({
     .sort((a, b) => normalize(b.name).split(' ').length - normalize(a.name).split(' ').length)
     .slice(0, MAX_NAME_MATCHES);
   for (const p of contained) push(exact, p, 'name', 0.98);
+}
+
+export async function searchProducts({
+  query,
+  department,
+  limit,
+}: SearchArgs): Promise<SearchHit[]> {
+  // Clamp the requested limit to 1..20 so the model can't ask for 0 or 1,000.
+  const k = Math.min(Math.max(limit ?? DEFAULT_SEARCH_LIMIT, 1), MAX_SEARCH_LIMIT);
+
+  /** Exact matches, in the order found. These never lose their place to a score. */
+  const exact: ProductHit[] = [];
+  /** Everything ranked by score — semantic hits, variant fill-ins, guide sections. */
+  const scored: SearchHit[] = [];
+  // DE-DUPLICATION: the same product can be found by several steps; `seen`
+  // makes sure it is only added the first (highest-priority) time.
+  const seen = new Set<string>();
+  const push = makePusher(department, seen);
+
+  pushExact(query, exact, push, seen);
+
+  // Test switch for the degraded path (M5, M6): the vector store "fails".
+  if (process.env.SIMULATE_VECTOR_FAILURE === '1') throw new Error('simulated vector store failure');
 
   // 3. Vector search over products.
   //    The question is embedded with the SAME model seed.ts used for the

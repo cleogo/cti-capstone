@@ -17,11 +17,11 @@ const REASON_TEXT: Record<string, string> = {
   too_many_lines: 'a draft quotation holds 30 lines at most',
 };
 
-export function QuoteCard({ result }: { result: QuoteResult | { error: string } }) {
+export function QuoteCard({ result }: { result: QuoteResult | { error: string; message?: string } }) {
   const ref = useRef<HTMLDivElement>(null);
 
   if ('error' in result) {
-    return <div className="mt-2 text-sm text-rose-700">Could not build the quotation: {result.error}</div>;
+    return <div className="mt-2 text-sm text-rose-700">Could not build the quotation: {result.message ?? result.error}</div>;
   }
   if (!result.ok) {
     return (

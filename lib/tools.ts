@@ -14,6 +14,7 @@ import { tool } from 'ai';
 import { z } from 'zod';
 import {
   searchProducts,
+  exactMatches,
   filterProducts,
   DEFAULT_SEARCH_LIMIT,
   MAX_SEARCH_LIMIT,
@@ -25,6 +26,35 @@ import { lookupApplianceWattage, USER_TYPES } from '@/lib/appliances';
 import { recommendPowerStation } from '@/lib/power';
 import { buildQuotation } from '@/lib/quote';
 import { createTicket, TICKET_REASONS } from '@/lib/tickets';
+import { updateSession, type SessionState } from '@/lib/session';
+
+export type ToolContext = { sessionId: string | null };
+
+export type ToolError = { error: 'tool_failed'; message: string };
+
+/**
+ * Every tool body runs inside this (PRD §13). A failure becomes a typed
+ * result that the model can explain. It never throws into the stream.
+ */
+export async function safeExecute<T>(fn: () => T | Promise<T>): Promise<T | ToolError> {
+  try {
+    return await fn();
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
+    console.error(`tool error: ${message}`);
+    return { error: 'tool_failed', message };
+  }
+}
+
+/** Write to the session if there is one. A Redis failure must not fail the tool. */
+async function remember(ctx: ToolContext, change: (s: SessionState) => void) {
+  if (!ctx.sessionId) return;
+  try {
+    await updateSession(ctx.sessionId, change);
+  } catch (e) {
+    console.error(`session write failed: ${e instanceof Error ? e.message : String(e)}`);
+  }
+}
 
 const LoadSchema = z.object({
   name: z
@@ -47,7 +77,8 @@ const LoadSchema = z.object({
  * stethoscopes" going to the filter returns nothing at all — so each
  * description has to push work away as well as claim it.
  */
-export const tools = {
+export function createTools(ctx: ToolContext) {
+  return {
   searchProducts: tool({
     description:
       'Find products by what they are. Semantic and keyword search across all 1,056 ' +
@@ -83,7 +114,24 @@ export const tools = {
             'Raise it for questions about a family of variants.',
         ),
     }),
-    execute: async (args) => searchProducts(args),
+    execute: async (args) => {
+      try {
+        return await searchProducts(args);
+      } catch (e) {
+        // The vector store failed: fall back to exact code and name matches.
+        console.error(`searchProducts degraded: ${e instanceof Error ? e.message : String(e)}`);
+        return {
+          degraded: true as const,
+          message: 'Search is limited right now: only exact product codes and names were matched.',
+          items: exactMatches(args).slice(0, MAX_SEARCH_LIMIT),
+          // The prompt rule alone was skipped when an exact match was found (M5).
+          reply_rule:
+            'Start the reply with one sentence: product search is limited right now, so only exact ' +
+            'product codes and names were matched. Then answer from items. If items is empty, do not say that CTI does not carry the item: ' +
+            'say that the search could not check it now, and ask for the product code.',
+        };
+      }
+    },
   }),
 
   filterProducts: tool({
@@ -136,7 +184,7 @@ export const tools = {
             'This caps the list, never total_matching.',
         ),
     }),
-    execute: async (args) => filterProducts(args),
+    execute: async (args) => safeExecute(() => filterProducts(args)),
   }),
 
   getProductDetails: tool({
@@ -154,7 +202,7 @@ export const tools = {
     parameters: z.object({
       code: z.string().describe('one exact product code, e.g. "PWR-001-06"'),
     }),
-    execute: async ({ code }) => getProductDetails(code),
+    execute: async ({ code }) => safeExecute(() => getProductDetails(code)),
   }),
 
   compareProducts: tool({
@@ -169,13 +217,7 @@ export const tools = {
     parameters: z.object({
       codes: z.array(z.string()).min(2).max(4).describe('2 to 4 exact product codes'),
     }),
-    execute: async ({ codes }) => {
-      try {
-        return compareProducts(codes);
-      } catch (e) {
-        return { error: e instanceof Error ? e.message : String(e) };
-      }
-    },
+    execute: async ({ codes }) => safeExecute(() => compareProducts(codes)),
   }),
 
   lookupApplianceWattage: tool({
@@ -195,7 +237,7 @@ export const tools = {
     parameters: z.object({
       query: z.string().describe('one appliance, e.g. "ref 16 cu ft", "aircon 1hp", "32 inch TV"'),
     }),
-    execute: async ({ query }) => lookupApplianceWattage(query),
+    execute: async ({ query }) => safeExecute(() => lookupApplianceWattage(query)),
   }),
 
   recommendPowerStation: tool({
@@ -211,13 +253,15 @@ export const tools = {
     parameters: z.object({
       loads: z.array(LoadSchema).min(1).max(30),
     }),
-    execute: async ({ loads }) => {
-      try {
-        return recommendPowerStation(loads);
-      } catch (e) {
-        return { error: e instanceof Error ? e.message : String(e) };
-      }
-    },
+    execute: async ({ loads }) =>
+      safeExecute(async () => {
+        const r = recommendPowerStation(loads);
+        await remember(ctx, (s) => {
+          s.appliances = loads;
+          s.lastRecommendation = r.eligible.map((e) => e.code);
+        });
+        return r;
+      }),
   }),
 
   showApplianceChecklist: tool({
@@ -258,9 +302,15 @@ export const tools = {
         .min(1)
         .max(40),
     }),
-    execute: async ({ items }) => {
-      try {
+    execute: async ({ items }) =>
+      safeExecute(async () => {
         const r = buildQuotation(items);
+        // A successful quotation replaces the saved quote list (M5 decision).
+        if (r.ok) {
+          await remember(ctx, (s) => {
+            s.quote = r.quote.lines.map((l) => ({ code: l.code, qty: l.qty }));
+          });
+        }
         // The model copies whatever it sees into a table unless the result
         // itself says not to. The prompt rule alone failed 4 of 4 runs (M4).
         return r.ok
@@ -272,10 +322,7 @@ export const tools = {
                 'Do not list the items, prices, total or VAT.',
             }
           : r;
-      } catch (e) {
-        return { error: e instanceof Error ? e.message : String(e) };
-      }
-    },
+      }),
   }),
 
   escalateToSales: tool({
@@ -303,9 +350,9 @@ export const tools = {
             'Never include a name, phone number, email or address.',
         ),
     }),
-    execute: async ({ reason, summary }) => {
-      try {
-        const { id } = await createTicket({ reason, summary, sessionId: null });
+    execute: async ({ reason, summary }) =>
+      safeExecute(async () => {
+        const { id } = await createTicket({ reason, summary, sessionId: ctx.sessionId });
         // Like buildQuotation's reply_rule: the result steers the reply text.
         // Without it the model wrote "the sales team will follow up" with no
         // refusal and no price in 2 of 5 runs (M4).
@@ -321,9 +368,10 @@ export const tools = {
             'Say that the sales team will follow up, and that the customer can leave a name and a ' +
             'contact number or email in the form below. Do not ask for contact details in chat.',
         };
-      } catch (e) {
-        return { error: e instanceof Error ? e.message : String(e) };
-      }
-    },
+      }),
   }),
-};
+  };
+}
+
+/** No session: the harnesses (grade.ts, eval.ts) use this. */
+export const tools = createTools({ sessionId: null });

@@ -387,11 +387,18 @@ user. The M4 code is not committed yet.
 
 ## M5: Memory, prompt V1, live end to end
 
-The Gantt milestone of Sun 8: the power-station flow works end to end on the
-live URL.
+The Gantt milestone of Sun 8: the power-station flow works end to end. The
+live URL moves to M10 (decided 4 Nov, see Decisions).
 
 **PRD:** §7.3, §9 (V1), §13 (error handling). **WBS:** 2.7 (rows 45 to 60),
 3.8, 3.9. **Gantt:** Sat 7, buffer Sun 8.
+
+**Decisions (4 Nov):**
+- M5 is verified on the local dev server. The Vercel project and the first deploy stay in M10, as decided on 3 Nov. `verify:prod` is extended now and run against `http://localhost:3000`.
+- In M5 the "repository is public" check in `verify:prod` is a warning, not a failure. `--require-public` makes it a failure. M10 runs it with that flag.
+- A successful `buildQuotation` replaces the saved quote list. The route gives the model the saved list and the last recommendation, so "add X to the quote" sends every line again in one call.
+- After a reload, the page shows the saved quote list. It does not restore the chat history.
+- Sheets 45 to 60 are researched by parallel agents, as in M3 and M4. The user reviews them before the re-seed.
 
 **Files:**
 - Create: `middleware.ts`, `lib/session.ts`, `tests/session.redis.test.ts`, `app/api/session/route.ts`, `app/components/QuoteList.tsx`
@@ -408,22 +415,36 @@ live URL.
 
 Tasks:
 
-- [ ] `middleware.ts` sets the cookie `cti_sid` (random UUID, httpOnly, SameSite=Lax, 7 days) when it is missing.
-- [ ] Test first, `tests/session.redis.test.ts`: round trip, TTL set, `drops codes not in the catalogue`, and `trimHistory` keeps the last 12 messages.
-- [ ] Implement `lib/session.ts`. `buildQuotation` and `recommendPowerStation` write to the session when `ctx.sessionId` is set.
-- [ ] Route: read the cookie and build the tools with `createTools`. When `trimHistory` drops messages, make one `generateText` call that summarizes them into `state.summary`. Send the summary as a system message in front of the kept messages.
-- [ ] `GET /api/session` returns the quote list and the dropped codes. `QuoteList.tsx` shows the list after a reload, and a note for dropped codes.
-- [ ] `safeExecute` on every tool. If the vector store fails, `searchProducts` falls back to exact code and name match and returns `degraded: true`. The prompt says to tell the client.
-- [ ] Prompt V1: the Week 14 rules plus the M2 to M4 rules, numbered. Update `docs/spec.md` so each rule there matches `lib/prompt.ts`.
-- [ ] Write sheets for rows 45 to 60. User reviews. Rebuild and re-seed. All 60 sheets are now done.
-- [ ] Deploy. Extend `scripts/verify-prod.ts` with the brownout flow from M3 and the quote from M4, run against the live URL.
+- [x] `middleware.ts` sets the cookie `cti_sid` (random UUID, httpOnly, SameSite=Lax, 7 days) when it is missing.
+- [x] Test first, `tests/session.redis.test.ts`: round trip, TTL set, `drops codes not in the catalogue`, and `trimHistory` keeps the last 12 messages.
+- [x] Implement `lib/session.ts`. `buildQuotation` and `recommendPowerStation` write to the session when `ctx.sessionId` is set.
+- [x] Route: read the cookie and build the tools with `createTools`. When `trimHistory` drops messages, make one `generateText` call that summarizes them into `state.summary`. Send the summary as a system message in front of the kept messages.
+- [x] `GET /api/session` returns the quote list and the dropped codes. `QuoteList.tsx` shows the list after a reload, and a note for dropped codes.
+- [x] `safeExecute` on every tool. If the vector store fails, `searchProducts` falls back to exact code and name match and returns `degraded: true`. The prompt says to tell the client.
+- [x] Prompt V1: the Week 14 rules plus the M2 to M4 rules, numbered. Update `docs/spec.md` so each rule there matches `lib/prompt.ts`.
+- [x] Write sheets for rows 45 to 60. User reviews. Rebuild and re-seed. All 60 sheets are now done. Written 4 Nov by three research agents: `npm run build:sheets` gives 60 sheets and 137 codes. The user reviewed them, and the index was re-seeded on 4 Nov: 1,316 vectors (1,056 products, 20 guide chunks, 240 sheet chunks). "What is a spine board used for" returns the `spine-board` sections at 0.84 to 0.88.
+- [x] ~~Deploy.~~ Moved to M10 (decided 4 Nov). Extend `scripts/verify-prod.ts` with the brownout flow from M3 and the quote from M4. Point its defaults at the capstone. Run it against the local dev server.
 
-**Exit condition:** on the live capstone URL, the brownout question gives the
+**Exit condition:** on the local dev server, the brownout question gives the
 ELITE320 recommendation. "Add it to a quote" gives a quote card with VAT. A
-page reload still shows the quote list. `npm run verify:prod` passes.
-`grade.ts` stays at 65/65. All 60 sheets are seeded.
+page reload still shows the quote list. `npm run verify:prod --
+http://localhost:3000` passes. `grade.ts` stays at 65/65. All 60 sheets are
+seeded.
 
 **Budget:** 5 h. **Cap:** 6 h, then Sun 8 is the buffer.
+
+**Surprises (4 Nov):**
+- The summary model invented a price. Given three messages ending "And FIR-001-10LBS?", it wrote "The FIR-001-10LBS is ₱45,999.00." It answered the question instead of summarizing it. Two fixes: the transcript goes inside `<transcript>` tags with "do not answer any question in the chat", and `stripPrices` in `lib/session.ts` drops every summary sentence with ₱, PHP, pesos or VAT. Code enforces the price rule, not the summary prompt. Test: `stripPrices drops every sentence that holds a price`. After the fix, 3 of 3 runs gave a summary with codes and no price.
+- The degraded search, with only the prompt rule (rule 15): "How much is MED-001-01?" gave the price but did not say that search was limited, in 1 of 1 runs. A `reply_rule` in the degraded result fixed it in 4 of 4 runs. This is the third time (after M4's quote and discount replies) that an instruction in a tool result beat one in the system prompt. With no items, the first reply said "I couldn't find any stethoscopes in the catalog", which is false. The reply rule now forbids "CTI does not carry it".
+- `trimHistory` is tested in `tests/session.test.ts`, not in the Redis file. It needs no Redis, so `npm test` and the prebuild run it.
+- `SessionState` has one more field than the interface: `summarized`, the number of old messages that the summary covers. Only newly dropped messages go to the summary model. If the client sends a shorter history (a reload), the count restarts.
+- `SIMULATE_VECTOR_FAILURE=1` came forward from M6, because the degraded path cannot be seen without it. The fallback is `exactMatches` in `lib/retrieval.ts` (steps 1 and 2 of `searchProducts`, moved out).
+- `getSession` saves the cleaned state when it drops codes, so the dropped-codes note shows once: either in the chat (the route reads first) or in the quote list.
+- `cleogo/cti-capstone` is already public on GitHub (`verify:prod` REPO check: `private: false`). The warning path was not needed.
+- `compareProducts(['PWR-001-06','FLA-001-13'])` now has `sheet_slug: 'headlight'`. The M2 test expected `null`, because FLA-001-13 had no sheet then. The test changed, not the code.
+- "Show me the quote for my saved list" took 27 s on the dev server once (`POST /api/chat in 27120ms`). The same flow took 3 s in another run. Not reproduced. A target for the M8 latency table.
+- After the re-seed, Upstash reported `pendingVectorCount` 876 for about 3 minutes. Queries made during that time hung, with no error and no timeout. They worked once the count reached 0. A re-seed before a demo or an eval run needs this wait.
+- The source agents could not load USCG, RNLI, Red Cross, USLA, NIH StatPearls, lawphil or DOLE pages. The water-rescue sheets cite Kiefer, Restube and Wikipedia for the rescue can and tube, which are weaker sources. The pen-light sheet has one sentence (keyhole, panel, bag) with no source. The Fox 40 sheet maps none of the three names to a Fox 40 model: Fox 40 makes no stainless whistle.
 
 ---
 
@@ -575,7 +596,7 @@ Tasks:
 - [ ] Optional: fine-tuning (PRD §19), only after everything else.
 - [ ] Screenshots of the live app and log excerpts go into `docs/evidence/`, in case the platform is down during grading.
 - [ ] Create the capstone Vercel project, linked to `cleogo/cti-capstone`, with the same env var names as `.env.local`. Deploy. Record the URL in M1 and in `.env.example` comments. One chat on the live URL shows a trace in Langfuse. (Moved from M1, 3 Nov.)
-- [ ] Final `verify:prod` run. Make the repo public. Submit the video, the URL and the repo.
+- [ ] Make the repo public. Final `npm run verify:prod -- <live URL> --require-public` run. Submit the video, the URL and the repo.
 
 **Exit condition:** submitted by Sun 15 Nov 2026.
 
@@ -591,7 +612,7 @@ Tasks:
 | M2 Details and compare | Tue 3 to Wed 4 | 4 h | 5 h | about 3 h, plus the sheet review (not timed). Inside budget. |
 | M3 Power-station recommender | Wed 4 to Thu 5 | 5 h | 6 h | Not timed. Closed Wed 4, one day ahead of the Gantt. The 16 sheets were researched by three parallel agents. |
 | M4 Quotation and escalation | Thu 5 to Fri 6 | 5 h | 6 h | Not timed. Built and closed Wed 4, before its Gantt bar opened. The 16 sheets were researched by three parallel agents. Two prompt fixes needed a code lever (`parallelToolCalls: false`, `reply_rule` in tool results). |
-| M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | |
+| M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | Not timed. Built Wed 4. The 16 sheets were researched by three parallel agents while the code was built. |
 | M6 Evaluation baseline | Mon 9 to Tue 10 | 6 h | 7 h | |
 | M7 Guardrails | Tue 10 to Wed 11 | 6 h | 7 h | |
 | M8 Caching and operations | Wed 11 to Thu 12 | 5 h | 6 h | |

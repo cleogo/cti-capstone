@@ -1310,6 +1310,54 @@
     "cautions": "- The masterlist name does not state the cabinet material, the cabinet size or the hose pressure rating. Ask CTI sales.\n- U.S. OSHA requires standpipe hose to have a shut-off type nozzle.\n- U.S. OSHA requires hose cabinets to be clearly identified and used only for fire equipment.\n- U.S. OSHA requires an inspection at least once a year and after each use.\n- U.S. OSHA requires other protection, such as extinguishers, while a hose system is out of service.\n- Clean a jacketed hose with a soft brush and mild soap. Then rinse it and dry it."
   },
   {
+    "slug": "first-aid-kit-176",
+    "kind": "type",
+    "codes": [
+      "LIF-002-04"
+    ],
+    "sources": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.151AppA",
+      "https://www.osha.gov/sites/default/files/publications/OSHA3317first-aid.pdf",
+      "https://www.hse.gov.uk/simple-health-safety/firstaid/what-to-put-in-your-first-aid-kit.htm",
+      "https://stjohn.org.au/app/uploads/2025/08/Fact-sheet-first-aid-kits.pdf"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "First aid kit"
+      },
+      {
+        "label": "Piece count",
+        "value": "176 pcs"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A first aid kit holds supplies for first aid: the care given for an injury or sudden illness before medical treatment is available. The masterlist states only that this kit has 176 pieces. It does not state the contents of CTI's kit, or if the kit meets a standard such as U.S. ANSI Z308.1 or UK BS 8599. Ask CTI sales for the content list.",
+    "advantages": "- It keeps first aid supplies together in one place.\n- It can be kept in a home, a workplace or a vehicle.",
+    "cautions": "- Compare the contents with your needs before you rely on the kit. U.S. OSHA advises employers to assess the needs of their worksite periodically and to add to the kit as needed.\n- U.S. OSHA cites ANSI Z308.1 as an example of the minimum contents of a generic workplace kit. The masterlist does not state that CTI's kit meets ANSI Z308.1.\n- UK HSE says that a minimum kit for low-risk work might contain a first aid guidance leaflet, individually wrapped sterile plasters of assorted sizes, sterile eye pads, individually wrapped triangular bandages, safety pins, large and medium sterile unmedicated wound dressings, and disposable gloves.\n- For large or multiple operations at one site, U.S. OSHA advises employers to decide if they need more kits.\n- U.S. OSHA says that first aid supplies must be readily accessible. Make sure that everybody knows where the kit is kept.\n- Check the kit regularly. St John Ambulance Australia advises to check that packets are sealed, that no item is past its expiry date, and that used items are replaced.\n- A kit does not replace first aid training. U.S. OSHA requires a person trained in first aid at a worksite that is not near an infirmary, clinic or hospital.\n- St John Ambulance Australia advises each person to carry their own medicines."
+  },
+  {
+    "slug": "first-aid-kit-basic",
+    "kind": "type",
+    "codes": [
+      "LIF-002-06"
+    ],
+    "sources": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.151AppA",
+      "https://www.osha.gov/sites/default/files/publications/OSHA3317first-aid.pdf",
+      "https://www.hse.gov.uk/simple-health-safety/firstaid/what-to-put-in-your-first-aid-kit.htm",
+      "https://stjohn.org.au/app/uploads/2025/08/Fact-sheet-first-aid-kits.pdf"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "First aid kit"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A first aid kit holds supplies for first aid: the care given for an injury or sudden illness before medical treatment is available. The masterlist states only the name \"First AID KIT\". It does not state the piece count, the contents or the case of CTI's kit, or if the kit meets a standard such as U.S. ANSI Z308.1 or UK BS 8599. Ask CTI sales for the content list. CTI also lists a 176-piece kit, LIF-002-04.",
+    "advantages": "- It keeps first aid supplies together in one place.\n- It can be kept in a home, a workplace or a vehicle.",
+    "cautions": "- Compare the contents with your needs before you rely on the kit. U.S. OSHA advises employers to assess the needs of their worksite periodically and to add to the kit as needed.\n- U.S. OSHA cites ANSI Z308.1 as an example of the minimum contents of a generic workplace kit. The masterlist does not state that CTI's kit meets ANSI Z308.1.\n- UK HSE says that a minimum kit for low-risk work might contain a first aid guidance leaflet, individually wrapped sterile plasters of assorted sizes, sterile eye pads, individually wrapped triangular bandages, safety pins, large and medium sterile unmedicated wound dressings, and disposable gloves.\n- For large or multiple operations at one site, U.S. OSHA advises employers to decide if they need more kits.\n- U.S. OSHA says that first aid supplies must be readily accessible. Make sure that everybody knows where the kit is kept.\n- Check the kit regularly. St John Ambulance Australia advises to check that packets are sealed, that no item is past its expiry date, and that used items are replaced.\n- A kit does not replace first aid training. U.S. OSHA requires a person trained in first aid at a worksite that is not near an infirmary, clinic or hospital.\n- St John Ambulance Australia advises each person to carry their own medicines."
+  },
+  {
     "slug": "flash-alarm",
     "kind": "type",
     "codes": [
@@ -1334,6 +1382,125 @@
     "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A flash alarm gives a fire warning with a flashing light. UK maker Apollo calls this type a visual alarm device. A visual alarm device can be a separate unit. It can also be part of a sounder or a smoke detector. UK guidance says visual alarms can be necessary in noisy areas. They can also be necessary for people with hearing loss.",
     "advantages": "- It warns people who are deaf or hard of hearing.\n- It warns people in high ambient noise and people who wear ear defenders.\n- Scottish fire service guidance lists flashing lights among the alarms for people who cannot hear well.",
     "cautions": "- The masterlist name does not state the flash rate, the light colour or the voltage of CTI's unit.\n- Apollo says EN 54-23 covers visual alarm devices that are the primary warning. These devices flash at 0.5 to 2 Hz.\n- Apollo says other lights are auxiliary indicators only. They are not the primary means of alarm warning.\n- U.S. OSHA says an employee alarm must be perceivable above the ambient noise or light by all employees.\n- U.S. OSHA says tactile devices can alert employees who cannot recognize an audible or visual alarm.\n- Scottish fire service guidance also lists vibrating pads for people who cannot hear well."
+  },
+  {
+    "slug": "flashlight-511",
+    "kind": "type",
+    "codes": [
+      "FLA-001-15"
+    ],
+    "sources": [
+      "https://www.cdc.gov/natural-disasters/psa-toolkit/proper-use-of-candles-during-a-power-outage.html",
+      "https://www.ready.gov/earthquakes",
+      "https://beready.utah.gov/?p=4067"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Flashlight (as named on the masterlist)"
+      },
+      {
+        "label": "Name on the masterlist",
+        "value": "Flash LIGHT-511"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. The masterlist states only the name \"Flash LIGHT-511\". It does not say if \"511\" is a brand, a model number or a size. Do not assume that it is a product of a brand with a similar name. A flashlight is a portable, hand-held light. U.S. CDC advises flashlights or other battery-powered lights instead of candles when the power is out. U.S. Ready.gov lists a flashlight in an earthquake supply kit. The masterlist does not state the brightness, the runtime or the battery type of CTI's unit. Ask CTI sales.",
+    "advantages": "- It gives light with no flame, so it is safer than a candle in a power outage.\n- Be Ready Utah, a U.S. state preparedness site, says that a repeated series of three flashes calls for help at night.",
+    "cautions": "- The masterlist does not state the maker or what \"511\" means. Ask CTI sales which product it is.\n- The masterlist does not state the battery type or the runtime. Ask CTI sales.\n- Keep extra batteries with the flashlight, and test it regularly.\n- Do not point the light into the eyes of other people."
+  },
+  {
+    "slug": "flashlight",
+    "kind": "type",
+    "codes": [
+      "FLA-001-14"
+    ],
+    "sources": [
+      "https://www.ready.gov/kit",
+      "https://www.ready.gov/power-outages",
+      "https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/candle"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Flashlight (as named on the masterlist)"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A flashlight is a portable, hand-held light. U.S. Ready.gov lists a flashlight and extra batteries in a basic disaster supplies kit. It also says to have flashlights for every household member for a power outage. The masterlist states only the name. It does not state the brightness, the runtime or the battery type of CTI's unit. Ask CTI sales.",
+    "advantages": "- It gives light during a power outage, with no flame.\n- U.S. USFA says to use flashlights, not candles, if you have a power outage.\n- It is small enough to keep in a drawer, a vehicle or an emergency kit.",
+    "cautions": "- The masterlist does not state the battery type or the runtime. Ask CTI sales.\n- Keep extra batteries with the flashlight.\n- Test the flashlight regularly. U.S. Ready.gov says to replace expired items in an emergency kit as needed.\n- Do not point the light into the eyes of other people."
+  },
+  {
+    "slug": "fox-40-whistles",
+    "kind": "model",
+    "codes": [
+      "WHI-001-09",
+      "WHI-001-10",
+      "WHI-001-11"
+    ],
+    "sources": [
+      "https://www.fox40world.com/whistles-attachments",
+      "https://www.fox40world.com/classic",
+      "https://www.fox40world.com/pea-vs-pealess",
+      "https://www.fox40world.com/titan"
+    ],
+    "specs": [
+      {
+        "label": "Brand",
+        "value": "Fox 40"
+      },
+      {
+        "label": "Masterlist name (WHI-001-09)",
+        "value": "FOX 40 OLD"
+      },
+      {
+        "label": "Masterlist name (WHI-001-10)",
+        "value": "FOX 40 Hand Held"
+      },
+      {
+        "label": "Masterlist name (WHI-001-11)",
+        "value": "FOX 40 Stainess"
+      },
+      {
+        "label": "Fox 40 model",
+        "value": "Not confirmed for any of the three codes. Ask CTI sales."
+      }
+    ],
+    "usage": "Fox 40 makes whistles for referees, coaches, rescue and general safety. Its official range has more than 20 whistles, for example the Classic, Classic CMG, Mini, Sonik Blast CMG and Super Force CMG. It also has Fingergrip models and electronic whistles. The masterlist names do not match a Fox 40 model name. No source confirms which Fox 40 model each CTI code is. Ask CTI sales which model you will get before you rely on a spec.",
+    "advantages": "- Fox 40 says that its pealess whistles have no moving parts, so they cannot jam as a pea whistle can.\n- Fox 40 says that the Classic, its first pealess whistle, has a sound power of 115 dB and chambers that self-clear in water. These figures apply only if CTI's unit is a Classic.\n- A Fox 40 mouth whistle needs no battery. Only the electronic models use batteries.",
+    "cautions": "- \"FOX 40 OLD\" does not map to a Fox 40 model name. It can be an older design, but no source confirms this. Ask CTI sales.\n- \"FOX 40 Hand Held\" does not map to one Fox 40 model. Fox 40 sells Fingergrip whistles and electronic push-button whistles. Ask CTI sales which one it is.\n- \"FOX 40 Stainess\" can mean stainless steel. The official Fox 40 whistle range shows no stainless steel whistle. Its only metal whistle on the range page is the Titan, which Fox 40 describes as titanium. Ask CTI sales what this item is.\n- Sound levels are different for each model. For example, Fox 40 states 115 dB for the Classic and 90 dB for the Titan. Do not use the figure of one model for another.\n- Do not blow a whistle close to the ear of another person."
+  },
+  {
+    "slug": "headlight",
+    "kind": "type",
+    "codes": [
+      "FLA-001-13"
+    ],
+    "sources": [
+      "https://www.nps.gov/articles/10essentials.htm",
+      "https://www.ready.gov/kit",
+      "https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/candle"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Headlight (as named on the masterlist)"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. The masterlist lists this item with flashlights. A headlight of this kind is a light that you wear on your head, also called a headlamp. It keeps both hands free for work, climbing or carrying. U.S. NPS says that lighting helps you find your way at night and signal for help. The masterlist states only the name. It does not state the brightness, the runtime, the battery type or the strap type of CTI's unit. Ask CTI sales.",
+    "advantages": "- U.S. NPS recommends headlamps as a light source because they are hands-free.\n- The light points where the wearer looks.\n- U.S. Ready.gov lists a flashlight in a basic disaster supplies kit. A headlamp can do the same job.",
+    "cautions": "- The masterlist does not state the battery type or the runtime. Ask CTI sales before you buy for a long task.\n- U.S. NPS says to pack extra batteries.\n- Test the light and replace the batteries before you store it in an emergency kit.\n- U.S. USFA says to use flashlights, not candles, if you have a power outage.\n- Do not point the light into the eyes of other people."
   },
   {
     "slug": "heat-alarm",
@@ -1382,6 +1549,255 @@
     "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. The masterlist name suggests a sounder with an LED light. A sounder beacon combines a sounder with a light. One maker's sounder beacon uses LED technology. Its sound is the primary alarm, and its light is a supplementary indication. UK guidance says sounders alert the occupants of a building.",
     "advantages": "- One device can give both sound and light.\n- One maker says its LED sounder beacon gives this sound and light at a very low current draw.",
     "cautions": "- The masterlist name does not state the sound level, the tones, the light colour or the voltage of CTI's unit.\n- Ask CTI sales if CTI's unit gives sound, light or both.\n- Not every light on a sounder is a visual alarm device. UK maker Apollo says EN 54-23 covers lights that are the primary warning.\n- Apollo says other lights are auxiliary indicators only. Do not use such a light as the only warning for people who cannot hear.\n- U.S. OSHA says an employee alarm must be perceivable above the ambient noise or light by all employees.\n- U.S. OSHA says the alarm must be distinctive and recognizable as a signal to evacuate.\n- UK guidance says the warning signal and the sound level must suit the premises."
+  },
+  {
+    "slug": "life-jacket-hd",
+    "kind": "type",
+    "codes": [
+      "LIF-001-03A",
+      "LIF-001-03B"
+    ],
+    "sources": [
+      "https://www.safekids.org/node/33589",
+      "https://www.oregon.gov/osmb/boater-info/Pages/Life-Jackets.aspx",
+      "https://www.who.int/news-room/fact-sheets/detail/drowning",
+      "https://www.gmanetwork.com/news/topstories/nation/131741/coast-guard-orders-tight-enforcement-of-life-jacket-rule-for-sea-travel/story/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Life jacket"
+      },
+      {
+        "label": "Grade",
+        "value": "HD (the masterlist does not define HD)"
+      },
+      {
+        "label": "Sizes",
+        "value": "kids (LIF-001-03A), adult (LIF-001-03B)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A life jacket is worn on the body. It keeps the wearer's head above water. The masterlist does not define \"HD\". It probably means heavy duty. Confirm the difference between the HD and ORD jackets with CTI sales. The masterlist does not state the buoyancy, the wearer weight range, the material or any certification of CTI's jackets. Ask CTI sales before you choose a jacket for a person. In the Philippines, the Coast Guard has enforced a MARINA rule that passengers wear life jackets during a sea trip.",
+    "advantages": "- A life jacket keeps a person afloat without effort, also when the person is tired or hurt.\n- A worn life jacket works at once. The wearer does not need to find a float in the water.\n- The kids and adult sizes let one supplier equip a family or a group.",
+    "cautions": "- A life jacket does not replace supervision. U.S. Safe Kids Worldwide says that life jackets are not a substitute for close supervision of children.\n- WHO says that the risk of drowning increases when children are near water without active adult supervision.\n- A child needs a jacket that fits the child's weight. Safe Kids Worldwide says to make sure that the jacket is appropriate for the child's weight and intended water activity.\n- Do not buy a jacket for a child to grow into. U.S. Oregon State Marine Board guidance says this.\n- Do a fit test. Pull up on the jacket at the shoulders. If it hits the child's chin or ears, it may be too big.\n- Fasten all straps and buckles. A life jacket must be snug but comfortable.\n- Check the label for the wearer weight range before use. The masterlist does not state it.\n- Wear the jacket at all times on or near the water. A jacket that is not worn cannot help."
+  },
+  {
+    "slug": "life-jacket-inflatable",
+    "kind": "type",
+    "codes": [
+      "LIF-001-06"
+    ],
+    "sources": [
+      "https://www.oregon.gov/osmb/boater-info/Pages/Life-Jackets.aspx",
+      "https://www.boat-ed.com/blog/pros-and-cons-of-inflatable-life-jackets/",
+      "https://www.safekids.org/node/33589"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Inflatable life jacket"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. An inflatable life jacket is flat and light until it inflates. A gas cylinder fills it. A manual jacket inflates when the wearer pulls a cord. An automatic jacket inflates when it goes under water. The masterlist does not state if CTI's jacket is manual or automatic, its buoyancy, its wearer weight range or any certification. Ask CTI sales.",
+    "advantages": "- It is lighter and less bulky than a foam life jacket.\n- It is cool and comfortable to wear in hot weather.\n- After it inflates, it usually gives more buoyancy than most foam vests.",
+    "cautions": "- It is not for children. U.S. Oregon State Marine Board guidance says that the U.S. Coast Guard does not approve inflatable life jackets for users under 16 years old.\n- A child needs a foam jacket that fits the child's weight. U.S. Safe Kids Worldwide says to make sure that the jacket is appropriate for the child's weight and intended water activity.\n- A life jacket does not replace supervision. Safe Kids Worldwide says that life jackets are not a substitute for close supervision of children.\n- It is not recommended for non-swimmers. A foam jacket is a better choice for them.\n- It gives no flotation if the inflation system fails, or if the wearer forgets to pull the cord of a manual jacket.\n- It is not suitable for high-impact water sports, such as jet skiing or whitewater rafting.\n- Test the inflation mechanism every year.\n- Replace the gas cylinder when it expires and after each inflation."
+  },
+  {
+    "slug": "life-jacket-ord",
+    "kind": "type",
+    "codes": [
+      "LIF-001-04A",
+      "LIF-001-04B"
+    ],
+    "sources": [
+      "https://www.safekids.org/node/33589",
+      "https://www.oregon.gov/osmb/boater-info/Pages/Life-Jackets.aspx",
+      "https://www.who.int/news-room/fact-sheets/detail/drowning",
+      "https://www.gmanetwork.com/news/topstories/nation/131741/coast-guard-orders-tight-enforcement-of-life-jacket-rule-for-sea-travel/story/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Life jacket"
+      },
+      {
+        "label": "Grade",
+        "value": "ORD (the masterlist does not define ORD)"
+      },
+      {
+        "label": "Sizes",
+        "value": "kids (LIF-001-04A), adult (LIF-001-04B)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A life jacket is worn on the body. It keeps the wearer's head above water. The masterlist does not define \"ORD\". It probably means ordinary. Confirm the difference between the ORD and HD jackets with CTI sales. The masterlist does not state the buoyancy, the wearer weight range, the material or any certification of CTI's jackets. Ask CTI sales before you choose a jacket for a person. In the Philippines, the Coast Guard has enforced a MARINA rule that passengers wear life jackets during a sea trip.",
+    "advantages": "- A life jacket keeps a person afloat without effort, also when the person is tired or hurt.\n- A worn life jacket works at once. The wearer does not need to find a float in the water.\n- The kids and adult sizes let one supplier equip a family or a group.",
+    "cautions": "- A life jacket does not replace supervision. U.S. Safe Kids Worldwide says that life jackets are not a substitute for close supervision of children.\n- WHO says that the risk of drowning increases when children are near water without active adult supervision.\n- A child needs a jacket that fits the child's weight. Safe Kids Worldwide says to make sure that the jacket is appropriate for the child's weight and intended water activity.\n- Do not buy a jacket for a child to grow into. U.S. Oregon State Marine Board guidance says this.\n- Do a fit test. Pull up on the jacket at the shoulders. If it hits the child's chin or ears, it may be too big.\n- Fasten all straps and buckles. A life jacket must be snug but comfortable.\n- Check the label for the wearer weight range before use. The masterlist does not state it.\n- Wear the jacket at all times on or near the water. A jacket that is not worn cannot help."
+  },
+  {
+    "slug": "life-ring",
+    "kind": "type",
+    "codes": [
+      "LIF-001-01A",
+      "LIF-001-01B"
+    ],
+    "sources": [
+      "https://ncwildlife.gov/types-pfdspdf/open",
+      "https://boat-ed.com/ohio/studyGuide/Type-IV-PFDs-Throwable-Devices-Not-Wearable/10103602_42844",
+      "https://www.aquaticsintl.com/?p=14789",
+      "https://www.cheshirefire.gov.uk/your-safety/water-safety/what-to-do-in-a-water-emergency/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Life ring"
+      },
+      {
+        "label": "Sizes",
+        "value": "small (LIF-001-01A), big (LIF-001-01B)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A life ring is also called a ring buoy or a lifebuoy. A rescuer on a boat, a dock or the shore throws it to a person in the water. The person holds on to it and stays afloat. The U.S. Coast Guard classes a ring buoy as a Type IV throwable device: it is designed to be thrown, not worn. The masterlist does not state the buoyancy, the diameter, the material, any approval of CTI's rings, or if a throw line is included. Ask CTI sales.",
+    "advantages": "- The rescuer can help a person in the water without going into the water.\n- A ring with a throw line lets the rescuer pull the person back to the edge.\n- It is ready to use at once. It needs no inflation.",
+    "cautions": "- U.S. boating guidance says that a throwable device is not for a person who cannot hold on to it, and not for rough water.\n- It is not a life jacket. Do not use it in place of one.\n- Before you throw, stand on the free end of the throw line, so that the line does not go into the water with the ring.\n- Throw underhand. Aim the ring to land just past the person, so that the line falls near the person's shoulder.\n- UK Cheshire Fire and Rescue Service advises: never go into the water yourself. If you feel yourself being pulled in, let go.\n- Call the emergency services as soon as you see a person in difficulty.\n- Keep the ring where people can get it immediately. U.S. rules say a throwable device must be immediately available.\n- Inspect the ring and the line for cracks, tears and wear."
+  },
+  {
+    "slug": "pen-light",
+    "kind": "type",
+    "codes": [
+      "WHI-001-12"
+    ],
+    "sources": [
+      "https://www.ready.gov/kit",
+      "https://www.nps.gov/articles/10essentials.htm",
+      "https://beready.utah.gov/?p=4067"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Pen light (as named on the masterlist)"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A pen light is a small light with the shape and size of a pen. The masterlist lists it with whistles and signaling devices. It is useful to light a small area, for example a keyhole, a panel or the inside of a bag. U.S. NPS says that lighting can help you find your way at night or signal for help. The masterlist states only the name. It does not state the brightness, the runtime or the battery type of CTI's unit. Ask CTI sales.",
+    "advantages": "- It is small enough to carry in a pocket.\n- It can go in an emergency kit. U.S. Ready.gov lists a flashlight and extra batteries in a basic kit.\n- Be Ready Utah, a U.S. state preparedness site, says that a repeated series of three flashes calls for help at night.",
+    "cautions": "- A pen light is small. It does not light a large area as a full-size flashlight does.\n- The masterlist does not state the battery type or the runtime. Ask CTI sales.\n- Keep extra batteries, and test the light before you store it in a kit.\n- Do not point the light into the eyes of other people."
+  },
+  {
+    "slug": "rescue-can",
+    "kind": "type",
+    "codes": [
+      "LIF-001-08A",
+      "LIF-001-08B"
+    ],
+    "sources": [
+      "https://kiefer.com/blogs/blog/rescue-cans-lifeguard",
+      "https://en.wikipedia.org/wiki/Rescue_buoy",
+      "https://restube.com/blogs/news/what-exactly-is-a-rescue-can-and-what-kind-of-rescue-cans-are-available-for-swimmers"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Rescue can"
+      },
+      {
+        "label": "Sizes",
+        "value": "small (LIF-001-08A), big (LIF-001-08B)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A rescue can is also called a rescue buoy or a torpedo buoy. It is a rigid float with handles. A rope connects it to a strap that the lifeguard wears. The lifeguard swims to the person with the can trailing behind. The person holds the handles, and the lifeguard tows the person to safety. Rescue cans are standard equipment for beach and other open-water lifeguards. The masterlist does not state the buoyancy, the material, the dimensions or the difference between the small and big cans. Ask CTI sales.",
+    "advantages": "- The can supports the weight of the person and helps the rescuer stay afloat. This makes the rescue safer for the rescuer.\n- A rescue buoy generally has more buoyancy than a rescue tube, so it can help more than one person.\n- The handles give the person a firm grip.",
+    "cautions": "- It is equipment for trained rescuers. Using it properly needs practice. Lifeguard training is recommended.\n- The can is rigid. In surf, it can hit and hurt people.\n- The person must be able to hold on to the handles.\n- Currents, waves and wind can change rapidly. Do not go into the water to rescue a person unless you are trained.\n- Inspect the can, the rope and the strap for cracks and wear before use."
+  },
+  {
+    "slug": "rescue-rope",
+    "kind": "type",
+    "codes": [
+      "LIF-001-12-R10M",
+      "LIF-001-12-R20M",
+      "LIF-001-12-R30M",
+      "LIF-001-12-R40M",
+      "LIF-001-12-R50M",
+      "LIF-001-12-R60M",
+      "LIF-001-12-R70M",
+      "LIF-001-12-R80M",
+      "LIF-001-12-R90M",
+      "LIF-001-12-R100M",
+      "LIF-001-12-R150M",
+      "LIF-001-12-R200M"
+    ],
+    "sources": [
+      "https://www.law.cornell.edu/regulations/washington/WAC-296-305-02019",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.140",
+      "https://sterlingrope.com/sterling-solid/four-easy-rope-care-techniques/",
+      "https://www.cheshirefire.gov.uk/your-safety/water-safety/what-to-do-in-a-water-emergency/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Rescue rope"
+      },
+      {
+        "label": "Lengths",
+        "value": "10 m to 200 m (12 codes)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A rescue rope is used to reach, lower or pull a person in a rescue. In a water rescue, a person on the bank throws a line to the person in the water and pulls them to the side. UK Cheshire Fire and Rescue Service advises that you never enter the water yourself, no matter what. Safe rope rescue needs training. The masterlist does not state the material, diameter, construction or strength of CTI's rope, or if it floats. It also does not state if the rope is certified as life safety rope. Ask CTI sales.",
+    "advantages": "- A thrown line lets a rescuer help a person in the water from the bank. UK Cheshire Fire and Rescue Service says that a throw line is better than a floating object, if one is available.\n- The masterlist has 12 lengths from 10 m to 200 m. Choose the length that suits the distance or height of the task.",
+    "cautions": "- A rescue rope is not a fall-arrest line or a life safety line unless its maker rates it so. Read the rope's label and the maker's instructions.\n- Washington State, U.S., requires that ropes which support the weight of firefighters or other persons be life safety rope that meets NFPA 1983.\n- U.S. OSHA requires that fall protection lifelines be used only for employee fall protection and not for any other purpose, such as hoisting materials.\n- Washington State, U.S., requires fire departments to keep written procedures for rope rescue and to use qualified inspectors for life safety rope.\n- Inspect the rope before and after each use.\n- Remove a rope from service if it has heat, flame, chemical or abrasion damage, or if it has held an impact load. If you doubt that a rope is safe, take it out of service.\n- Pad the rope where it runs over edges or rough surfaces.\n- Keep ropes away from chemicals. Sterling Rope says that even the fumes can damage the fibres, and that the damage can be invisible.\n- Sterling Rope advises to retire a rope at once after exposure to excessive UV light, sharp edges or chemical contamination.\n- Wash a rope in mild soap and water and hang it to dry in the shade. Do not put it in a dryer."
+  },
+  {
+    "slug": "rescue-tube",
+    "kind": "type",
+    "codes": [
+      "LIF-001-09"
+    ],
+    "sources": [
+      "https://kiefer.com/blogs/blog/lifeguard-rescue-tubes",
+      "https://lifesaving.bc.ca/wp-content/uploads/2024/09/Rescue-Tube-Safety-Information-Bulletin.pdf",
+      "https://en.wikipedia.org/wiki/Rescue_buoy"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Rescue tube"
+      },
+      {
+        "label": "Sizes",
+        "value": "small, big (both under code LIF-001-09)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A rescue tube is a soft, flexible foam float. A line connects it to a harness that the lifeguard wears. The lifeguard can wrap the tube around the person and clip it closed, then tow the person to safety. Rescue tubes are common lifeguard equipment at pools and waterparks. The masterlist does not state the length, the buoyancy, the material or the difference between the small and big tubes. Ask CTI sales.",
+    "advantages": "- The tube supports the weight of the person and the rescuer.\n- When the tube is clipped around the person, the lifeguard can tow the person without losing the swim stroke.\n- The soft, flexible tube is less hazardous in surf than a rigid rescue can.\n- Canada's Lifesaving Society BC & Yukon calls the effective use of a rescue aid a safety precaution for lifeguards.",
+    "cautions": "- It is equipment for trained rescuers. Canada's Lifesaving Society BC & Yukon says that lifeguards must be trained to rescue with and without an aid.\n- Hold the tube where it is quickly accessible and under control, for example across the front of the waist.\n- Do not let the line drag on the ground or cross in front of your legs.\n- For a dive entry, drop the tube into the water first. Do not dive on top of the tube or its line.\n- A rescue tube generally has less buoyancy than a rescue can.\n- Inspect the tube, the line, the clips and the harness for damage before use."
+  },
+  {
+    "slug": "rescue-whistle",
+    "kind": "type",
+    "codes": [
+      "WHI-001-08"
+    ],
+    "sources": [
+      "https://www.ready.gov/kit",
+      "https://www.ready.gov/earthquakes",
+      "https://beready.utah.gov/?p=4067",
+      "https://www.fox40world.com/pea-vs-pealess"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Rescue whistle (as named on the masterlist)"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A rescue whistle lets a person call for help with less effort than shouting. U.S. Ready.gov lists a whistle to signal for help in a basic disaster supplies kit. If you are trapped after an earthquake, U.S. Ready.gov says to cover your mouth and use a whistle instead of shouting. Be Ready Utah, a U.S. state preparedness site, says that three blasts of a whistle are a universal signal of distress. The masterlist states only the name. It does not state the sound level or the material of CTI's whistle, or if it has a pea. Ask CTI sales.",
+    "advantages": "- Be Ready Utah says that the sound of a whistle carries farther than a voice and takes less effort.\n- It needs no battery or power.\n- It is small and light. You can attach it to keys, a bag or a life jacket.",
+    "cautions": "- The masterlist does not state if CTI's whistle has a pea. Ask CTI sales.\n- One whistle maker (Fox 40) says that a pea whistle can jam from moisture, dirt or ice, and then gives no sound.\n- Keep the whistle where you can reach it fast, for example on a cord or in an emergency kit.\n- Do not blow a whistle close to the ear of another person."
   },
   {
     "slug": "rope-ladder",
@@ -1556,5 +1972,27 @@
     "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A smoke alarm senses smoke and makes a loud alarm sound. The two main sensor types are ionization and photoelectric. U.S. CPSC says that an ionization sensor responds more quickly to flaming fires. A photoelectric sensor responds more quickly to smoldering fires. U.S. CPSC advises a smoke alarm on every level of the home, inside each bedroom and outside sleeping areas. Install it in the center of a ceiling, or on a wall near the ceiling.",
     "advantages": "- A smoke alarm operates 24 hours a day. It gives early warning of a fire, also when people sleep.\n- U.S. CPSC says that working smoke alarms can reduce the risk of death in a home fire by almost half.",
     "cautions": "- The masterlist does not name the maker of the SD-604PC. A web search found no single maker for this model number.\n- The masterlist name does not state the sensor type or the power source. Ask CTI sales for these details.\n- U.S. USFA says to test all smoke alarms every month.\n- U.S. USFA says to replace a smoke alarm 10 years after its date of manufacture.\n- U.S. CPSC says not to install a smoke alarm near a kitchen appliance or a fireplace. This prevents nuisance alarms.\n- U.S. CPSC also says to keep alarms away from bathrooms, heating appliances, windows and ceiling fans."
+  },
+  {
+    "slug": "spine-board",
+    "kind": "type",
+    "codes": [
+      "LIF-001-10"
+    ],
+    "sources": [
+      "https://trauma.georgia.gov/document/document/dems-spinal-precautions-and-use-long-backboard-resource-document-position/download",
+      "https://naemsp.org/2020-7-25-article-bites-21-spinal-motion-restriction-in-trauma-a-joint-position-statement/",
+      "https://www3.ha.org.hk/qmh/department/Special%20Services/Trauma/download/CCTmS_Recommendation_EarlyRemovalofSpinalBoard_2023.pdf",
+      "https://cdn.laerdal.com/downloads/f6971/dfu_for_baxstrap"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Spine board"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A spine board is also called a long backboard or spineboard. It is a rigid, full-length board. Rescuers use it with a cervical collar and a head immobilizer to limit the movement of a patient with a possible spinal injury. The Hong Kong Hospital Authority says that a spinal board is used to extricate a trauma patient and transfer the patient from the scene to hospital. Safe use needs training. One maker, Laerdal, says that spinal immobilization devices should only be used by personnel who have received adequate training. The masterlist does not state the material, size, load rating or straps of CTI's board. Ask CTI sales.",
+    "advantages": "- U.S. NAEMSP and ACS-COT call the backboard a useful spinal protection tool during extrication.\n- U.S. NAEMSP advises a long spine board, a scoop stretcher or a vacuum mattress to help with patient transfers. Transfer is one of the riskiest times for more injury to the spine.\n- Some boards let the patient stay on the board for X-ray, CT and MRI. The masterlist does not state this for CTI's board.",
+    "cautions": "- Use a spine board only with enough trained people. The Hong Kong Hospital Authority asks for an adequate number of trained personnel to keep the whole spine in a neutral position during a logroll or a transfer.\n- Use a spine board only when local protocol calls for it.\n- U.S. NAEMSP and ACS-COT say that backboards can cause respiratory compromise, pain and pressure sores. They advise judicious use.\n- Remove the patient from the board as soon as it is clinically indicated. The Hong Kong Hospital Authority recommends removal after the primary survey at hospital, or once the patient is stable.\n- The Hong Kong Hospital Authority says that a spinal board has no role in penetrating trauma.\n- Secure the patient with the straps. Secure the head last, with a head immobilization device.\n- Inspect the board before each use. Stop using a board that has cracks, punctures or broken pins.\n- The masterlist does not state if CTI's board comes with straps or a head immobilizer. Ask CTI sales."
   }
 ]

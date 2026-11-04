@@ -4,6 +4,7 @@ import { useChat } from '@ai-sdk/react';
 import { ChatMessage } from './components/ChatMessage';
 import { EmptyState } from './components/EmptyState';
 import { SourcesPanel } from './components/SourcesPanel';
+import { QuoteList } from './components/QuoteList';
 import { sourcesFromMessage } from '@/lib/sources';
 
 export default function Page() {
@@ -23,6 +24,12 @@ export default function Page() {
   const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant');
   const panelSources = lastAssistant ? sourcesFromMessage(lastAssistant) : [];
 
+  // A new quotation result refreshes the saved quote list.
+  const quoteResults = messages.reduce(
+    (n, m) => n + (m.toolInvocations ?? []).filter((inv) => inv.toolName === 'buildQuotation' && inv.state === 'result').length,
+    0,
+  );
+
   function askChip(prompt: string) {
     append({ role: 'user', content: prompt });
   }
@@ -38,6 +45,7 @@ export default function Page() {
 
       <div className="flex gap-6">
         <div className="min-w-0 flex-1">
+          <QuoteList refreshKey={quoteResults} />
           {messages.length === 0 ? (
             <EmptyState onPick={askChip} />
           ) : (

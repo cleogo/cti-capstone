@@ -13,9 +13,15 @@
  * solely to learn which literal strings must NOT appear in the bundle, and it
  * never prints a secret -- only whether one was found and where.
  *
+ * Capstone (M5): it also runs the brownout recommendation, then "Add it to a
+ * quote" as a NEW conversation with the same session cookie, then reads
+ * GET /api/session. That proves the quote comes from session memory.
+ * The capstone has no live URL until M10, so the default is the local dev
+ * server. The public-repo check is a warning until --require-public (M10).
+ *
  * Run:
- *   npm run verify:prod
- *   npm run verify:prod -- https://some-preview-url.vercel.app
+ *   npm run verify:prod -- http://localhost:3000
+ *   npm run verify:prod -- https://<live-url> --require-public
  */
 import { config } from 'dotenv';
 config({ path: '.env.local' });
@@ -23,21 +29,27 @@ config({ path: '.env.local' });
 const PROD_URL = (
   process.argv.slice(2).find((a) => a.startsWith('http')) ??
   process.env.PROD_URL ??
-  'https://cti-product-assistant.vercel.app'
+  'http://localhost:3000'
 ).replace(/\/$/, '');
 
-const REPO = 'cleogo/cti-product-assistant';
+const REPO = 'cleogo/cti-capstone';
+const REQUIRE_PUBLIC = process.argv.includes('--require-public');
+
+/** The cti_sid cookie that middleware.ts sets on the first page load. */
+let sessionCookie = '';
 
 // ---------------------------------------------------------------------------
 // reporting
 // ---------------------------------------------------------------------------
 
-type Check = { id: string; label: string; ok: boolean; detail: string };
+type Check = { id: string; label: string; ok: boolean; warn: boolean; detail: string };
 const checks: Check[] = [];
 
-function record(id: string, label: string, ok: boolean, detail: string) {
-  checks.push({ id, label, ok, detail });
-  console.log(`${ok ? 'PASS' : 'FAIL'}  ${id.padEnd(4)} ${label}\n      ${detail}`);
+/** A failed check with warnOnly set prints WARN and does not fail the run. */
+function record(id: string, label: string, ok: boolean, detail: string, warnOnly = false) {
+  const warn = !ok && warnOnly;
+  checks.push({ id, label, ok, warn, detail });
+  console.log(`${ok ? 'PASS' : warn ? 'WARN' : 'FAIL'}  ${id.padEnd(4)} ${label}\n      ${detail}`);
 }
 
 function section(title: string) {
@@ -54,6 +66,8 @@ async function checkReachable(): Promise<string> {
   const res = await fetch(PROD_URL, { redirect: 'follow' });
   const html = await res.text();
   const ms = Date.now() - started;
+  const sid = (res.headers.get('set-cookie') ?? '').match(/cti_sid=([^;]+)/);
+  if (sid) sessionCookie = `cti_sid=${sid[1]}`;
 
   record(
     'R1',
@@ -208,6 +222,7 @@ type StreamProbe = {
   firstTextAtMs: number | null;
   toolCalls: { name: string; atMs: number }[];
   toolResultAtMs: number | null;
+  results: { name: string; result: unknown }[];
   productCodes: string[];
   numericPrices: number;
   stringPrices: number;
@@ -223,7 +238,7 @@ type StreamProbe = {
  * Protocol prefixes (AI SDK v4): 0 text, 9 tool call, a tool result,
  * 3 error, e/d finish.
  */
-async function probeChat(question: string): Promise<StreamProbe> {
+async function probeChat(question: string, withCookie = false): Promise<StreamProbe> {
   const probe: StreamProbe = {
     ttfbMs: 0,
     totalMs: 0,
@@ -231,6 +246,7 @@ async function probeChat(question: string): Promise<StreamProbe> {
     firstTextAtMs: null,
     toolCalls: [],
     toolResultAtMs: null,
+    results: [],
     productCodes: [],
     numericPrices: 0,
     stringPrices: 0,
@@ -240,7 +256,10 @@ async function probeChat(question: string): Promise<StreamProbe> {
   const started = Date.now();
   const res = await fetch(`${PROD_URL}/api/chat`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(withCookie && sessionCookie ? { Cookie: sessionCookie } : {}),
+    },
     body: JSON.stringify({ messages: [{ role: 'user', content: question }] }),
   });
 
@@ -255,6 +274,7 @@ async function probeChat(question: string): Promise<StreamProbe> {
   const decoder = new TextDecoder();
   let buffer = '';
   let firstByteSeen = false;
+  const namesById = new Map<string, string>();
 
   const consume = (line: string) => {
     const at = Date.now() - started;
@@ -276,6 +296,7 @@ async function probeChat(question: string): Promise<StreamProbe> {
       try {
         const call = JSON.parse(payload);
         probe.toolCalls.push({ name: String(call.toolName), atMs: at });
+        namesById.set(String(call.toolCallId), String(call.toolName));
       } catch {
         /* ignore a partial line */
       }
@@ -285,6 +306,7 @@ async function probeChat(question: string): Promise<StreamProbe> {
       if (probe.toolResultAtMs === null) probe.toolResultAtMs = at;
       try {
         const parsed = JSON.parse(payload);
+        probe.results.push({ name: namesById.get(String(parsed.toolCallId)) ?? '?', result: parsed.result });
         const rows: unknown[] = Array.isArray(parsed.result)
           ? parsed.result
           : Array.isArray(parsed.result?.items)
@@ -416,6 +438,7 @@ async function checkRepoPublic() {
       'repository is reachable without credentials',
       json.private === false,
       `${json.html_url} -- private: ${json.private}`,
+      !REQUIRE_PUBLIC,
     );
     return;
   }
@@ -425,7 +448,71 @@ async function checkRepoPublic() {
     'repository is reachable without credentials',
     false,
     `HTTP ${res.status} from api.github.com/repos/${REPO} -- still private, ` +
-      'or renamed. A 404 on the submitted link fails the rubric.',
+      'or renamed. A 404 on the submitted link fails the rubric.' +
+      (REQUIRE_PUBLIC ? '' : ' Warning only until M10 (--require-public).'),
+    !REQUIRE_PUBLIC,
+  );
+}
+
+// ---------------------------------------------------------------------------
+// capstone flows: brownout recommendation, quote from memory, saved list
+// ---------------------------------------------------------------------------
+
+const BROWNOUT =
+  'Which Bluetti for a 32-inch TV, two electric fans and a 16 cu ft ref, 8 hours of brownout?';
+
+async function checkCapstoneFlows() {
+  section('M3 M4 M5  recommendation, quote from session memory, saved list');
+
+  record(
+    'SID',
+    'the page sets the cti_sid session cookie',
+    sessionCookie !== '',
+    sessionCookie ? 'cti_sid received on the first page load' : 'no cti_sid in Set-Cookie',
+  );
+  if (!sessionCookie) return;
+
+  console.log(`      asking: "${BROWNOUT}"`);
+  const rec = await probeChat(BROWNOUT, true);
+  const recResult = rec.results.find((r) => r.name === 'recommendPowerStation')?.result as
+    | { eligible?: { code: string; price_php: number }[] }
+    | undefined;
+  const first = recResult?.eligible?.[0];
+  record(
+    'REC',
+    'brownout question gives ELITE320 (PWR-002-02) at 100900 as the first eligible station',
+    first?.code === 'PWR-002-02' && first.price_php === 100900,
+    rec.error
+      ? `stream error: ${rec.error}`
+      : `tools: ${rec.toolCalls.map((t) => t.name).join(', ') || 'none'}; ` +
+          `first eligible: ${first ? `${first.code} at ${first.price_php}` : 'none'}`,
+  );
+
+  // A new conversation: the only way the model can know "it" is session memory.
+  console.log('      asking, in a new conversation with the same cookie: "Add it to a quote"');
+  const q = await probeChat('Add it to a quote', true);
+  const quote = q.results.find((r) => r.name === 'buildQuotation')?.result as
+    | { ok?: boolean; quote?: { lines: { code: string }[]; total_php: number; vat_php: number } }
+    | undefined;
+  const lines = quote?.quote?.lines.map((l) => l.code) ?? [];
+  record(
+    'QUO',
+    '"Add it to a quote" builds a quotation with PWR-002-02 and a VAT figure, from memory alone',
+    quote?.ok === true && lines.includes('PWR-002-02') && typeof quote.quote?.vat_php === 'number',
+    q.error
+      ? `stream error: ${q.error}`
+      : `tools: ${q.toolCalls.map((t) => t.name).join(', ') || 'none'}; lines: ${lines.join(', ') || 'none'}; ` +
+          `total ${quote?.quote?.total_php ?? '-'}, VAT ${quote?.quote?.vat_php ?? '-'}`,
+  );
+
+  const res = await fetch(`${PROD_URL}/api/session`, { headers: { Cookie: sessionCookie } });
+  const body = (await res.json().catch(() => ({}))) as { quote?: { code: string }[] };
+  const saved = body.quote?.map((l) => l.code) ?? [];
+  record(
+    'MEM',
+    'GET /api/session returns the saved quote list (what the page shows after a reload)',
+    res.ok && saved.includes('PWR-002-02'),
+    `HTTP ${res.status}; saved codes: ${saved.join(', ') || 'none'}`,
   );
 }
 
@@ -438,13 +525,14 @@ async function main() {
   await checkBundle(html);
   const probe = await checkAnswer();
   await checkColdStart(probe);
+  await checkCapstoneFlows();
   await checkRepoPublic();
 
   section('summary');
   for (const c of checks) {
-    console.log(`  ${c.ok ? 'PASS' : 'FAIL'}  ${c.id.padEnd(4)} ${c.label}`);
+    console.log(`  ${c.ok ? 'PASS' : c.warn ? 'WARN' : 'FAIL'}  ${c.id.padEnd(4)} ${c.label}`);
   }
-  const failed = checks.filter((c) => !c.ok);
+  const failed = checks.filter((c) => !c.ok && !c.warn);
   console.log('');
   if (failed.length === 0) {
     console.log('All automated production checks passed.');
