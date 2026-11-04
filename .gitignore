@@ -27,7 +27,8 @@ __pycache__/
 # RAGAS virtual environment (eval/requirements.txt rebuilds it)
 eval/.venv/
 
-# Eval run logs (eval/out/*.json and *.jsonl are committed)
+# Eval run records are committed (evidence). The generic out/ rule above would hide them.
+!eval/out/
 eval/out/log-*.txt
 
 # OS

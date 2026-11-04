@@ -1,0 +1,285 @@
+{
+  "variant": "v2",
+  "judge": "gpt-4o",
+  "n": 30,
+  "metrics": {
+    "faithfulness": 0.7947579240682688,
+    "answer_relevancy": 0.5771378858309466,
+    "llm_context_precision_with_reference": 0.7644032921136144,
+    "context_recall": 0.7385057471264368
+  },
+  "by_kind": {
+    "compare": {
+      "faithfulness": 0.9431818181818182,
+      "answer_relevancy": 0.5473302528748148,
+      "llm_context_precision_with_reference": 0.9398148147612654,
+      "context_recall": 0.763888888888889
+    },
+    "concept": {
+      "faithfulness": 0.6,
+      "answer_relevancy": 0.5250798013257656,
+      "llm_context_precision_with_reference": 0.49999999995,
+      "context_recall": 0.5
+    },
+    "price": {
+      "faithfulness": 0.7870370370370369,
+      "answer_relevancy": 0.804455000664709,
+      "llm_context_precision_with_reference": 0.6666666666,
+      "context_recall": 0.9
+    },
+    "refusal": {
+      "faithfulness": 0.375,
+      "answer_relevancy": 0.16316199782493648,
+      "llm_context_precision_with_reference": 0.49999999995,
+      "context_recall": 0.3333333333333333
+    },
+    "spec": {
+      "faithfulness": 0.9740740740740742,
+      "answer_relevancy": 0.6905092086755971,
+      "llm_context_precision_with_reference": 0.89999999991,
+      "context_recall": 0.9
+    }
+  },
+  "rows": [
+    {
+      "id": "spec-01",
+      "kind": "spec",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.43809119144488123,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-02",
+      "kind": "spec",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8852068412729027,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-03",
+      "kind": "spec",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7716303167944827,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-04",
+      "kind": "spec",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.7159246325374156,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-05",
+      "kind": "spec",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.881776078159866,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-06",
+      "kind": "spec",
+      "faithfulness": 0.9333333333333333,
+      "answer_relevancy": 0.831224999230766,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-07",
+      "kind": "spec",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8999213762558439,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-08",
+      "kind": "spec",
+      "faithfulness": null,
+      "answer_relevancy": 0.0,
+      "llm_context_precision_with_reference": 0.0,
+      "context_recall": 0.0
+    },
+    {
+      "id": "spec-09",
+      "kind": "spec",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.4813166510598129,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "spec-10",
+      "kind": "spec",
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "compare-01",
+      "kind": "compare",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.46798228805001313,
+      "llm_context_precision_with_reference": 0.99999999995,
+      "context_recall": 1.0
+    },
+    {
+      "id": "compare-02",
+      "kind": "compare",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.39911023181976496,
+      "llm_context_precision_with_reference": 0.99999999995,
+      "context_recall": 0.5
+    },
+    {
+      "id": "compare-03",
+      "kind": "compare",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.3950402761675169,
+      "llm_context_precision_with_reference": 0.99999999995,
+      "context_recall": 1.0
+    },
+    {
+      "id": "compare-04",
+      "kind": "compare",
+      "faithfulness": 0.9090909090909091,
+      "answer_relevancy": 0.7769175910661247,
+      "llm_context_precision_with_reference": 0.6388888888675925,
+      "context_recall": 1.0
+    },
+    {
+      "id": "compare-05",
+      "kind": "compare",
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.7806724736319206,
+      "llm_context_precision_with_reference": 0.99999999995,
+      "context_recall": 0.3333333333333333
+    },
+    {
+      "id": "compare-06",
+      "kind": "compare",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.464258656513549,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 0.75
+    },
+    {
+      "id": "price-01",
+      "kind": "price",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.5602418347951574,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "price-02",
+      "kind": "price",
+      "faithfulness": 0.9,
+      "answer_relevancy": 0.7696255634405427,
+      "llm_context_precision_with_reference": null,
+      "context_recall": 1.0
+    },
+    {
+      "id": "price-03",
+      "kind": "price",
+      "faithfulness": 0.3333333333333333,
+      "answer_relevancy": null,
+      "llm_context_precision_with_reference": null,
+      "context_recall": 0.5
+    },
+    {
+      "id": "price-04",
+      "kind": "price",
+      "faithfulness": 1.0,
+      "answer_relevancy": null,
+      "llm_context_precision_with_reference": null,
+      "context_recall": null
+    },
+    {
+      "id": "price-05",
+      "kind": "price",
+      "faithfulness": 0.8888888888888888,
+      "answer_relevancy": 0.9999996028823567,
+      "llm_context_precision_with_reference": 0.0,
+      "context_recall": 1.0
+    },
+    {
+      "id": "price-06",
+      "kind": "price",
+      "faithfulness": 0.6,
+      "answer_relevancy": 0.8879530015407792,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "concept-01",
+      "kind": "concept",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.6405054375570722,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "concept-02",
+      "kind": "concept",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7597443363227748,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 1.0
+    },
+    {
+      "id": "concept-03",
+      "kind": "concept",
+      "faithfulness": 0.4,
+      "answer_relevancy": 0.7000694314232155,
+      "llm_context_precision_with_reference": 0.0,
+      "context_recall": 0.0
+    },
+    {
+      "id": "concept-04",
+      "kind": "concept",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.0,
+      "llm_context_precision_with_reference": 0.0,
+      "context_recall": 0.0
+    },
+    {
+      "id": "refusal-01",
+      "kind": "refusal",
+      "faithfulness": 0.25,
+      "answer_relevancy": 0.0,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 0.5
+    },
+    {
+      "id": "refusal-02",
+      "kind": "refusal",
+      "faithfulness": 0.25,
+      "answer_relevancy": 0.6526479912997459,
+      "llm_context_precision_with_reference": 0.0,
+      "context_recall": 0.5
+    },
+    {
+      "id": "refusal-03",
+      "kind": "refusal",
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.0,
+      "llm_context_precision_with_reference": 0.0,
+      "context_recall": 0.0
+    },
+    {
+      "id": "refusal-04",
+      "kind": "refusal",
+      "faithfulness": 0.5,
+      "answer_relevancy": 0.0,
+      "llm_context_precision_with_reference": 0.9999999999,
+      "context_recall": 0.3333333333333333
+    }
+  ]
+}
