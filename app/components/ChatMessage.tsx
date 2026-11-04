@@ -12,6 +12,8 @@ import { Markdown } from './Markdown';
 import { SourceList } from './SourceList';
 import { ApplianceChecklist, type ChecklistResult } from './ApplianceChecklist';
 import { RecommendationCard } from './RecommendationCard';
+import { QuoteCard } from './QuoteCard';
+import { ContactForm } from './ContactForm';
 import { sourcesFromMessage } from '@/lib/sources';
 
 const TOOL_STATUS_LABEL: Record<string, string> = {
@@ -21,7 +23,12 @@ const TOOL_STATUS_LABEL: Record<string, string> = {
   compareProducts: 'Comparing products…',
   lookupApplianceWattage: 'Looking up appliance watts…',
   recommendPowerStation: 'Sizing a power station…',
+  buildQuotation: 'Building the draft quotation…',
+  escalateToSales: 'Opening a ticket for CTI sales…',
 };
+
+/** Tools whose result renders as a card under the bubble. */
+const RESULT_CARDS = new Set(['recommendPowerStation', 'buildQuotation', 'escalateToSales']);
 
 /** A client-side tool waits for the user, not for the server. */
 const CLIENT_TOOLS = new Set(['showApplianceChecklist']);
@@ -36,7 +43,7 @@ export function ChatMessage({ message, addToolResult }: { message: Message; addT
   const cards = invocations.filter(
     (inv) =>
       (inv.toolName === 'showApplianceChecklist') ||
-      (inv.toolName === 'recommendPowerStation' && inv.state === 'result'),
+      (RESULT_CARDS.has(inv.toolName) && inv.state === 'result'),
   );
   const sources = isUser ? [] : sourcesFromMessage(message);
   // A turn that so far holds only a card (the checklist) has no text bubble.
@@ -76,6 +83,21 @@ export function ChatMessage({ message, addToolResult }: { message: Message; addT
       {cards.map((inv) => {
         if (inv.toolName === 'recommendPowerStation' && inv.state === 'result') {
           return <RecommendationCard key={inv.toolCallId} loads={inv.args.loads} result={inv.result} />;
+        }
+        if (inv.toolName === 'buildQuotation' && inv.state === 'result') {
+          return <QuoteCard key={inv.toolCallId} result={inv.result} />;
+        }
+        if (inv.toolName === 'escalateToSales' && inv.state === 'result') {
+          const r = inv.result as { ticket_id?: string; error?: string };
+          return r.ticket_id ? (
+            <div key={inv.toolCallId} className="w-full sm:max-w-[85%]">
+              <ContactForm ticketId={r.ticket_id} />
+            </div>
+          ) : (
+            <div key={inv.toolCallId} className="mt-1 text-xs text-rose-700">
+              The ticket could not be created. Please contact CTI sales directly.
+            </div>
+          );
         }
         if (inv.state === 'result') {
           const r = inv.result as ChecklistResult;

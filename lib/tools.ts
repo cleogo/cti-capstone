@@ -23,6 +23,8 @@ import {
 import { getProductDetails, compareProducts } from '@/lib/details';
 import { lookupApplianceWattage, USER_TYPES } from '@/lib/appliances';
 import { recommendPowerStation } from '@/lib/power';
+import { buildQuotation } from '@/lib/quote';
+import { createTicket, TICKET_REASONS } from '@/lib/tickets';
 
 const LoadSchema = z.object({
   name: z
@@ -231,5 +233,97 @@ export const tools = {
       userType: z.string().describe('the purpose, e.g. "Residential", "Café / Restaurant"'),
     }),
     // No execute: the browser renders the checklist and returns the result.
+  }),
+
+  buildQuotation: tool({
+    description:
+      'Make a draft quotation from product codes and quantities. Call it ONCE per request, with all the lines in one call. This is the ONLY way to produce a ' +
+      'quotation, a quote, a total for several items, or a VAT figure. Code computes the line totals, ' +
+      'the total, the VATable sales and the VAT. The app shows the result as a printable card. ' +
+      'USE FOR: "quote 2 PWR-001-06", "how much for 3 of X and 5 of Y", "add it to a quote", once you ' +
+      'have the codes. ' +
+      'DO NOT USE FOR: the price of one unit of one item (use searchProducts), or finding a code ' +
+      '(call searchProducts first). ' +
+      'Returns ok:false with a reason per bad line (unknown_code, conflict_code, bad_qty, too_many_lines): ' +
+      'tell the user what to fix. Returns bulk flags: if line_over_50 or total_over_500k is true, also ' +
+      'call escalateToSales with reason "bulk_order". The card shows every line, price, total and VAT figure: never repeat them in your text.',
+    parameters: z.object({
+      items: z
+        .array(
+          z.object({
+            code: z.string().describe('one exact product code, e.g. "PWR-001-06"'),
+            qty: z.number().describe('a whole number of units, 1 to 9,999'),
+          }),
+        )
+        .min(1)
+        .max(40),
+    }),
+    execute: async ({ items }) => {
+      try {
+        const r = buildQuotation(items);
+        // The model copies whatever it sees into a table unless the result
+        // itself says not to. The prompt rule alone failed 4 of 4 runs (M4).
+        return r.ok
+          ? {
+              ...r,
+              reply_rule:
+                'The app shows this quotation as a card with every line, price, total and VAT figure. ' +
+                'Reply in at most two sentences: give the ref and say that CTI sales must confirm the draft. ' +
+                'Do not list the items, prices, total or VAT.',
+            }
+          : r;
+      } catch (e) {
+        return { error: e instanceof Error ? e.message : String(e) };
+      }
+    },
+  }),
+
+  escalateToSales: tool({
+    description:
+      'Refer the client to a CTI sales person. Creates a ticket for the sales team, and the app shows the ' +
+      'client a contact form. Never ask for a name, phone number or email in chat: the form collects them. ' +
+      'USE FOR these triggers, with the matching reason. ' +
+      'conflict_code: the user wants the price of a code flagged duplicate_code_conflict. ' +
+      'missing_specs: the user needs specs that getProductDetails says are not on file. ' +
+      'life_critical: power for a medical or life-support device. ' +
+      'commercial_terms: discount, stock, lead time, delivery, warranty or payment terms. ' +
+      'bulk_order: buildQuotation returned a bulk flag. ' +
+      'failed_search: two searches in this conversation found nothing that matches. ' +
+      'asked_for_person: the user asks for a person, an agent or sales. ' +
+      'If the question names a product and you have not called searchProducts for it yet, call ' +
+      'searchProducts first, then this tool once. ' +
+      'DO NOT USE FOR: a question that the catalog or the knowledge sheets answer.',
+    parameters: z.object({
+      reason: z.enum(TICKET_REASONS),
+      summary: z
+        .string()
+        .max(1000)
+        .describe(
+          'what the client needs, with product codes and quantities, in 1 to 3 sentences. ' +
+            'Never include a name, phone number, email or address.',
+        ),
+    }),
+    execute: async ({ reason, summary }) => {
+      try {
+        const { id } = await createTicket({ reason, summary, sessionId: null });
+        // Like buildQuotation's reply_rule: the result steers the reply text.
+        // Without it the model wrote "the sales team will follow up" with no
+        // refusal and no price in 2 of 5 runs (M4).
+        return {
+          ticket_id: id,
+          reason,
+          form_shown: true,
+          reply_rule:
+            (reason === 'commercial_terms'
+              ? 'Say plainly that the masterlist does not record this, so you cannot answer it. '
+              : '') +
+            'Give the product code and price from the search results, if you have them. ' +
+            'Say that the sales team will follow up, and that the customer can leave a name and a ' +
+            'contact number or email in the form below. Do not ask for contact details in chat.',
+        };
+      } catch (e) {
+        return { error: e instanceof Error ? e.message : String(e) };
+      }
+    },
   }),
 };

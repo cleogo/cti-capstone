@@ -23,8 +23,9 @@ still apply. Each milestone names the PRD sections it implements.
 
 **Schedule:** `docs/diagrams/13-gantt-two-week-plan.jpg`. Submission is
 **Sun 15 Nov 2026**. The Gantt supersedes PRD §14. On Tue 3 Nov the build was
-one day behind the Gantt. On Wed 4 Nov M2 and M3 are closed, so the build is
-one day ahead: M4's Gantt bar starts Thu 5.
+one day behind the Gantt. On Wed 4 Nov M2, M3 and M4 are closed. M4 closed
+before its Gantt bar opened (Thu 5), so M5 starts about two days early. M5's
+bar starts Sat 7.
 
 **Work breakdown:** `docs/diagrams/14-work-breakdown-structure.jpg`. Each
 milestone lists the WBS items it closes.
@@ -296,7 +297,7 @@ selection as a user message.
 - The route and `grade.ts` now use `maxSteps: 8`. The flow is one lookup per appliance, then the recommendation, then the text. 5 steps were too few.
 - The reply text lists every eligible station in a table, where rule 11 asks for the cheapest and the next one up. It also does not always say which variant it assumed. These are targets for M6.
 - "Anong Bluetti para sa sari-sari store ko?" opened the checklist with the purpose set to Retail / Small Business.
-- The 16 fire-safety sheets are type sheets. Each one cites 2 to 4 sources that were opened and read. The sources are USFA, U.S. OSHA, U.S. EPA SNAP, UNEP Ozone Secretariat, CPSC, BFP (through GMA News), CFA Victoria, NYC DCAS, UK fire guidance, and Amerex, Ansul and Kidde pages. `npm run build:sheets` gives 28 sheets and 75 codes. The capstone index is not re-seeded yet. It waits for the user's review.
+- The 16 fire-safety sheets are type sheets. Each one cites 2 to 4 sources that were opened and read. The sources are USFA, U.S. OSHA, U.S. EPA SNAP, UNEP Ozone Secretariat, CPSC, BFP (through GMA News), CFA Victoria, NYC DCAS, UK fire guidance, and Amerex, Ansul and Kidde pages. `npm run build:sheets` gives 28 sheets and 75 codes. The user reviewed them, and the capstone index was re-seeded on 4 Nov.
 - The fire-ball and Auto Fire OFF sheets cite a 2023 U.S. CPSC warning. It says some balls labelled "AFO Auto Fire Off" can fail to put out a fire and do not meet NFPA 10. CTI sells FIR-001-06 and FIR-002-FB.
 - No allowed source loaded for the RA 9514 IRR text, NFPA 10 itself or cabinet mounting heights. The sheets cite no Philippine rule except the BFP statement on fire balls. U.S. OSHA rules are labelled "U.S." in every sheet.
 - FIR-001-36 "Bottle Fire Extinguisher": no reliable source defines the type. The sheet says that the masterlist states only the name and tells the client to ask CTI sales for the agent and size.
@@ -307,6 +308,13 @@ selection as a user message.
 
 **PRD:** F5, F9. **WBS:** 2.7 (rows 29 to 44), 3.5, 3.6, 3.7, 6.5 (quote).
 **Gantt:** Thu 5 to Sat 7.
+
+**Decisions (4 Nov):**
+- The user approved the bulk thresholds: one line above 50 units, or a total above ₱500,000.
+- Code applies the bulk thresholds, not the model. `buildQuotation` returns `bulk: { line_over_50: boolean; total_over_500k: boolean }` with the quote. The card still shows the draft, and the model then calls `escalateToSales` with reason `bulk_order`.
+- The Resend email is optional. The code logs `email=skipped` until `RESEND_API_KEY` and `SALES_ALERT_EMAIL` are set. The exit condition does not need it.
+- The ticket summary is not PII-masked in M4. `maskPII` arrives in M7. Contact details reach Redis only through the form, never through the model.
+- The 16 sheets (rows 29 to 44) are researched by parallel agents, as in M3. The user reviews them before the re-seed.
 
 **Files:**
 - Create: `lib/quote.ts`, `tests/quote.test.ts`, `lib/tickets.ts`, `tests/tickets.redis.test.ts`, `app/api/tickets/[id]/contact/route.ts`, `app/components/QuoteCard.tsx`, `app/components/ContactForm.tsx`, `scripts/tickets.ts`
@@ -327,7 +335,7 @@ selection as a user message.
 
 Tasks:
 
-- [ ] Test first, `tests/quote.test.ts`. Values come from the real catalogue:
+- [x] Test first, `tests/quote.test.ts`. Values come from the real catalogue:
   - `1 × PWR-001-06`: total 58,719.00, VATable 52,427.68, VAT 6,291.32.
   - `2 × PWR-001-02`: total 39,798.00, VATable 35,533.93, VAT 4,264.07.
   - `1 × PWR-001-06 + 3 × FIR-001-10LBS + 5 × MED-001-01`: total 283,329.00, VATable 252,972.32, VAT 30,356.68.
@@ -337,16 +345,16 @@ Tasks:
   - Rejections: an unknown code, `FLA-001-13` (conflict), qty 0, qty −2, qty 1.5, `rejects qty above 9999`, and 31 lines.
   - `valid_until` is 30 days after a given `now`.
   - Add cases up to 15 in total.
-- [ ] Implement `lib/quote.ts`. Run `npm test`.
-- [ ] `package.json`: add `"prebuild": "npm test"`, so every Vercel build runs the unit tests first. Tests that need Redis use the suffix `.redis.test.ts`. `npm test` excludes them, and `npm run test:redis` runs them.
-- [ ] `lib/tools.ts`: add `buildQuotation`. Its description says it is the only way to produce a quotation. `lib/prompt.ts`: replace "does not generate quotations" with "only produce quotations through buildQuotation". Never restate a total in prose. Refer to the card.
-- [ ] `QuoteCard.tsx`: lines, total, VATable sales, VAT, ref, validity date and the draft note, from the tool result only. A Print button calls `window.print()`. Print CSS shows only the card.
-- [ ] Test first, `tests/tickets.redis.test.ts`, against a test key prefix: create a ticket, read it back, attach contact. `attachContact` without `consent: true` throws.
-- [ ] Implement `lib/tickets.ts`. Add the `escalateToSales` tool (`reason: TicketReason`, `summary: string`). Its description lists the F9 triggers. Default bulk threshold: one line above 50 units, or a total above ₱500,000. Ask the user to approve these two values in `/phase M4`.
-- [ ] `ContactForm.tsx` appears under an escalation result. It posts name, contact and consent to `/api/tickets/[id]/contact`. The details never pass through the model. The consent text cites the Data Privacy Act of 2012.
-- [ ] Email alert: if `RESEND_API_KEY` and `SALES_ALERT_EMAIL` are set, the contact route sends one plain alert through the Resend REST API with `fetch`. It sends the ticket id and reason, with no client details. If the vars are not set, log `email=skipped`. Add both names to `.env.example`.
-- [ ] `scripts/tickets.ts` prints open tickets. P0 has no staff page. `/staff` is P1.
-- [ ] Write sheets for rows 29 to 44. User reviews. Rebuild and re-seed.
+- [x] Implement `lib/quote.ts`. Run `npm test`.
+- [x] `package.json`: add `"prebuild": "npm test"`, so every Vercel build runs the unit tests first. Tests that need Redis use the suffix `.redis.test.ts`. `npm test` excludes them, and `npm run test:redis` runs them.
+- [x] `lib/tools.ts`: add `buildQuotation`. Its description says it is the only way to produce a quotation. `lib/prompt.ts`: replace "does not generate quotations" with "only produce quotations through buildQuotation". Never restate a total in prose. Refer to the card.
+- [x] `QuoteCard.tsx`: lines, total, VATable sales, VAT, ref, validity date and the draft note, from the tool result only. A Print button calls `window.print()`. Print CSS shows only the card.
+- [x] Test first, `tests/tickets.redis.test.ts`, against a test key prefix: create a ticket, read it back, attach contact. `attachContact` without `consent: true` throws.
+- [x] Implement `lib/tickets.ts`. Add the `escalateToSales` tool (`reason: TicketReason`, `summary: string`). Its description lists the F9 triggers. Default bulk threshold: one line above 50 units, or a total above ₱500,000. Ask the user to approve these two values in `/phase M4`.
+- [x] `ContactForm.tsx` appears under an escalation result. It posts name, contact and consent to `/api/tickets/[id]/contact`. The details never pass through the model. The consent text cites the Data Privacy Act of 2012.
+- [x] Email alert: if `RESEND_API_KEY` and `SALES_ALERT_EMAIL` are set, the contact route sends one plain alert through the Resend REST API with `fetch`. It sends the ticket id and reason, with no client details. If the vars are not set, log `email=skipped`. Add both names to `.env.example`.
+- [x] `scripts/tickets.ts` prints open tickets. P0 has no staff page. `/staff` is P1.
+- [x] Write sheets for rows 29 to 44. User reviews. Rebuild and re-seed. Written 4 Nov by three research agents: `npm run build:sheets` gives 44 sheets and 104 codes. All 16 are type sheets (see Surprises). The user reviewed them, and the index was re-seeded on 4 Nov: 1,252 vectors (1,056 products, 20 guide chunks, 176 sheet chunks). "What is a heat alarm used for" returns the `heat-alarm` sections at 0.84 to 0.88.
 
 **Exit condition:** `npm test` passes, including 15 quotation cases. In the
 local app, "Quote 1 PWR-001-06, 3 FIR-001-10LBS and 5 MED-001-01" shows a
@@ -355,7 +363,25 @@ card with total ₱283,329.00, VATable sales ₱252,972.32 and VAT ₱30,356.68.
 creates a ticket, and shows the contact form. `npx tsx scripts/tickets.ts`
 lists that ticket.
 
+**Exit condition: met 2026-11-04.** `npm test` gave 54/54, with 15/15 in
+`tests/quote.test.ts`. In the local app, the 3-line quote showed one card with
+₱283,329.00, VATable sales ₱252,972.32 and VAT ₱30,356.68. The discount
+question gave the price, refused the discount, created a ticket and showed the
+contact form. `npx tsx scripts/tickets.ts` listed the ticket. `grade.ts`
+65/65, `eval.ts` 13/13. All 44 sheets are seeded (1,252 vectors). Verified by
+user. The M4 code is not committed yet.
+
 **Budget:** 5 h. **Cap:** 6 h.
+
+**Surprises (4 Nov):**
+- The interface grew. `QuoteResult` ok also carries `bulk: { line_over_50, total_over_500k }` (see Decisions). The `buildQuotation` and `escalateToSales` tools add a `reply_rule` string to their results. `lib/redis.ts` exports `getRedis()` instead of `redis`: a client built at import time read an empty env in scripts that load `.env.local` after their imports.
+- With parallel tool calls on, the 3-line quote made two `buildQuotation` calls in one step in 4 of 4 runs. The second call dropped PWR-001-06, and the client saw two cards. A prompt rule ("call it once") changed nothing. `parallelToolCalls: false` (`CHAT_MODEL_SETTINGS` in `lib/model.ts`) gave one call in 3 of 3 runs. The cost: one appliance lookup per step, so `maxSteps` went from 8 to 12 (`MAX_STEPS`). The brownout question still gives ELITE320 in 3 of 3 runs, in 5 steps.
+- The model copied the whole quote into a text table, total included, in 4 of 4 runs, even with rule 12 saying not to. A `reply_rule` inside the tool result fixed it in 4 of 4 runs ("draft CTI-Q-… is on the card, CTI sales must confirm"). The same lever fixed the discount reply: before it, 2 of 5 runs had no plain refusal or no price. Instructions in a tool result beat instructions in the system prompt for gpt-4o-mini.
+- Upstash Redis JSON-parses hash values on read, so a raw "09171234567" came back as a number without its leading zero. Ticket fields are stored JSON-encoded. Test: `a mobile number keeps its leading zero`.
+- `grade.ts` now calls `escalateToSales` for real (the discount and warranty refusals). It sets `TICKET_KEY_PREFIX=grade:` so those tickets stay out of the staff list. `grade.ts` 65/65, `eval.ts` 13/13.
+- The 4 model numbers (SD-604PC, SD-426, 424, ES-14A/B) have no single maker on the web. All four became type sheets. No agent could load the RA 9514 IRR text or NFPA's own pages, so the sheets cite U.S. OSHA, USFA, CPSC, UK and Scottish guidance, and maker type pages. The Honeywell bell and call-point pages used for type facts are marked discontinued.
+- In the browser, the first contact-form submit returned HTTP 200 but stored no contact. The page did a full reload at the same moment: a second dev server (another session) shared `.next`. A curl POST and a second browser submit both stored the contact. Not reproduced since. Recheck in the user's verification.
+- A PWR-001-06 discount question showed the `auto-fire-off` sheet in the sources panel. The sheet score floor in `lib/retrieval.ts` lets an unrelated sheet through. Not an M4 change: a target for M6 retrieval eval.
 
 ---
 
@@ -564,7 +590,7 @@ Tasks:
 | M1 Infrastructure and tracing | Tue 3 | 2 h | 3 h | 3 h (at cap: the Langfuse ingestion switch and the prompt regression) |
 | M2 Details and compare | Tue 3 to Wed 4 | 4 h | 5 h | about 3 h, plus the sheet review (not timed). Inside budget. |
 | M3 Power-station recommender | Wed 4 to Thu 5 | 5 h | 6 h | Not timed. Closed Wed 4, one day ahead of the Gantt. The 16 sheets were researched by three parallel agents. |
-| M4 Quotation and escalation | Thu 5 to Fri 6 | 5 h | 6 h | |
+| M4 Quotation and escalation | Thu 5 to Fri 6 | 5 h | 6 h | Not timed. Built and closed Wed 4, before its Gantt bar opened. The 16 sheets were researched by three parallel agents. Two prompt fixes needed a code lever (`parallelToolCalls: false`, `reply_rule` in tool results). |
 | M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | |
 | M6 Evaluation baseline | Mon 9 to Tue 10 | 6 h | 7 h | |
 | M7 Guardrails | Tue 10 to Wed 11 | 6 h | 7 h | |

@@ -11,3 +11,15 @@
  * code — `CHAT_MODEL=gpt-4o npx tsx scripts/grade.ts`.
  */
 export const CHAT_MODEL = process.env.CHAT_MODEL ?? 'gpt-4o-mini';
+
+/**
+ * Parallel tool calls are off. With them on, "Quote 1 PWR-001-06, 3
+ * FIR-001-10LBS and 5 MED-001-01" made two buildQuotation calls in one step
+ * (the second without PWR-001-06) in 4 of 4 runs, and the client saw two
+ * cards. Off, it made one call in 3 of 3 runs (M4, 4 Nov). The cost: one
+ * appliance lookup per step, so the route's maxSteps went from 8 to 12.
+ */
+export const CHAT_MODEL_SETTINGS = { parallelToolCalls: false } as const;
+
+/** maxSteps for the route and the harnesses: one lookup per appliance, then the recommendation, then text. */
+export const MAX_STEPS = 12;

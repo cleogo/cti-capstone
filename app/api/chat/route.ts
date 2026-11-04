@@ -14,20 +14,20 @@ import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { SYSTEM_PROMPT } from '@/lib/prompt';
 import { tools } from '@/lib/tools';
-import { CHAT_MODEL } from '@/lib/model';
+import { CHAT_MODEL, CHAT_MODEL_SETTINGS, MAX_STEPS } from '@/lib/model';
 import { telemetry } from '@/lib/telemetry';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const result = streamText({
-    model: openai(CHAT_MODEL),
+    model: openai(CHAT_MODEL, CHAT_MODEL_SETTINGS),
     system: SYSTEM_PROMPT,
     messages,
     tools,
     // A turn may search, then filter, then answer. The power-station flow
     // needs more: one lookup per appliance, then recommendPowerStation, then text.
-    maxSteps: 8,
+    maxSteps: MAX_STEPS,
     experimental_telemetry: telemetry('chat'),
   });
 

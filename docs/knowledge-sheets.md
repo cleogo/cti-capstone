@@ -28,7 +28,7 @@ one record for each code, and the price always comes from that record.
 
 ## The list
 
-17 model sheets and 43 type sheets cover 120 masterlist codes and 17 Bluetti
+13 model sheets and 47 type sheets cover 120 masterlist codes and 17 Bluetti
 items.
 
 ### Power stations (12, all model sheets)
@@ -83,13 +83,13 @@ Bluetti items carry PWR codes (PWR-001 to PWR-004), set in
 
 | # | Slug | Kind | Codes |
 |---|---|---|---|
-| 31 | smoke-detector-sd-604pc | model | FIR-001-20 |
-| 32 | smoke-alarm-sd-426 | model | FIR-001-22 |
-| 33 | smoke-detector-424-220v | model | FIR-001-24 |
+| 31 | smoke-detector-sd-604pc | type | FIR-001-20 |
+| 32 | smoke-alarm-sd-426 | type | FIR-001-22 |
+| 33 | smoke-detector-424-220v | type | FIR-001-24 |
 | 34 | smoke-detector-interlinked | type | FIR-001-44 |
 | 35 | smoke-alarm-battery | type | FIR-001-19, FIR-001-42, FIR-001-43, FIR-002-19 |
 | 36 | heat-alarm | type | FIR-001-21 |
-| 37 | alarm-bell-es-14 | model | FIR-001-14 |
+| 37 | alarm-bell-es-14 | type | FIR-001-14 |
 | 38 | fire-alarm-bell-set | type | FIR-002-21A, FIR-002-21B, FIR-002-21C |
 | 39 | fire-call-point | type | FIR-001-16 |
 | 40 | led-siren | type | FIR-001-15 |
@@ -147,5 +147,6 @@ sales.
 1. Does CTI know the brand or supplier of the generic items? A known supplier
    changes a type sheet into a model sheet with real specs.
 2. The model numbers SD-604PC, SD-426, 424 and ES-14 have no maker in the
-   masterlist. If a web search finds no single maker, these become type
-   sheets.
+   masterlist. Resolved 4 Nov (M4): web searches found no single maker for
+   any of them, so all four are type sheets. The nearest match, Visonic
+   SMD-426, is a different model, and the SD-426 sheet warns against its specs.

@@ -24,12 +24,14 @@
  */
 import { config } from 'dotenv';
 config({ path: '.env.local' });
+// Tickets made while grading stay out of the staff list.
+process.env.TICKET_KEY_PREFIX ??= 'grade:';
 
 import { openai } from '@ai-sdk/openai';
 import { generateText } from 'ai';
 import { SYSTEM_PROMPT } from '../lib/prompt';
 import { tools } from '../lib/tools';
-import { CHAT_MODEL } from '../lib/model';
+import { CHAT_MODEL, CHAT_MODEL_SETTINGS, MAX_STEPS } from '../lib/model';
 import { telemetry } from '../lib/telemetry';
 import { startTracing } from './tracing';
 
@@ -48,11 +50,11 @@ type Turn = {
 
 async function ask(question: string): Promise<Turn> {
   const res = await generateText({
-    model: openai(CHAT_MODEL),
+    model: openai(CHAT_MODEL, CHAT_MODEL_SETTINGS),
     system: SYSTEM_PROMPT,
     prompt: question,
     tools,
-    maxSteps: 8,
+    maxSteps: MAX_STEPS,
     experimental_telemetry: telemetry('grade', { question }),
   });
 

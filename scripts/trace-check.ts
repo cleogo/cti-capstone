@@ -14,7 +14,7 @@ import { openai } from '@ai-sdk/openai';
 import { generateText } from 'ai';
 import { SYSTEM_PROMPT } from '../lib/prompt';
 import { tools } from '../lib/tools';
-import { CHAT_MODEL } from '../lib/model';
+import { CHAT_MODEL, CHAT_MODEL_SETTINGS } from '../lib/model';
 import { telemetry } from '../lib/telemetry';
 import { startTracing } from './tracing';
 
@@ -34,7 +34,7 @@ async function main() {
       traceId = span.spanContext().traceId;
       try {
         return await generateText({
-          model: openai(CHAT_MODEL),
+          model: openai(CHAT_MODEL, CHAT_MODEL_SETTINGS),
           system: SYSTEM_PROMPT,
           prompt: question,
           tools,

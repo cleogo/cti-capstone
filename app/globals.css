@@ -4,3 +4,11 @@
 
 html, body { height: 100%; }
 body { background: #f8fafc; color: #0f172a; }
+
+/* Print only the quote card the user chose (QuoteCard adds .print-target). */
+@media print {
+  html, body { height: auto; overflow: visible; background: #fff; }
+  body * { visibility: hidden; }
+  .print-target, .print-target * { visibility: visible; }
+  .print-target { position: absolute; left: 0; top: 0; width: 100%; border: none; }
+}

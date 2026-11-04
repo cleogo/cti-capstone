@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm test",
     "build": "next build",
     "start": "next start",
     "seed": "tsx lib/seed.ts",
     "verify:prod": "tsx scripts/verify-prod.ts",
     "demo:check": "tsx scripts/demo-check.ts",
-    "test": "tsx --test \"tests/**/*.test.ts\"",
+    "test": "tsx --test \"tests/**/!(*.redis).test.ts\"",
+    "test:redis": "tsx --env-file=.env.local --test \"tests/**/*.redis.test.ts\"",
     "trace:check": "tsx scripts/trace-check.ts",
     "build:sheets": "tsx scripts/build-sheets.ts"
   },

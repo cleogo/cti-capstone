@@ -1,5 +1,39 @@
 [
   {
+    "slug": "alarm-bell-es-14",
+    "kind": "type",
+    "codes": [
+      "FIR-001-14"
+    ],
+    "sources": [
+      "https://buildings.honeywell.com/gb/en/products/by-category/fire-life-safety/notification-appliances/bells/24v-electronic-bell",
+      "https://buildings.honeywell.com/gb/en/products/by-category/fire-life-safety/notification-appliances/bells/230v-electronic-bell",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.165",
+      "https://www.gov.scot/publications/practical-fire-safety-guidance-existing-non-residential-premises-9781788511322/pages/8/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Alarm bell (as named on the masterlist)"
+      },
+      {
+        "label": "Model numbers on the masterlist",
+        "value": "ES-14A, ES-14B"
+      },
+      {
+        "label": "ES-14A voltage",
+        "value": "12 to 24 V"
+      },
+      {
+        "label": "ES-14B voltage",
+        "value": "220 V"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A fire alarm bell is a sounder. It gives a traditional bell tone when the fire alarm system operates. One maker sells fire alarm bells in a 24 V version and a 230 V version. These bells have a metal casing. They mount on a surface or semi-flush. UK guidance says sounders alert the occupants of a building.",
+    "advantages": "- One masterlist line covers a low-voltage version and a 220 V version.\n- A bell tone is a traditional fire alarm signal.",
+    "cautions": "- The masterlist does not name the maker of the ES-14A or the ES-14B. A web search found no maker for these model numbers.\n- Ask CTI sales for the datasheet before you rely on a sound level or a power rating.\n- The two versions use different supply voltages. Confirm the supply voltage before you install the bell.\n- U.S. OSHA says an employee alarm must be perceivable above the ambient noise by all employees.\n- U.S. OSHA says the alarm must be distinctive and recognizable as a signal to evacuate.\n- UK guidance says the warning signal and the sound level must suit the premises.\n- A bell does not warn people who cannot hear it. UK guidance says visual or tactile alarms can be necessary in noisy areas or for people with hearing loss."
+  },
+  {
     "slug": "auto-fire-off",
     "kind": "type",
     "codes": [
@@ -664,6 +698,61 @@
     "cautions": "- UK fire guidance sets a minimum duration of one hour for an emergency escape lighting system.\n- Premises that people do not leave at once, such as sleeping accommodation, need at least three hours.\n- UK workplace rules require regular checks that the emergency lighting works, and a record of any faults.\n- Keep a log of all system tests and their results.\n- In U.S. workplaces, U.S. OSHA requires each exit route to have enough light to see along it."
   },
   {
+    "slug": "exit-sign-lighted",
+    "kind": "type",
+    "codes": [
+      "FIR-002-30A",
+      "FIR-002-30B"
+    ],
+    "sources": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.37",
+      "https://www.ladwp.com/newsletters/articles/open-door-savings-efficient-exit-lighting",
+      "https://www.gov.uk/workplace-fire-safety-your-responsibilities/fire-safety-equipment-drills-and-training"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Exit sign, lighted, LED"
+      },
+      {
+        "label": "Faces",
+        "value": "single faced (FIR-002-30A), double faced (FIR-002-30B)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. An exit sign marks an exit so that people can find it in an emergency. A lighted LED exit sign uses light-emitting diodes to light its face. In most commercial buildings, lighted exit signs operate 24 hours a day. U.S. OSHA requires a clearly visible sign that reads \"Exit\" at each exit in a workplace.",
+    "advantages": "- A U.S. utility says LED signs use about 70% less energy than fluorescent signs.\n- The same utility says LED signs use about 90% less energy than incandescent signs.\n- LEDs have a long life and need little maintenance.\n- Some LED exit signs have a battery backup. The battery keeps the exit lit during a power outage.",
+    "cautions": "- The masterlist name does not state if CTI's unit has a battery backup. Ask CTI sales.\n- Exit signs with a battery backup need inspection and testing every month.\n- U.S. OSHA requires the word \"Exit\" in letters at least 6 inches high.\n- U.S. OSHA requires the main strokes of those letters to be at least 3/4 inch wide.\n- U.S. OSHA requires a reliable light source and a sign that is distinctive in colour.\n- U.S. OSHA requires a clear line of sight to an exit sign at all times.\n- UK workplace guidance requires regular checks that fire exit signs are in the right place."
+  },
+  {
+    "slug": "exit-sign-luminous",
+    "kind": "type",
+    "codes": [
+      "FIR-002-31A",
+      "FIR-002-31B",
+      "FIR-002-31C",
+      "FIR-002-31D",
+      "FIR-002-31E"
+    ],
+    "sources": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.37",
+      "https://blog.qrfs.com/326-are-photoluminescent-exit-and-egress-signs-osha-compliant/",
+      "https://www.gov.uk/workplace-fire-safety-your-responsibilities/fire-safety-equipment-drills-and-training"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Luminous signage, glow in the dark"
+      },
+      {
+        "label": "Legends on the masterlist",
+        "value": "Exit Sign Left (FIR-002-31A), Exit Sign Right (FIR-002-31B), Exit Sign Green (FIR-002-31C), Exit Sign Red (FIR-002-31D), Fire Exit (FIR-002-31E)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. The masterlist name does not state the luminous material. A photoluminescent sign absorbs energy from light in well-lit surroundings. It then releases that energy over time as a glow. U.S. OSHA requires a clearly visible sign that reads \"Exit\" at each exit in a workplace.",
+    "advantages": "- A photoluminescent sign glows with no dedicated power source.\n- It needs no wiring.\n- It has no battery, so it needs no yearly battery test.",
+    "cautions": "- The masterlist name does not state the glow duration or the sign size. Ask CTI sales.\n- A photoluminescent sign needs a reliable light source to charge it.\n- A U.S. supplier notes that lights on a timer cannot charge the sign if they switch off during occupied hours.\n- U.S. OSHA accepts self-luminous signs with a surface luminance of at least 0.06 footlamberts.\n- U.S. OSHA requires the word \"Exit\" in letters at least 6 inches high, with strokes at least 3/4 inch wide.\n- U.S. OSHA requires an exit sign to be distinctive in colour.\n- UK workplace guidance requires regular checks that fire exit signs are in the right place."
+  },
+  {
     "slug": "extinguisher-afff-portable",
     "kind": "type",
     "codes": [
@@ -1046,6 +1135,41 @@
     "cautions": "- The U.S. EPA lists a global warming potential of 9,810 for HFC-236fa.\n- The Kigali Amendment adds HFC-236fa to the Montreal Protocol's controlled substances. It requires Parties to cut HFC production and consumption in steps.\n- The U.S. EPA SNAP program accepts HFC-236fa streaming agents for non-residential uses only.\n- UL sets a minimum room volume for each clean agent extinguisher rating. Larger ratings need larger rooms."
   },
   {
+    "slug": "fire-alarm-bell-set",
+    "kind": "type",
+    "codes": [
+      "FIR-002-21A",
+      "FIR-002-21B",
+      "FIR-002-21C"
+    ],
+    "sources": [
+      "https://www.gov.scot/publications/practical-fire-safety-guidance-existing-non-residential-premises-9781788511322/pages/8/",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.165",
+      "https://buildings.honeywell.com/gb/en/products/by-category/fire-life-safety/notification-appliances/bells/230v-electronic-bell"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire alarm bell with manual call point, sold as a set (as named on the masterlist)"
+      },
+      {
+        "label": "Bell sizes on the masterlist",
+        "value": "6 in, 8 in, 10 in"
+      },
+      {
+        "label": "Voltage",
+        "value": "220 V"
+      },
+      {
+        "label": "Activation",
+        "value": "Manual push button (manual call point)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. The set joins a fire alarm bell to a manual call point. A person who sees a fire operates the call point. Then the bell sounds to alert the occupants. A fire alarm bell gives a traditional bell tone. UK guidance says a building needs sounders and call points when a shout is not heard throughout. UK guidance puts call points at exit doors, no higher than 1.4 m from the floor.",
+    "advantages": "- One set gives both the call point that starts the alarm and the bell that sounds it.\n- The masterlist has three bell sizes.",
+    "cautions": "- The masterlist name lists no automatic detector. The bell sounds only when a person operates the call point.\n- The masterlist name does not state the sound level of each bell size.\n- UK guidance says occupants must not travel more than 45 m to the nearest call point.\n- U.S. OSHA says manual alarm devices must be unobstructed, conspicuous and readily accessible.\n- U.S. OSHA says the alarm must be perceivable above the ambient noise by all employees.\n- U.S. OSHA requires a test every two months for an employee alarm system that is not supervised.\n- U.S. OSHA says only persons trained in the system can service, maintain and test it.\n- UK guidance says visual or tactile alarms can be necessary in noisy areas or for people with hearing loss."
+  },
+  {
     "slug": "fire-ball",
     "kind": "type",
     "codes": [
@@ -1103,5 +1227,334 @@
     "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A fire blanket is fire-resistant fabric that smothers a small fire by cutting off its oxygen. Lay it over the fire to cover the flames, or wrap it around a person whose clothing is on fire. CTI sells the 1.2x1.2, 1.5x1.5 and 1.8x1.8 sizes in two product lines, FIR-001 and FIR-002. The two lines are different items, and each code has its own price on the masterlist.",
     "advantages": "- It needs no special training to use.\n- It can put out a cooking fat fire.\n- It can protect a person whose clothes catch fire.",
     "cautions": "- Use a fire blanket only on a small fire.\n- Mount it near the kitchen door, not next to the stove. A stove fire can block your way to it.\n- Call the fire service after you use a fire blanket, even if the fire is out.\n- Replace a fire blanket after use. The European standard BS EN 1869 covers blankets that are not reusable.\n- Inspect the blanket regularly to make sure that it is in good condition."
+  },
+  {
+    "slug": "fire-call-point",
+    "kind": "type",
+    "codes": [
+      "FIR-001-16"
+    ],
+    "sources": [
+      "https://www.gov.scot/publications/practical-fire-safety-guidance-existing-non-residential-premises-9781788511322/pages/8/",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.165",
+      "https://buildings.honeywell.com/gb/en/products/by-category/fire-life-safety/manual-call-points-pull-stations-and-panic-buttons/manual-call-points-pull-stations/weatherproof-manual-call-point"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire call point (as named on the masterlist)"
+      },
+      {
+        "label": "Operation",
+        "value": "Manual"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A fire call point is a manual device on a fire alarm system. A person who sees a fire operates it to start the alarm. Some call points use a glass element that breaks. Others use a resettable element. One maker's call point accepts both types of element. UK guidance puts call points at exit doors. It says they must be conspicuous and no higher than 1.4 m from the floor. A lower position can suit wheelchair users.",
+    "advantages": "- Any occupant can start the fire alarm by hand.\n- On one maker's call point, a yellow strip shows that the element has operated.\n- On the same call point, a test key lets a technician test the switch without breaking the glass.",
+    "cautions": "- A call point is one part of a fire alarm system. It needs a compatible panel or sounder to warn people.\n- UK guidance says occupants must not travel more than 45 m to the nearest call point.\n- UK guidance recommends hinged covers on call points in public areas. Covers help to prevent accidental use.\n- U.S. OSHA says manual alarm devices must be unobstructed, conspicuous and readily accessible.\n- U.S. OSHA requires a test every two months for an alarm system that is not supervised. Each test must use a different device.\n- The masterlist name does not state the element type, the voltage or the weather rating of CTI's unit."
+  },
+  {
+    "slug": "fire-escape-mask",
+    "kind": "type",
+    "codes": [
+      "FIR-001-07"
+    ],
+    "sources": [
+      "https://www.osha.gov/laws-regs/standardinterpretations/2010-08-11-1",
+      "https://www.london-fire.gov.uk/about-us/services-and-facilities/vehicles-and-equipment/fire-escape-hoods",
+      "https://fseg.gre.ac.uk/fire/fire_safety_tips.html"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire escape mask"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A fire escape mask is also called a smoke hood or an escape hood. It fits over the head with a tight seal. The wearer breathes air through a filter that removes toxic gases. U.S. OSHA describes these devices as escape devices for adults, with no entry or re-entry into the area.",
+    "advantages": "- The tight seal stops smoke from entering the hood.\n- The filter removes toxic gases from the air that the wearer breathes.\n- UK London Fire Brigade says that its unopened hoods need no maintenance.",
+    "cautions": "- The masterlist name does not state if CTI's mask filters carbon monoxide. Ask CTI sales.\n- A UK fire safety research group warns that some products sold as smoke hoods do not filter carbon monoxide.\n- U.S. OSHA says that these hoods do not supply clean breathing air.\n- They may not protect in air with too little oxygen. U.S. OSHA says this is a common result of fires.\n- Use the hood only to escape. Do not let it delay a safe exit.\n- The filter gives protection only for a limited time.\n- Most hoods are for one use only. After you open one, you cannot seal it again.\n- Many hoods are difficult to wear correctly. Practise with a training unit before an emergency.\n- The U.S. voluntary standard ANSI/ISEA 110 asks for a laboratory-tested service life of 15 minutes for this type of device.\n- U.S. OSHA advises that elderly people and people with breathing or heart conditions can have difficulty with a hood."
+  },
+  {
+    "slug": "fire-hose-cabinet",
+    "kind": "type",
+    "codes": [
+      "FIR-002-38A",
+      "FIR-002-38B",
+      "FIR-002-38C",
+      "FIR-002-38D"
+    ],
+    "sources": [
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.158",
+      "https://blog.qrfs.com/137-single-jacket-double-jacket-and-rubber-coated-fire-hoses-how-to-choose-the-right-hose-for-your-needs/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Fire hose cabinet"
+      },
+      {
+        "label": "Parts named on the masterlist",
+        "value": "angle valve, lock nipple, straight nozzle or polycarbonate nozzle"
+      },
+      {
+        "label": "Hose size",
+        "value": "1 1/2 in"
+      },
+      {
+        "label": "Hose length and jacket",
+        "value": "50 ft single jacket (FIR-002-38A), 50 ft double jacket (FIR-002-38B), 100 ft single jacket (FIR-002-38C), 100 ft double jacket (FIR-002-38D)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A fire hose cabinet holds a hose, a valve and a nozzle at a standpipe outlet. U.S. OSHA requires hose cabinets to permit prompt use of the hose and the valve. A single jacket hose has one woven polyester jacket around a rubber lining. A double jacket hose has a second polyester jacket.",
+    "advantages": "- One U.S. supplier recommends single jacket hose for occupant-use standpipe systems.\n- A double jacket hose holds much higher pressure than a single jacket hose.\n- A double jacket hose also resists the elements better than a single jacket hose.\n- A 1 1/2 in hose is about the largest size that one person can control when it is full of water.",
+    "cautions": "- The masterlist name does not state the cabinet material, the cabinet size or the hose pressure rating. Ask CTI sales.\n- U.S. OSHA requires standpipe hose to have a shut-off type nozzle.\n- U.S. OSHA requires hose cabinets to be clearly identified and used only for fire equipment.\n- U.S. OSHA requires an inspection at least once a year and after each use.\n- U.S. OSHA requires other protection, such as extinguishers, while a hose system is out of service.\n- Clean a jacketed hose with a soft brush and mild soap. Then rinse it and dry it."
+  },
+  {
+    "slug": "flash-alarm",
+    "kind": "type",
+    "codes": [
+      "FIR-001-17"
+    ],
+    "sources": [
+      "https://apollo-fire.co.uk/news/an-introduction-to-en54-part-23-and-visual-alarm-devices/",
+      "https://www.gov.scot/publications/practical-fire-safety-guidance-existing-non-residential-premises-9781788511322/pages/8/",
+      "https://firescotland.gov.uk/your-safety/at-home/alarms/smoke-and-heat",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.165"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Flash alarm (as named on the masterlist)"
+      },
+      {
+        "label": "Signal",
+        "value": "Visual (flashing light)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A flash alarm gives a fire warning with a flashing light. UK maker Apollo calls this type a visual alarm device. A visual alarm device can be a separate unit. It can also be part of a sounder or a smoke detector. UK guidance says visual alarms can be necessary in noisy areas. They can also be necessary for people with hearing loss.",
+    "advantages": "- It warns people who are deaf or hard of hearing.\n- It warns people in high ambient noise and people who wear ear defenders.\n- Scottish fire service guidance lists flashing lights among the alarms for people who cannot hear well.",
+    "cautions": "- The masterlist name does not state the flash rate, the light colour or the voltage of CTI's unit.\n- Apollo says EN 54-23 covers visual alarm devices that are the primary warning. These devices flash at 0.5 to 2 Hz.\n- Apollo says other lights are auxiliary indicators only. They are not the primary means of alarm warning.\n- U.S. OSHA says an employee alarm must be perceivable above the ambient noise or light by all employees.\n- U.S. OSHA says tactile devices can alert employees who cannot recognize an audible or visual alarm.\n- Scottish fire service guidance also lists vibrating pads for people who cannot hear well."
+  },
+  {
+    "slug": "heat-alarm",
+    "kind": "type",
+    "codes": [
+      "FIR-001-21"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/heat-alarms/",
+      "https://www.aico.co.uk/product-category/heat-alarms/",
+      "https://www.gov.scot/publications/fire-and-smoke-alarms-in-scottish-homes/pages/what-each-home-needs/",
+      "https://www.gov.scot/publications/practical-fire-safety-guidance-existing-non-residential-premises-9781788511322/pages/8/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Heat alarm (as named on the masterlist)"
+      },
+      {
+        "label": "Detects",
+        "value": "Heat, not smoke"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A heat alarm reacts to heat, not to smoke. It gives a warning when the air temperature around it increases by a large amount. Some heat alarms operate when the air reaches a fixed temperature. Some also respond to a fast rise in temperature. Heat alarms are for kitchens and garages. In these areas, smoke alarms often give false alarms. Install a heat alarm on the ceiling, away from sources of heat.",
+    "advantages": "- Cooking fumes and steam do not easily cause a heat alarm to sound.\n- U.S. USFA says dust, fumes, insects, temperature changes and humidity changes do not affect heat alarms.\n- Many heat alarms can interconnect with smoke alarms. Then all the alarms sound together.\n- UK guidance says heat detectors have a good record for few false alarms.",
+    "cautions": "- A heat alarm does not detect smoke. UK guidance says not to use one where smoke detection is necessary, for example in escape routes.\n- A heat alarm does not replace smoke alarms. One UK maker recommends interconnected smoke and heat alarms across the property.\n- Scottish law requires one heat alarm in the kitchen of every home. All smoke and heat alarms go on the ceiling and are interlinked.\n- U.S. USFA advises a hard-wired heat alarm with battery backup. A qualified electrician must install the hard-wired unit.\n- U.S. USFA says not to install a heat alarm near fluorescent lights.\n- The masterlist name does not state the power source, the sensing method or the alarm temperature of CTI's unit."
+  },
+  {
+    "slug": "led-siren",
+    "kind": "type",
+    "codes": [
+      "FIR-001-15"
+    ],
+    "sources": [
+      "https://buildings.honeywell.com/gb/en/products/by-category/fire-life-safety/notification-appliances/strobes-and-signal-lights/sounder-beacon",
+      "https://apollo-fire.co.uk/news/an-introduction-to-en54-part-23-and-visual-alarm-devices/",
+      "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.165",
+      "https://www.gov.scot/publications/practical-fire-safety-guidance-existing-non-residential-premises-9781788511322/pages/8/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "LED siren (as named on the masterlist)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. The masterlist name suggests a sounder with an LED light. A sounder beacon combines a sounder with a light. One maker's sounder beacon uses LED technology. Its sound is the primary alarm, and its light is a supplementary indication. UK guidance says sounders alert the occupants of a building.",
+    "advantages": "- One device can give both sound and light.\n- One maker says its LED sounder beacon gives this sound and light at a very low current draw.",
+    "cautions": "- The masterlist name does not state the sound level, the tones, the light colour or the voltage of CTI's unit.\n- Ask CTI sales if CTI's unit gives sound, light or both.\n- Not every light on a sounder is a visual alarm device. UK maker Apollo says EN 54-23 covers lights that are the primary warning.\n- Apollo says other lights are auxiliary indicators only. Do not use such a light as the only warning for people who cannot hear.\n- U.S. OSHA says an employee alarm must be perceivable above the ambient noise or light by all employees.\n- U.S. OSHA says the alarm must be distinctive and recognizable as a signal to evacuate.\n- UK guidance says the warning signal and the sound level must suit the premises."
+  },
+  {
+    "slug": "rope-ladder",
+    "kind": "type",
+    "codes": [
+      "FIR-001-45"
+    ],
+    "sources": [
+      "https://willardohio.gov/fire-escape-ladders.html",
+      "https://www.kidde.com/safety-hub/home-safety/fire-escape-from-the-second-or-third-floor",
+      "https://www.firstalertstore.com/store/product-support/emergency-escape-ladders-for-second-story-rooms.htm"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Rope ladder"
+      },
+      {
+        "label": "Length",
+        "value": "10 m"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A portable fire escape ladder gives an alternate escape route from an upper-floor window. U.S. NFPA recommends one ladder in every occupied room on floors above the main level. The masterlist does not state how CTI's ladder attaches to a window or its load rating. Ask CTI sales.",
+    "advantages": "- It gives a second way out when flames block the door.\n- Many escape ladders are small enough to store in a closet or under a bed.",
+    "cautions": "- Store the ladder in or near the room where people can need it.\n- Make sure that the window opens fully and that no furniture blocks it.\n- Use the ladder only with the window type and floor height that it is designed for.\n- Lower the ladder fully before anyone starts to descend.\n- Do not overload the ladder. Use it only for its intended purpose.\n- Inspect the ladder for damage or missing parts.\n- Do not descend from an upper window only for a practice drill."
+  },
+  {
+    "slug": "smoke-alarm-battery",
+    "kind": "type",
+    "codes": [
+      "FIR-001-19",
+      "FIR-001-42",
+      "FIR-001-43",
+      "FIR-002-19"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/",
+      "https://www.cpsc.gov/s3fs-public/SmokeAlarmWhyWhereandWhichCPSCPub559RevisedJuly2016PostReview(2).pdf",
+      "https://www.gov.scot/publications/fire-and-smoke-alarms-in-scottish-homes/pages/where-and-what-to-buy/",
+      "https://www.gmanetwork.com/news/balitambayan/talakayan/778062/iba-t-ibang-gamit-na-panlaban-sa-sunog-alamin-kung-paano-gamitin/story/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Smoke alarm or smoke detector (as named on the masterlist)"
+      },
+      {
+        "label": "Power on the masterlist",
+        "value": "Battery (FIR-002-19 only)"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A battery smoke alarm needs no connection to the electrical system. U.S. USFA says that battery alarms use a disposable 9 V battery or a sealed 10-year lithium battery. U.S. CPSC says that battery-only alarms are the simplest type to install in older homes. Install an alarm on every level of the home, inside each bedroom and outside sleeping areas.",
+    "advantages": "- It needs no house wiring and no electrician to install.\n- You can add alarms to an existing home with no change to the wiring.",
+    "cautions": "- The masterlist names of FIR-001-19, FIR-001-42 and FIR-001-43 do not state the power source. Confirm with CTI sales.\n- The masterlist does not state the battery type or the sensor type of these units.\n- U.S. CPSC says that smoke alarms most often fail because of missing, drained or disconnected batteries.\n- A chirp from the alarm means a low battery. U.S. CPSC says to replace the battery immediately.\n- U.S. USFA says to replace a 9 V battery at least once a year. Replace the alarm every 10 years.\n- Do not remove the battery to stop a nuisance alarm. U.S. USFA says to open a window or press the hush button.\n- A Philippine news report (GMA News) advises a test of the battery every month.\n- UK (Scotland) home rules do not accept alarms with replaceable batteries. The sensors degrade over time."
+  },
+  {
+    "slug": "smoke-alarm-sd-426",
+    "kind": "type",
+    "codes": [
+      "FIR-001-22"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/",
+      "https://www.cpsc.gov/s3fs-public/SmokeAlarmWhyWhereandWhichCPSCPub559RevisedJuly2016PostReview(2).pdf",
+      "https://www.gmanetwork.com/news/balitambayan/talakayan/778062/iba-t-ibang-gamit-na-panlaban-sa-sunog-alamin-kung-paano-gamitin/story/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Smoke alarm (as named on the masterlist)"
+      },
+      {
+        "label": "Model number on the masterlist",
+        "value": "SD-426"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A smoke alarm sounds when it senses smoke. U.S. USFA says that the two basic types are ionization and photoelectric. Each type detects different kinds of fires. A dual-sensor alarm contains both sensors. U.S. USFA advises alarms inside and outside each bedroom and on every level of the home. Mount the alarm on the ceiling or high on a wall. Obey the instructions of the maker.",
+    "advantages": "- A smoke alarm gives early warning, so people have more time to leave the home.\n- A Philippine news report (GMA News) lists the smoke alarm among the items that every home should have.\n- U.S. CPSC says that a photoelectric alarm is less likely to give a nuisance alarm during cooking.",
+    "cautions": "- The masterlist does not name the maker of the SD-426. A web search found no single maker for this model number.\n- The web search found a Visonic SMD-426, which is a different model number. Do not use its specs for CTI's unit.\n- The masterlist name does not state the sensor type or the power source. Ask CTI sales for these details.\n- U.S. USFA says to test all smoke alarms every month.\n- U.S. USFA says to replace a smoke alarm 10 years after its date of manufacture.\n- U.S. USFA says that you can have less than 2 minutes to leave the home after the alarm sounds."
+  },
+  {
+    "slug": "smoke-detector-424-220v",
+    "kind": "type",
+    "codes": [
+      "FIR-001-24"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/",
+      "https://www.cpsc.gov/s3fs-public/SmokeAlarmWhyWhereandWhichCPSCPub559RevisedJuly2016PostReview(2).pdf",
+      "https://www.gov.scot/publications/fire-and-smoke-alarms-in-scottish-homes/pages/where-and-what-to-buy/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Standalone smoke detector (as named on the masterlist)"
+      },
+      {
+        "label": "Model number on the masterlist",
+        "value": "424"
+      },
+      {
+        "label": "Power on the masterlist",
+        "value": "220 V"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A smoke detector on 220 V is a hardwired alarm. The electrical system of the building supplies its power. U.S. USFA says that a hardwired alarm usually has a backup battery. A standalone alarm is a single-station unit. It does not connect to other alarms, so only that unit sounds. U.S. CPSC says that new homes typically have hardwired alarms.",
+    "advantages": "- The electrical system supplies the main power, so the alarm does not depend only on a battery.\n- U.S. CPSC says that a hardwired alarm with a backup battery gives protection also during a power outage.",
+    "cautions": "- The masterlist does not name the maker of the 424. A web search found no single maker for this model number.\n- The masterlist name does not state a backup battery or the sensor type. Ask CTI sales for these details.\n- U.S. USFA says that only qualified electricians should install hardwired alarms.\n- UK (Scotland) guidance also says that a qualified electrician must fit mains-wired alarms.\n- U.S. USFA says to replace the backup battery at least once a year. Replace the alarm every 10 years.\n- A standalone alarm does not alert people in other rooms. U.S. CPSC advises interconnected alarms."
+  },
+  {
+    "slug": "smoke-detector-interlinked",
+    "kind": "type",
+    "codes": [
+      "FIR-001-44"
+    ],
+    "sources": [
+      "https://www.cpsc.gov/s3fs-public/SmokeAlarmWhyWhereandWhichCPSCPub559RevisedJuly2016PostReview(2).pdf",
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/",
+      "https://www.gov.scot/publications/fire-and-smoke-alarms-in-scottish-homes/",
+      "https://www.gov.scot/publications/fire-and-smoke-alarms-in-scottish-homes/pages/where-and-what-to-buy/"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Wired interlinked smoke detector (as named on the masterlist)"
+      },
+      {
+        "label": "Power on the masterlist",
+        "value": "220 V AC with a 9 V battery"
+      },
+      {
+        "label": "Interlink on the masterlist",
+        "value": "Wired"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. Interlinked alarms connect to each other. When one alarm senses smoke, all the alarms sound. U.S. CPSC gives an example. A fire in the basement starts the nearest alarm, and every alarm in the home sounds. Wires usually connect interlinked alarms, but wireless units are also available. UK (Scotland) guidance says that all smoke and heat alarms should be on the ceiling and interlinked.",
+    "advantages": "- U.S. CPSC says that interconnected alarms can give more time to escape and better audibility.\n- People hear the alarm in every part of the home, not only near the fire.\n- U.S. CPSC says that a wired alarm with a backup battery gives protection also during a power outage.\n- U.S. CPSC lists interconnected alarms on house wiring with battery backup in its best level of protection.",
+    "cautions": "- The masterlist name does not state the sensor type. Ask CTI sales for this detail.\n- The masterlist name says both \"interlinked\" and \"standalone\". Ask CTI sales how the unit links to other alarms.\n- U.S. USFA says that only qualified electricians should install hardwired alarms.\n- UK (Scotland) guidance also says that a qualified electrician must fit mains-wired alarms.\n- U.S. USFA says to replace the backup battery at least once a year. Replace the alarm every 10 years.\n- U.S. USFA says to test all smoke alarms every month."
+  },
+  {
+    "slug": "smoke-detector-sd-604pc",
+    "kind": "type",
+    "codes": [
+      "FIR-001-20"
+    ],
+    "sources": [
+      "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/",
+      "https://www.cpsc.gov/s3fs-public/SmokeAlarmWhyWhereandWhichCPSCPub559RevisedJuly2016PostReview(2).pdf"
+    ],
+    "specs": [
+      {
+        "label": "Product type",
+        "value": "Smoke detector (as named on the masterlist)"
+      },
+      {
+        "label": "Model number on the masterlist",
+        "value": "SD-604PC"
+      },
+      {
+        "label": "Maker",
+        "value": "Not named on the masterlist"
+      }
+    ],
+    "usage": "These are general facts for this type of product, not the datasheet of CTI's unit. A smoke alarm senses smoke and makes a loud alarm sound. The two main sensor types are ionization and photoelectric. U.S. CPSC says that an ionization sensor responds more quickly to flaming fires. A photoelectric sensor responds more quickly to smoldering fires. U.S. CPSC advises a smoke alarm on every level of the home, inside each bedroom and outside sleeping areas. Install it in the center of a ceiling, or on a wall near the ceiling.",
+    "advantages": "- A smoke alarm operates 24 hours a day. It gives early warning of a fire, also when people sleep.\n- U.S. CPSC says that working smoke alarms can reduce the risk of death in a home fire by almost half.",
+    "cautions": "- The masterlist does not name the maker of the SD-604PC. A web search found no single maker for this model number.\n- The masterlist name does not state the sensor type or the power source. Ask CTI sales for these details.\n- U.S. USFA says to test all smoke alarms every month.\n- U.S. USFA says to replace a smoke alarm 10 years after its date of manufacture.\n- U.S. CPSC says not to install a smoke alarm near a kitchen appliance or a fireplace. This prevents nuisance alarms.\n- U.S. CPSC also says to keep alarms away from bathrooms, heating appliances, windows and ceiling fans."
   }
 ]
