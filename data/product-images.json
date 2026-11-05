@@ -1,0 +1,18 @@
+{
+  "_note": "Product photo manifest. Photos are crops of the PICTURE column of the CTI catalogue sheets. The files in public/products/ are gitignored until CTI agrees to publish them, so a deploy without them shows the 'Photo not on file' tile. The full pipeline is docs/ui-design-report.md section 5.2.",
+  "products": {
+    "BOD-001-001": "/products/BOD-001-001.webp",
+    "BOD-001-01": "/products/BOD-001-01.webp",
+    "BOD-001-02B": "/products/BOD-001-02B.webp",
+    "BOD-001-42": "/products/BOD-001-42.webp",
+    "BOD-001-43": "/products/BOD-001-43.webp"
+  },
+  "categories": [
+    { "label": "Fall protection", "category": "Fall Protection Harnesses", "img": "/products/category/harnesses.webp" },
+    { "label": "Helmets", "category": "Helmets", "img": "/products/category/helmets.webp" },
+    { "label": "Safety shoes", "category": "Safety Shoes", "img": "/products/category/shoes.webp" },
+    { "label": "First aid", "category": "First Aid Kits", "img": "/products/category/first-aid.webp" },
+    { "label": "Janitorial", "category": "Janitorial & Cleaning Equipment", "img": "/products/category/janitorial.webp" },
+    { "label": "Medical", "category": "Medical & Clinic Equipment", "img": "/products/category/medical.webp" }
+  ]
+}

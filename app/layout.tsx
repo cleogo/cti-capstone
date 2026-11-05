@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
+import { Outfit, Rubik } from 'next/font/google';
 import './globals.css';
+
+// docs/ui-design-decisions.md D3. next/font self-hosts the files, so text does not move on load.
+const heading = Outfit({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-heading' });
+const body = Rubik({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-body' });
 
 const TITLE = 'CTI Product Assistant';
 const DESCRIPTION =
@@ -36,8 +41,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${heading.variable} ${body.variable}`}>
+      <body className="bg-paper font-body text-ink antialiased">{children}</body>
     </html>
   );
 }

@@ -11,23 +11,23 @@ import remarkGfm from 'remark-gfm';
 
 export function Markdown({ text }: { text: string }) {
   return (
-    <div className="text-[15px] leading-relaxed [&_p]:my-1.5 [&_ul]:my-1.5 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-1.5 [&_ol]:list-decimal [&_ol]:pl-5">
+    <div className="text-[15px] leading-relaxed [&_p]:my-1.5 [&_ul]:my-1.5 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-1.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_a]:text-link [&_a]:underline [&_code]:rounded [&_code]:bg-paper [&_code]:px-1 [&_code]:text-[13px]">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
           p: ({ children }) => <p>{children}</p>,
           table: ({ children }) => (
-            <div className="my-2 overflow-x-auto rounded-lg border border-slate-200">
+            <div className="my-2 overflow-x-auto rounded-lg border border-line">
               <table className="min-w-full text-sm">{children}</table>
             </div>
           ),
           th: ({ children }) => (
-            <th className="bg-slate-50 px-3 py-1.5 text-left font-medium text-slate-600 whitespace-nowrap">
+            <th className="bg-paper px-3 py-1.5 text-left font-medium text-muted whitespace-nowrap">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-3 py-1.5 border-t border-slate-100 whitespace-nowrap">{children}</td>
+            <td className="px-3 py-1.5 border-t border-line whitespace-nowrap">{children}</td>
           ),
           // Rule: "do not bold whole lines" — strong stays inline-weight, not shouted.
           strong: ({ children }) => <strong className="font-semibold">{children}</strong>,

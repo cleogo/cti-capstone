@@ -1,14 +1,16 @@
 'use client';
 /**
- * The buildQuotation result as a card. Every figure comes from the tool result
- * (lib/quote.ts). Nothing here reads model text.
+ * The buildQuotation result as a card (docs/ui-design-decisions.md D6). Every figure comes
+ * from the tool result (lib/quote.ts). Nothing here reads model text.
  *
- * Print: the button marks this card as the print target, then calls
- * window.print(). The print CSS in globals.css hides everything else.
+ * Print: the button marks this card as the print target, then calls window.print(). The
+ * print CSS in globals.css hides everything else. Photos do not print.
  */
 import { useRef } from 'react';
 import type { QuoteResult } from '@/lib/quote';
+import { photoFor } from '@/lib/photos';
 import { formatPeso } from './SourceCard';
+import { card, eyebrow, IconAlert, IconPrinter, Logo, Photo, stagger } from './ui';
 
 const REASON_TEXT: Record<string, string> = {
   unknown_code: 'not in the CTI masterlist',
@@ -21,13 +23,17 @@ export function QuoteCard({ result }: { result: QuoteResult | { error: string; m
   const ref = useRef<HTMLDivElement>(null);
 
   if ('error' in result) {
-    return <div className="mt-2 text-sm text-rose-700">Could not build the quotation: {result.message ?? result.error}</div>;
+    return (
+      <div className="mt-3 flex items-center gap-2 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <IconAlert className="h-4 w-4" /> Could not build the quotation: {result.message ?? result.error}
+      </div>
+    );
   }
   if (!result.ok) {
     return (
-      <div className="mt-2 w-full rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
+      <div className="mt-3 w-full rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
         <div className="mb-1 font-medium">No quotation was made.</div>
-        <ul>
+        <ul className="list-disc pl-5">
           {result.errors.map((e, i) => (
             <li key={i}>
               {e.code ? <span className="font-mono">{e.code}</span> : 'The list'}: {REASON_TEXT[e.reason] ?? e.reason}
@@ -48,66 +54,58 @@ export function QuoteCard({ result }: { result: QuoteResult | { error: string; m
   };
 
   return (
-    <div ref={ref} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-4 text-sm">
-      <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
-        <div>
-          <div className="text-xs font-medium uppercase tracking-wide text-amber-700">Draft quotation</div>
-          <div className="font-mono text-slate-900">{quote.ref}</div>
-          <div className="text-xs text-slate-600">
-            Date {quote.date} · Valid until {quote.valid_until}
+    <div ref={ref} className={`mt-3 w-full animate-card-in overflow-hidden ${card}`}>
+      <div className="flex items-start justify-between gap-3 bg-ink px-4 py-3 text-white">
+        <div className="flex min-w-0 items-center gap-3">
+          <Logo size={36} />
+          <div className="min-w-0">
+            <div className={`text-brand ${eyebrow}`}>Draft quotation</div>
+            <div className="truncate font-mono text-sm">{quote.ref}</div>
           </div>
         </div>
         <button
           type="button"
           onClick={print}
-          className="rounded-md border border-slate-300 px-3 py-1 text-xs text-slate-700 hover:bg-slate-100 print:hidden"
+          className="inline-flex min-h-[36px] shrink-0 items-center gap-1.5 rounded-lg bg-white/10 px-3 text-xs font-medium transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand print:hidden"
         >
-          Print
+          <IconPrinter className="h-4 w-4" /> Print
         </button>
       </div>
-
-      <div className="overflow-x-auto">
-        <table className="w-full text-xs text-slate-700">
-          <thead>
-            <tr className="border-b border-slate-200 text-left text-slate-500">
-              <th className="py-1 pr-2 font-medium">Code</th>
-              <th className="py-1 pr-2 font-medium">Item</th>
-              <th className="py-1 pr-2 text-right font-medium">Qty</th>
-              <th className="py-1 pr-2 text-right font-medium">Unit price</th>
-              <th className="py-1 text-right font-medium">Line total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {quote.lines.map((l) => (
-              <tr key={l.code} className="border-b border-slate-100 align-top">
-                <td className="py-1 pr-2 font-mono whitespace-nowrap">{l.code}</td>
-                <td className="py-1 pr-2">{l.name}</td>
-                <td className="py-1 pr-2 text-right">{l.qty.toLocaleString('en-PH')}</td>
-                <td className="py-1 pr-2 text-right whitespace-nowrap">{formatPeso(l.unit_price_php)}</td>
-                <td className="py-1 text-right whitespace-nowrap">{formatPeso(l.line_total_php)}</td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={4} className="pt-2 pr-2 text-right font-semibold text-slate-900">
-                Total (VAT-inclusive)
-              </td>
-              <td className="pt-2 text-right font-semibold whitespace-nowrap text-slate-900">{formatPeso(quote.total_php)}</td>
-            </tr>
-            <tr>
-              <td colSpan={4} className="pr-2 text-right">VATable sales</td>
-              <td className="text-right whitespace-nowrap">{formatPeso(quote.vatable_sales_php)}</td>
-            </tr>
-            <tr>
-              <td colSpan={4} className="pr-2 text-right">VAT (12%)</td>
-              <td className="text-right whitespace-nowrap">{formatPeso(quote.vat_php)}</td>
-            </tr>
-          </tfoot>
-        </table>
+      <div className="flex flex-wrap gap-x-6 gap-y-1 border-b border-line px-4 py-2 text-xs text-muted">
+        <span>Date {quote.date}</span>
+        <span>Valid until {quote.valid_until}</span>
       </div>
-
-      <p className="mt-3 rounded-md bg-amber-50 px-2 py-1.5 text-xs text-amber-900">{quote.note}</p>
+      <ul className="divide-y divide-line">
+        {quote.lines.map((l, i) => (
+          <li key={l.code} className="flex animate-card-in items-center gap-3 px-4 py-2.5" style={stagger(i)}>
+            <div className="print:hidden">
+              <Photo src={photoFor(l.code)} alt={l.name} size={40} className="w-10 rounded-lg" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-sm leading-snug text-ink">{l.name}</div>
+              <div className="font-mono text-[11px] text-faint">
+                {l.code} · {l.qty.toLocaleString('en-PH')} × {formatPeso(l.unit_price_php)}
+              </div>
+            </div>
+            <div className="shrink-0 font-heading text-sm font-semibold tabular-nums text-ink">{formatPeso(l.line_total_php)}</div>
+          </li>
+        ))}
+      </ul>
+      <dl className="space-y-1 border-t border-line bg-paper/60 px-4 py-3 text-sm">
+        <div className="flex justify-between text-muted">
+          <dt>VATable sales</dt>
+          <dd className="tabular-nums">{formatPeso(quote.vatable_sales_php)}</dd>
+        </div>
+        <div className="flex justify-between text-muted">
+          <dt>VAT (12%)</dt>
+          <dd className="tabular-nums">{formatPeso(quote.vat_php)}</dd>
+        </div>
+        <div className="flex justify-between gap-3 pt-1 font-heading text-base font-bold text-ink sm:text-lg">
+          <dt>Total (VAT-inclusive)</dt>
+          <dd className="tabular-nums">{formatPeso(quote.total_php)}</dd>
+        </div>
+      </dl>
+      <p className="border-t border-line px-4 py-2.5 text-xs text-link">{quote.note}</p>
     </div>
   );
 }

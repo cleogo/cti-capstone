@@ -1,106 +1,124 @@
+'use client';
+
 /**
- * The recommendPowerStation result as a card. Every figure comes from the
- * tool result (lib/power.ts). Nothing here reads model text.
+ * The recommendPowerStation result as a card (docs/ui-design-decisions.md D6). Every figure
+ * comes from the tool result (lib/power.ts). Nothing here reads model text.
  */
 import type { Load, StationResult } from '@/lib/power';
 import { DOD, INVERTER_EFFICIENCY, HEADROOM } from '@/lib/power';
 import { formatPeso } from './SourceCard';
+import { card, eyebrow, IconAlert, IconBattery, Photo, stagger } from './ui';
 
 type Result = { eligible: StationResult[]; rejected: StationResult[] } | { error: string; message?: string };
 
 const n = (x: number) => x.toLocaleString('en-PH', { maximumFractionDigits: 2 });
 
-function Pick({ r, label }: { r: StationResult; label: string }) {
+function Meter({ label, value, max, unit }: { label: string; value: number; max: number; unit: string }) {
+  const pct = max > 0 ? Math.min(100, (value / max) * 100) : 100;
   return (
-    <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2">
-      <div className="text-xs font-medium uppercase tracking-wide text-emerald-700">{label}</div>
-      <div className="font-semibold text-slate-900">
-        {r.model} <span className="font-mono text-xs text-slate-500">{r.code}</span>
+    <div>
+      <div className="flex justify-between gap-2 text-[11px] text-muted">
+        <span>{label}</span>
+        <span className="shrink-0 font-mono tabular-nums">
+          {n(value)} / {n(max)} {unit}
+        </span>
       </div>
-      <div className="text-slate-800">{formatPeso(r.price_php)}</div>
-      <div className="text-xs text-slate-600">Runs about {n(r.runtime_h)} h on this load</div>
+      <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-line" role="meter" aria-label={label} aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100}>
+        <div className={`h-full origin-left animate-grow rounded-full ${pct > 90 ? 'bg-amber-500' : 'bg-emerald-600'}`} style={{ width: `${pct}%` }} />
+      </div>
+    </div>
+  );
+}
+
+function Pick({ r, label, i }: { r: StationResult; label: string; i: number }) {
+  return (
+    <div className={`flex animate-card-in flex-col overflow-hidden ${card} ${i === 0 ? 'ring-2 ring-emerald-600/30' : ''}`} style={stagger(i, 90)}>
+      <div className="flex gap-3 p-3">
+        <Photo alt={r.model} size={80} className="w-16 rounded-xl sm:w-20" icon={<IconBattery className="h-7 w-7" />} />
+        <div className="min-w-0 flex-1">
+          <span className={`inline-block rounded-full px-2 py-0.5 ${eyebrow} ${i === 0 ? 'bg-emerald-50 text-emerald-800' : 'bg-paper text-muted'}`}>{label}</span>
+          <div className="mt-1 font-heading font-semibold leading-snug text-ink">{r.model}</div>
+          <div className="font-mono text-[11px] text-faint">{r.code}</div>
+          <div className="mt-1 font-heading font-semibold tabular-nums text-ink">{formatPeso(r.price_php)}</div>
+        </div>
+      </div>
+      <div className="mt-auto space-y-2 border-t border-line bg-paper/50 px-3 py-3">
+        <div className="flex items-baseline gap-1.5">
+          <span className="font-heading text-2xl font-bold tabular-nums text-ink">{n(r.runtime_h)} h</span>
+          <span className="text-xs text-muted">runtime on this load</span>
+        </div>
+        <Meter label={`Power needed (running × ${HEADROOM})`} value={r.running_w * HEADROOM} max={r.rated_w} unit="W" />
+        <Meter label="Start-up peak" value={r.peak_w} max={r.rated_w} unit="W" />
+        <Meter label="Energy needed" value={r.energy_wh} max={r.usable_wh} unit="Wh" />
+      </div>
     </div>
   );
 }
 
 export function RecommendationCard({ loads, result }: { loads: Load[]; result: Result }) {
   if ('error' in result) {
-    return <div className="text-sm text-rose-700">Could not size a station: {result.message ?? result.error}</div>;
+    return (
+      <div className="mt-3 flex items-center gap-2 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <IconAlert className="h-4 w-4" /> Could not size a station: {result.message ?? result.error}
+      </div>
+    );
   }
   const [first, next] = result.eligible;
 
   return (
-    <div className="mt-2 w-full space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
-      <div>
-        <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">Loads</div>
-        <ul className="text-slate-700">
-          {loads.map((l, i) => (
-            <li key={i}>
-              {l.qty} × {l.name}: {n(l.running_w)} W
-              {l.surge_w !== null ? ` (start-up ${n(l.surge_w)} W)` : ''}, {n(l.hours)} h
-            </li>
-          ))}
-        </ul>
+    <div className="mt-3 w-full space-y-3">
+      <div className="flex flex-wrap gap-1.5">
+        {loads.map((l, i) => (
+          <span key={i} className="animate-card-in rounded-full border border-line bg-white px-2.5 py-1 text-xs text-muted" style={stagger(i, 40)}>
+            {l.qty} × {l.name} · {n(l.running_w)} W{l.surge_w !== null ? ` (start-up ${n(l.surge_w)} W)` : ''} · {n(l.hours)} h
+          </span>
+        ))}
       </div>
 
       {first ? (
         <>
-          <div className="grid gap-2 sm:grid-cols-2">
-            <Pick r={first} label="Smallest fit" />
-            {next && <Pick r={next} label="One step up" />}
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Pick r={first} label="Smallest fit" i={0} />
+            {next && <Pick r={next} label="One step up" i={1} />}
           </div>
-          <table className="w-full text-xs text-slate-700">
-            <caption className="mb-1 text-left font-medium text-slate-500">The maths for {first.model}</caption>
-            <tbody>
-              <tr>
-                <td className="py-0.5">Running load, with the station&apos;s own use</td>
-                <td className="text-right font-mono">{n(first.running_w)} W</td>
-              </tr>
-              <tr>
-                <td className="py-0.5">Needed rating (running × {HEADROOM})</td>
-                <td className="text-right font-mono">
-                  {n(first.running_w * HEADROOM)} W ≤ {n(first.rated_w)} W
-                </td>
-              </tr>
-              <tr>
-                <td className="py-0.5">Start-up peak</td>
-                <td className="text-right font-mono">
-                  {n(first.peak_w)} W ≤ {n(first.rated_w)} W
-                </td>
-              </tr>
-              <tr>
-                <td className="py-0.5">Energy needed</td>
-                <td className="text-right font-mono">{n(first.energy_wh)} Wh</td>
-              </tr>
-              <tr>
-                <td className="py-0.5">
-                  Usable energy (capacity × {DOD} × {INVERTER_EFFICIENCY})
-                </td>
-                <td className="text-right font-mono">{n(first.usable_wh)} Wh</td>
-              </tr>
-              <tr>
-                <td className="py-0.5">Runtime (usable ÷ running)</td>
-                <td className="text-right font-mono">{n(first.runtime_h)} h</td>
-              </tr>
-            </tbody>
-          </table>
+          <details className={`animate-card-in ${card} px-4 py-3 text-sm`}>
+            <summary className="min-h-[28px] cursor-pointer font-medium text-ink">How {first.model} was sized</summary>
+            <table className="mt-2 w-full text-xs text-muted">
+              <tbody>
+                {(
+                  [
+                    ["Running load, with the station's own use", `${n(first.running_w)} W`],
+                    [`Needed rating (running × ${HEADROOM})`, `${n(first.running_w * HEADROOM)} W ≤ ${n(first.rated_w)} W`],
+                    ['Start-up peak', `${n(first.peak_w)} W ≤ ${n(first.rated_w)} W`],
+                    ['Energy needed', `${n(first.energy_wh)} Wh`],
+                    [`Usable energy (capacity × ${DOD} × ${INVERTER_EFFICIENCY})`, `${n(first.usable_wh)} Wh`],
+                    ['Runtime (usable ÷ running)', `${n(first.runtime_h)} h`],
+                  ] as const
+                ).map(([k, v]) => (
+                  <tr key={k} className="border-t border-line">
+                    <td className="py-1.5 pr-2">{k}</td>
+                    <td className="py-1.5 text-right font-mono tabular-nums text-ink">{v}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </details>
         </>
       ) : (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-amber-900">
-          No power station on sale fits this load.
+        <div className="flex items-center gap-2 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          <IconAlert className="h-4 w-4" /> No power station on sale fits this load.
         </div>
       )}
 
       {result.rejected.length > 0 && (
-        <details open>
-          <summary className="cursor-pointer text-xs font-medium text-slate-500">
+        <details className="px-1 text-xs text-muted">
+          <summary className="min-h-[28px] cursor-pointer font-medium">
             {result.rejected.length} station{result.rejected.length === 1 ? '' : 's'} do not fit
           </summary>
-          <ul className="mt-1 space-y-0.5 text-xs text-slate-600">
+          <ul className="mt-1 space-y-0.5">
             {result.rejected.map((r) => (
               <li key={r.code}>
-                <span className="font-medium text-slate-800">{r.model}</span>{' '}
-                <span className="font-mono">{r.code}</span>: {r.reasons.join('; ')}
+                <span className="font-medium text-ink">{r.model}</span> <span className="font-mono">{r.code}</span>: {r.reasons.join('; ')}
               </li>
             ))}
           </ul>

@@ -51,3 +51,6 @@ ocr_raw.json
 # Personal study material - stays local
 docs/learn/
 public/learn.html
+
+# Design preview photos: crops of the private catalogue sheets. Local only until CTI clears publication.
+public/products/

@@ -3,7 +3,27 @@
 @tailwind utilities;
 
 html, body { height: 100%; }
-body { background: #f8fafc; color: #0f172a; }
+/* Tokens: docs/ui-design-decisions.md D1. paper and ink. */
+body { background: #fbf8f2; color: #111111; }
+
+/* D7: under reduced motion, every animation ends at once in its final state. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tool status text: a gold band moves across dark text. The text stays readable if it stops. */
+.shimmer-text {
+  background: linear-gradient(90deg, #57534e 40%, #b45309 50%, #57534e 60%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 /* Print only the quote card the user chose (QuoteCard adds .print-target). */
 @media print {
@@ -11,4 +31,6 @@ body { background: #f8fafc; color: #0f172a; }
   body * { visibility: hidden; }
   .print-target, .print-target * { visibility: visible; }
   .print-target { position: absolute; left: 0; top: 0; width: 100%; border: none; }
+  /* The chat shell is a fixed-height scroll box. Let it grow so the card is not clipped. */
+  .print-unclip { overflow: visible !important; height: auto !important; }
 }

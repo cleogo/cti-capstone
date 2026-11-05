@@ -1,52 +1,54 @@
-/**
- * A collapsible grid of source cards. Defaults to the first 4 so a
- * twelve-card retrieval doesn't bury the next question; "show all" reveals
- * the rest without a second fetch.
- */
 'use client';
 
+/**
+ * The sources under one answer (spec: every answer that used retrieval shows its sources).
+ *
+ * Mobile first: products are a horizontal snap row of photo cards, so a long result never
+ * pushes the next question far down. From 640 px the row becomes a 3-column grid that shows
+ * the first 6, with "Show all" for the rest. Guide sections and knowledge sheets are chips.
+ */
 import { useState } from 'react';
-import type { Source } from '@/lib/sources';
-import { SourceCard } from './SourceCard';
+import type { GuideSource, ProductSource, SheetSource, Source } from '@/lib/sources';
+import { DocChip, ProductCard, sourceKey, sourcesHeading } from './SourceCard';
 
-const COLLAPSED_COUNT = 4;
+const GRID_COUNT = 6;
 
-export function SourceList({ sources }: { sources: Source[] }) {
+export function SourceList({ sources, onAsk }: { sources: Source[]; onAsk?: (prompt: string) => void }) {
   const [expanded, setExpanded] = useState(false);
-
   if (sources.length === 0) return null;
 
-  const shown = expanded ? sources : sources.slice(0, COLLAPSED_COUNT);
-  const hiddenCount = sources.length - shown.length;
+  const products = sources.filter((s): s is ProductSource => s.kind === 'product');
+  const docs = sources.filter((s): s is GuideSource | SheetSource => s.kind !== 'product');
+  const hidden = products.length - GRID_COUNT;
 
   return (
-    <div className="mt-2">
-      <div className="mb-1 text-[11px] font-medium uppercase tracking-wide text-slate-400">
-        Sources ({sources.length})
-      </div>
-      <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-        {shown.map((s, i) => (
-          <SourceCard key={s.kind === 'product' ? s.code : s.kind === 'sheet' ? s.slug : `${s.title}::${s.heading}::${i}`} source={s} />
-        ))}
-      </div>
-      {hiddenCount > 0 && (
+    <section className="mt-3" aria-label="Sources for this answer">
+      {sourcesHeading(sources.length)}
+      {products.length > 0 && (
+        <div className="-mx-4 mt-2 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0">
+          {products.map((p, i) => (
+            <div key={p.code} className={`contents ${!expanded && i >= GRID_COUNT ? 'sm:hidden' : ''}`}>
+              <ProductCard source={p} i={i} onAsk={onAsk} />
+            </div>
+          ))}
+        </div>
+      )}
+      {hidden > 0 && (
         <button
           type="button"
-          onClick={() => setExpanded(true)}
-          className="mt-1.5 text-xs font-medium text-cyan-700 hover:underline"
+          onClick={() => setExpanded((e) => !e)}
+          className="mt-1 hidden min-h-[36px] text-xs font-medium text-link hover:underline sm:inline-flex sm:items-center"
         >
-          Show all {sources.length}
+          {expanded ? 'Show fewer' : `Show all ${products.length}`}
         </button>
       )}
-      {expanded && sources.length > COLLAPSED_COUNT && (
-        <button
-          type="button"
-          onClick={() => setExpanded(false)}
-          className="mt-1.5 ml-3 text-xs font-medium text-slate-400 hover:underline"
-        >
-          Show fewer
-        </button>
+      {docs.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {docs.map((d, i) => (
+            <DocChip key={sourceKey(d, i)} source={d} />
+          ))}
+        </div>
       )}
-    </div>
+    </section>
   );
 }
