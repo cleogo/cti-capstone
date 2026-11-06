@@ -75,16 +75,17 @@ export function ProductList({
         </div>
       ) : (
         <>
-          <div className="mt-1 overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
-            <table className="w-full text-left text-sm">
-              <thead className="sr-only sm:not-sr-only">
+          <div className="-ml-11 mt-1 overflow-hidden rounded-2xl border border-line bg-white shadow-sm sm:ml-0">
+            <table className="w-full table-fixed text-left text-sm" aria-label="Products">
+              <thead className="hidden sm:table-header-group">
                 <tr className={`border-b border-line text-muted ${eyebrow}`}>
                   {selecting && <th className="w-11" aria-label="Select" />}
-                  <th className="px-3 py-2" colSpan={2}>Product</th>
-                  <th className="hidden px-3 py-2 sm:table-cell">Code</th>
-                  <th className="hidden px-3 py-2 sm:table-cell">Colours</th>
-                  <th className="hidden px-3 py-2 sm:table-cell">Page</th>
-                  <th className="px-3 py-2 text-right">Price</th>
+                  <th className="w-[68px]" aria-label="Photo" />
+                  <th className="px-3 py-2">Product</th>
+                  <th className="hidden w-36 px-3 py-2 sm:table-cell">Code</th>
+                  <th className="hidden w-28 px-3 py-2 sm:table-cell">Colours</th>
+                  <th className="hidden w-14 px-3 py-2 sm:table-cell">Page</th>
+                  <th className="w-[104px] px-3 py-2 text-right">Price</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-line">
@@ -101,7 +102,7 @@ export function ProductList({
                           <SelectBox code={p.code} selected={tray.includes(p.code)} disabled={disabled(p.code)} onToggle={onToggleTray} />
                         </td>
                       )}
-                      <td className="w-[72px] py-2 pl-3">
+                      <td className="w-[68px] py-2 pl-3">
                         <Photo src={photoFor(p.code, p.data_quality_flag)} alt="" size={56} className="w-14 rounded-lg" />
                       </td>
                       <td className="min-w-0 px-3 py-2">
@@ -110,15 +111,15 @@ export function ProductList({
                           onClick={() => onOpen?.(p)}
                           className="text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-ink"
                         >
-                          <span className="line-clamp-2 font-semibold leading-snug text-ink">{p.name}</span>
+                          <span className="line-clamp-3 font-semibold leading-snug text-ink sm:line-clamp-2">{p.name}</span>
                         </button>
                         {p.category && <div className="truncate text-xs text-muted">{p.category}</div>}
                         <div className={`font-mono text-[11px] sm:hidden ${flagged ? 'text-red-800' : 'text-faint'}`}>{p.code}</div>
                       </td>
-                      <td className="hidden px-3 py-2 font-mono text-xs text-faint sm:table-cell">{p.code}</td>
-                      <td className="hidden px-3 py-2 text-xs text-muted sm:table-cell">{p.colors?.join(', ') || '—'}</td>
+                      <td className="hidden truncate px-3 py-2 font-mono text-xs text-faint sm:table-cell">{p.code}</td>
+                      <td className="hidden truncate px-3 py-2 text-xs text-muted sm:table-cell">{p.colors?.join(', ') || '—'}</td>
                       <td className="hidden px-3 py-2 text-xs tabular-nums text-faint sm:table-cell">{p.page ?? '—'}</td>
-                      <td className="whitespace-nowrap px-3 py-2 text-right align-middle">
+                      <td className="w-[104px] whitespace-nowrap py-2 pl-1 pr-3 text-right align-middle">
                         {flagged ? (
                           <span className="relative z-10 inline-flex flex-col items-end gap-1">
                             <span className="flex items-center gap-1 text-[11px] font-medium text-red-700">

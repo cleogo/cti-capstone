@@ -163,7 +163,7 @@ export function ProductSheet({
 
           <div className="flex shrink-0 gap-2 border-t border-line bg-white px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
             {!flagged && (
-              <button type="button" onClick={() => send(`Add ${p.code} to my quote.`)} className={`${btnPrimary} min-h-[44px] flex-1`}>
+              <button type="button" onClick={() => send(`Add ${p.code} to my quote.`)} className={`${btnPrimary} flex-1 whitespace-nowrap !px-2 text-sm`}>
                 <IconPlus className="h-4 w-4" /> Add to quote
               </button>
             )}
@@ -173,11 +173,11 @@ export function ProductSheet({
                 onCompare(p.code);
                 close();
               }}
-              className={`${btnGhost} min-h-[44px] flex-1`}
+              className={`${btnGhost} flex-1 whitespace-nowrap !px-2 text-sm`}
             >
               Compare
             </button>
-            <button type="button" onClick={() => send(flagged ? askSalesPrompt(p.code) : `Refer me to CTI sales about ${p.code}.`)} className={`${btnGhost} min-h-[44px] flex-1`}>
+            <button type="button" onClick={() => send(flagged ? askSalesPrompt(p.code) : `Refer me to CTI sales about ${p.code}.`)} className={`${btnGhost} flex-1 whitespace-nowrap !px-2 text-sm`}>
               <IconHeadset className="h-4 w-4" /> Ask sales
             </button>
           </div>
