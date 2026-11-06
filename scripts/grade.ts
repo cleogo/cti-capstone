@@ -34,6 +34,7 @@ import { tools } from '../lib/tools';
 import { ungroundedPesos } from '../lib/grounding';
 import { CHAT_MODEL, CHAT_MODEL_SETTINGS, MAX_STEPS } from '../lib/model';
 import { telemetry } from '../lib/telemetry';
+import { displayedAnswer } from '../lib/display';
 import { startTracing } from './tracing';
 
 const sdk = startTracing();
@@ -61,6 +62,7 @@ async function ask(question: string): Promise<Turn> {
 
   const toolNames: string[] = [];
   const results: unknown[] = [];
+  const shown: { name: string; result: unknown }[] = [];
   const totals: number[] = [];
 
   for (const step of res.steps) {
@@ -68,13 +70,15 @@ async function ask(question: string): Promise<Turn> {
     for (const r of step.toolResults ?? []) {
       const out = (r as { result?: unknown }).result;
       results.push(out);
+      shown.push({ name: (r as { toolName: string }).toolName, result: out });
       // filterProducts — { items, total_matching }.
       const total = (out as { total_matching?: unknown } | null)?.total_matching;
       if (typeof total === 'number') totals.push(total);
     }
   }
 
-  return { text: res.text, toolNames, results, totals };
+  // V4 keeps prices out of the text; score what the customer sees (lib/display.ts).
+  return { text: displayedAnswer(res.text, shown), toolNames, results, totals };
 }
 
 let passed = 0;

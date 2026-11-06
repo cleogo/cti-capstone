@@ -50,3 +50,25 @@ export function showProducts(codes: string[]): ShowProductsResult {
   }
   return { products, unknown };
 }
+
+export function formatPeso(n: number): string {
+  return `₱${n.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+/**
+ * The answer as the customer sees it: the text plus one plain line for each
+ * product that showProducts put on screen. The eval harnesses score this, not
+ * the bare text, because V4 keeps prices out of the text.
+ */
+export function displayedAnswer(text: string, results: { name: string; result: unknown }[]): string {
+  const lines: string[] = [];
+  for (const r of results) {
+    if (r.name !== 'showProducts') continue;
+    const products = (r.result as Partial<ShowProductsResult> | null)?.products ?? [];
+    for (const p of products) {
+      const price = p.price_php === null ? 'price to be confirmed by sales' : formatPeso(p.price_php);
+      lines.push(`${p.code} · ${p.name} · ${price}`);
+    }
+  }
+  return lines.length ? `${text}\n${lines.join('\n')}` : text;
+}

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { BY_CODE } from '../lib/products';
-import { MAX_SHOWN, showProducts } from '../lib/display';
+import { MAX_SHOWN, displayedAnswer, showProducts } from '../lib/display';
 
 test('showProducts keeps order and drops duplicates', () => {
   const r = showProducts(['MED-001-01', 'PWR-001-06', 'MED-001-01']);
@@ -29,4 +29,18 @@ test('a conflict code shows once, flagged, with no price', () => {
 test('showProducts caps at MAX_SHOWN', () => {
   const codes = [...BY_CODE.keys()].slice(0, 60);
   assert.equal(showProducts(codes).products.length, MAX_SHOWN);
+});
+
+test('displayedAnswer adds one line per shown product', () => {
+  const out = displayedAnswer('Two items match.', [
+    { name: 'showProducts', result: showProducts(['PWR-001-06', 'FLA-001-13']) },
+    { name: 'searchProducts', result: [] },
+  ]);
+  assert.match(out, /^Two items match\.\n/);
+  assert.match(out, /PWR-001-06 · .+ · ₱58,719\.00/);
+  assert.match(out, /FLA-001-13 · .+ · price to be confirmed by sales/);
+});
+
+test('displayedAnswer returns the text alone when nothing was shown', () => {
+  assert.equal(displayedAnswer('Hi.', []), 'Hi.');
 });

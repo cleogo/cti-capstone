@@ -1,6 +1,7 @@
 /**
  * The tool-evaluation scenarios (PRD §10.2): 16 normal, 8 designed to fail,
  * and the F2 refusal set (10 items with no knowledge sheet, each must decline specs).
+ * The 'display' group (3 items) checks showProducts routing for prompt v4.
  *
  * A scenario says which tools the model should reach for, with which
  * arguments, and what a good reply holds. Checks are deterministic code, so
@@ -17,7 +18,8 @@ export type Check = ((t: Transcript) => boolean) & { label: string };
 
 export type Scenario = {
   id: string;
-  group: 'normal' | 'fail' | 'nosheet' | 'f9';
+  /** 'display': showProducts routing. Runs for prompt v4 only (scripts/eval-tools.ts). */
+  group: 'normal' | 'fail' | 'nosheet' | 'f9' | 'display';
   turns: string[];
   /** One list per turn: tools that must appear in that turn, in that order. [] means no tool is required. */
   expectTools: string[][];
@@ -50,6 +52,36 @@ const SALES = /sales (team|person)|CTI sales/i;
 const DECLINE = /(don't|do not|cannot|can't|isn't|is not|doesn't|does not|no information|not (in|recorded|available|covered|held|on file))/i;
 
 export const SCENARIOS: Scenario[] = [
+  // ------------------------------------------------------------------ 3 display (v4 only)
+  {
+    id: 'list-shows-products',
+    group: 'display',
+    turns: ['What fire extinguishers do you have?'],
+    expectTools: [['searchProducts', 'showProducts']],
+    checklist: [c('a price on screen', (t) => /₱\d/.test(t.text))],
+    designedToFail: false,
+    escalation: null,
+  },
+  {
+    id: 'compare-not-shown',
+    group: 'display',
+    turns: ['Compare PWR-001-06 and PWR-001-05'],
+    expectTools: [['compareProducts']],
+    forbidTools: ['showProducts'],
+    checklist: [],
+    designedToFail: false,
+    escalation: null,
+  },
+  {
+    id: 'quote-not-shown',
+    group: 'display',
+    turns: ['Quote 2 of PWR-001-06'],
+    expectTools: [['buildQuotation']],
+    forbidTools: ['showProducts'],
+    checklist: [],
+    designedToFail: false,
+    escalation: null,
+  },
   // ------------------------------------------------------------------ 16 normal
   {
     id: 'single-lookup',

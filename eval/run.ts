@@ -18,12 +18,13 @@ import { telemetry } from '../lib/telemetry';
 import { maskPII } from '../lib/guardrails/pii';
 import { checkInput, GUARD_REPLIES } from '../lib/guardrails/input';
 import { reviewAnswer } from '../lib/guardrails/answer-guard';
+import { displayedAnswer } from '../lib/display';
 
 export type ToolCall = { name: string; args: Record<string, unknown> };
 
 export type TurnRecord = {
   user: string;
-  /** The reply the client would see (V3 plan blocks removed). */
+  /** The reply the client would see: V3 plan blocks removed, plus the showProducts lines (lib/display.ts). */
   text: string;
   calls: ToolCall[];
   results: { name: string; result: unknown }[];
@@ -115,7 +116,7 @@ export async function runConversation(
           guardrails.push(...reviewed.events);
           text = reviewed.text;
         }
-        records.push({ user, text, calls, results });
+        records.push({ user, text: displayedAnswer(text, results), calls, results });
       }
     } catch (e) {
       error = e instanceof Error ? e.message : String(e);

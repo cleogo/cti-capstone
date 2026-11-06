@@ -166,7 +166,9 @@ async function main() {
   const variant = parseVariant(process.argv);
   const onlyArg = process.argv.indexOf('--only');
   const only = onlyArg >= 0 ? new Set(process.argv[onlyArg + 1].split(',')) : null;
-  const list = only ? SCENARIOS.filter((s) => only.has(s.id)) : SCENARIOS;
+  // The display group tests showProducts, which only prompt v4 asks for.
+  const scenarios = SCENARIOS.filter((s) => s.group !== 'display' || variant === 'v4');
+  const list = only ? scenarios.filter((s) => only.has(s.id)) : scenarios;
 
   const sdk = startTracing();
   console.log(`Tool eval: ${list.length} scenarios, prompt ${variant}${GUARDS ? ', M7 guards on' : ''}\n`);

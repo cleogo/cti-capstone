@@ -12,11 +12,10 @@
  */
 import type { GuideSource, ProductSource, SheetSource, Source } from '@/lib/sources';
 import { photoFor } from '@/lib/photos';
+import { formatPeso } from '@/lib/display';
 import { card, eyebrow, IconAlert, IconBook, IconHeadset, IconLink, Photo, btnSmallDark, stagger } from './ui';
 
-export function formatPeso(n: number): string {
-  return `₱${n.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-}
+export { formatPeso };
 
 export const isConflict = (s: { data_quality_flag?: string }) => s.data_quality_flag === 'duplicate_code_conflict';
 
