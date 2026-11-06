@@ -22,6 +22,7 @@ import {
   MAX_FILTER_LIMIT,
 } from '@/lib/retrieval';
 import { getProductDetails, compareProducts } from '@/lib/details';
+import { MAX_SHOWN, showProducts } from '@/lib/display';
 import { lookupApplianceWattage, USER_TYPES } from '@/lib/appliances';
 import { recommendPowerStation } from '@/lib/power';
 import { buildQuotation } from '@/lib/quote';
@@ -218,6 +219,23 @@ export function createTools(ctx: ToolContext) {
       codes: z.array(z.string()).min(2).max(4).describe('2 to 4 exact product codes'),
     }),
     execute: async ({ codes }) => safeExecute(() => compareProducts(codes)),
+  }),
+
+  showProducts: tool({
+    description:
+      'Display products to the customer as cards. Call it for EVERY answer that names one or ' +
+      'more products, after searchProducts or filterProducts gives the codes. DO NOT USE for ' +
+      '2 to 4 products that the customer asked to compare (use compareProducts) or for a ' +
+      'quotation (use buildQuotation).',
+    parameters: z.object({
+      codes: z.array(z.string()).min(1).max(MAX_SHOWN).describe('product codes, in display order'),
+    }),
+    execute: async ({ codes }) =>
+      safeExecute(() => {
+        const r = showProducts(codes);
+        if (r.unknown.length) console.warn(`showProducts: unknown codes ${r.unknown.join(', ')}`);
+        return r;
+      }),
   }),
 
   lookupApplianceWattage: tool({

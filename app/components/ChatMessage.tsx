@@ -25,6 +25,7 @@ const TOOL_STATUS_LABEL: Record<string, string> = {
   filterProducts: 'Filtering the catalog…',
   getProductDetails: 'Reading the product sheet…',
   compareProducts: 'Comparing products…',
+  showProducts: 'Showing products…',
   lookupApplianceWattage: 'Looking up appliance watts…',
   recommendPowerStation: 'Sizing a power station…',
   buildQuotation: 'Building the draft quotation…',
