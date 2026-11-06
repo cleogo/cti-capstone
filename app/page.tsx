@@ -5,12 +5,15 @@
  * a sticky top bar, one scroll area and a sticky composer. From 1024 px, the latest sources
  * also show in a side panel. The top-bar toggle hides all sources and remembers the choice.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { ChatMessage, TypingRow } from './components/ChatMessage';
 import { EmptyState } from './components/EmptyState';
 import { SourcesPanel } from './components/SourcesPanel';
 import { QuoteList } from './components/QuoteList';
+import { ProductSheet } from './components/ProductSheet';
+import { TRAY_MAX } from './components/ProductList';
+import type { ShownProduct } from '@/lib/display';
 import { IconAlert, IconPanel, IconPlus, IconReplay, IconSend, IconStop, Logo } from './components/ui';
 import { sourcesFromMessage } from '@/lib/sources';
 
@@ -39,6 +42,13 @@ export default function Page() {
     useChat({ api: '/api/chat', maxSteps: 8 });
   const [showSources, toggleSources] = useShowSources();
   const [announce, setAnnounce] = useState('');
+  const [sheet, setSheet] = useState<ShownProduct | null>(null);
+  const closeSheet = useCallback(() => setSheet(null), []);
+  // Compare tray (spec 6.4): up to TRAY_MAX codes, kept across answers.
+  const [tray, setTray] = useState<string[]>([]);
+  const addToTray = (code: string) => setTray((t) => (t.includes(code) || t.length >= TRAY_MAX ? t : [...t, code]));
+  const toggleTray = (code: string) =>
+    setTray((t) => (t.includes(code) ? t.filter((c) => c !== code) : t.length >= TRAY_MAX ? t : [...t, code]));
   const scroller = useRef<HTMLDivElement>(null);
   const form = useRef<HTMLFormElement>(null);
 
@@ -82,6 +92,8 @@ export default function Page() {
     stop();
     setMessages([]);
     setInput('');
+    setTray([]);
+    setSheet(null);
   }
 
   const topBtn =
@@ -128,6 +140,9 @@ export default function Page() {
                     busy={isStreaming && m === last}
                     showSources={showSources}
                     onAsk={ask}
+                    onOpen={setSheet}
+                    tray={tray}
+                    onToggleTray={toggleTray}
                   />
                 ))}
                 {status === 'submitted' && last?.role === 'user' && <TypingRow />}
@@ -202,6 +217,8 @@ export default function Page() {
 
         {messages.length > 0 && showSources && <SourcesPanel sources={panelSources} />}
       </div>
+
+      <ProductSheet product={sheet} onClose={closeSheet} onAsk={ask} onCompare={addToTray} />
 
       <div className="sr-only" aria-live="polite">
         {announce}
