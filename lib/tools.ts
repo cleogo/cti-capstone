@@ -28,8 +28,13 @@ import { recommendPowerStation } from '@/lib/power';
 import { buildQuotation } from '@/lib/quote';
 import { createTicket, TICKET_REASONS } from '@/lib/tickets';
 import { updateSession, type SessionState } from '@/lib/session';
+import { PROMPT_VERSION, type PromptVersion } from '@/lib/prompt';
 
-export type ToolContext = { sessionId: string | null };
+export type ToolContext = {
+  sessionId: string | null;
+  /** The prompt in use. showProducts is offered to v4 only: v1 to v3 write prices in their text. */
+  variant?: PromptVersion;
+};
 
 export type ToolError = { error: 'tool_failed'; message: string };
 
@@ -37,7 +42,7 @@ export type ToolError = { error: 'tool_failed'; message: string };
 export const REPEATED_CALL = {
   error: 'repeated_call',
   message:
-    'You already ran this exact call. Its results are above. Use them: call showProducts with the codes you have, ' +
+    'You already ran this exact call. Its results are above. Answer with the products they hold, ' +
     'and say how many you found. Do not repeat the call.',
 } as const;
 
@@ -98,7 +103,7 @@ export function createTools(ctx: ToolContext) {
     return false;
   };
 
-  return {
+  const all = {
   searchProducts: tool({
     description:
       'Find products by what they are. Semantic and keyword search across all 1,056 ' +
@@ -409,6 +414,11 @@ export function createTools(ctx: ToolContext) {
       }),
   }),
   };
+
+  // v1 to v3 write prices in their text. Offering them showProducts too would show every product twice.
+  if ((ctx.variant ?? PROMPT_VERSION) === 'v4') return all;
+  const { showProducts: _omit, ...withoutShow } = all;
+  return withoutShow;
 }
 
 /** No session: the harnesses (grade.ts, eval.ts) use this. */

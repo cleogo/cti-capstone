@@ -73,11 +73,11 @@ export function ProductCard({
         type="button"
         onClick={() => onOpen?.(p)}
         className="flex flex-1 flex-col text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ink active:scale-[0.99]"
-        aria-label={`${p.name}, ${p.code}. Show details`}
+        aria-haspopup="dialog"
       >
         <Photo src={photoFor(p.code, p.data_quality_flag)} alt={p.name} size={160} className="w-full" />
         <div className="flex w-full flex-1 flex-col gap-1 p-3">
-          <h3 className="line-clamp-2 text-[15px] font-semibold leading-snug text-ink">{p.name}</h3>
+          <span className="line-clamp-2 text-[15px] font-semibold leading-snug text-ink">{p.name}</span>
           {p.category && <div className="truncate text-xs text-muted">{p.category}</div>}
           <div className="mt-auto pt-1">
             {flagged ? (

@@ -107,3 +107,8 @@ export function pickChips(invocations: { toolName: string; result: unknown }[]):
   }
   return [];
 }
+
+/** True when the answer shows at least one product card (showProducts or a details card). */
+export function listsProducts(invocations: { toolName: string; result: unknown }[]): boolean {
+  return invocations.some((i) => (i.toolName === 'showProducts' || i.toolName === 'getProductDetails') && shownBy(i.toolName, i.result).length > 0);
+}

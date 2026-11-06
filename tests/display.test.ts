@@ -4,7 +4,7 @@ import type { Message } from 'ai';
 import { BY_CODE } from '../lib/products';
 import { sourcesFromMessage } from '../lib/sources';
 import { createTools } from '../lib/tools';
-import { displayedAnswer, pickChips, shownFromDetails } from '../lib/display';
+import { displayedAnswer, listsProducts, pickChips, shownFromDetails } from '../lib/display';
 import { compareProducts, getProductDetails } from '../lib/details';
 import { MAX_SHOWN, showProducts } from '../lib/show-products';
 
@@ -70,7 +70,7 @@ test('an identical repeat of a search tool is refused', async () => {
   const again = (await t.filterProducts.execute(args, opts)) as { error?: string; message?: string };
   assert.equal(typeof first.total_matching, 'number');
   assert.equal(again.error, 'repeated_call');
-  assert.match(again.message ?? '', /showProducts/);
+  assert.match(again.message ?? '', /Do not repeat the call/);
 });
 
 const shown = (codes: string[]) => ({ toolName: 'showProducts', result: showProducts(codes) });
@@ -118,4 +118,16 @@ test('shownFromDetails gives one card for a conflict code, with no price', () =>
   const r = shownFromDetails(getProductDetails('FLA-001-13'));
   assert.equal(r.products.length, 1);
   assert.equal(r.products[0].price_php, null);
+});
+
+test('listsProducts is false when showProducts showed nothing', () => {
+  assert.equal(listsProducts([{ toolName: 'showProducts', result: showProducts(['XXX-999-99']) }]), false);
+  assert.equal(listsProducts([{ toolName: 'showProducts', result: { error: 'tool_failed', message: 'x' } }]), false);
+  assert.equal(listsProducts([{ toolName: 'showProducts', result: showProducts(['PWR-001-06']) }]), true);
+  assert.equal(listsProducts([{ toolName: 'getProductDetails', result: getProductDetails('PWR-001-06') }]), true);
+});
+
+test('showProducts is offered to prompt v4 only', () => {
+  assert.ok('showProducts' in createTools({ sessionId: null, variant: 'v4' }));
+  assert.ok(!('showProducts' in createTools({ sessionId: null, variant: 'v1' })));
 });

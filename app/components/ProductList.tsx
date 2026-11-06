@@ -109,6 +109,7 @@ export function ProductList({
                         <button
                           type="button"
                           onClick={() => onOpen?.(p)}
+                          aria-haspopup="dialog"
                           className="text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-ink"
                         >
                           <span className="line-clamp-3 font-semibold leading-snug text-ink sm:line-clamp-2">{p.name}</span>

@@ -19,7 +19,7 @@ import { ContactForm } from './ContactForm';
 import { CompareCard } from './CompareCard';
 import { ProductList } from './ProductList';
 import { FollowUpChips } from './FollowUpChips';
-import { pickChips, shownFromDetails, type ShowProductsResult, type ShownProduct } from '@/lib/display';
+import { listsProducts, pickChips, shownFromDetails, type ShowProductsResult, type ShownProduct } from '@/lib/display';
 import { IconAlert, IconSparkle, Logo } from './ui';
 import { sourcesFromMessage } from '@/lib/sources';
 
@@ -207,7 +207,10 @@ export function ChatMessage({
           />
         )}
         {showSources && sources.length > 0 && (
-          <SourceList sources={sources} defaultOpen={!cards.some((inv) => inv.toolName === 'showProducts' || inv.toolName === 'getProductDetails')} />
+          <SourceList
+            sources={sources}
+            defaultOpen={!listsProducts(invocations.flatMap((inv) => (inv.state === 'result' ? [{ toolName: inv.toolName, result: inv.result }] : [])))}
+          />
         )}
       </div>
     </li>

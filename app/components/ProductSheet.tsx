@@ -19,7 +19,7 @@ import { photoFor } from '@/lib/photos';
 import { askSalesPrompt, isConflict } from './SourceCard';
 import { IconAlert, IconHeadset, IconLink, IconPlus, IconReplay, Photo, btnPrimary, btnGhost } from './ui';
 
-type Load = { state: 'loading' } | { state: 'error' } | { state: 'done'; details: DetailsResult };
+type Load = { state: 'loading' } | { state: 'error' } | { state: 'done'; code: string; details: DetailsResult };
 
 export function ProductSheet({
   product: p,
@@ -59,7 +59,7 @@ export function ProductSheet({
     setLoad({ state: 'loading' });
     fetch(`/api/products/${encodeURIComponent(code)}`, { signal: ctrl.signal })
       .then((r) => (r.ok ? (r.json() as Promise<DetailsResult>) : Promise.reject(new Error(String(r.status)))))
-      .then((details) => setLoad({ state: 'done', details }))
+      .then((details) => setLoad({ state: 'done', code, details }))
       .catch(() => {
         if (!ctrl.signal.aborted) setLoad({ state: 'error' });
       });
@@ -78,7 +78,9 @@ export function ProductSheet({
   }
 
   const flagged = p ? isConflict(p) : false;
-  const sheet = load.state === 'done' ? load.details.sheet : null;
+  // A result for another code is stale: it renders only after the effect resets it, for one frame.
+  const current: Load = load.state === 'done' && load.code !== code ? { state: 'loading' } : load;
+  const sheet = current.state === 'done' ? current.details.sheet : null;
 
   return (
     <dialog
@@ -128,14 +130,14 @@ export function ProductSheet({
               {sheet?.specs.map((s) => <Row key={s.label} label={s.label} value={s.value} />)}
             </dl>
 
-            {load.state === 'loading' && (
+            {current.state === 'loading' && (
               <div className="mt-4 space-y-2" role="status" aria-label="Loading specifications">
                 {[0, 1, 2].map((i) => (
                   <div key={i} className="h-4 animate-pulse rounded bg-line" style={{ width: `${90 - i * 20}%` }} />
                 ))}
               </div>
             )}
-            {load.state === 'error' && (
+            {current.state === 'error' && (
               <div className="mt-4 flex items-center justify-between gap-3 rounded-xl bg-paper p-3 text-sm">
                 Specs could not load.
                 <button type="button" onClick={() => setAttempt((n) => n + 1)} className={btnGhost}>
@@ -143,7 +145,7 @@ export function ProductSheet({
                 </button>
               </div>
             )}
-            {load.state === 'done' && !sheet && (
+            {current.state === 'done' && !sheet && (
               <p className="mt-4 rounded-xl bg-paper p-3 text-sm text-muted">Specifications not on file. CTI sales can confirm them.</p>
             )}
 

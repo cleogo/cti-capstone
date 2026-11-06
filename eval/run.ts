@@ -56,7 +56,7 @@ export async function runConversation(
   turns: string[],
   opts: { variant: PromptVersion; id: string; guards?: boolean },
 ): Promise<Transcript> {
-  const tools = createTools({ sessionId: null });
+  const tools = createTools({ sessionId: null, variant: opts.variant });
   const messages: CoreMessage[] = [];
   const records: TurnRecord[] = [];
   let tokensIn = 0;
