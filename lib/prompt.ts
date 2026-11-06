@@ -190,9 +190,29 @@ When a request needs two or more tool calls (power sizing, compare by name, a qu
 const V2_FORMAT_LINE =
   'One item is one sentence. Several items are a compact table (code, distinguishing attribute, price) with one sentence above and one below. No bold lines. No numbered lists for products.';
 const V4_FORMAT_LINE =
-  'Products go to the customer only through showProducts. Call it once with every code you name, in the order you mean. Write one sentence above the products. When filterProducts ran, start that sentence with total_matching. You may write one sentence below. Do not write a product table or a price in your text. You may name codes. No bold lines.';
-if (!PROMPT_V3.includes(V2_FORMAT_LINE)) throw new Error('PROMPT_V3 no longer holds the V2 format line. Update V2_FORMAT_LINE.');
-const PROMPT_V4 = PROMPT_V3.replace(V2_FORMAT_LINE, V4_FORMAT_LINE);
+  'Products go to the customer only through showProducts, even a single product for a price question. Call it once with every code you name, in the order you mean. The cards list the names, codes and prices, so do not list products in your text. Write one sentence above the products. When filterProducts ran, start that sentence with total_matching. You may write one sentence below. Do not write a product table or a price in your text. You may name codes. No bold lines. When a search returns fewer products than the customer asked for, show the ones it returned and say how many you found. Never repeat a search with the same arguments.';
+/** [V3 text, V4 text]. Each V3 text must occur once. */
+const V4_EDITS: [string, string][] = [
+  [V2_FORMAT_LINE, V4_FORMAT_LINE],
+  [
+    '2. Write the full product code with every price. Format: ₱43,470.00.',
+    '2. Every product you name goes on screen through showProducts. The card shows its code and price, so do not write a price in your text.',
+  ],
+  [
+    '3. List EVERY variant with its own price. Never pick one, show a range, or collapse rows.',
+    '3. Show EVERY variant: put each variant code in showProducts. Never pick one, show a range, or collapse rows.',
+  ],
+];
+const PROMPT_V4 =
+  V4_EDITS.reduce((text, [from, to]) => {
+    if (text.split(from).length !== 2) throw new Error(`PROMPT_V3 must hold this text once: ${from.slice(0, 60)}`);
+    return text.replace(from, to);
+  }, PROMPT_V3) +
+  `
+
+## Product display
+
+This section overrides any rule above that says "give the code and price". Name the product and call showProducts with its code. The card shows the price. Do not write the price in your text. A conflict code also goes in showProducts: its card shows the conflict, and your text says that sales must confirm the price.`;
 
 export const PROMPTS: Record<PromptVersion, string> = { v1: PROMPT_V1, v2: PROMPT_V2, v3: PROMPT_V3, v4: PROMPT_V4 };
 

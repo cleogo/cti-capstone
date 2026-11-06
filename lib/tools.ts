@@ -33,6 +33,14 @@ export type ToolContext = { sessionId: string | null };
 
 export type ToolError = { error: 'tool_failed'; message: string };
 
+/** The result of an identical repeat of a search tool in one request. */
+export const REPEATED_CALL = {
+  error: 'repeated_call',
+  message:
+    'You already ran this exact call. Its results are above. Use them: call showProducts with the codes you have, ' +
+    'and say how many you found. Do not repeat the call.',
+} as const;
+
 /**
  * Every tool body runs inside this (PRD §13). A failure becomes a typed
  * result that the model can explain. It never throws into the stream.
@@ -79,6 +87,17 @@ const LoadSchema = z.object({
  * description has to push work away as well as claim it.
  */
 export function createTools(ctx: ToolContext) {
+  // One createTools per request. The model sometimes runs the same search
+  // again and again when it finds fewer products than the customer asked for
+  // (prompt v4, "Show me 3 first aid kits"). Refuse an identical repeat.
+  const seen = new Set<string>();
+  const repeated = (name: string, args: unknown) => {
+    const key = `${name}:${JSON.stringify(args)}`;
+    if (seen.has(key)) return true;
+    seen.add(key);
+    return false;
+  };
+
   return {
   searchProducts: tool({
     description:
@@ -116,6 +135,7 @@ export function createTools(ctx: ToolContext) {
         ),
     }),
     execute: async (args) => {
+      if (repeated('searchProducts', args)) return REPEATED_CALL;
       try {
         return await searchProducts(args);
       } catch (e) {
@@ -185,7 +205,7 @@ export function createTools(ctx: ToolContext) {
             'This caps the list, never total_matching.',
         ),
     }),
-    execute: async (args) => safeExecute(() => filterProducts(args)),
+    execute: async (args) => (repeated('filterProducts', args) ? REPEATED_CALL : safeExecute(() => filterProducts(args))),
   }),
 
   getProductDetails: tool({

@@ -28,6 +28,21 @@
       "name": "dev-m8",
       "url": "http://localhost:3200",
       "port": 3200
+    },
+    {
+      "name": "dev-v4",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "next",
+        "dev",
+        "-p",
+        "3100"
+      ],
+      "env": {
+        "PROMPT_VARIANT": "v4",
+        "NEXT_DIST_DIR": ".next-v4"
+      },
+      "port": 3100
     }
   ]
 }

@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import type { Message } from 'ai';
 import { BY_CODE } from '../lib/products';
+import { sourcesFromMessage } from '../lib/sources';
+import { createTools } from '../lib/tools';
 import { MAX_SHOWN, displayedAnswer, showProducts } from '../lib/display';
 
 test('showProducts keeps order and drops duplicates', () => {
@@ -43,4 +46,27 @@ test('displayedAnswer adds one line per shown product', () => {
 
 test('displayedAnswer returns the text alone when nothing was shown', () => {
   assert.equal(displayedAnswer('Hi.', []), 'Hi.');
+});
+
+test('sources leave out showProducts results', () => {
+  const message = {
+    id: 'm1',
+    role: 'assistant',
+    content: '',
+    toolInvocations: [
+      { state: 'result', toolCallId: 't1', toolName: 'showProducts', args: {}, result: showProducts(['PWR-001-06']) },
+    ],
+  } as unknown as Message;
+  assert.deepEqual(sourcesFromMessage(message), []);
+});
+
+test('an identical repeat of a search tool is refused', async () => {
+  const t = createTools({ sessionId: null });
+  const opts = { toolCallId: 'x', messages: [] } as never;
+  const args = { max_price: 500 } as never;
+  const first = (await t.filterProducts.execute(args, opts)) as { total_matching?: number };
+  const again = (await t.filterProducts.execute(args, opts)) as { error?: string; message?: string };
+  assert.equal(typeof first.total_matching, 'number');
+  assert.equal(again.error, 'repeated_call');
+  assert.match(again.message ?? '', /showProducts/);
 });

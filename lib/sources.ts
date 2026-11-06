@@ -93,7 +93,8 @@ export function sourcesFromMessage(message: Message): Source[] {
   };
 
   for (const inv of message.toolInvocations ?? []) {
-    if (inv.state !== 'result') continue;
+    // showProducts is what the answer displays, not retrieval evidence.
+    if (inv.state !== 'result' || inv.toolName === 'showProducts') continue;
     const result = inv.result as unknown;
     const obj = (result && typeof result === 'object' ? result : {}) as Record<string, unknown>;
 

@@ -28,3 +28,9 @@ test('v4 routes products to showProducts and keeps the v3 plan rule', () => {
   assert.match(PROMPTS.v4, /<plan>/);
   assert.doesNotMatch(PROMPTS.v4, /compact table/);
 });
+
+test('v4 has no rule that puts prices in the text', () => {
+  assert.doesNotMatch(PROMPTS.v4, /Write the full product code with every price/);
+  assert.doesNotMatch(PROMPTS.v4, /List EVERY variant with its own price/);
+  assert.match(PROMPTS.v4, /## Product display/);
+});

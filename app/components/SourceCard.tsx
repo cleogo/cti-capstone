@@ -12,7 +12,7 @@
  */
 import type { GuideSource, ProductSource, SheetSource, Source } from '@/lib/sources';
 import { photoFor } from '@/lib/photos';
-import { formatPeso } from '@/lib/display';
+import { formatPeso, type ShownProduct } from '@/lib/display';
 import { card, eyebrow, IconAlert, IconBook, IconHeadset, IconLink, Photo, btnSmallDark, stagger } from './ui';
 
 export { formatPeso };
@@ -25,54 +25,84 @@ export const sourceKey = (s: Source, i: number) =>
 /** The sales hand-off message a conflict card sends. */
 export const askSalesPrompt = (code: string) => `Refer me to CTI sales about the price of ${code}.`;
 
-/** Photo card for one product, used in the per-answer card row (D6). */
-export function ProductCard({ source: p, i, onAsk }: { source: ProductSource; i: number; onAsk?: (prompt: string) => void }) {
+/** The 44 px select checkbox for compare select (spec 6.4). */
+export function SelectBox({ code, selected, disabled, onToggle, className = '' }: { code: string; selected: boolean; disabled: boolean; onToggle: (code: string) => void; className?: string }) {
+  return (
+    <label className={`flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center ${disabled ? 'cursor-not-allowed opacity-40' : ''} ${className}`}>
+      <input
+        type="checkbox"
+        checked={selected}
+        disabled={disabled}
+        onChange={() => onToggle(code)}
+        aria-label={`Select ${code} to compare`}
+        className="h-5 w-5 accent-ink"
+      />
+    </label>
+  );
+}
+
+/** Photo card for one product (spec 4.1). The card body opens the detail sheet. */
+export function ProductCard({
+  product: p,
+  i,
+  onOpen,
+  onAsk,
+  selectable = false,
+  selected = false,
+  selectDisabled = false,
+  onToggle,
+}: {
+  product: ShownProduct;
+  i: number;
+  onOpen?: (p: ShownProduct) => void;
+  onAsk?: (prompt: string) => void;
+  selectable?: boolean;
+  selected?: boolean;
+  selectDisabled?: boolean;
+  onToggle?: (code: string) => void;
+}) {
   const flagged = isConflict(p);
   return (
     <article
-      className={`flex w-40 shrink-0 snap-start animate-card-in flex-col overflow-hidden transition sm:w-auto ${
+      className={`relative flex w-40 shrink-0 snap-start animate-card-in flex-col overflow-hidden transition sm:w-auto ${
         flagged ? 'rounded-2xl border border-red-200 bg-red-50' : `${card} hover:-translate-y-0.5 hover:border-brand hover:shadow-md`
-      }`}
+      } ${selected ? 'ring-2 ring-ink' : ''}`}
       style={stagger(i)}
     >
-      <Photo src={photoFor(p.code, p.data_quality_flag)} alt={p.name} size={160} className="w-full" />
-      <div className="flex flex-1 flex-col gap-1 p-3">
-        <div className={`font-mono text-[11px] ${flagged ? 'text-red-800' : 'text-faint'}`}>{p.code}</div>
-        <h3 className="line-clamp-2 text-sm font-medium leading-snug text-ink">{p.name}</h3>
-        {p.category && <div className="truncate text-[11px] text-muted">{p.category}</div>}
-        {p.colors && p.colors.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {p.colors.map((c) => (
-              <span key={c} className="rounded-full bg-paper px-1.5 py-0.5 text-[10px] text-muted">
-                {c}
-              </span>
-            ))}
-          </div>
-        )}
-        <div className="mt-auto pt-1">
-          {flagged ? (
-            <>
+      <button
+        type="button"
+        onClick={() => onOpen?.(p)}
+        className="flex flex-1 flex-col text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ink active:scale-[0.99]"
+        aria-label={`${p.name}, ${p.code}. Show details`}
+      >
+        <Photo src={photoFor(p.code, p.data_quality_flag)} alt={p.name} size={160} className="w-full" />
+        <div className="flex w-full flex-1 flex-col gap-1 p-3">
+          <h3 className="line-clamp-2 text-[15px] font-semibold leading-snug text-ink">{p.name}</h3>
+          {p.category && <div className="truncate text-xs text-muted">{p.category}</div>}
+          <div className="mt-auto pt-1">
+            {flagged ? (
               <div className="flex items-start gap-1 text-[11px] font-medium leading-tight text-red-700">
                 <IconAlert className="h-3.5 w-3.5" /> Conflicting price on record
               </div>
-              {onAsk && (
-                <button type="button" onClick={() => onAsk(askSalesPrompt(p.code))} className={`${btnSmallDark} mt-2`}>
-                  <IconHeadset className="h-4 w-4" /> Ask CTI sales
-                </button>
-              )}
-            </>
-          ) : (
-            <div className="flex items-baseline justify-between gap-2">
-              <span className="font-heading text-base font-semibold tabular-nums text-ink">{formatPeso(p.price_php)}</span>
-              {p.page !== undefined && (
-                <span className="shrink-0 text-[10px] tabular-nums text-faint" title="Page in the printed price list">
-                  p.{p.page}
-                </span>
-              )}
-            </div>
-          )}
+            ) : (
+              p.price_php !== null && (
+                <div className="font-heading text-base font-semibold tabular-nums text-ink">{formatPeso(p.price_php)}</div>
+              )
+            )}
+            <div className={`font-mono text-[11px] ${flagged ? 'text-red-800' : 'text-faint'}`}>{p.code}</div>
+          </div>
         </div>
-      </div>
+      </button>
+      {flagged && onAsk && (
+        <div className="px-3 pb-3">
+          <button type="button" onClick={() => onAsk(askSalesPrompt(p.code))} className={btnSmallDark}>
+            <IconHeadset className="h-4 w-4" /> Ask CTI sales
+          </button>
+        </div>
+      )}
+      {selectable && onToggle && (
+        <SelectBox code={p.code} selected={selected} disabled={selectDisabled} onToggle={onToggle} className="absolute right-0 top-0 rounded-bl-xl bg-white/90" />
+      )}
     </article>
   );
 }

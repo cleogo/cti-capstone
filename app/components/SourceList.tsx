@@ -3,52 +3,28 @@
 /**
  * The sources under one answer (spec: every answer that used retrieval shows its sources).
  *
- * Mobile first: products are a horizontal snap row of photo cards, so a long result never
- * pushes the next question far down. From 640 px the row becomes a 3-column grid that shows
- * the first 6, with "Show all" for the rest. Guide sections and knowledge sheets are chips.
+ * A "Sources (n)" disclosure with compact rows and doc chips (spec 4.4). It is closed
+ * when the answer shows its products through showProducts. It opens by default when
+ * the answer has no product list, so the products stay visible (prompt v1 to v3, or a
+ * missed showProducts call).
  */
-import { useState } from 'react';
-import type { GuideSource, ProductSource, SheetSource, Source } from '@/lib/sources';
-import { DocChip, ProductCard, sourceKey, sourcesHeading } from './SourceCard';
+import type { Source } from '@/lib/sources';
+import { SourceRow, sourceKey } from './SourceCard';
+import { eyebrow } from './ui';
 
-const GRID_COUNT = 6;
-
-export function SourceList({ sources, onAsk }: { sources: Source[]; onAsk?: (prompt: string) => void }) {
-  const [expanded, setExpanded] = useState(false);
+export function SourceList({ sources, defaultOpen = false }: { sources: Source[]; defaultOpen?: boolean }) {
   if (sources.length === 0) return null;
-
-  const products = sources.filter((s): s is ProductSource => s.kind === 'product');
-  const docs = sources.filter((s): s is GuideSource | SheetSource => s.kind !== 'product');
-  const hidden = products.length - GRID_COUNT;
-
   return (
-    <section className="mt-3" aria-label="Sources for this answer">
-      {sourcesHeading(sources.length)}
-      {products.length > 0 && (
-        <div className="-mx-4 mt-2 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0">
-          {products.map((p, i) => (
-            <div key={p.code} className={`contents ${!expanded && i >= GRID_COUNT ? 'sm:hidden' : ''}`}>
-              <ProductCard source={p} i={i} onAsk={onAsk} />
-            </div>
-          ))}
-        </div>
-      )}
-      {hidden > 0 && (
-        <button
-          type="button"
-          onClick={() => setExpanded((e) => !e)}
-          className="mt-1 hidden min-h-[36px] text-xs font-medium text-link hover:underline sm:inline-flex sm:items-center"
-        >
-          {expanded ? 'Show fewer' : `Show all ${products.length}`}
-        </button>
-      )}
-      {docs.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {docs.map((d, i) => (
-            <DocChip key={sourceKey(d, i)} source={d} />
-          ))}
-        </div>
-      )}
-    </section>
+    <details open={defaultOpen} className="group mt-3" aria-label="Sources for this answer">
+      <summary className={`flex min-h-[36px] cursor-pointer list-none items-center gap-1.5 text-muted ${eyebrow} hover:text-ink`}>
+        <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+        Sources ({sources.length})
+      </summary>
+      <div className="mt-1 grid gap-2 sm:grid-cols-2">
+        {sources.map((s, i) => (
+          <SourceRow key={sourceKey(s, i)} source={s} i={i} />
+        ))}
+      </div>
+    </details>
   );
 }

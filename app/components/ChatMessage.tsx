@@ -17,6 +17,8 @@ import { RecommendationCard } from './RecommendationCard';
 import { QuoteCard } from './QuoteCard';
 import { ContactForm } from './ContactForm';
 import { CompareCard } from './CompareCard';
+import { ProductList } from './ProductList';
+import type { ShowProductsResult, ShownProduct } from '@/lib/display';
 import { IconAlert, IconSparkle, Logo } from './ui';
 import { sourcesFromMessage } from '@/lib/sources';
 
@@ -33,7 +35,7 @@ const TOOL_STATUS_LABEL: Record<string, string> = {
 };
 
 /** Tools whose result renders as a card under the bubble. */
-const RESULT_CARDS = new Set(['recommendPowerStation', 'buildQuotation', 'escalateToSales', 'compareProducts']);
+const RESULT_CARDS = new Set(['recommendPowerStation', 'buildQuotation', 'escalateToSales', 'compareProducts', 'showProducts']);
 
 /** A client-side tool waits for the user, not for the server. */
 const CLIENT_TOOLS = new Set(['showApplianceChecklist']);
@@ -62,6 +64,9 @@ export function ChatMessage({
   busy = false,
   showSources = true,
   onAsk,
+  onOpen,
+  tray,
+  onToggleTray,
 }: {
   message: Message;
   addToolResult?: AddToolResult;
@@ -69,6 +74,11 @@ export function ChatMessage({
   busy?: boolean;
   showSources?: boolean;
   onAsk?: (prompt: string) => void;
+  /** Opens the product detail sheet. */
+  onOpen?: (p: ShownProduct) => void;
+  /** Codes in the compare tray. */
+  tray?: string[];
+  onToggleTray?: (code: string) => void;
 }) {
   if (message.role === 'user') {
     return (
@@ -141,6 +151,18 @@ export function ChatMessage({
           if (inv.toolName === 'buildQuotation' && inv.state === 'result') {
             return <QuoteCard key={inv.toolCallId} result={inv.result} />;
           }
+          if (inv.toolName === 'showProducts' && inv.state === 'result') {
+            return (
+              <ProductList
+                key={inv.toolCallId}
+                result={inv.result as ShowProductsResult}
+                onOpen={onOpen}
+                onAsk={onAsk}
+                tray={tray}
+                onToggleTray={onToggleTray}
+              />
+            );
+          }
           if (inv.toolName === 'compareProducts' && inv.state === 'result') {
             return <CompareCard key={inv.toolCallId} result={inv.result} />;
           }
@@ -166,7 +188,9 @@ export function ChatMessage({
           );
         })}
 
-        {showSources && sources.length > 0 && <SourceList sources={sources} onAsk={onAsk} />}
+        {showSources && sources.length > 0 && (
+          <SourceList sources={sources} defaultOpen={!invocations.some((inv) => inv.toolName === 'showProducts')} />
+        )}
       </div>
     </li>
   );
