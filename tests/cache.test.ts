@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { exactKey, isCacheable, isPolicyAnswer, isStorable, versionTag, type CachedReply } from '../lib/cache';
+import { exactKey, isCacheable, isPolicyAnswer, isStorable, promptPart, versionTag, type CachedReply } from '../lib/cache';
 import { CATALOG_VERSION, contentHash } from '../lib/version';
 
 const parts = { prompt: 'v1', catalog: 'aaaaaaaaaaaa', model: 'gpt-4o-mini' };
@@ -86,4 +86,9 @@ test('contentHash changes with the text and with the metadata', () => {
   assert.equal(a, contentHash('t', { x: 1 }));
   assert.notEqual(a, contentHash('u', { x: 1 }));
   assert.notEqual(a, contentHash('t', { x: 2 }));
+});
+
+test('the prompt part changes when the prompt text changes under the same name', () => {
+  assert.notEqual(promptPart('v4', 'old text'), promptPart('v4', 'new text'));
+  assert.match(promptPart('v4', 'x'), /^v4:[0-9a-f]{8}$/);
 });

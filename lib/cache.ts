@@ -19,7 +19,7 @@ import { Index } from '@upstash/vector';
 import { embed, createDataStreamResponse, formatDataStreamPart } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { CODE_PATTERN } from './products';
-import { PROMPT_VERSION } from './prompt';
+import { PROMPT_VERSION, SYSTEM_PROMPT } from './prompt';
 import { CHAT_MODEL } from './model';
 import { CATALOG_VERSION } from './version';
 import { getRedis } from './redis';
@@ -45,7 +45,15 @@ export function normalizeQuestion(q: string): string {
   return q.toLowerCase().replace(/\s+/g, ' ').replace(/[\s.?!]+$/g, '').trim();
 }
 
-const CURRENT_PARTS: KeyParts = { prompt: PROMPT_VERSION, catalog: CATALOG_VERSION, model: CHAT_MODEL };
+/**
+ * The prompt name plus a hash of its text. An edit to a prompt under the same
+ * name must not replay answers cached before the edit.
+ */
+export function promptPart(version: string, text: string): string {
+  return `${version}:${hash(text).slice(0, 8)}`;
+}
+
+const CURRENT_PARTS: KeyParts = { prompt: promptPart(PROMPT_VERSION, SYSTEM_PROMPT), catalog: CATALOG_VERSION, model: CHAT_MODEL };
 
 export function exactKey(q: string, parts: KeyParts = CURRENT_PARTS): string {
   return `resp:${hash([normalizeQuestion(q), parts.prompt, parts.catalog, parts.model].join('\u0000'))}`;
