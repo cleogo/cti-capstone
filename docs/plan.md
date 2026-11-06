@@ -23,9 +23,8 @@ still apply. Each milestone names the PRD sections it implements.
 
 **Schedule:** `docs/diagrams/13-gantt-two-week-plan.jpg`. Submission is
 **Sun 15 Nov 2026**. The Gantt supersedes PRD §14. On Tue 3 Nov the build was
-one day behind the Gantt. On Wed 4 Nov M2 to M7 are closed. M7 closed
-before its Gantt bar opened (Mon 9), so the build is about six days ahead of
-the bar for M8. M8's bar starts Wed 11.
+one day behind the Gantt. On Wed 4 Nov M2 to M8 are closed. M8 closed
+seven days before its Gantt bar opened (Wed 11). M9's bar starts Thu 12.
 
 **Work breakdown:** `docs/diagrams/14-work-breakdown-structure.jpg`. Each
 milestone lists the WBS items it closes.
@@ -638,7 +637,31 @@ table. A repeated question shows `cache: 'hit'` in the log line. A changed
 `PROMPT_VARIANT` misses. The 16th request in a minute gets a 429. The Docker
 image answers a question locally. Gitleaks finds nothing.
 
+**Exit condition: met 2026-11-04.** `docs/evidence/caching.md` holds the
+bench table: 14 of 20 repeats hit, p95 27.22 s to 1.67 s, chat-model cost
+down 91 %. A repeated question gave `x-cache: hit` and `cache: 'hit'` in the
+log line. A `PROMPT_VARIANT=v2` server missed the cached v1 question. The
+16th request in a minute got a 429 (`tests/ratelimit.redis.test.ts`). The
+Docker image answered a question locally. Gitleaks found no leaks in 26
+commits. `npm test` 104/104. Verified by user. Commit `15343b7`.
+
 **Budget:** 5 h. **Cap:** 6 h.
+
+---
+
+## M8b: Product list UI (not in the WBS)
+
+**Spec:** `docs/superpowers/specs/2026-11-06-product-list-ui-design.md`.
+**Plan:** `docs/superpowers/plans/2026-11-06-product-list-ui.md`. Added Fri 6 Nov,
+between M8 and M9. It does not move a Gantt bar.
+
+Product answers become UI: cards for 1 to 5 products, a table for 6 or more, and a
+detail sheet on tap. A `showProducts` tool picks the codes. Prompt v4 keeps product
+tables and prices out of the text. Extras: sheet actions, follow-up chips, jump to
+latest and compare select.
+
+**Exit condition:** `npm test` passes. The v4 tool eval passes the 3 display
+scenarios. The browser checks in the plan pass at 375 px and 1280 px.
 
 ---
 
@@ -680,7 +703,7 @@ Tasks:
 - [ ] Demo video, 5 minutes or less, in the PRD §15 order.
 - [ ] Optional: fine-tuning (PRD §19), only after everything else.
 - [ ] Screenshots of the live app and log excerpts go into `docs/evidence/`, in case the platform is down during grading.
-- [ ] Create the capstone Vercel project, linked to `cleogo/cti-capstone`, with the same env var names as `.env.local`. Deploy. Record the URL in M1 and in `.env.example` comments. One chat on the live URL shows a trace in Langfuse. (Moved from M1, 3 Nov.)
+- [ ] Create the capstone Vercel project, linked to `cleogo/cti-capstone`, with the same env var names as `.env.local`. Set `PROMPT_VARIANT=v4`, or the product cards do not show (M8b). Deploy. Record the URL in M1 and in `.env.example` comments. One chat on the live URL shows a trace in Langfuse. (Moved from M1, 3 Nov.)
 - [ ] On the live URL: re-run `scripts/guard-latency.ts --rounds 2` and the gitleaks scan. Update `docs/evidence/guardrails.md` and `docs/evidence/secret-scan.md`. (Moved from M8, 4 Nov.)
 - [ ] Make the repo public. Final `npm run verify:prod -- <live URL> --require-public` run. Submit the video, the URL and the repo.
 
@@ -701,7 +724,7 @@ Tasks:
 | M5 Memory, prompt, live | Sat 7 (buffer Sun 8) | 5 h | 6 h | Not timed. Built and closed Wed 4, three days before its Gantt bar. The 16 sheets were researched by three parallel agents while the code was built. Two fixes needed a `reply_rule` in a tool result (summary prices, degraded search). |
 | M6 Evaluation baseline | Mon 9 to Tue 10 | 6 h | 7 h | Not timed. Built and run Wed 4, five days before its Gantt bar. Closed Wed 4. The golden-set review and the judge hand check are still open (the user's). |
 | M7 Guardrails | Tue 10 to Wed 11 | 6 h | 7 h | Not timed. Built Wed 4, six days before its Gantt bar. One extra loop: the classifier prompt (9 false stops) and a re-run of the evals. Closed Wed 4. |
-| M8 Caching and operations | Wed 11 to Thu 12 | 5 h | 6 h | Not timed. Built Wed 4, seven days before its Gantt bar. The Docker Desktop repair and a slow API cost about 2 h of waiting. |
+| M8 Caching and operations | Wed 11 to Thu 12 | 5 h | 6 h | Not timed. Built Wed 4, seven days before its Gantt bar. The Docker Desktop repair and a slow API cost about 2 h of waiting. Closed Wed 4. |
 | M9 Improvement and debugged failure | Thu 12 to Fri 13 | 4 h | 5 h | |
 | M10 Submission | Fri 13 to Sun 15 | 6 h | | |
 | | | **48 h** | | |

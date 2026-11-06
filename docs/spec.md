@@ -359,6 +359,11 @@ sitting beside it.
   codes, quantities, loads and a summary. No personal data.
 - Contact details reach Redis only through the contact form, with consent
   (M4). They never pass through the model.
+- Rate limit and cache (M8): `/api/chat` allows 15 requests a minute per IP
+  and returns HTTP 429 with a plain message above that. The limit fails open
+  if Redis fails. Every chat response has an `x-cache: hit | miss | skip`
+  header. Only a first-turn question with no PII, stock, quote or session
+  intent can use the cache (`docs/evidence/caching.md`).
 
 ---
 
