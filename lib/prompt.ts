@@ -102,7 +102,7 @@ Do not bold whole lines. Do not use numbered lists for products.
 CTI's assistant quotes list prices and makes draft quotations only through buildQuotation. A draft quotation is not an order. The assistant does not take orders or check inventory. Never write "you can order any of these by quoting the product code" or any variation of it. Do not invite the customer to place an order.`;
 
 
-export type PromptVersion = 'v1' | 'v2' | 'v3';
+export type PromptVersion = 'v1' | 'v2' | 'v3' | 'v4';
 
 /**
  * V2 (PRD §9): V1 condensed to the same 15 rules, plus 4 worked examples
@@ -182,12 +182,24 @@ const PROMPT_V3 =
 
 When a request needs two or more tool calls (power sizing, compare by name, a quotation that needs lookups, an escalation after a search), write a plan before the first tool call. Put it inside <plan> and </plan>. Write one to three lines: which tools, in which order, and with which arguments. Use only codes and numbers that the customer gave. Then make the first tool call. The customer never sees the plan, so do not refer to it in your reply. A request that needs one tool call gets no plan.`;
 
-export const PROMPTS: Record<PromptVersion, string> = { v1: PROMPT_V1, v2: PROMPT_V2, v3: PROMPT_V3 };
+/**
+ * V4: V3 with the product format rule replaced. Products reach the customer
+ * through showProducts as cards or a table, so the text holds no product
+ * table and no price (docs/superpowers/specs/2026-11-06-product-list-ui-design.md).
+ */
+const V2_FORMAT_LINE =
+  'One item is one sentence. Several items are a compact table (code, distinguishing attribute, price) with one sentence above and one below. No bold lines. No numbered lists for products.';
+const V4_FORMAT_LINE =
+  'Products go to the customer only through showProducts. Call it once with every code you name, in the order you mean. Write one sentence above the products. When filterProducts ran, start that sentence with total_matching. You may write one sentence below. Do not write a product table or a price in your text. You may name codes. No bold lines.';
+if (!PROMPT_V3.includes(V2_FORMAT_LINE)) throw new Error('PROMPT_V3 no longer holds the V2 format line. Update V2_FORMAT_LINE.');
+const PROMPT_V4 = PROMPT_V3.replace(V2_FORMAT_LINE, V4_FORMAT_LINE);
+
+export const PROMPTS: Record<PromptVersion, string> = { v1: PROMPT_V1, v2: PROMPT_V2, v3: PROMPT_V3, v4: PROMPT_V4 };
 
 function pickVersion(raw: string | undefined): PromptVersion {
   if (raw === undefined || raw === '') return 'v1';
-  if (raw === 'v1' || raw === 'v2' || raw === 'v3') return raw;
-  throw new Error(`PROMPT_VARIANT must be v1, v2 or v3. Got "${raw}".`);
+  if (raw === 'v1' || raw === 'v2' || raw === 'v3' || raw === 'v4') return raw;
+  throw new Error(`PROMPT_VARIANT must be v1, v2, v3 or v4. Got "${raw}".`);
 }
 
 export const PROMPT_VERSION: PromptVersion = pickVersion(process.env.PROMPT_VARIANT);

@@ -160,7 +160,7 @@ export async function pool<T, R>(items: T[], n: number, fn: (item: T, i: number)
 export function parseVariant(argv: string[]): PromptVersion {
   const i = argv.indexOf('--variant');
   const v = i >= 0 ? argv[i + 1] : (process.env.PROMPT_VARIANT ?? 'v1');
-  if (v !== 'v1' && v !== 'v2' && v !== 'v3') throw new Error(`--variant must be v1, v2 or v3. Got "${v}".`);
+  if (v !== 'v1' && v !== 'v2' && v !== 'v3' && v !== 'v4') throw new Error(`--variant must be v1, v2, v3 or v4. Got "${v}".`);
   return v;
 }
 
