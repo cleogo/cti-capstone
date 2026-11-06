@@ -22,7 +22,7 @@ import {
   MAX_FILTER_LIMIT,
 } from '@/lib/retrieval';
 import { getProductDetails, compareProducts } from '@/lib/details';
-import { MAX_SHOWN, showProducts } from '@/lib/display';
+import { MAX_SHOWN, showProducts } from '@/lib/show-products';
 import { lookupApplianceWattage, USER_TYPES } from '@/lib/appliances';
 import { recommendPowerStation } from '@/lib/power';
 import { buildQuotation } from '@/lib/quote';

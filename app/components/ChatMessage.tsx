@@ -19,7 +19,7 @@ import { ContactForm } from './ContactForm';
 import { CompareCard } from './CompareCard';
 import { ProductList } from './ProductList';
 import { FollowUpChips } from './FollowUpChips';
-import { pickChips, type ShowProductsResult, type ShownProduct } from '@/lib/display';
+import { pickChips, shownFromDetails, type ShowProductsResult, type ShownProduct } from '@/lib/display';
 import { IconAlert, IconSparkle, Logo } from './ui';
 import { sourcesFromMessage } from '@/lib/sources';
 
@@ -95,10 +95,15 @@ export function ChatMessage({
   }
 
   const invocations = message.toolInvocations ?? [];
+  const hasShowProducts = invocations.some((inv) => inv.toolName === 'showProducts');
   const runningTools = invocations.filter((inv) => inv.state === 'call' && !CLIENT_TOOLS.has(inv.toolName));
   const finishedTools = invocations.filter((inv) => inv.state === 'result' && !CLIENT_TOOLS.has(inv.toolName));
   const cards = invocations.filter(
-    (inv) => inv.toolName === 'showApplianceChecklist' || (RESULT_CARDS.has(inv.toolName) && inv.state === 'result'),
+    (inv) =>
+      inv.toolName === 'showApplianceChecklist' ||
+      (RESULT_CARDS.has(inv.toolName) && inv.state === 'result') ||
+      // A details answer shows its product as a card, unless showProducts already lists it.
+      (inv.toolName === 'getProductDetails' && inv.state === 'result' && !hasShowProducts),
   );
 
   // A compare table already shows its products, so the card row leaves them out.
@@ -167,6 +172,9 @@ export function ChatMessage({
               />
             );
           }
+          if (inv.toolName === 'getProductDetails' && inv.state === 'result') {
+            return <ProductList key={inv.toolCallId} result={shownFromDetails(inv.result)} onOpen={onOpen} onAsk={onAsk} />;
+          }
           if (inv.toolName === 'compareProducts' && inv.state === 'result') {
             return <CompareCard key={inv.toolCallId} result={inv.result} />;
           }
@@ -199,7 +207,7 @@ export function ChatMessage({
           />
         )}
         {showSources && sources.length > 0 && (
-          <SourceList sources={sources} defaultOpen={!invocations.some((inv) => inv.toolName === 'showProducts')} />
+          <SourceList sources={sources} defaultOpen={!cards.some((inv) => inv.toolName === 'showProducts' || inv.toolName === 'getProductDetails')} />
         )}
       </div>
     </li>

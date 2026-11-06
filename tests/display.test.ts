@@ -4,7 +4,9 @@ import type { Message } from 'ai';
 import { BY_CODE } from '../lib/products';
 import { sourcesFromMessage } from '../lib/sources';
 import { createTools } from '../lib/tools';
-import { MAX_SHOWN, displayedAnswer, pickChips, showProducts } from '../lib/display';
+import { displayedAnswer, pickChips, shownFromDetails } from '../lib/display';
+import { compareProducts, getProductDetails } from '../lib/details';
+import { MAX_SHOWN, showProducts } from '../lib/show-products';
 
 test('showProducts keeps order and drops duplicates', () => {
   const r = showProducts(['MED-001-01', 'PWR-001-06', 'MED-001-01']);
@@ -100,3 +102,20 @@ test('chips for a power-station recommendation', () => {
 });
 
 test('no chips for a plain answer', () => assert.deepEqual(pickChips([]), []));
+
+test('displayedAnswer counts the product of a details result', () => {
+  const out = displayedAnswer('Specs are not on file.', [{ name: 'getProductDetails', result: getProductDetails('PWR-001-06') }]);
+  assert.match(out, /PWR-001-06 · .+ · ₱58,719\.00/);
+});
+
+test('displayedAnswer counts the products of a compare result', () => {
+  const out = displayedAnswer('Choose A if…', [{ name: 'compareProducts', result: compareProducts(['FLA-001-14', 'FLA-001-15']) }]);
+  assert.match(out, /FLA-001-14 · .+ · ₱280\.00/);
+  assert.match(out, /FLA-001-15 · .+ · ₱170\.00/);
+});
+
+test('shownFromDetails gives one card for a conflict code, with no price', () => {
+  const r = shownFromDetails(getProductDetails('FLA-001-13'));
+  assert.equal(r.products.length, 1);
+  assert.equal(r.products[0].price_php, null);
+});
