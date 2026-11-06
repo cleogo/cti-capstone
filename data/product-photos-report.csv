@@ -1,0 +1,1120 @@
+code,name,category,photo,source_folder
+MED-001-01,"Training Manikins set, Adult, full body",Medical & Clinic Equipment,yes,T/TRAINING MANIQUIN FULL BODY
+MED-001-02,"Minor surgical instrument (Thumb forceps, Tooth forceps, Surgical scissors, bandage scissors, needle holder)",Medical & Clinic Equipment,yes,"M/Minor surgical instrument (Thumb forceps, Tooth forceps, Surgical scissors, bandage scissors, needle holder)"
+MED-001-03,Hearing aid,Medical & Clinic Equipment,yes,H/HEARING AID
+MED-001-04,Stethoscope (Dual Head),Medical & Clinic Equipment,yes,S/Stethoscope (Dual Head)
+MED-001-05,"Urinal (Material: stainless, Quantity: 1pc/type)",Medical & Clinic Equipment,yes,"U/Urinal (Material stainless, Quantity 1pctype)"
+MED-001-06,"Hospital Rubber Sheet (Material: Rubber, Color: Multicolor Size: 80 x 160 cm) 1 meter",Medical & Clinic Equipment,yes,"H/Hospital Rubber Sheet Material Rubber, Color Multicolor Size 80 x 160 cm 1 meter"
+MED-001-07,"Hospital Draw Sheet (Material: Cotton: Color: Green: Size: 90 x 180 cm) - 55x75""",Medical & Clinic Equipment,yes,H/Hospital Draw Sheet (Material Cotton Color Green Size 90 x 180 cm) - 55x75
+MED-001-08,Foley Catheter for Adults - 10pcs per box,Medical & Clinic Equipment,yes,F/Foley Catheter for Adults - 10pcs per box
+MED-001-09,"Drapes (Plain and fenestrated, containing an opening or window) 40cmx40cm",Medical & Clinic Equipment,yes,"D/Drapes (Plain and fenestrated, containing an opening or window) 40cmx40cm"
+MED-001-10,"Urinal (Material: Plastic, Quantity: 1pc/type)",Medical & Clinic Equipment,yes,"U/Urinal (Material Plastic, Quantity 1pctype)"
+MED-001-11,Bedpan (no cover) (Material: Plastic Quantity: 1pc/type),Medical & Clinic Equipment,yes,B/Bedpan (no cover) (Material Plastic Quantity 1pctype)
+MED-001-12,Walking cane,Medical & Clinic Equipment,yes,W/Walking cane
+MED-001-13,Standard 2-button walker without wheels (aluminum),Medical & Clinic Equipment,yes,S/Standard 2-button walker without wheels (aluminum)
+MED-001-14,"Bedpan with cover (Material: stainless, Quantity: 1pc/type)",Medical & Clinic Equipment,yes,"B/Bedpan with cover (Material stainless, Quantity 1pctype)"
+MED-001-15,Ovum forceps (Foerster Sponge Forceps/Ovum Curved (Serrated Jaw) 9′′,Medical & Clinic Equipment,missing,
+MED-001-16,Belt grip Transfer Belt,Medical & Clinic Equipment,yes,B/Belt grip Transfer Belt
+MED-001-17,Wheel Chair (Automatic),Medical & Clinic Equipment,yes,W/Wheel Chair (Automatic)
+MED-001-18,Wheel chair (manual),Medical & Clinic Equipment,yes,W/Wheel chair (manual)
+FIR-001-11A,Fire Blanket (1.0X1.0),Fire Safety Equipment,yes,F/FIRE BLANKET (1.0X1.0)
+FIR-001-11B,Fire Blanket (1.2X1.2),Fire Safety Equipment,yes,F/FIRE BLANKET (1.2X1.2)
+FIR-001-11C,Fire Blanket (1.2X1.8),Fire Safety Equipment,yes,F/FIRE BLANKET (1.2X1.8)
+FIR-001-11D,Fire Blanket (1.5X1.5),Fire Safety Equipment,yes,F/FIRE BLANKET (1.5X1.5)
+FIR-001-11E,Fire Blanket (1.8X1.8),Fire Safety Equipment,yes,F/FIRE BLANKET (1.8X1.8)
+FIR-001-06,Auto Fire OFF,Fire Safety Equipment,yes,A/AUTO FIRE OFF
+FIR-001-07,Fire Escape Mask,Fire Safety Equipment,yes,F/FIRE ESCAPE MASK
+FIR-001-13,Handle Alarm,Fire Safety Equipment,yes,H/HANDLE ALARM
+FIR-001-14,Alarm Bell (ES-14A 12-24V / ES-14B-220V),Fire Safety Equipment,yes,A/ALARM BELL (ES-14A 12-24V  ES-14B-220V)
+FIR-001-15,LED Siren,Fire Safety Equipment,yes,L/LED SIREN
+FIR-001-16,Fire Call Point,Fire Safety Equipment,yes,F/FIRE CALL POINT
+FIR-001-17,Flash Alarm,Fire Safety Equipment,yes,L/FLASH ALARM
+FIR-001-19,Smoke Alarm,Fire Safety Equipment,yes,S/SMOKE ALARM
+FIR-001-20,Smoke Detector SD-604PC,Fire Safety Equipment,missing,
+FIR-001-21,Heat Alarm,Fire Safety Equipment,yes,H/HEAT ALARM
+FIR-001-22,Smoke Alarm SD-426,Fire Safety Equipment,yes,S/SMOKE ALARM SD-426
+FIR-001-24,424 Standalone Smoke Detector With 220V,Fire Safety Equipment,yes,A/424 STANDALONE SMOKE DETECTOR WITH 220V
+FIR-001-29,Hand Operated Siren,Fire Safety Equipment,yes,H/HAND OPERATED SIREN
+FIR-001-30,Fire Proof Sprinkler,Fire Safety Equipment,yes,F/FIRE PROOF SPRINKLER
+FIR-001-31,Fire Sprinkler Head (475L),Fire Safety Equipment,yes,F/FIRE SPRINKLER HEAD (475L)
+FIR-001-31A,Fire Sprinkler Head (700L),Fire Safety Equipment,missing,
+FIR-001-32,Crowbar,Fire Safety Equipment,yes,C/CROWBAR
+FIR-001-33,Fire AXE,Fire Safety Equipment,yes,F/FIRE AXE
+FIR-001-34,SUN Flower Light,Fire Safety Equipment,missing,
+FIR-001-36,Bottle Fire Extinguisher,Fire Safety Equipment,yes,B/BOTTLE FIRE EXTINGUISHER
+FIR-001-37,KEY BOX,Fire Safety Equipment,yes,K/KEY BOX
+FIR-001-38,Glass Breaker,Fire Safety Equipment,yes,G/GLASS BREAKER
+FIR-001-42,Smoke Detector NEW,Fire Safety Equipment,yes,S/SMOKE DETECTOR NEW
+FIR-001-43,Standard Smoke Detector,Fire Safety Equipment,yes,S/STANDARD SMOKE DETECTOR
+FIR-001-44,wired interlinked standalone smoke detector with 220V AC + 9V,Fire Safety Equipment,yes,W/wired interlinked standalone smoke detector with 220V AC + 9V
+FIR-001-45,Rope Ladder 10M,Fire Safety Equipment,yes,R/ROPE LADDER 10M
+FIR-001-01,Fire Boots,Fire Safety Equipment,yes,F/FIRE BOOTS
+FIR-001-02,Fire Gloves,Fire Safety Equipment,yes,F/FIRE GLOVES
+FIR-001-03,Fire Gloves Yellow,Fire Safety Equipment,yes,F/FIRE GLOVES YELLOW
+FIR-001-04,Fire Helmet,Fire Safety Equipment,yes,F/FIRE HELMET
+FIR-001-05,Fire Suit,Fire Safety Equipment,yes,F/FIRE SUIT
+FIR-001-08A,Silicone Mask Single,Fire Safety Equipment,missing,
+FIR-001-08B,Silicone Mask Double,Fire Safety Equipment,missing,
+FIR-001-10A,Oxygen Tank Single,Fire Safety Equipment,missing,
+FIR-001-10B,Oxygen Tank Double,Fire Safety Equipment,missing,
+FIR-001-3LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 3LBS
+FIR-001-5LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 5LBS
+FIR-001-10LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,missing,
+FIR-001-15LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 15LBS
+FIR-001-20LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 20lbs
+FIR-001-50LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 50LBS
+FIR-001-100LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 100LBS
+FIR-001-200LBS,Fire Extinguisher DRY Chemical,Fire Safety Equipment,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 200LBS
+FIR-001-HCFC10LBS,Fire Extinguisher Hcfc (ceiling),Fire Safety Equipment,yes,F/FIRE EXTINGUISHER HCFC (CEILING) 10LBS
+FIR-001-HCFC20LBS,Fire Extinguisher Hcfc (ceiling),Fire Safety Equipment,yes,F/FIRE EXTINGUISHER HCFC (CEILING) 20LBS
+FAC-001-01,Facial Mask Yellow,Face & Welding Protection,yes,F/FACIAL MASK YELLOW
+FAC-001-02,Welding Mask,Face & Welding Protection,yes,W/WELDING MASK
+FAC-001-04,Handheld Welding Mask,Face & Welding Protection,missing,
+FAC-001-05,Facial Mask FOR Helmet Clear,Face & Welding Protection,yes,F/FACIAL MASK FOR HELMET CLEAR
+FAC-001-06,Facial Mask FOR Helmet Black,Face & Welding Protection,yes,F/FACIAL MASK FOR HELMET BLACK
+FAC-001-07,Automatic Welding Mask,Face & Welding Protection,yes,A/AUTOMATIC WELDING MASK
+FAC-001-08,N95 Mask White With Filter,Face & Welding Protection,yes,N/N95 MASK WHITE WITH FILTER
+FAC-001-09,N95 Mask White Without Filter,Face & Welding Protection,yes,N/N95 MASK WHITE WITHOUT FILTER
+FAC-001-10,N95 Mask Grey With Filter,Face & Welding Protection,yes,N/N95 MASK GREY WITH FILTER
+FAC-001-11,N95 Mask Grey Without Filter,Face & Welding Protection,yes,N/N95 MASK GREY WITHOUT FILTER
+FAC-001-19,NP 305,Face & Welding Protection,yes,N/NP 305
+FAC-001-20,NP 306,Face & Welding Protection,yes,N/NP 306
+FAC-001-21,RC 203,Face & Welding Protection,yes,R/RC 203
+FAC-001-22,Cotton Mask (10PCS/PACK),Face & Welding Protection,yes,C/COTTON MASK (10PCSPACK)
+FAC-001-24,Clear Plastic Mask,Face & Welding Protection,yes,C/CLEAR PLASTIC MASK
+FAC-001-25,Hair NET,Face & Welding Protection,yes,H/HAIR NET
+FAC-001-27,Dust Mask Type,Face & Welding Protection,yes,D/DUST MASK
+FAC-001-28,Dust Mask Refill,Face & Welding Protection,yes,D/DUSK MASK TYPE REFILL
+FAC-001-29,ORD Faceshield,Face & Welding Protection,missing,
+FAC-001-30,GM305 Industrial Mask,Face & Welding Protection,yes,G/GM305 INDUSTRIAL MASK
+FAC-001-31,GM306 Industrial Mask,Face & Welding Protection,yes,G/GM306 INDUSTRIAL MASK
+FAC-001-32,2GM-2 Resipirator Mask With Goggle,Face & Welding Protection,yes,A/2GM-2 RESIPIRATOR MASK WITH GOGGLE
+FAC-001-33,2GM-22 Resipirator Mask With Goggle,Face & Welding Protection,yes,A/2GM-22 RESIPIRATOR MASK WITH GOGGLE
+FAC-001-34,P1 Dust Mask,Face & Welding Protection,yes,P/P1 DUSTMASK
+FAC-001-35,NEW Welding Mask,Face & Welding Protection,yes,N/NEW WELDING MASK
+FAC-001-36,Active Shield,Face & Welding Protection,yes,A/ACTIVE SHIELD
+FAC-001-37,Facial FOR Helmet Black,Face & Welding Protection,missing,
+FAC-001-38,FACIAL FOR HELMET (auto dimming),Face & Welding Protection,missing,
+FAC-001-39,Facial FOR Helmet,Face & Welding Protection,missing,
+EAR-001-01,Earplug,Hearing Protection,yes,E/EARPLUG
+EAR-001-01B,Earplug Plastic,Hearing Protection,yes,E/EARPLUG PLASTIC
+EAR-001-02,Ordinary Earmuff,Hearing Protection,missing,
+EAR-001-03,Earmuff HD,Hearing Protection,yes,E/EARMUFF HD
+EAR-001-04,3M Earmuff,Hearing Protection,yes,A/3M EARMUFF
+EAR-001-05,Earmuff CQL,Hearing Protection,yes,E/EARMUFF CQL
+EAR-001-06,Earmuff FOR Helmet,Hearing Protection,yes,E/EARMUFF FOR HELMET
+SAF-002-01,YDS High Cut,Safety Shoes,yes,Y/YDS High Cut
+SAF-002-02,YDS Low Cut,Safety Shoes,yes,Y/YDS Low Cut
+SAF-002-07,MG High Cut,Safety Shoes,yes,M/MG High Cut
+SAF-002-08,MG Low Cut,Safety Shoes,yes,M/MG Low Cut
+SAF-002-24,Camel HC,Safety Shoes,yes,C/CAMEL HC
+SAF-002-30,Safety BOY Rubber Sole 1945,Safety Shoes,missing,
+SAF-002-31,Safety BOY PU Sole 1943,Safety Shoes,yes,S/SAFETY BOY PU SOLE 1943
+SAF-002-32,Super Gwapo Rubber Sole,Safety Shoes,yes,S/SUPER GWAPO RUBBER SOLE
+SAF-002-35,Safety BOY LC YL1950,Safety Shoes,missing,
+SAF-002-36,"Safety BOY ""black""",Safety Shoes,yes,S/SAFETY BOY BLACK
+SAF-002-37,"Safety BOY ""brown""",Safety Shoes,yes,S/SAFETY BOY BROWN
+SAF-002-39,R Power LC,Safety Shoes,yes,R/R POWER LC
+SAF-002-40,R Power HC,Safety Shoes,yes,R/R POWER HC
+PPE-018-01,Rain Boots,Work Boots,yes,R/RAIN BOOTS
+PPE-018-03,Steel Boots (WITH OSHC),Work Boots,yes,S/Steel Boots (WITH OSHC)
+PPE-018-05,Jumper Boots,Work Boots,yes,J/JUMPER BOOTS
+PPE-018-08,Camel Boots,Work Boots,yes,C/Camel Boots
+PPE-018-10,Camel White Boots,Work Boots,yes,C/Camel White Boots
+BOD-002-01A,Welding Apron Leather,Welding Aprons & Body Protection,yes,W/WELDING APRON LEATHER
+BOD-002-01B,Welding Apron W/SLEEVE,Welding Aprons & Body Protection,yes,W/WELDING APRON WSLEEVE
+BOD-002-02,Welding Apron Leather Pants,Welding Aprons & Body Protection,yes,W/WELDING APRON LEATHER PANTS
+BOD-002-03A,Maong Apron With Sleeve,Welding Aprons & Body Protection,yes,M/MAONG APRON WITH SLEEVE
+BOD-002-03B,Maong Apron Without Sleeve,Welding Aprons & Body Protection,yes,M/MAONG APRON WITHOUT SLEEVE
+BOD-002-04A,Over ALL Suit S TO 3XL Navy Blue,Welding Aprons & Body Protection,missing,
+BOD-002-04B,Over ALL Suit S TO 3XL Orange,Welding Aprons & Body Protection,missing,
+BOD-002-05,Chemical Suit,Welding Aprons & Body Protection,yes,C/CHEMICAL SUIT
+SPO-001-01,Sanda Uniform (Men),Sports & Martial Arts Equipment,yes,S/Sanda Uniform (Men)
+SPO-001-02,Sanda Uniform (Women),Sports & Martial Arts Equipment,yes,S/Sanda Uniform (Women)
+SPO-001-03,Sanda Chest Protector,Sports & Martial Arts Equipment,yes,S/Sanda Chest Protector
+SPO-001-04,Sanda Gloves,Sports & Martial Arts Equipment,yes,S/Sanda Gloves
+SPO-001-05,Sanda Headguard,Sports & Martial Arts Equipment,yes,S/Sanda Headguard
+SPO-001-06,Shin & Instep Protector,Sports & Martial Arts Equipment,yes,S/Shin & Instep Protector
+SPO-001-07,"Focus Mitts (Punch Pad) - Thai Style, Curved",Sports & Martial Arts Equipment,yes,"F/Focus Mitts (Punch Pad) - Thai Style, Curved"
+SPO-001-08,Kick Pad,Sports & Martial Arts Equipment,yes,K/Kick Pad
+SPO-001-09,Weightlifting Rubber Mat (48x12inches),Sports & Martial Arts Equipment,yes,W/Weightlifting Rubber Mat (48x12inches)
+SPO-001-10,competition weightlifting platform,Sports & Martial Arts Equipment,yes,C/competition weightlifting platform
+SPO-001-11,competition weightlifting platform with logo,Sports & Martial Arts Equipment,missing,
+SPO-001-12,Customized Weightlifting Bar,Sports & Martial Arts Equipment,missing,
+SPO-001-13,Customized 2.5 kg plate,Sports & Martial Arts Equipment,yes,C/Customized 2.5 kg plate
+SPO-001-14,Customized 5 kg plate,Sports & Martial Arts Equipment,yes,C/Customized 5 kg plate
+SPO-001-15,Customized 10 kg plate,Sports & Martial Arts Equipment,yes,C/Customized 10 kg plate
+SPO-001-16,Customized 15 kg plate,Sports & Martial Arts Equipment,yes,C/Customized 15 kg plate
+SPO-001-17,Customized 20 kg plate,Sports & Martial Arts Equipment,yes,C/Customized 20 kg plate
+SPO-001-18,Customized 25 kg plate,Sports & Martial Arts Equipment,yes,C/Customized 2.5 kg plate
+SPO-001-19,5-15 lbs TPE Resistance Band,Sports & Martial Arts Equipment,yes,A/5-15 lbs TPE Resistance Band
+SPO-001-20,15-35 lbs TPE Resistance Band,Sports & Martial Arts Equipment,yes,A/15-35 lbs TPE Resistance Band
+SPO-001-21,25-65 lbs TPE Resistance Band,Sports & Martial Arts Equipment,yes,A/25-65 lbs TPE Resistance Band
+SPO-001-22,40-90 lbs TPE Resistance Band,Sports & Martial Arts Equipment,yes,A/40-90 lbs TPE Resistance Band
+SPO-001-23,20-125 lbs TPE Resistance Band,Sports & Martial Arts Equipment,missing,
+SPO-001-24,65-175 lbs TPE Resistance Band,Sports & Martial Arts Equipment,yes,A/65-175 lbs TPE Resistance Band
+SPO-001-25,85-230 lbs TPE Resistance Band,Sports & Martial Arts Equipment,yes,A/85-230 lbs TPE Resistance Band
+SPO-001-26,Latex Resistance Band Set,Sports & Martial Arts Equipment,yes,L/Latex Resistance Band Set
+SPO-001-27,Customized Wrestling Mat,Sports & Martial Arts Equipment,yes,C/Customized Wrestling Mat
+SPO-001-28,CP2 Sprint Health Spike Shoes,Sports & Martial Arts Equipment,yes,C/CP2 Sprint Health Spike Shoes
+SPO-001-29,CP3 Distance Health Spike Shoes,Sports & Martial Arts Equipment,yes,C/CP3 Distance Health Spike Shoes
+SPO-001-30,CPL Horizontal Jumps Health Spike Shoes,Sports & Martial Arts Equipment,yes,C/CPL Horizontal Jumps Health Spike Shoes
+SPO-001-31,KM2 Health Race Walk Shoes,Sports & Martial Arts Equipment,yes,K/KM2 Health Race Walk Shoes
+SPO-001-32,Wesing Boxing Training Gloves 10oz,Sports & Martial Arts Equipment,yes,W/Wesing Boxing Training Gloves 10oz
+SPO-001-33,Wesing Boxing Training Gloves 12oz,Sports & Martial Arts Equipment,yes,W/Wesing Boxing Training Gloves 12oz
+SPO-001-34,Wesing Boxing Training Gloves 14oz,Sports & Martial Arts Equipment,yes,W/Wesing Boxing Training Gloves 14oz
+SPO-001-35,Wesing Competition Wrestling Shoes,Sports & Martial Arts Equipment,yes,W/Wesing Competition Wrestling Shoes
+SPO-001-36,Wesing Competition Boxing Shoes,Sports & Martial Arts Equipment,yes,W/Wesing Competition Boxing Shoes
+SPO-001-37,Wesing Wrestling Singlet,Sports & Martial Arts Equipment,yes,W/Wesing Wrestling Singlet
+SAF-001-01,TEL Vest,Safety & Reflective Vests,yes,T/TEL VEST
+SAF-001-02,Button Vest,Safety & Reflective Vests,yes,B/BUTTON VEST
+SAF-001-03,Skeleton HD,Safety & Reflective Vests,yes,S/SKELETON HD
+SAF-001-04,Skeleton ORD,Safety & Reflective Vests,yes,S/SKELETON ORD
+SAF-001-05,Panda Black Edge X Type HD,Safety & Reflective Vests,yes,P/PANDA BLACK EDGE X TYPE HD
+SAF-001-06,Panda Original Edge H Type HD,Safety & Reflective Vests,missing,
+SAF-001-07,Panda #311 X Type HD,Safety & Reflective Vests,yes,P/PANDA #311 X TYPE HD
+SAF-001-08,Panda #311 H Type HD,Safety & Reflective Vests,yes,P/PANDA #311 H TYPE HD
+SAF-001-09,Panda NET Black Edge Vest,Safety & Reflective Vests,yes,P/PANDA NET BLACK EDGE VEST
+SAF-001-10,Panda NET Original Edge Vest,Safety & Reflective Vests,yes,P/PANDA NET ORIGINAL EDGE VEST
+SAF-001-11,Panda NET Grey Reflector Vest,Safety & Reflective Vests,missing,
+SAF-001-12,Ord. Vest,Safety & Reflective Vests,missing,
+SAF-001-13,Ord. Vest X Type,Safety & Reflective Vests,missing,
+SAF-001-15,309 Vest Series,Safety & Reflective Vests,yes,A/309 VEST SERIES
+SAF-001-16,V Type Vest,Safety & Reflective Vests,missing,
+SAF-001-17,Motor Vest,Safety & Reflective Vests,yes,M/MOTOR V
+SAF-001-18,"Adj.vest 2"" HD",Safety & Reflective Vests,yes,A/ADJ.VEST 2 HD
+SAF-001-19,"Adj.vest 1"" HD",Safety & Reflective Vests,yes,A/ADJ.VEST 1 HD
+SAF-001-20,Garter Vest,Safety & Reflective Vests,yes,G/GARTER VEST
+SAF-001-21,Reflector Belt,Safety & Reflective Vests,yes,R/REFLECTOR BELT
+SAF-001-22,Garter Belt,Safety & Reflective Vests,yes,G/GARTER BELT
+SAF-001-23,Security NET Vest,Safety & Reflective Vests,yes,S/SECURITY NET VEST
+SAF-001-24,Traffic NET Vest,Safety & Reflective Vests,yes,T/TRAFFIC NET VEST
+SAF-001-25,Security Strap Vest,Safety & Reflective Vests,yes,S/SECURITY STRAP VEST
+SAF-001-26,Traffic Strap Vest,Safety & Reflective Vests,yes,T/TRAFFIC STRAP VEST
+SAF-001-27,Security NET Plain Vest,Safety & Reflective Vests,yes,S/SECURITY NET PLAIN VEST
+SAF-001-28,Security Strap Plain Vest,Safety & Reflective Vests,yes,S/SECURITY STRAP PLAIN VEST
+SAF-001-29,Pulis Vest,Safety & Reflective Vests,yes,P/PULIS VEST
+SAF-001-31,Anda Vest,Safety & Reflective Vests,yes,A/ANDA VEST
+SAF-001-32,Strap ID Vest,Safety & Reflective Vests,yes,S/STRAP ID VEST
+SAF-001-34,Shoulder Vest,Safety & Reflective Vests,yes,S/SHOULDER VEST
+SAF-001-35,Airport Vest,Safety & Reflective Vests,yes,A/AIRPORT VEST
+SAF-001-36,"Vest 4"" HD",Safety & Reflective Vests,yes,V/VEST 4 HD
+SAF-001-37,7 CM Vest,Safety & Reflective Vests,missing,
+SAF-001-38,Long Sleeve Plain,Safety & Reflective Vests,yes,L/LONG SLEEVE PLAIN
+SAF-001-39,Long Sleeve With Reflector,Safety & Reflective Vests,yes,L/LONG SLEEVE WITH REFLECTOR
+SAF-001-40,"Vest 3"" HD",Safety & Reflective Vests,yes,V/VEST 3 HD
+SAF-001-41,Motor Vest With ID,Safety & Reflective Vests,yes,M/MOTOR VEST WITH ID
+SAF-001-42,Panda NET H Type,Safety & Reflective Vests,missing,
+SAF-001-43,Panda Vest With Pocket ID,Safety & Reflective Vests,yes,P/PANDA VEST WITH POCKET ID
+SAF-001-44,ORD Vest H Type,Safety & Reflective Vests,missing,
+SAF-001-45,Vest RT-16,Safety & Reflective Vests,yes,V/VEST RT-16
+SAF-001-47,NEW Style TEL Vest,Safety & Reflective Vests,yes,N/NEW STYLE TEL VEST
+SAF-001-48,Arrow TEL Vest,Safety & Reflective Vests,yes,A/ARROW TEL VEST
+SAF-001-49,Panda HD 5*2 CM,Safety & Reflective Vests,yes,P/PANDA HD 52 CM
+SAF-001-50,TEL Vest 5*2CM,Safety & Reflective Vests,yes,T/TEL VEST 52CM
+SAF-001-51,Makrear Short Sleeve Polo Shirt S TO XL,Safety & Reflective Vests,yes,M/MAKREAR SHORT SLEEVE POLO SHIRT S TO XL
+SAF-001-52,Makrear Long Sleeve Polo Shirt S TO XL,Safety & Reflective Vests,yes,M/MAKREAR LONG SLEEVE POLO SHIRT S TO XL
+SAF-001-53,Sweater With Reflector,Safety & Reflective Vests,yes,S/SWEATER WITH REFLECTOR
+SAF-001-54,Long Sleeve With 10CM*5CM Reflector,Safety & Reflective Vests,yes,L/LONG SLEEVE WITH 10CM5CM REFLECTOR
+SAF-001-55,Short Sleeve With 10CM*5CM Reflector,Safety & Reflective Vests,missing,
+SAF-001-56,3M TEL Vest,Safety & Reflective Vests,yes,A/3M TEL VEST
+SAF-001-57,NEW Zipper Vest,Safety & Reflective Vests,yes,N/NEW ZIPPER VEST
+FIR-002-1LB-DC,Fire Extinguisher DRY Chemical 1LB (wall Type) + Free Wall Bracket,Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 1LB (WALL TYPE) + FREE WALL BRACKET
+FIR-002-2LBS-DC,Fire Extinguisher DRY Chemical 2LBS (wall Type) + Free Wall Bracket,Fire Extinguishers,missing,
+FIR-002-3LBS-DC,Fire Extinguisher DRY Chemical 3LBS (wall Type) + Free Wall Bracket,Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 3LBS (WALL TYPE) + FREE WALL BRACKET
+FIR-002-5LBS-DC,Fire Extinguisher DRY Chemical 5LBS (wall Type) + Free Wall Bracket,Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 5LBS (WALL TYPE) + FREE WALL BRACKET
+FIR-002-10LBS-DC,Fire Extinguisher DRY Chemical 10LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 10LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-20LBS-DC,Fire Extinguisher DRY Chemical 20LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 20LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-50LBS-DC,Fire Extinguisher DRY Chemical 50LBS (wheeled Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 50LBS (WHEELED TYPE)
+FIR-002-100LBS-DC,Fire Extinguisher DRY Chemical 100LBS (wheeled Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 100LBS (WHEELED TYPE)
+FIR-002-200LBS-DC,Fire Extinguisher DRY Chemical 200LBS (wheeled Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER DRY CHEMICAL 200LBS (WHEELED TYPE)
+FIR-002-3LBS-AFFF,Fire Extinguisher Afff Chemical 3LBS (wall Type) + Free Wall Bracket,Fire Extinguishers,yes,F/FIRE EXTINGUISHER AFFF CHEMICAL 3LBS (WALL TYPE) + FREE WALL BRACKET
+FIR-002-5LBS-AFFF,Fire Extinguisher Afff Chemical 5LBS (wall Type) + Free Wall Bracket,Fire Extinguishers,missing,
+FIR-002-10LBS-AFFF,Fire Extinguisher Afff Chemical 10LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER AFFF CHEMICAL 10LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-20LBS-AFFF,Fire Extinguisher Afff Chemical 20LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER AFFF CHEMICAL 20LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-50LBS-AFFF,Fire Extinguisher Afff Chemical 50LBS (wheeled Type),Fire Extinguishers,"conflict, no photo",F/FIRE EXTINGUISHER AFFF CHEMICAL 50LBS (WHEELED TYPE)
+FIR-002-100LBS-AFFF,Fire Extinguisher Afff Chemical 100LBS (wheeled Type),Fire Extinguishers,missing,
+FIR-002-200LBS-AFFF,Fire Extinguisher Afff Chemical 200LBS (wheeled Type),Fire Extinguishers,missing,
+FIR-002-5LBS-HCFC,Fire Extinguisher Hcfc Chemical 5LBS (wall Type) + Free Wall Bracket,Fire Extinguishers,yes,F/FIRE EXTINGUISHER HCFC CHEMICAL 5LBS (WALL TYPE) + FREE WALL BRACKET
+FIR-002-10LBS-HCFC,Fire Extinguisher Hcfc Chemical 10LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER HCFC CHEMICAL 10LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-20LBS-HCFC,Fire Extinguisher Hcfc Chemical 20LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER HCFC CHEMICAL 20LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-10LBS-HCFC-CT,Fire Extinguisher Hcfc Chemical 10LBS (ceiling Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER HCFC (CEILING) 10LBS
+FIR-002-20LBS-HCFC-CT,Fire Extinguisher Hcfc Chemical 20LBS(CEILING Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER HCFC (CEILING) 20LBS
+FIR-002-5LBS-HFC236FA,Fire Extinguisher HFC236FA Chemical 5LBS (wall Type) + Free Wall Bracket,Fire Extinguishers,yes,F/FIRE EXTINGUISHER HFC236FA CHEMICAL 5LBS (WALL TYPE) + FREE WALL BRACKET
+FIR-002-10LBS-HFC236FA,Fire Extinguisher HFC236FA Chemical 10LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER HFC236FA CHEMICAL 10LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-20LBS-HFC236FA,Fire Extinguisher HFC236FA Chemical 20LBS (wall Type) + Free Wall Hook,Fire Extinguishers,yes,F/FIRE EXTINGUISHER HFC236FA CHEMICAL 20LBS (WALL TYPE) + FREE WALL HOOK
+FIR-002-50LBS-HFC236FA,Fire Extinguisher HFC236FA Chemical 50LBS (wheeled Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER HFC236FA CHEMICAL 50LBS (WHEELED TYPE)
+FIR-002-10LBS-HFC236FA-CT,Fire Extinguisher HFC236FA Chemical 10LBS (ceiling Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER HFC236FA CHEMICAL 10LBS (CEILING TYPE)
+FIR-002-20LBS-HFC236FA-CT,Fire Extinguisher HFC236FA Chemical 20LBS(CEILING Type),Fire Extinguishers,yes,F/FIRE EXTINGUISHER HFC236FA CHEMICAL 20LBS(CEILING TYPE)
+FIR-002-10LBS-CO2,CO2 Chemical Carbon Dioxide,Fire Extinguishers,missing,
+FIR-002-10LBS-CO2HFC,HFC 236FA Chemical 10LBS,Fire Extinguishers,yes,H/HFC 236FA CHEMICAL 10LBS
+FIR-002-20LBS-CO2HFC,HFC 236FA Chemical 20LBS,Fire Extinguishers,yes,H/HFC 236FA CHEMICAL 20LBS
+FIR-002-10LBS-CK,Fire Extinguisher Class K 10LBS,Fire Extinguishers,yes,F/FIRE EXTINGUISHER CLASS K 10LBS
+FIR-002-20LBS-CK,Fire Extinguisher Class K 20LBS,Fire Extinguishers,yes,F/FIRE EXTINGUISHER CLASS K 20LBS
+FIR-002-FB,Fire Ball (1.3KG),Fire Extinguishers,yes,F/FIRE BALL (1.3KG)
+FIR-002-19,Smoke DETECTOR/ALARM (battery Operated),Fire Extinguishers,missing,
+FIR-002-20A,Emergency Light LED 6V,Fire Extinguishers,yes,E/EMERGENCY LIGHT LED 6V
+FIR-002-20B,Emergency Light LED 12V,Fire Extinguishers,yes,E/EMERGENCY LIGHT LED 12V
+FIR-002-21A,"Fire Alarm Bell W/ Manual Push Button (sold BY Set) - Bell Size 6"" 220v w/MANUAL Call Point",Fire Extinguishers,missing,
+FIR-002-21B,"Fire Alarm Bell W/ Manual Push Button (sold BY Set) - Bell Size 8"" 220v w/MANUAL Call Point",Fire Extinguishers,missing,
+FIR-002-21C,"Fire Alarm Bell W/ Manual Push Button (sold BY Set) - Bell Size 10"" 220v w/MANUAL Call Point",Fire Extinguishers,missing,
+FIR-002-30A,Exit Sign (lighted Led) - Single Faced,Fire Extinguishers,yes,E/EXIT SIGN (LIGHTED LED) - SINGLE FACED
+FIR-002-30B,Exit Sign (lighted Led) - Double Faced,Fire Extinguishers,yes,E/EXIT SIGN (LIGHTED LED) - DOUBLE FACED
+FIR-002-31A,Luminous Signages (glow IN THE Dark) - Exit Sign Left,Fire Extinguishers,yes,L/LUMINOUS SIGNAGES (GLOW IN THE DARK) - EXIT SIGN LEFT
+FIR-002-31B,Luminous Signages (glow IN THE Dark) - Exit Sign Right,Fire Extinguishers,yes,L/LUMINOUS SIGNAGES (GLOW IN THE DARK) - EXIT SIGN RIGHT
+FIR-002-31C,Luminous Signages (glow IN THE Dark) - Exit Sign Green,Fire Extinguishers,yes,L/LUMINOUS SIGNAGES (GLOW IN THE DARK) - EXIT SIGN GREEN
+FIR-002-31D,Luminous Signages (glow IN THE Dark) - Exit Sign RED,Fire Extinguishers,yes,L/LUMINOUS SIGNAGES (GLOW IN THE DARK) - EXIT SIGN RED
+FIR-002-31E,Luminous Signages (glow IN THE Dark) - Fire Exit,Fire Extinguishers,yes,L/LUMINOUS SIGNAGES (GLOW IN THE DARK) - FIRE EXIT
+FIR-002-32,"Fireman's Suit Coat & Trouser (helmet, Gloves, & Boots) - Locally Made",Fire Extinguishers,yes,"F/FIREMAN_S SUIT COAT & TROUSER (HELMET, GLOVES, & BOOTS) - LOCALLY MADE"
+FIR-002-38A,"Fire Hose Cabinet (angle Valve, Lock Nipple, Straight NOZZLE/POLYCARBONATE Nozzle) - 1&1/2 X 50FT Single Jacket",Fire Extinguishers,missing,
+FIR-002-38B,"Fire Hose Cabinet (angle Valve, Lock Nipple, Straight NOZZLE/POLYCARBONATE Nozzle) - 1&1/2 X 50FT Double Jacket",Fire Extinguishers,missing,
+FIR-002-38C,"Fire Hose Cabinet (angle Valve, Lock Nipple, Straight NOZZLE/POLYCARBONATE Nozzle) - 1&1/2 X 100FT Single Jacket",Fire Extinguishers,missing,
+FIR-002-38D,"Fire Hose Cabinet (angle Valve, Lock Nipple, Straight NOZZLE/POLYCARBONATE Nozzle) - 1&1/2 X 100FT Double Jacket",Fire Extinguishers,missing,
+FIR-002-A,Fire Blanket (1.2X1.2),Fire Extinguishers,yes,F/FIRE BLANKET (1.2X1.2)
+FIR-002-B,Fire Blanket (1.5X1.5),Fire Extinguishers,yes,F/FIRE BLANKET (1.5X1.5) F02
+FIR-002-C,Fire Blanket (1.5X1.8),Fire Extinguishers,missing,
+FIR-002-D,Fire Blanket (1.8X1.8),Fire Extinguishers,yes,F/FIRE BLANKET (1.8X1.8)
+FIR-002-CAB10,Fire Extinguisher Cabinet FOR 10 LBS,Fire Extinguishers,yes,F/FIRE EXTINGUISHER CABINET FOR 10 LBS
+FIR-002-CAB20,Fire Extinguisher Cabinet FOR 20 LBS,Fire Extinguishers,yes,F/FIRE EXTINGUISHER CABINET FOR 20 LBS
+BOD-001-01,5126 BIG Hook Harness,Fall Protection Harnesses,yes,A/5126 BIG HOOK HARNESS
+BOD-001-02A,5104 Full Body Harness (with Oshc),Fall Protection Harnesses,yes,A/5104 FULL BODY HARNESS (WITH OSHC)
+BOD-001-02B,5105 Harness With Back Support (with Oshc),Fall Protection Harnesses,yes,A/5105 HARNESS WITH BACK SUPPORT (WITH OSHC)
+BOD-001-11,Yellow Harness Without Hook,Fall Protection Harnesses,yes,Y/YELLOW HARNESS WITHOUT HOOK
+BOD-001-12,Yellow Harness Small Hook,Fall Protection Harnesses,yes,Y/YELLOW HARNESS SMALL HOOK
+BOD-001-13,Yellow Harness BIG Hook,Fall Protection Harnesses,yes,Y/YELLOW HARNESS BIG HOOK
+BOD-001-14,Safety Belt Small Hook,Fall Protection Harnesses,missing,
+BOD-001-15,Safety Belt BIG Hook,Fall Protection Harnesses,yes,S/SAFETY BELT BBIG HOOK
+BOD-001-31,Yellow Harness Double Lanyard BIG Hook,Fall Protection Harnesses,yes,Y/YELLOW HARNESS DOUBLE LANYARD BIG HOOK
+BOD-001-18,BHH With Back Support,Fall Protection Harnesses,missing,
+BOD-001-42,Lineman Safety Belt,Fall Protection Harnesses,yes,L/Lineman Safety Belt
+BOD-001-43,Lineman Safety Belt Pole Strap,Fall Protection Harnesses,yes,L/Lineman Safety Belt Pole Strap
+BOD-001-001,1 Power Full Body Harness,Fall Protection Harnesses,yes,A/1 Power Full Body Harness
+MEG-001-08,Megaphone,Megaphones,yes,M/MEGAPHONE
+LAN-001-03,Single Lanyard Strap Type,Fall Protection Lanyards,missing,
+LAN-001-04,Double Lanyard Strap Type,Fall Protection Lanyards,yes,D/DOUBLE LANYARD STRAP TYPE
+LAN-001-05,Single Lanyard With Shock Absorber Strap Type,Fall Protection Lanyards,yes,S/SINGLE LANYARD WITH SHOCK ABSORBER STRAP TYPE
+LAN-001-06,Double Lanyard With Shock Absorber Strap Type (with Oshc),Fall Protection Lanyards,yes,D/DOUBLE LANYARD WITH SHOCK ABSORBER STRAP TYPE (with oshc)
+LAN-001-07,Single Lanyard Rope Type,Fall Protection Lanyards,yes,S/SINGLE LANYARD ROPE TYPE
+LAN-001-08,Double Lanyard Rope Type,Fall Protection Lanyards,yes,D/DOUBLE LANYARD ROPE TYPE
+LAN-001-09,Single Lanyard With Shock Absorber Rope Type,Fall Protection Lanyards,yes,S/SINGLE LANYARD WITH SHOCK ABSORBER ROPE TYPE
+LAN-001-10,Double Lanyard With Shock Absorber Rope Type,Fall Protection Lanyards,missing,
+LAN-001-28,Single Lanyard Rope NEW Type,Fall Protection Lanyards,yes,S/SINGLE LANYARD ROPE NEW TYPE
+LAN-001-29,Double Lanyard Rope NEW Type,Fall Protection Lanyards,yes,D/DOUBLE LANYARD ROPE NEW TYPE
+LAN-001-30,Double Lanyard W Shock Absorber NEW TYPE/,Fall Protection Lanyards,yes,D/DOUBLE LANYARD W SHOCK ABSORBER NEW TYPE
+LAN-001-41,Double Lanyard Rope Aluminum Alloy Super Large Hook,Fall Protection Lanyards,yes,D/Double Lanyard Rope Aluminum Alloy Super Large Hook
+LAN-001-002,1 Power Double Lanyard W/Shock Absorber,Fall Protection Lanyards,yes,A/1 Power Double Lanyard WShock Absorber
+JAN-001-01,MOP Squeeze 20L AF08068,Janitorial & Cleaning Equipment,yes,M/MOP SQUEEZE 20L AF08068
+JAN-001-02,MOP Squeeze 36L AF08070A,Janitorial & Cleaning Equipment,yes,M/MOP SQUEEZE 36L AF08070A
+JAN-001-03,81L Multi Functional MOP Squeeze AF08086,Janitorial & Cleaning Equipment,yes,A/81L MULTI FUNCTIONAL MOP SQUEEZE AF08086
+JAN-001-089,31L Side Press Squeeze,Janitorial & Cleaning Equipment,yes,A/31L SIDE PRESS SQUEEZE
+JAN-001-080,32L Mop Squeezer,Janitorial & Cleaning Equipment,yes,A/32L Mop Squeezer
+JAN-001-090,42L Side Press Squeeze,Janitorial & Cleaning Equipment,yes,A/42L SIDE PRESS SQUEEZE
+JAN-001-04A,MOP With Handle,Janitorial & Cleaning Equipment,yes,M/MOP WITH HANDLE
+JAN-001-05,Caution WET Floor,Janitorial & Cleaning Equipment,yes,C/CAUTION WET FLOOR
+JAN-001-06,"NO Parking, OUT OF Service, Cleaning IN Progress, NO Entry",Janitorial & Cleaning Equipment,yes,"N/NO PARKING, OUT OF SERVICE, CLEANING IN PROGRESS, NO ENTRY"
+JAN-001-07,Caution WET Floor Stainless,Janitorial & Cleaning Equipment,yes,C/CAUTION WET FLOOR STAINLESS
+JAN-001-08,NO Parking Stainless / Cleaning IN Progress Stainless,Janitorial & Cleaning Equipment,missing,
+JAN-001-08A/08B,Caution WET Floor NEW A Type STAINLESS/NO Parking NEW A Type Stainless,Janitorial & Cleaning Equipment,yes,C/CAUTION WET FLOOR NEW A TYPE STAINLESSNO PARKING NEW A TYPE STAINLESS
+JAN-001-09A,Caution Stand (24''),Janitorial & Cleaning Equipment,yes,C/CAUTION STAND (24_)
+JAN-001-09B,Caution Stand (36''),Janitorial & Cleaning Equipment,yes,C/CAUTION STAND (36_)
+JAN-001-10-24,NO Parking Stand (24''),Janitorial & Cleaning Equipment,yes,N/NO PARKING STAND (24_)
+JAN-001-10-36,NO Parking Stand (36''),Janitorial & Cleaning Equipment,yes,N/NO PARKING STAND (36_)
+JAN-001-11,Dust PAN AF01205A,Janitorial & Cleaning Equipment,yes,D/DUST PAN AF01205A
+JAN-001-12,Janitor Cart,Janitorial & Cleaning Equipment,yes,J/JANITOR CART GREY
+JAN-001-08180,Janitor Cart,Janitorial & Cleaning Equipment,yes,J/JANITOR CART BLACK
+JAN-001-08170C-G,Janitor Cart New Small,Janitorial & Cleaning Equipment,yes,J/Janitor Cart New Small GREY
+JAN-001-08170C-B,Janitor Cart New Small,Janitorial & Cleaning Equipment,missing,
+JAN-001-13,3 Layer Restaurant Cart,Janitorial & Cleaning Equipment,yes,A/3 LAYER RESTAURANT CART
+JAN-001-14,High Chair,Janitorial & Cleaning Equipment,yes,H/HIGH CHAIR
+JAN-001-15-16,Dust MOP 16'',Janitorial & Cleaning Equipment,yes,D/DUST MOP 16_
+JAN-001-15-24,Dust MOP 24'',Janitorial & Cleaning Equipment,yes,D/DUST MOP 24_
+JAN-001-15-36,Dust MOP 36'',Janitorial & Cleaning Equipment,yes,D/DUST MOP 36_
+JAN-001-15-48,Dust MOP 48'',Janitorial & Cleaning Equipment,yes,D/DUST MOP 48_
+JAN-001-15-72,Dust MOP 72'',Janitorial & Cleaning Equipment,yes,D/DUST MOP 72_
+JAN-001-16-18,Floor Brush 18'',Janitorial & Cleaning Equipment,yes,F/FLOOR BRUSH 18_
+JAN-001-16-22,Floor Brush 22'',Janitorial & Cleaning Equipment,yes,F/FLOOR BRUSH 22_
+JAN-001-77,Stanchion Post 1.2M,Janitorial & Cleaning Equipment,yes,S/STANCHION POST 1.2M
+JAN-001-21,Stanchion Steel Post (BLUE/RED Belt),Janitorial & Cleaning Equipment,yes,S/STANCHION STEEL POST (BLUERED BELT)
+JAN-001-21A,Stanchion Black Post (BLACK/RED Belt),Janitorial & Cleaning Equipment,yes,S/STANCHION BLACK POST (BLACKRED BELT)
+JAN-001-21C,Stanchion Gold Post,Janitorial & Cleaning Equipment,yes,S/STANCHION GOLD POST
+JAN-001-21D,"Stanchion Double Stainless (B/Y, Red, Yellow, Blue Belt)",Janitorial & Cleaning Equipment,yes,"S/STANCHION DOUBLE STAINLESS (BY, RED, YELLOW, BLUE BELT)"
+JAN-001-21E,"Stanchion Double Black (B/Y, R/W Belt)",Janitorial & Cleaning Equipment,yes,"S/STANCHION DOUBLE BLACK (BY, RW BELT)"
+JAN-001-22,Stanchion Round Head Post,Janitorial & Cleaning Equipment,yes,S/STANCHION ROUND HEAD POST
+JAN-001-22B,Stanchion Black Stand Gold Round Head,Janitorial & Cleaning Equipment,yes,S/STANCHION BLACK STAND GOLD ROUND HEAD
+JAN-001-22C,Stanchion Black Stand Silver Round Head,Janitorial & Cleaning Equipment,yes,S/STANCHION BLACK STAND SILVER ROUND HEAD
+JAN-001-23,Rope FOR Stanchion Cashmere Rope,Janitorial & Cleaning Equipment,yes,R/ROPE FOR STANCHION CASHMERE ROPE
+JAN-001-25,Blower 850W,Janitorial & Cleaning Equipment,yes,B/BLOWER 850W
+JAN-001-25B,Blower 550W,Janitorial & Cleaning Equipment,yes,B/BLOWER 550W
+JAN-001-27-500,Stainless Soap Dispenser 500ML,Janitorial & Cleaning Equipment,yes,S/STAINLESS SOAP DISPENSER 500ML
+JAN-001-27-800,Stainless Soap Dispenser 800ML,Janitorial & Cleaning Equipment,yes,S/STAINLESS SOAP DISPENSER 800ML
+JAN-001-27-1000,Stainless Soap Dispenser 1000ML,Janitorial & Cleaning Equipment,yes,S/STAINLESS SOAP DISPENSER 1000ML
+JAN-001-39A-R,Emergency Light 2 Upper Light Round,Janitorial & Cleaning Equipment,yes,E/EMERGENCY LIGHT 2 UPPER LIGHT ROUND
+JAN-001-39A-S,Emergency Light 2 Upper Light Square,Janitorial & Cleaning Equipment,yes,E/EMERGENCY LIGHT 2 UPPER LIGHT SQUARE
+JAN-001-39B,Emergency Light,Janitorial & Cleaning Equipment,yes,E/EMERGENCY LIGHT
+JAN-001-39C,Emergency W/EXIT,Janitorial & Cleaning Equipment,yes,E/EMERGENCY WEXIT
+JAN-001-42,Steppling Ladder,Janitorial & Cleaning Equipment,yes,S/STEPPING LADDER
+JAN-001-45-18,Floor Squeeze 18'',Janitorial & Cleaning Equipment,yes,F/FLOOR SQUEEZE 18_
+JAN-001-45-22,Floor Squeeze 22'',Janitorial & Cleaning Equipment,yes,F/FLOOR SQUEEZE 22_
+JAN-001-46-300,Cleaning Shovel 300MM,Janitorial & Cleaning Equipment,yes,C/CLEANING SHOVEL 300MM
+JAN-001-46-600,Cleaning Shovel 600MM,Janitorial & Cleaning Equipment,missing,
+JAN-001-46-900,Cleaning Shovel 900MM,Janitorial & Cleaning Equipment,missing,
+JAN-001-47A,Picker With Aluminum Handle,Janitorial & Cleaning Equipment,yes,P/PICKER WITH ALUMINUM HANDLE
+JAN-001-47B,101 Picker Small,Janitorial & Cleaning Equipment,yes,A/101 PICKER SMALL
+JAN-001-47C,101 Picker BIG,Janitorial & Cleaning Equipment,yes,A/101 PICKER BIG
+JAN-001-47D,01 Picker Magnetic,Janitorial & Cleaning Equipment,yes,A/01 PICKER MAGNETIC
+JAN-001-47E,Picker With Stainless Handle,Janitorial & Cleaning Equipment,yes,P/PICKER WITH STAINLESS HANDLE
+JAN-001-48,Janitor Belt BAG Double,Janitorial & Cleaning Equipment,yes,J/JANITOR BELT BAG DOUBLE
+JAN-001-49,Janitor Belt BAG Single,Janitorial & Cleaning Equipment,yes,J/JANITOR BELT BAG SINGLE
+JAN-001-50,Glass Cleaner,Janitorial & Cleaning Equipment,yes,G/GLASS CLEANER
+JAN-001-51A,A3 Horizontal Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51C,A3 Horizontal Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51E,A3 Horizontal Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51B,A3 Vertical Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51D,A3 Vertical Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51F,A3 Vertical Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51G,A4 Horizontal Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51G-B,A4 Horizontal Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51H,A4 Vertical Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-51H-B,A4 Vertical Version,Janitorial & Cleaning Equipment,missing,
+JAN-001-52-A3,A3 Slant Sign Board With Stand,Janitorial & Cleaning Equipment,yes,A/A3 SLANT SIGN BOARD WITH STAND
+JAN-001-52-A4,A4 Slant Sign Board With Stand,Janitorial & Cleaning Equipment,yes,A/A4 SLANT SIGN BOARD WITH STAND
+JAN-001-52-A3DS,A3 Double Side Sign Board With Stand,Janitorial & Cleaning Equipment,missing,
+JAN-001-52-ARROW,Arrow Signage With Stand,Janitorial & Cleaning Equipment,yes,A/ARROW SIGNAGE WITH STAND
+JAN-001-70,Sign Board With Dispenser Display FOR Stanchion,Janitorial & Cleaning Equipment,yes,S/SIGN BOARD WITH DISPENSER DISPLAY FOR STANCHION
+JAN-001-54A,Alcohol Dispenser Stand Type,Janitorial & Cleaning Equipment,yes,A/ALCOHOL DISPENSER STAND TYPE
+JAN-001-54B,Alcohol Dispenser Wall Type,Janitorial & Cleaning Equipment,yes,A/ALCOHOL DISPENSER WALL TYPE
+JAN-001-54F,Alcohol Dispenser Desk Type,Janitorial & Cleaning Equipment,yes,A/ALCOHOL DISPENSER DESK TYPE
+JAN-001-54C,F1 Dispenser Stand Type,Janitorial & Cleaning Equipment,yes,F/F1 DISPENSER STAND TYPE
+JAN-001-54D,F1 Dispenser Wall Type,Janitorial & Cleaning Equipment,yes,F/F1 DISPENSER WALL TYPE
+JAN-001-54E,F1 Dispenser Desk Type,Janitorial & Cleaning Equipment,missing,
+JAN-001-54G,Stand Only,Janitorial & Cleaning Equipment,yes,S/STAND ONLY
+JAN-001-54H,F2 Dispenser W/ Tripod,Janitorial & Cleaning Equipment,yes,F/F2 DISPENSER W TRIPOD
+JAN-001-54I,F3 Dispenser W/ Tripod AND K9 Scanner,Janitorial & Cleaning Equipment,yes,F/F3 DISPENSER W TRIPOD AND K9 SCANNER
+JAN-001-54J,F4(TRIPOD + F1 Wall Type),Janitorial & Cleaning Equipment,yes,F/F4(TRIPOD + F1 WALL TYPE)
+JAN-001-54K,Tripod,Janitorial & Cleaning Equipment,missing,
+JAN-001-55A,Telescopic Stool,Janitorial & Cleaning Equipment,yes,T/TELESCOPIC STOOL
+JAN-001-55B,Telescopic Table,Janitorial & Cleaning Equipment,yes,T/TELESCOPIC TABLE
+JAN-001-59,Intelligent Toilet Seat Cover,Janitorial & Cleaning Equipment,yes,I/INTELLIGENT TOILET SEAT COVER
+JAN-001-60,Plastic Seat Cover,Janitorial & Cleaning Equipment,yes,P/PLASTIC SEAT COVER
+JAN-001-61,Toilet Bowl,Janitorial & Cleaning Equipment,yes,T/TOILET BOWL
+JAN-001-62,Baby Changing Station,Janitorial & Cleaning Equipment,yes,B/BABY CHANGING STATION
+JAN-001-66-668,Hand Dryer 668,Janitorial & Cleaning Equipment,yes,H/HAND DRYER 668
+JAN-001-68-6668,Hand Dryer 6668,Janitorial & Cleaning Equipment,yes,H/HAND DRYER 6668
+JAN-001-69,IT White Barrel,Janitorial & Cleaning Equipment,yes,I/IT WHITE BARREL
+JAN-001-72A,Automatic Dispenser (soap 380ML),Janitorial & Cleaning Equipment,yes,A/AUTOMATIC DISPENSER (SOAP 380ML)
+JAN-001-72B,Automatic Dispenser (alcohol 380ML),Janitorial & Cleaning Equipment,yes,A/AUTOMATIC DISPENSER (ALCOHOL 380ML)
+JAN-001-72C,Automatic Dispenser (alcohol 500ML),Janitorial & Cleaning Equipment,missing,
+JAN-001-570-B,15L WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/15L WETDRY VACUUM CLEANER BLUE
+JAN-001-570-Y,15L WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/15L WETDRY VACUUM CLEANER
+JAN-001-570-R,15L WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,missing,
+JAN-001-575-B,30L WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/30L WETDRY VACUUM CLEANER BLUE
+JAN-001-575-Y,30L WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/30L WETDRY VACUUM CLEANER YELLOW
+JAN-001-575-R,30L WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/30L WETDRY VACUUM CLEANER
+JAN-001-580-B,70L 2000W 2-MOTOR WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/70L 2000W 2-MOTOR WETDRY VACUUM CLEANER
+JAN-001-580-Y,70L 2000W 2-MOTOR WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,Y/YELLOW 70L 2000W 2-MOTOR WETDRY VACUUM CLEANER
+JAN-001-580-R,70L 2000W 2-MOTOR WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,R/RED 70L 2000W 2-MOTOR WETDRY VACUUM CLEANER
+JAN-001-585-3-B,80L 3000W 3-MOTOR WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/80L 3000W 3-MOTOR WETDRY VACUUM CLEANER BLUE
+JAN-001-585-3-Y,80L 3000W 3-MOTOR WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,Y/YELLOW 80L 3000W 3-MOTOR WETDRY VACUUM CLEANER
+JAN-001-585-3-R,80L 3000W 3-MOTOR WET/DRY Vacuum Cleaner,Janitorial & Cleaning Equipment,yes,A/80L 3000W 3-MOTOR WETDRY VACUUM CLEANER
+JAN-001-520-R,13'' Multi-functional Burnisher,Janitorial & Cleaning Equipment,missing,
+JAN-001-520-Y,13'' Multi-functional Burnisher,Janitorial & Cleaning Equipment,yes,Y/YELLOW 13_ MULTI-FUNCTIONAL BURNISHER
+JAN-001-520-G,13'' Multi-functional Burnisher,Janitorial & Cleaning Equipment,missing,
+JAN-001-522-B,17'' Multi-functional Burnisher,Janitorial & Cleaning Equipment,yes,B/BLUE 17_ MULTI-FUNCTIONAL BURNISHER
+JAN-001-522H-B,17'' Multi-functional Burnisher,Janitorial & Cleaning Equipment,yes,B/BLUE 17_ MULTI-FUNCTIONAL BURNISHER
+JAN-001-08180B,Multi Functional Janitor Cart,Janitorial & Cleaning Equipment,missing,
+JAN-001-08172,Multi Functional Service Cart,Janitorial & Cleaning Equipment,yes,M/MULTI FUNCTIONAL SERVICE CART
+JAN-001-08181A,Multi Functional Cleaning Service Cart,Janitorial & Cleaning Equipment,yes,M/MULTI FUNCTIONAL CLEANING SERVICE CART
+JAN-001-08181B,Multi Functional Cleaning Service Cart,Janitorial & Cleaning Equipment,yes,M/MULTI FUNCTIONAL CLEANING SERVICE CART
+JAN-001-08181C,Multi Functional Cleaning Service Cart,Janitorial & Cleaning Equipment,yes,M/MULTI FUNCTIONAL CLEANING SERVICE CART
+JAN-001-08181D,Multi Functional Cleaning Service Cart,Janitorial & Cleaning Equipment,yes,M/MULTI FUNCTIONAL CLEANING SERVICE CART
+JAN-001-08167,Small Restaurant Cart,Janitorial & Cleaning Equipment,yes,M/SMALL RESTAURANT CART
+JAN-001-08168,Large Restaurant Cart,Janitorial & Cleaning Equipment,yes,L/LARGE RESTAURANT CART
+JAN-001-08179C,Utility Cart,Janitorial & Cleaning Equipment,yes,U/UTILITY CART AF08179C
+JAN-001-08179A,Utility Cart,Janitorial & Cleaning Equipment,yes,U/UTILITY CART AF08179A
+JAN-001-08632,Large Collecting Bucket,Janitorial & Cleaning Equipment,yes,L/LARGE COLLECTING BUCKET
+JAN-001-08633,Small Collecting Bucket,Janitorial & Cleaning Equipment,yes,S/SMALL COLLECTING BUCKET
+JAN-001-08636,Large Round Collecting Bucket,Janitorial & Cleaning Equipment,yes,L/LARGE ROUND COLLECTING BUCKET
+JAN-001-08637,Small Round Collecting Bucket,Janitorial & Cleaning Equipment,yes,S/SMALL ROUND COLLECTING BUCKET
+JAN-001-08407,Clean Bucket,Janitorial & Cleaning Equipment,yes,C/CLEAN BUCKET
+JAN-001-08408,Multi Functional Clean Bucket,Janitorial & Cleaning Equipment,yes,M/MULTI FUNCTIONAL CLEAN BUCKET
+JAN-001-08404,Small Clean Basket,Janitorial & Cleaning Equipment,yes,S/SMALL CLEAN BASKET
+JAN-001-08405,Large Clean Basket,Janitorial & Cleaning Equipment,yes,L/LARGE CLEAN BASKET
+JAN-001-08634,Small Plate Basket,Janitorial & Cleaning Equipment,yes,S/SMALL PLATE BASKET
+JAN-001-08635,Large Plate Basket,Janitorial & Cleaning Equipment,yes,L/LARGE PLATE BASKET
+JAN-001-11101,Small Cuttery Plate,Janitorial & Cleaning Equipment,yes,S/SMALL CUTTERY PLATE
+JAN-001-11102,Large Cuttery Plate,Janitorial & Cleaning Equipment,yes,L/LARGE CUTTERY PLATE
+JAN-001-08156,Quadrate Laundry Cart 250L,Janitorial & Cleaning Equipment,yes,Q/QUADRATE LAUNDRY CART 250L
+JAN-001-08157,X-shape Laundry Cart 215L,Janitorial & Cleaning Equipment,yes,X/X-SHAPE LAUNDRY CART 215L
+JAN-001-12257,12-LOCK Umbrella Hanger,Janitorial & Cleaning Equipment,yes,A/12-LOCK UMBRELLA HANGER
+JAN-001-12258,18-LOCK Umbrella Hanger,Janitorial & Cleaning Equipment,yes,A/18-LOCK UMBRELLA HANGER
+JAN-001-12258A,18-LOCK Umbrella Hanger Plastic Frame,Janitorial & Cleaning Equipment,yes,A/18-LOCK UMBRELLA HANGER PLASTIC FRAME
+JAN-001-12259,24-LOCK Umbrella Hanger,Janitorial & Cleaning Equipment,yes,A/24-LOCK UMBRELLA HANGER
+JAN-001-12260,36-LOCK Umbrella Hanger,Janitorial & Cleaning Equipment,yes,A/36-LOCK UMBRELLA HANGER
+JAN-001-11020,Rack Dolly With Handle,Janitorial & Cleaning Equipment,yes,R/RACK DOLLY WITH HANDLE
+JAN-001-05008Y,Telescopic Pole 3 Joint 4M,Janitorial & Cleaning Equipment,yes,T/TELESCOPIC POLE 3 JOINT 4M
+JAN-001-05009Y,Telescopic Pole 3 Joint 4.5M,Janitorial & Cleaning Equipment,yes,T/TELESCOPIC POLE 3 JOINT 4.5M
+JAN-001-06003,Wash AND Scrape Combination,Janitorial & Cleaning Equipment,yes,W/WASH AND SCRAPE COMBINATION
+HEA-001-05,Kid's Helmet,Helmets,yes,K/KID_S HELMET
+HEA-001-10,Rescue Helmet,Helmets,yes,R/RESCUE HELMET
+HEA-001-11,Sports Helmet,Helmets,yes,S/SPORTS HELMET
+HEA-001-13,Sports Helmet With Light,Helmets,yes,S/SPORTS HELMET WITH LIGHT
+HEA-001-14,HD Helmet With Light,Helmets,yes,H/HD HELMET WITH LIGHT
+HEA-001-16,DT-T026 Hard HAT,Helmets,yes,D/DT-T026 HARD HAT
+HAR-001-01,ORD Helmet,Hard Hats,missing,
+HAR-001-03,HD Helmet (with Oshc),Hard Hats,yes,H/HD HELMET (WITH OSHC)
+HAR-001-04,Blue Eagle Hardhat (with Oshc),Hard Hats,yes,B/BLUE EAGLE HARDHAT (WITH OSHC)
+LIF-002-04,First AID KIT 176 PCS,First Aid Kits,yes,F/FIRST AID KIT 176 PCS
+LIF-002-05,First AID KIT 326 PCS,First Aid Kits,"conflict, no photo",F/FIRST AID KIT 326 PCS
+LIF-002-06,First AID KIT,First Aid Kits,yes,F/FIRST AID KIT
+GOG-001-01,Safety Goggles B/W,Safety Goggles,yes,S/SAFETY GOGGLES BW
+GOG-001-02,Safety Goggles BR,Safety Goggles,yes,S/SAFETY GOGGLES BR
+GOG-001-03,Safety Goggles B/B,Safety Goggles,yes,S/SAFETY GOGGLES BB
+GOG-001-04,Louver Goggles,Safety Goggles,yes,L/LOUVER GOGGLES
+GOG-001-05,3M Goggles,Safety Goggles,yes,A/3M GOGGLES CLEAR
+GOG-001-06,3M Goggles,Safety Goggles,yes,A/3M GOGGLES DARK
+GOG-001-07,"Goggles ""hd""",Safety Goggles,yes,G/GOGGLES HD
+GOG-001-08,"Goggles Handle ""hd""",Safety Goggles,yes,G/GOGGLES HANDLE HD
+GOG-001-09,Rubber Goggles HD,Safety Goggles,yes,R/RUBBER GOGGLE HD
+GOG-001-11,Welding Goggles Round,Safety Goggles,yes,W/WELDING GOGGLES ROUND
+GOG-001-12,Welding Goggles Square,Safety Goggles,yes,W/WELDING GOGGLES SQUARE
+GOG-001-16,Rubber Goggle Anti FOG,Safety Goggles,yes,R/RUBBER GOGGLE ANTI FOG
+GOG-001-17,GH101 Welding Goggles,Safety Goggles,yes,G/GH101 WELDING GOGGLES
+GOG-001-18,GH2 Welding Goggles,Safety Goggles,yes,G/GH2 WELDING GOGGLES
+GOG-001-19,Darkening Welding Goggle Round,Safety Goggles,yes,D/DARKENING WELDING GOGGLE ROUND
+GOG-001-20,Darkening Welding Goggle Square,Safety Goggles,yes,D/DARKENING WELDING GOGGLE SQUARE
+GOG-001-21,Darkening Welding Goggle,Safety Goggles,yes,D/DARKENING WELDING GOGGLE YELOW FRAME
+LIF-001-01A,Life Ring (small),Water Rescue & Life Saving,yes,L/LIFE RING (SMALL)
+LIF-001-01B,Life Ring (big),Water Rescue & Life Saving,yes,L/LIFE RING (BIG)
+LIF-001-03A,HD Life Jacket (kids),Water Rescue & Life Saving,yes,H/HD LIFE JACKET (KIDS)
+LIF-001-03B,HD Life Jacket (adult),Water Rescue & Life Saving,yes,H/HD LIFE JACKET (ADULT)
+LIF-001-04A,ORD Life Jacket (kids),Water Rescue & Life Saving,missing,
+LIF-001-04B,ORD Life Jacket (adult),Water Rescue & Life Saving,missing,
+LIF-001-06,Inflatable Life Jacket,Water Rescue & Life Saving,yes,I/INFLATABLE LIFE JACKET
+LIF-001-08A,Rescue CAN (small),Water Rescue & Life Saving,yes,R/RESCUE CAN (SMALL)
+LIF-001-08B,Rescue CAN (big),Water Rescue & Life Saving,yes,R/RESCUE CAN (BIG)
+LIF-001-09,Rescue Tube (small),Water Rescue & Life Saving,"conflict, no photo",R/RESCUE TUBE (SMALL)
+LIF-001-10,Spine Board,Water Rescue & Life Saving,yes,S/SPINE BOARD
+LIF-001-12-R10M,Rescue Rope 10M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 10M, 30M, 50M, 100M, 150M, 200M"
+LIF-001-12-R20M,Rescue Rope 20M,Water Rescue & Life Saving,missing,
+LIF-001-12-R30M,Rescue Rope 30M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 10M, 30M, 50M, 100M, 150M, 200M"
+LIF-001-12-R40M,Rescue Rope 40M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 40M, 60M, 70M, 80M, 90M"
+LIF-001-12-R50M,Rescue Rope 50M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 10M, 30M, 50M, 100M, 150M, 200M"
+LIF-001-12-R60M,Rescue Rope 60M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 40M, 60M, 70M, 80M, 90M"
+LIF-001-12-R70M,Rescue Rope 70M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 40M, 60M, 70M, 80M, 90M"
+LIF-001-12-R80M,Rescue Rope 80M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 40M, 60M, 70M, 80M, 90M"
+LIF-001-12-R90M,Rescue Rope 90M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 40M, 60M, 70M, 80M, 90M"
+LIF-001-12-R100M,Rescue Rope 100M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 10M, 30M, 50M, 100M, 150M, 200M"
+LIF-001-12-R150M,Rescue Rope 150M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 10M, 30M, 50M, 100M, 150M, 200M"
+LIF-001-12-R200M,Rescue Rope 200M,Water Rescue & Life Saving,yes,"R/RESCUE ROPE 10M, 30M, 50M, 100M, 150M, 200M"
+PPE-005-01A,Welding Gloves,Hand Protection (Gloves),yes,W/WELDING GLOVES
+PPE-005-01B,"Welding Gloves 16""",Hand Protection (Gloves),yes,W/WELDING GLOVES 16
+PPE-005-02,SUN Gloves 200G,Hand Protection (Gloves),yes,S/SUN GLOVES 200G
+PPE-005-04,Nanyang Glove,Hand Protection (Gloves),yes,N/NANYANG GLOVE
+PPE-005-05,Chemical Glove,Hand Protection (Gloves),yes,C/CHEMICAL GLOVE
+PPE-005-06,Fishing Glove,Hand Protection (Gloves),yes,F/FISHING GLOVES
+PPE-005-07A,Chemical Glove 14'',Hand Protection (Gloves),yes,C/CHEMICAL GLOVE 14_
+PPE-005-07B,Chemical Glove 18'',Hand Protection (Gloves),yes,C/CHEMICAL GLOVE 18_
+PPE-005-07C,Chemical Glove 22,Hand Protection (Gloves),yes,C/CHEMICAL GLOVE 22_
+PPE-005-08,Rubber Glove,Hand Protection (Gloves),yes,R/RUBBER GLOVE
+PPE-005-10,COTTON GLOVES 8# (price per pair),Hand Protection (Gloves),yes,C/COTTON GLOVES 8# (price per pair)
+PPE-005-11,GUARD GLOVES (per dozen),Hand Protection (Gloves),yes,G/GUARD GLOVES (per dozen)
+PPE-005-12,Dotted Black Gloves 700G (per dz),Hand Protection (Gloves),yes,D/DOTTED BLACK GLOVES 700G (per dz)
+PPE-005-12A,Dotted Blue Gloves 700G (per dz),Hand Protection (Gloves),yes,D/DOTTED BLUE GLOVES 700G (per dz)
+PPE-005-13,Black Knitted Black Dotted Glove (per dz),Hand Protection (Gloves),yes,B/BLACK KNITTED BLACK DOTTED GLOVE (per dz)
+PPE-005-14A,Blue Dotted Gloves 900G - Omaga,Hand Protection (Gloves),yes,B/BLUE DOTTED GLOVES 900G - OMAGA
+PPE-005-14B,Blue Dotted Gloves 900G,Hand Protection (Gloves),yes,B/BLUE DOTTED GLOVES 900G
+PPE-005-15,Maroon Knitted Glove,Hand Protection (Gloves),yes,M/MAROON KNITTED GLOVE
+PPE-005-16,Green Edge Glove 550G,Hand Protection (Gloves),yes,G/GREEN EDGE GLOVE 550G
+PPE-005-17,RED Edge Glove 700G,Hand Protection (Gloves),yes,R/RED EDGE GLOVE 700G
+PPE-005-18,Blue Edge Glove 900G,Hand Protection (Gloves),yes,B/BLUE EDGE GLOVE 900G
+PPE-005-19,Nylon Black Dotted,Hand Protection (Gloves),yes,N/NYLON BLACK DOTTED
+PPE-005-20,RED Knitted Long,Hand Protection (Gloves),yes,R/RED KNITTED LONG
+PPE-005-21L,Traffic Glove Left,Hand Protection (Gloves),yes,T/TRAFFIC GLOVE LEFT
+PPE-005-21R,Traffic Glove Right,Hand Protection (Gloves),missing,
+PPE-005-22,Anti CUT Glove,Hand Protection (Gloves),yes,A/ANTI CUT GLOVE
+PPE-005-23,Working Glove,Hand Protection (Gloves),yes,W/WORKING GLOVE
+PPE-005-24,Magic Gloves,Hand Protection (Gloves),yes,M/MAGIC GLOVES
+PPE-005-25,TPE Rubber Gloves,Hand Protection (Gloves),yes,T/TPE RUBBER GLOVES
+PPE-005-26,Fishing Scale Gloves,Hand Protection (Gloves),yes,F/FISHING SCALE GLOVES
+PPE-005-27,Nitrile Scale Gloves,Hand Protection (Gloves),yes,N/NITRILE SCALE GLOVES
+PPE-005-28A,"Leather Gloves 10""",Hand Protection (Gloves),yes,L/LEATHER GLOVES 10 yellow
+PPE-005-28B,"Leather Gloves 10""",Hand Protection (Gloves),yes,L/LEATHER GLOVES 10
+PPE-005-29A,Rubber Gloves (blk) N548,Hand Protection (Gloves),yes,R/RUBBER GLOVES (BLK) N548
+PPE-005-29B,Rubber Gloves (red) N548,Hand Protection (Gloves),yes,R/RUBBER GLOVES (RED) N548
+PPE-005-30,Disposable Sanitary Gloves,Hand Protection (Gloves),yes,D/DISPOSABLE SANITARY GLOVES
+PPE-005-31,Maong Gloves,Hand Protection (Gloves),yes,M/MAONG GLOVES
+PPE-005-32,Anti CUT Glove Cotton,Hand Protection (Gloves),yes,A/ANTI CUT GLOVE COTTON
+PPE-005-50,Knitted Anti Fire Glove 500°C 33cm Length,Hand Protection (Gloves),yes,K/KNITTED ANTI FIRE GLOVE 500°C 33cm length
+PPE-005-34,Home Warm Gloves,Hand Protection (Gloves),yes,H/HOME WARM GLOVES
+PPE-005-35,Blue Rubber Gloves,Hand Protection (Gloves),yes,B/BLUE RUBBER GLOVES
+PPE-005-36,Display Hook FOR Gloves,Hand Protection (Gloves),yes,D/DISPLAY HOOK FOR GLOVES
+PPE-005-37,Utility TPR Gloves,Hand Protection (Gloves),yes,U/UTILITY TPR GLOVES
+PPE-005-38,NO.1 Black Cleaning Cloth Plus Yellow Sponge Gloves,Hand Protection (Gloves),yes,N/NO.1 Black Cleaning Cloth Plus Yellow Sponge Gloves
+PPE-005-39,NO.5 Monolayer Yellow Sponge Gloves,Hand Protection (Gloves),yes,N/NO.5 Monolayer Yellow Sponge Gloves
+MAC-001-01,Snacks AND Cold Drinks Vending Machine (10G),Vending & Coffee Machines,yes,S/SNACKS AND COLD DRINKS VENDING MACHINE (10G)
+MAC-001-01A,Snacks AND Cold Drinks Vending Machine (6G),Vending & Coffee Machines,yes,S/SNACKS AND COLD DRINKS VENDING MACHINE (6G)
+MAC-001-02,Grinding AND Instant Coffee Machine,Vending & Coffee Machines,yes,G/GRINDING AND INSTANT COFFEE MACHINE
+LIF-003-01,Modular Tent (210D) 2.4mx2.4mx1.8m,Modular Tents,"conflict, no photo",M/MODULAR TENT (210D) 2.4mx2.4mx1.8m
+HCS-001-05,098 High Cut,High Cut Safety Shoes,yes,A/098 High Cut
+HCS-001-09,Omaga Grey High Cut,High Cut Safety Shoes,missing,
+HCS-001-25,One Power Grey,High Cut Safety Shoes,missing,
+HCS-001-21,YDS New,High Cut Safety Shoes,yes,Y/YDS New
+FUR-003-01,Wooden Pedestal,"Pedestals, Cabinets & Storage",yes,W/WOODEN PEDESTAL
+FUR-003-02,Wooden Pedestal,"Pedestals, Cabinets & Storage",yes,W/WOODEN PEDESTAL
+FUR-003-03,Mobile Pedestal Black,"Pedestals, Cabinets & Storage",yes,M/MOBILE PEDESTAL Black
+FUR-003-04,Mobile Pedestal Beige,"Pedestals, Cabinets & Storage",yes,M/MOBILE PEDESTAL Beige
+FUR-003-05,MOBILE PEDESTAL Light Gray,"Pedestals, Cabinets & Storage",yes,M/MOBILE PEDESTAL Light Gray
+FUR-003-06,Wooden Pedestal,"Pedestals, Cabinets & Storage",yes,W/WOODEN PEDESTAL
+FUR-003-07,Recessed Mobile Pedestal,"Pedestals, Cabinets & Storage",yes,R/Recessed Mobile Pedestal
+FUR-003-08,Recessed - Mobile Pedestal,"Pedestals, Cabinets & Storage",yes,R/Recessed Mobile Pedestal
+FUR-003-09,4Layer Lateral Cabinet Size: W90 D45xH138cm,"Pedestals, Cabinets & Storage",yes,A/4Layer Lateral Cabinet Size W90 D45×H138cm
+FUR-003-10,3Layer Lateral Cabinet Size: W90xD45xH102cm,"Pedestals, Cabinets & Storage",yes,A/3Layer Lateral Cabinet Size W90×D45×H102cm
+FUR-003-11,4 Layer Lateral Cabinet Flush Handle,"Pedestals, Cabinets & Storage",yes,A/4 Layer Lateral Cabinet Flush Handle
+FUR-003-12,3 Layer Lateral Cabinet Flush Handle,"Pedestals, Cabinets & Storage",yes,A/3 Layer Lateral Cabinet Flush Handle
+FUR-003-13,2 Layer Lateral Cabinet Flush Handle,"Pedestals, Cabinets & Storage",yes,A/2 Layer Lateral Cabinet Flush Handle
+FUR-003-14,2 Layer Lateral Cabinet Recessed Handle,"Pedestals, Cabinets & Storage",yes,A/2 Layer Lateral Cabinet Recessed Handle
+FUR-003-15,VERTICAL CABINET (3 Layer) L46cmxW62cmxH102cm,"Pedestals, Cabinets & Storage",yes,V/VERTICAL CABINET (3 Layer) L46cm×W62cm×H102cm
+FUR-003-16,VERTICAL CABINET (4 Layer) L46cmxW62cmxH140cm,"Pedestals, Cabinets & Storage",yes,V/VERTICAL CABINET (4 Layer) L46cm×W62cm×H140cm
+FUR-003-17,Vertical Cabinet with Vault,"Pedestals, Cabinets & Storage",yes,V/Vertical Cabinet with Vault
+FUR-003-18,2 Layer Vertical Cabinet,"Pedestals, Cabinets & Storage",yes,A/2 Layer Vertical Cabinet
+FUR-003-19,3 Layer Vertical Cabinet,"Pedestals, Cabinets & Storage",yes,A/3 Layer Vertical Cabinet
+FUR-003-20,4 Layer Vertical Cabinet,"Pedestals, Cabinets & Storage",yes,A/4 Layer Vertical Cabinet
+FUR-003-21,STEEL CABINET Metal Swing Door Cabinet Size: L90cm W40cmxH185cm,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET Metal Swing Door Cabinet Size L90cm W40cmxH185cm
+FUR-003-22,STEEL CABINET Open Cabinet Size: L90cm W45cmx186cm,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET Open Cabinet Size L90cm W45cmx186cm
+FUR-003-23,STEEL CABINET Glass Sliding Door Cabinet Size: L90cm W45cm H183cm,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET Glass Sliding Door Cabinet Size L90cm W45cm H183cm
+FUR-003-24,STEEL CABINET Glass/Metal Door Cabinet Size: L90cm W45cmxH185cm,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET GlassMetal Door Cabinet Size L90cm W45cmxH185cm
+FUR-003-25,STEEL CABINET Glass Swing Door Cabinet Size: L90cm W45cmxH184cm,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET Glass Swing Door Cabinet Size L90cm W45cm×H184cm
+FUR-003-26,STEEL CABINET Glass Sliding Door Cabinet Size: L90cm W45cm H183cm,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET Glass Sliding Door Cabinet Size L90cm W45cm H183cm
+FUR-003-27,STEEL CABINET Glass/Metal Door Cabinet,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET GlassMetal Door Cabinet
+FUR-003-28,STEEL CABINET Glass/Metal Door Cabinet,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET GlassMetal Door Cabinet
+FUR-003-29,STEEL CABINET Vertical Cabinet with Vault,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET Vertical Cabinet with Vault
+FUR-003-30,STEEL CABINET Glass/Metal Door Cabinet,"Pedestals, Cabinets & Storage",yes,S/STEEL CABINET GlassMetal Door Cabinet
+FUR-003-31,Steel Rack H183xW91.5x45.7 cm,"Pedestals, Cabinets & Storage",yes,S/STEEL RACK H183×W91.5×45.7 cm
+FUR-003-32,Steel Rack H183xW120x45.7 cm,"Pedestals, Cabinets & Storage",yes,S/STEEL RACK H183xW120x45.7 cm
+FUR-003-33,Steel Rack H200xL90xW45cm,"Pedestals, Cabinets & Storage",yes,S/STEEL RACK H200×L90×W45cm
+FUR-003-34,Steel Rack H200xL120 W45,"Pedestals, Cabinets & Storage",yes,S/STEEL RACK H200xL120 W45
+FUR-003-35,Steel Rack W60xL200xH20,"Pedestals, Cabinets & Storage",yes,S/STEEL RACK W60xL200xH20
+FUR-003-36,Steel Rack W50xL150xH200,"Pedestals, Cabinets & Storage",yes,S/STEEL RACK W50xL150xH200
+FUR-003-37,9 Door Locker,"Pedestals, Cabinets & Storage",yes,A/9 Door Locker
+FUR-003-38,12 Door Locker,"Pedestals, Cabinets & Storage",yes,A/12 Door Locker
+FUR-003-39,15 Door Locker,"Pedestals, Cabinets & Storage",yes,A/15 Door Locker
+FUR-003-40,18 Door Locker,"Pedestals, Cabinets & Storage",yes,A/18 Door Locker
+FUR-003-41,20 Door Locker,"Pedestals, Cabinets & Storage",yes,A/20 Door Locker
+FUR-003-42,24 Door Locker,"Pedestals, Cabinets & Storage",yes,A/24 Door Locker
+FUR-003-43,6 Door Locker,"Pedestals, Cabinets & Storage",yes,A/6 Door Locker
+FUR-003-44,1 Tower Locker,"Pedestals, Cabinets & Storage",yes,A/1 Tower Locker
+FUR-003-45,2 Tower Locker,"Pedestals, Cabinets & Storage",yes,A/2 Tower Locker
+FUR-003-46,3 Tower Locker,"Pedestals, Cabinets & Storage",yes,A/3 Tower Locker
+FUR-003-47,4 Tower Locker,"Pedestals, Cabinets & Storage",yes,A/4 Tower Locker
+FUR-003-48,5 Tower Locker,"Pedestals, Cabinets & Storage",yes,A/5 Tower Locker
+FUR-003-49,6 Tower Locker,"Pedestals, Cabinets & Storage",yes,A/6 Tower Locker
+FUR-002-01,"EXECUTIVE CHAIR (Black, Wooden Frame)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Wooden Frame)"
+FUR-002-02,"EXECUTIVE CHAIR (White, Wooden Frame)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (White, Wooden Frame)"
+FUR-002-03,"EXECUTIVE CHAIR (Highback, Black)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Highback, Black)"
+FUR-002-04,"EXECUTIVE CHAIR (Highback, Black)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Highback, Black)"
+FUR-002-05,"EXECUTIVE CHAIR (Highback, Black)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Highback, Black)"
+FUR-002-06,"EXECUTIVE CHAIR (Highback, Beige)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Highback, Beige)"
+FUR-002-07,"EXECUTIVE CHAIR (Black, Silver Trim)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Silver Trim)"
+FUR-002-08,"EXECUTIVE CHAIR (Brown, Silver Trim)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Brown, Silver Trim)"
+FUR-002-09,"EXECUTIVE CHAIR (Black, Chrome Base)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Chrome Base)"
+FUR-002-10,"EXECUTIVE CHAIR (Black, Highback)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Highback)"
+FUR-002-11,"EXECUTIVE CHAIR (Black, Mesh Back)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Mesh Back)"
+FUR-002-12,"EXECUTIVE CHAIR (Brown, Mesh Back)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Brown, Mesh Back)"
+FUR-002-13,"EXECUTIVE CHAIR (Midback, Black)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Midback, Black)"
+FUR-002-14,"EXECUTIVE CHAIR (Midback, Mesh/Slat Back)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Midback, MeshSlat Back)"
+FUR-002-15,"EXECUTIVE CHAIR (Black, Highback, Adjustable Arms)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Highback, Adjustable Arms)"
+FUR-002-16,"EXECUTIVE CHAIR (Highback, Chrome Base)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Highback, Chrome Base)"
+FUR-002-17,"EXECUTIVE CHAIR (Brown, Highback, Chrome Base)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Brown, Highback, Chrome Base)"
+FUR-002-18,"EXECUTIVE CHAIR (Black, Fixed Arms)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Fixed Arms)"
+FUR-002-19,"EXECUTIVE CHAIR (Highback, Black/Silver Trim)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Highback, BlackSilver Trim)"
+FUR-002-20,"EXECUTIVE CHAIR (Highback, Black/Chrome Trim)/",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Highback, BlackChrome Trim)"
+FUR-002-21,"EXECUTIVE CHAIR (Black, Highback, Gathered Back)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Highback, Gathered Back)"
+FUR-002-22,"EXECUTIVE CHAIR (Midback, Black, Mesh Seat)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Midback, Black, Mesh Seat)"
+FUR-002-23,"EXECUTIVE CHAIR (Black, Midback)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Black, Midback)"
+FUR-002-24,"EXECUTIVE CHAIR (Brown, Midback)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Brown, Midback)"
+FUR-002-25,"HIGHBACK CHAIR (Mesh, Chrome Base, Adjustable Headrest)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base, Adjustable Headrest)"
+FUR-002-26,"HIGHBACK CHAIR (Mesh, Chrome Base, Adjustable Headrest)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base, Adjustable Headrest)"
+FUR-002-27,"HIGHBACK CHAIR (Mesh, Chrome Base, Adjustable Headrest)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base, Adjustable Headrest)"
+FUR-002-28,"HIGHBACK CHAIR (Mesh, Black Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Black Base)"
+FUR-002-29,"HIGHBACK CHAIR (Mesh, Black Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Black Base)"
+FUR-002-30,"HIGHBACK CHAIR (Mesh, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base)"
+FUR-002-31,"HIGHBACK CHAIR (Mesh, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base)"
+FUR-002-32,"HIGHBACK CHAIR (Mesh, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base)"
+FUR-002-33,"HIGHBACK CHAIR (Mesh, Black Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Black Base)"
+FUR-002-34,"HIGHBACK CHAIR (Mesh, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base)"
+FUR-002-35,"HIGHBACK CHAIR (Mesh, Black Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Black Base)"
+FUR-002-36,"HIGHBACK CHAIR (Mesh, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Chrome Base)"
+FUR-002-37,"HIGHBACK CHAIR (Mesh, Chrome Base, Mesh Headrest)",Office Chairs & Seating,missing,
+FUR-002-38,"HIGHBACK CHAIR (Blue Seat, Chrome Base, Mesh Back)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Blue Seat, Chrome Base, Mesh Back)"
+FUR-002-39,"HIGHBACK CHAIR (Mesh, Chrome Base, Mesh Headrest)",Office Chairs & Seating,missing,
+FUR-002-40,"HIGHBACK CHAIR (White Frame, Black Seat, Mesh Back)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (White Frame, Black Seat, Mesh Back)"
+FUR-002-41,"HIGHBACK CHAIR (Mesh, Black Base, Mesh Headrest)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Mesh, Black Base, Mesh Headrest)"
+FUR-002-42,"HIGHBACK CHAIR (Mesh, Chrome Base, Mesh Back/Headrest)",Office Chairs & Seating,missing,
+FUR-002-43,"HIGHBACK CHAIR (Mesh, Chrome Base, Mesh Headrest)",Office Chairs & Seating,missing,
+FUR-002-44,"HIGHBACK CHAIR (Mesh, Chrome Base, Mesh Back/Headrest)",Office Chairs & Seating,missing,
+FUR-002-45,"HIGHBACK CHAIR (Mesh, Chrome Base, Mesh Back/Headrest)",Office Chairs & Seating,missing,
+FUR-002-46,"HIGHBACK CHAIR (Red/Black Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (RedBlack Mesh Back, Chrome Base)"
+FUR-002-47,"HIGHBACK CHAIR (Green Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Green Mesh Back, Chrome Base)"
+FUR-002-48,"HIGHBACK CHAIR (Blue Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"H/HIGHBACK CHAIR (Blue Mesh Back, Chrome Base)"
+FUR-002-49,"HIGHBACK CHAIR (Black Mesh Back, Chrome Base)",Office Chairs & Seating,missing,
+FUR-002-50,"EXECUTIVE CHAIR (Leather, Black)",Office Chairs & Seating,yes,"E/EXECUTIVE CHAIR (Leather, Black)"
+FUR-002-51,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Mesh Back, Chrome Base)"
+FUR-002-52,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (RedBlack Mesh Back, Chrome Base)"
+FUR-002-53,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (orang black Mesh Back, Chrome Base)"
+FUR-002-54,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (brownblack Mesh Back, Chrome Base)"
+FUR-002-55,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (pinkblack Mesh Back, Chrome Base)"
+FUR-002-56,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR ( Full Red Mesh Back, Chrome Base)"
+FUR-002-57,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR ( Full OrangeMesh Back, Chrome Base)"
+FUR-002-58,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR ( Full brown Mesh Back, Chrome Base)"
+FUR-002-59,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR ( Full Blue Mesh Back, Chrome Base)"
+FUR-002-60,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Mesh Back, Chrome Base)"
+FUR-002-61,"MIDBACK CHAIR (Fabric, Black, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Fabric, Black, Chrome Base)"
+FUR-002-62,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR ( Full Red Mesh Back, Chrome Base)"
+FUR-002-63,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR ( Full Blue Mesh Back, Chrome Base)"
+FUR-002-64,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Mesh Back, Chrome Base)"
+FUR-002-65,"MIDBACK CHAIR (Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Mesh Back, Chrome Base)"
+FUR-002-66,"MIDBACK CHAIR (Fabric, Chrome Base, No Arms)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Fabric, Chrome Base, No Arms)"
+FUR-002-67,"MIDBACK CHAIR (Fabric, Chrome Base)",Office Chairs & Seating,missing,
+FUR-002-68,MIDBACK CHAIR (Black Leatherette),Office Chairs & Seating,yes,M/MIDBACK CHAIR (Black Leatherette)
+FUR-002-69,"MIDBACK CHAIR (Black Leatherette, No Arms)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Leatherette, No Arms)"
+FUR-002-70,"MIDBACK CHAIR (Black, Round Back, No Arms)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black, Round Back, No Arms)"
+FUR-002-71,"MIDBACK CHAIR (Black Mesh Back, Black Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Mesh Back, Black Base)"
+FUR-002-72,"MIDBACK CHAIR (Black Fabric, Black Base, No Arms)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Fabric, Black Base, No Arms)"
+FUR-002-73,"MIDBACK CHAIR (Black Mesh Back, Black Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Mesh Back, Black Base)"
+FUR-002-74,"MIDBACK CHAIR (Black Mesh Back/Seat, Black Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Mesh BackSeat, Black Base)"
+FUR-002-75,"MIDBACK CHAIR (Black Mesh Back/Seat, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Mesh BackSeat, Chrome Base)"
+FUR-002-76,"MIDBACK CHAIR (Black Mesh Back, Chrome Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Mesh Back, Chrome Base)"
+FUR-002-77,"MIDBACK CHAIR (Black Mesh Back, Black Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Mesh Back, Black Base)"
+FUR-002-78,"MIDBACK CHAIR (Mesh Back, Black Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Mesh Back, Black Base)"
+FUR-002-79,"MIDBACK CHAIR (Black Fabric, Black Base)",Office Chairs & Seating,yes,"M/MIDBACK CHAIR (Black Fabric, Black Base)"
+FUR-002-80,"VISITORS CHAIR (Black, Highback Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, Highback Sled Base)"
+FUR-002-81,"VISITORS CHAIR (Black, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, Sled Base)"
+FUR-002-82,"VISITORS CHAIR (Black, Padded, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, Padded, Sled Base)"
+FUR-002-83,"VISITORS CHAIR (Black Mesh Back/Seat, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black Mesh BackSeat, Sled Base)"
+FUR-002-84,"VISITORS CHAIR (Black Mesh Back/Seat, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black Mesh BackSeat, Sled Base)"
+FUR-002-85,"VISITORS CHAIR (Black, Guest Chair)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, Guest Chair)"
+FUR-002-86,"VISITORS CHAIR (Black, Padded, No Arms)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, Padded, No Arms)"
+FUR-002-87,"VISITORS CHAIR (White, Padded, No Arms)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (White, Padded, No Arms)"
+FUR-002-88,"VISITORS CHAIR (Black, Fabric, 4-Leg)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, Fabric, 4-Leg)"
+FUR-002-89,"VISITORS CHAIR (Black, Sled Base, Tufted)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, Sled Base, Tufted)"
+FUR-002-90,"VISITORS CHAIR (White, Sled Base, Tufted)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (White, Sled Base, Tufted)"
+FUR-002-91,"VISITORS CHAIR (Blue, Fabric, Arm Chair)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Blue, Fabric, Arm Chair)"
+FUR-002-92,"VISITORS CHAIR (Red/Black Mesh Back, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (RedBlack Mesh Back, Sled Base)"
+FUR-002-93,"VISITORS CHAIR (Black/White Mesh Back, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (BlackWhite Mesh Back, Sled Base)"
+FUR-002-94,"VISITORS CHAIR (Brown/Black Mesh Back, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (BrownBlack Mesh Back, Sled Base)"
+FUR-002-95,"VISITORS CHAIR (Blue/Black Mesh Back, Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (BlueBlack Mesh Back, Sled Base)"
+FUR-002-96,"VISITORS CHAIR (Black Mesh Back/Seat, 4-Leg)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black Mesh BackSeat, 4-Leg)"
+FUR-002-97,"VISITORS CHAIR (Black Mesh Back, White Sled Base)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black Mesh Back, White Sled Base)"
+FUR-002-98,"Visitors Chair (black, 4-Leg)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black, 4-Leg)"
+FUR-002-99,"VISITORS CHAIR (Black Mesh Back/Seat, White Frame)",Office Chairs & Seating,yes,"V/VISITORS CHAIR (Black Mesh BackSeat, White Frame)"
+FUR-002-100,BARSTOOL (Black Leatherette),Office Chairs & Seating,yes,B/BARSTOOL (Black Leatherette)
+FUR-002-101,BARSTOOL (White Leatherette),Office Chairs & Seating,yes,B/BARSTOOL (White Leatherette)
+FUR-002-102,BARSTOOL (Black Fabric),Office Chairs & Seating,yes,B/BARSTOOL (Black Fabric)
+FUR-002-103,BARSTOOL (Brown Fabric),Office Chairs & Seating,yes,B/BARSTOOL (Brown Fabric)
+FUR-002-104,BARSTOOL (Orange Fabric),Office Chairs & Seating,yes,B/BARSTOOL (Orange Fabric)
+FUR-002-105,BARSTOOL (Blue Fabric),Office Chairs & Seating,yes,B/BARSTOOL (Blue Fabric)
+FUR-002-106,"BARSTOOL (Mesh Back, Black Seat)",Office Chairs & Seating,yes,"B/BARSTOOL (Mesh Back, Black Seat)"
+FUR-002-107,"BARSTOOL (Black Fabric, No Back)",Office Chairs & Seating,yes,"B/BARSTOOL (Black Fabric, No Back)"
+FUR-002-108,"BARSTOOL (White Leatherette, Tufted)",Office Chairs & Seating,yes,"B/BARSTOOL (White Leatherette, Tufted)"
+FUR-002-109,"BARSTOOL (Black Leatherette, Tufted)",Office Chairs & Seating,yes,"B/BARSTOOL (Black Leatherette, Tufted)"
+FUR-002-110,"BARSTOOL (Black Leatherette, High Back)",Office Chairs & Seating,yes,"B/BARSTOOL (Black Leatherette, High Back)"
+FUR-002-111,"BARSTOOL (Black Fabric, Low Back)",Office Chairs & Seating,yes,"B/BARSTOOL (Black Fabric, Low Back)"
+FUR-002-112,"BARSTOOL (White Leatherette, Low Back)",Office Chairs & Seating,yes,"B/BARSTOOL (White Leatherette, Low Back)"
+FUR-002-113,"STOOL CHAIR (Round, Leatherette, Chrome Base)",Office Chairs & Seating,yes,"S/STOOL CHAIR (Round, Leatherette, Chrome Base)"
+FUR-002-114,"STOOL CHAIR (Round, Mesh Seat, Chrome Base)",Office Chairs & Seating,yes,"S/STOOL CHAIR (Round, Mesh Seat, Chrome Base)"
+FUR-002-115,GANG CHAIRS (4 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS (4 Seater)
+FUR-002-116,GANG CHAIRS (5 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS (5 Seater)
+FUR-002-117,GANG CHAIRS (6 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS (6 Seater)
+FUR-002-118,GANG CHAIRS (2 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS (2 Seater)
+FUR-002-119,GANG CHAIRS (3 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS (3 Seater)
+FUR-002-120,GANG CHAIRS (4 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS (4 Seater)
+FUR-002-121,Gang Chairs W/INDIVIDUAL Arms (3 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS WINDIVIDUAL ARMS (3 Seater)
+FUR-002-122,Gang Chairs W/INDIVIDUAL Arms (4 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS WINDIVIDUAL ARMS (4 Seater)
+FUR-002-123,Gang Chairs W/INDIVIDUAL Arms (5 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS WINDIVIDUAL ARMS (5 Seater)
+FUR-002-124,"GANG CHAIRS W/INDIVIDUAL ARMS (3 Seater, Perforated)",Office Chairs & Seating,yes,"G/GANG CHAIRS WINDIVIDUAL ARMS (3 Seater, Perforated)"
+FUR-002-125,"GANG CHAIRS W/INDIVIDUAL ARMS (2 Seater, Perforated)",Office Chairs & Seating,yes,"G/GANG CHAIRS WINDIVIDUAL ARMS (2 Seater, Perforated)"
+FUR-002-126,"GANG CHAIRS W/INDIVIDUAL ARMS (2 Seater, Perforated)",Office Chairs & Seating,yes,"G/GANG CHAIRS WINDIVIDUAL ARMS (2 Seater, Perforated)"
+FUR-002-127,"GANG CHAIRS (5 Seater, No Arm Dividers)",Office Chairs & Seating,missing,
+FUR-002-128,"GANG CHAIRS (4 Seater, No Arm Dividers)",Office Chairs & Seating,missing,
+FUR-002-129,"GANG CHAIRS (3 Seater, No Arm Dividers)",Office Chairs & Seating,missing,
+FUR-002-130,"GANG CHAIRS (5 Seater, No Arm Dividers)",Office Chairs & Seating,missing,
+FUR-002-131,"GANG CHAIRS (4 Seater, No Arm Dividers)",Office Chairs & Seating,missing,
+FUR-002-132,"GANG CHAIRS (3 Seater, No Arm Dividers)",Office Chairs & Seating,missing,
+FUR-002-133,Gang Chairs W/ Cushion (4 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS W CUSHION (4 Seater)
+FUR-002-134,Gang Chairs W/ Cushion (3 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS W CUSHION (3 Seater)
+FUR-002-135,Gang Chairs W/ Cushion (4 Seater),Office Chairs & Seating,yes,G/GANG CHAIRS W CUSHION (4 Seater)
+FUR-002-136,NEW ITEM (Executive Chair),Office Chairs & Seating,yes,N/NEW ITEM (Executive Chair)
+FUR-002-137,NEW ITEM (Highback Chair),Office Chairs & Seating,yes,N/NEW ITEM (Highback Chair)
+FUR-002-138,NEW ITEM (Highback Chair),Office Chairs & Seating,yes,N/NEW ITEM (Highback Chair)
+FUR-002-139,NEW ITEM (Midback Chair),Office Chairs & Seating,yes,N/NEW ITEM (Midback Chair)
+FUR-002-140,NEW ITEM (Midback Chair),Office Chairs & Seating,yes,N/NEW ITEM (Midback Chair)
+FUR-002-141,NEW ITEM (Midback Chair),Office Chairs & Seating,yes,N/NEW ITEM (Midback Chair)
+FUR-002-142,NEW ITEM (Visitors Chair),Office Chairs & Seating,yes,N/NEW ITEM (Visitors Chair)
+FUR-002-143,NEW ITEM (Visitors Chair),Office Chairs & Seating,yes,N/NEW ITEM (Visitors Chair)
+FUR-002-144,NEW ITEM (Visitors Chair),Office Chairs & Seating,yes,N/NEW ITEM (Visitors Chair)
+FUR-001-01,Office Table W116xD57xH75 cm,Office Tables & Desks,missing,
+FUR-001-02,Office Table W115.9xD57xH75 cm,Office Tables & Desks,missing,
+FUR-001-03,Office Table W120xD60xH76 cm,Office Tables & Desks,missing,
+FUR-001-04,Office Table W100x60xH75 cm,Office Tables & Desks,missing,
+FUR-001-05,Office Table W120xD58xH75 cm,Office Tables & Desks,missing,
+FUR-001-06,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-07,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-08,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-09,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-10,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-11,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-12,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-13,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-14,Office Table W100xD50xH75 cm,Office Tables & Desks,missing,
+FUR-001-15,Office Table W64xD42xH84 cm,Office Tables & Desks,missing,
+FUR-001-16,Office Table W100xD50xH75 cm,Office Tables & Desks,missing,
+FUR-001-17,Office Table W60xD40xH112 cm,Office Tables & Desks,missing,
+FUR-001-18,Office Table W140x70xH75 cm,Office Tables & Desks,missing,
+FUR-001-19,Office Table W120x60xH75 cm,Office Tables & Desks,missing,
+FUR-001-20,Office Table W100xD50xH75 cm,Office Tables & Desks,missing,
+FUR-001-21,Office Table W120x60xH75 cm,Office Tables & Desks,missing,
+FUR-001-22,Office Table W80xD49xH76 cm,Office Tables & Desks,missing,
+FUR-001-23,Office Table W140 D70xH75 cm,Office Tables & Desks,missing,
+FUR-001-24,Office Table W120xD60xH76 cm,Office Tables & Desks,missing,
+FUR-001-25,Office Table W120xD60xH76 cm,Office Tables & Desks,missing,
+FUR-001-26,OFFICE TABLE W120xD60xH75 cm (*Wooden Mobile Pedestal Included),Office Tables & Desks,missing,
+FUR-001-27,OFFICE TABLE W120xD60xH75 cm (*Wooden Mobile Pedestal Included),Office Tables & Desks,missing,
+FUR-001-28,OFFICE TABLE W120xD60xH75 cm (*Wooden Mobile Pedestal Included),Office Tables & Desks,missing,
+FUR-001-29,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-30,Office Table W120xD60xH75 cm,Office Tables & Desks,missing,
+FUR-001-31,Office Table W140 D70xH75 cm,Office Tables & Desks,missing,
+FUR-001-32,"Office Table 120x60x75cm, Beechwood Top/Legs, 3 layer side Drawer, 1 Center drawer, Gauge 22, Powder Coated Metal",Office Tables & Desks,missing,
+FUR-001-33,"Office Table 120x60x75cm, Light Gray Top/Legs, 3 layer side Drawer, Keyboard Tray, Gauge 22, Powder Coated Metal",Office Tables & Desks,missing,
+FUR-001-34,"Office Table 120x60x75cm, Light Gray Top/Legs, 3 layer side Drawer, Gauge 22, Powder Coated Metal",Office Tables & Desks,missing,
+FUR-001-35,FOLDABLE TABLE Beechwood W120xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Beechwood W120×D40×H75 cm
+FUR-001-36,FOLDABLE TABLE Beechwood W160xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Beechwood W160xD40×H75 cm
+FUR-001-37,FOLDABLE TABLE Beechwood W160xD60xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Beechwood W160xD60xH75 cm
+FUR-001-38,FOLDABLE TABLE Beechwood W180xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Beechwood W180xD40×H75 cm
+FUR-001-39,FOLDABLE TABLE Light Gray W120xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Light Gray W120×D40×H75 cm
+FUR-001-40,FOLDABLE TABLE Light Gray W160xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Light Gray W160xD40×H75 cm
+FUR-001-41,FOLDABLE TABLE Light Gray W160xD60xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Light Gray W160xD60xH75 cm
+FUR-001-42,FOLDABLE TABLE Light Gray W180xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Light Gray W180xD40×H75 cm
+FUR-001-43,FOLDABLE TABLE Light Gray W180xD60xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE Light Gray W180xD60xH75 cm
+FUR-001-44,Foldable Table W120xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE W120×D40×H75 cm
+FUR-001-45,Foldable Table W160xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE W160xD40×H75 cm
+FUR-001-46,Foldable Table W120xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE W120×D40×H75 cm
+FUR-001-47,Foldable Table W160xD40xH75 cm,Office Tables & Desks,yes,F/FOLDABLE TABLE W160xD40×H75 cm
+FUR-001-48,CD L Shape Table w/ hanging drawer and mobile pedestal W140 D70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table w hanging drawer and mobile pedestal W140 D70×H75 cm
+FUR-001-49,CD L Shape Table w/ hanging drawer and mobile pedestal W150xD70xH75 cm,Office Tables & Desks,missing,
+FUR-001-50,CD L Shape Table w/ hanging drawer and mobile pedestal W160xD70xH75 cm,Office Tables & Desks,missing,
+FUR-001-51,CD L Shape Table w/ hanging drawer and mobile pedestal W180xD70xH75 cm,Office Tables & Desks,missing,
+FUR-001-52,CD L Shape Table W140 D70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table W140 D70×H75 cm
+FUR-001-53,CD L Shape Table W150xD70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table W150×D70×H75 cm
+FUR-001-54,CD L Shape Table W160 D70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table W160 D70×H75 cm
+FUR-001-55,CD L Shape Table W180xD70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table W180xD70xH75 cm
+FUR-001-56,CD L Shape Table with hanging drawer W140 D70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table with hanging drawer W140 D70×H75 cm
+FUR-001-57,CD L Shape Table with hanging drawer W150xD70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table with hanging drawer W150×D70×H75 cm
+FUR-001-58,CD L Shape Table with hanging drawer W160xD70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table with hanging drawer W160xD70xH75 cm
+FUR-001-59,CD L Shape Table with hanging drawer W180xD70xH75 cm,Office Tables & Desks,yes,C/CD L Shape Table with hanging drawer W180xD70xH75 cm
+FUR-001-60,Office Table W100xD70xH75 cm,Office Tables & Desks,missing,
+FUR-001-61,Office Table W120xD70xH75 cm/.,Office Tables & Desks,missing,
+FUR-001-62,Office Table W140 D70xH75 cm,Office Tables & Desks,missing,
+FUR-001-63,Office Table W150xD70xH75 cm,Office Tables & Desks,missing,
+FUR-001-64,Office Table W160xD70xH75 cm,Office Tables & Desks,missing,
+FUR-001-65,Office Table W180xD70xH75 cm,Office Tables & Desks,missing,
+FUR-001-66,Office Table W100xD70xH75 cm,Office Tables & Desks,yes,B/BEECHWOOD TOP OFFICE TABLE W100×D70×H75 cm
+FUR-001-67,Office Table W120xD70xH75 cm/.,Office Tables & Desks,yes,B/BEECHWOOD TOP OFFICE TABLE W120×D70×H75 cm
+FUR-001-68,Office Table W140 D70xH75 cm,Office Tables & Desks,missing,
+FUR-001-69,Office Table W150xD70xH75 cm,Office Tables & Desks,yes,B/BEECHWOOD TOP OFFICE TABLE W150×D70×H75 cm
+FUR-001-70,Office Table W160xD70xH75 cm,Office Tables & Desks,yes,B/BEECHWOOD OFFICE TABLE W160xD70xH75 cm
+FUR-001-71,Office Table W180xD70xH75 cm,Office Tables & Desks,yes,B/BEECHQWOOD OFFICE TABLE W180xD70xH75 cm
+FUR-001-72,FREESTANDING EXECUTIVE TABLE W140 D70xH75cm (2 Tone Finish Hazel Brown & Dark Gray),Office Tables & Desks,yes,F/FREESTANDING EXECUTIVE TABLE W140 D70×H75cm (2 Tone Finish Hazel Brown & Dark Gray)
+FUR-001-73,Executive Table W120xD60xH75cm,Office Tables & Desks,yes,E/EXECUTIVE TABLE W120xD60xH75cm
+FUR-001-74,Executive Table W140xD60xH75cm,Office Tables & Desks,yes,E/EXECUTIVE TABLE W140xD60xH75cm
+FUR-001-75,Comfortable Executive Table W160xD80xH75cm (main) / W80xD40xH69cm (side),Office Tables & Desks,yes,C/COMFORTABLE EXECUTIVE TABLE W160xD80xH75cm (Main)  W80xD40xH69cm (Side)
+FUR-001-76,Comfortable Executive Table W180xD80xH75cm (main) / W80xD40xH69cm (side),Office Tables & Desks,yes,C/COMFORTABLE EXECUTIVE TABLE W180xD80xH75cm (Main)  W80xD40×H69cm (Side)
+FUR-001-77,EXECUTIVE TABLE W180xD80xH75cm (Main) / W80xD40xH69cm (Side) (2 Tone Finish Smoke Gray & Dark Gray),Office Tables & Desks,missing,
+FUR-001-78,EXECUTIVE TABLE W160xD80xH75cm (Main) / W80xD40xH69cm (Side) (2 Tone Finish Smoke Gray & Dark Gray),Office Tables & Desks,missing,
+FUR-001-79,EXECUTIVE TABLE W160cm D80cm H75cm (Main) / W184cm D50cmxH63cm (Side),Office Tables & Desks,yes,E/EXECUTIVE TABLE W160cm D80cm H75cm (Main)  W184cm D50cmxH63cm (Side)
+FUR-001-80,EXECUTIVE TABLE W180cm D80cm H75cm (Main) / W184cm D50cm H63cm (Side),Office Tables & Desks,yes,E/EXECUTIVE TABLE W180cm D80cm H75cm (Main)  W184cm D50cm H63cm (Side)
+FUR-001-81,EXECUTIVE TABLE W180xD80xH75cm (Main) / W120xD40xH69cm (Side) (2 Tone Finish Hazel Brown & Dark Gray),Office Tables & Desks,missing,
+FUR-001-82,EXECUTIVE TABLE W160xD80xH75cm (Main) / W120xD40xH69cm (Side) (2 Tone Finish Hazel Brown & Dark Gray),Office Tables & Desks,missing,
+FUR-001-83,Executive Table Main TABLE:L160CM X W80CM X H76CM / Side Drawer: L120CM X W40CM X H55CM,Office Tables & Desks,missing,
+FUR-001-84,Executive Table Main TABLE:L180CM X W80CM X H76CM / Side Drawer: L120CM X W40CM X H55CM,Office Tables & Desks,missing,
+FUR-001-85,Executive table Main Table: W160xD80xH76 cm / Side Return: W80xD40xH75 cm,Office Tables & Desks,yes,E/Executive table Main Table W160xD80xH76 cm  Side Return W80xD40xH75 cm
+FUR-001-86,L-Type Executive Table Main: 120cmx60cmx75cm / Side: 140cmx45cmx75cm,Office Tables & Desks,yes,L/L-Type Executive Table Main 120cm×60cm×75cm  Side 140cm×45cm×75cm
+FUR-001-87,EXECUTIVE TABLE W140 D70 H75cm (Main) / W120xD40xH69cm (Side) (2 Tone Finish / Oak Gray & Dark Gray),Office Tables & Desks,missing,
+FUR-001-88,EXECUTIVE TABLE W140 D70 H75cm (Main) / W120xD40xH69cm (Side) (2 Tone Finish / Hazel Brown & Dark Gray),Office Tables & Desks,missing,
+FUR-001-89,EXECUTIVE TABLE W140 D70 H75cm (Main) / W120xD40xH69cm (Side) (2 Tone Finish / Oak Gray & Beige),Office Tables & Desks,missing,
+FUR-001-90,Glass Executive Table W180xD80xH75 cm,Office Tables & Desks,yes,G/Glass Executive Table W180xD80xH75 cm
+FUR-001-91,Glass Executive Table W160xD80xH75 cm,Office Tables & Desks,yes,G/Glass Executive Table W160xD80xH75 cm
+FUR-001-92,L Shape Glass Table 160cmx80cmx75cm,Office Tables & Desks,yes,L/L Shape Glass Table 160cm×80cm×75cm
+FUR-001-93,L Shape Glass Table 180cmx80cmx75cm,Office Tables & Desks,yes,L/L Shape Glass Table 180cm×80cm×75cm
+FUR-001-94,Conference Table W240xD120xH75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE W240xD120xH75cm
+FUR-001-95,Conference Table L240xW120xH75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE L240xW120×H75cm
+FUR-001-96,Conference Table L320xW120xH75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE L320xW120xH75cm
+FUR-001-97,Conference Table W320cm D120cm H75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE W320cm D120cm H75cm
+FUR-001-98,Conference Table W240cm D120cm H75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE W240cm D120cm H75cm
+FUR-001-99,Conference Table W200cm D120cm H75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE W200cm D120cm H75cm
+FUR-001-100,Conference Table W320cm D120cm H75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE W320cm D120cm H75cm
+FUR-001-101,Conference Table W240cm D120cm H75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE W240cm D120cm H75cm
+FUR-001-102,Conference Table W200cm D120cm H75cm,Office Tables & Desks,yes,C/CONFERENCE TABLE W200cm D120cm H75cm
+FUR-001-103,"WORKSTATION 4 Seater Office Table w/ drawer W240cm D120cm H75cm (MDF Laminated, With Divider, 4 Fixed drawer w/ lock, Grommet Hole)",Office Tables & Desks,missing,
+FUR-001-104,"WORKSTATION 2 SEATER TABLE W120xD120xH75cm (Hazel Brown & Dark Gray, 2 Built-in Drawers w/ lock, Dark Gray Wood Divider)",Office Tables & Desks,missing,
+FUR-001-105,"WORKSTATION 4 SEATER TABLE W240xD120xH75cm (Hazel Brown & Dark Gray, 4 Built-in Drawers w/ lock, Dark Gray Wood Divider)",Office Tables & Desks,missing,
+FUR-001-106,"WORKSTATION 4 SEATER TABLE W240xD120xH75cm (Oak Gray Wood Top & White wood divider, Powder Coated Steel Legs)",Office Tables & Desks,missing,
+FUR-001-107,"WORKSTATION 4 Seater Office Table w/ mobile drawer W240cm D120cm H75cm (Oak Gray, Glass Divider, 4 Mobile drawer w/ lock, Metal Legs)",Office Tables & Desks,missing,
+FUR-001-108,"WORKSTATION 4 Seater Office Table w/ mobile drawer W280cm D120cm H75cm (Oak Gray, Glass Divider, 4 Mobile drawer w/ lock, Metal Legs)",Office Tables & Desks,missing,
+FUR-001-109,"WORKSTATION 4 Seater Office Table w/ mobile drawer W240cm D120cm H75cm (Brown, Glass Divider, 4 Mobile drawer w/ lock, Metal Legs)",Office Tables & Desks,missing,
+FUR-001-110,"WORKSTATION 4 Seater Office Table w/ mobile drawer W280cm D120cm H75cm (Brown, Glass Divider, 4 Mobile drawer w/ lock, Metal Legs)",Office Tables & Desks,missing,
+TND-001-01,Tanod Vest,Barangay Tanod Equipment,yes,T/TANOD VEST
+TND-001-02,Tanod CAP,Barangay Tanod Equipment,yes,T/TANOD CAP
+FLA-001-15,Flash LIGHT-511,Flashlights & Headlights,yes,F/FLASH LIGHT-511
+FLA-001-13,Headlight,Flashlights & Headlights,"conflict, no photo",H/HEADLIGHT
+FLA-001-14,Flash Light,Flashlights & Headlights,yes,F/FLASH LIGHT
+TND-001-04,T Type Baton,Barangay Tanod Equipment,yes,T/T TYPE BATON
+WHI-001-07B,Steel Whistle,Whistles & Signaling Devices,yes,S/STEEL WHISTLE
+WHI-001-01,Stainless Steel Metal Alloy Whistle,Whistles & Signaling Devices,yes,S/STAINLESS STEEL METAL ALLOY WHISTLE
+TRA-001-17A,120L Trash BIN,Trash Bins & Waste Containers,yes,A/120L TRASH BIN
+TRA-001-17B,240L Trash BIN,Trash Bins & Waste Containers,yes,A/240L TRASH BIN
+TRA-001-18-23L,Push Trash BIN 23L,Trash Bins & Waste Containers,yes,P/PUSH TRASH BIN 23L
+TRA-001-18-42L,Push Trash BIN 42L,Trash Bins & Waste Containers,yes,P/PUSH TRASH BIN 42L
+TRA-001-18-58L,Push Trash BIN 58L,Trash Bins & Waste Containers,yes,P/PUSH TRASH BIN 58L
+TRA-001-19-35L,Push Cubic Trash 35L,Trash Bins & Waste Containers,yes,P/PUSH CUBIC TRASH 35L
+TRA-001-19-45L,Push Cubic Trash 45L,Trash Bins & Waste Containers,yes,P/PUSH CUBIC TRASH 45L
+TRA-001-20-30L,Petal Trash BIN 30L,Trash Bins & Waste Containers,yes,P/PETAL TRASH BIN 30L
+TRA-001-20-45L,Petal Trash BIN 45L,Trash Bins & Waste Containers,yes,P/PETAL TRASH BIN 45L
+TRA-001-28,GPX-24,Trash Bins & Waste Containers,yes,G/GPX-24 BLACK
+TRA-001-29,GPX-86,Trash Bins & Waste Containers,yes,G/GPX-86
+TRA-001-34,Round Trash CAN,Trash Bins & Waste Containers,yes,R/ROUND TRASH CAN
+TRA-001-43-5L,Round Trash BIN 5L,Trash Bins & Waste Containers,yes,R/ROUND TRASH BIN 5L
+TRA-001-43-8L,Round Trash BIN 8L,Trash Bins & Waste Containers,yes,R/ROUND TRASH BIN 8L
+TRA-001-43-10L,Round Trash BIN 10L,Trash Bins & Waste Containers,yes,R/ROUND TRASH BIN 10L
+TRA-001-43-12L,Round Trash BIN 12L,Trash Bins & Waste Containers,yes,R/ROUND TRASH BIN 12L
+TRA-001-43-20L,Round Trash BIN 20L,Trash Bins & Waste Containers,yes,R/ROUND TRASH BIN 20L
+TRA-001-43-30L,Round Trash BIN 30L,Trash Bins & Waste Containers,yes,R/ROUND TRASH BIN 30L
+TRA-001-44-9L,Square Trash BIN 9L,Trash Bins & Waste Containers,yes,S/SQUARE TRASH BIN 9L
+TRA-001-44-12L,Square Trash BIN 12L,Trash Bins & Waste Containers,yes,S/SQUARE TRASH BIN 12L
+TRA-001-44-15L,Square Trash BIN 15L,Trash Bins & Waste Containers,yes,S/SQUARE TRASH BIN 15L
+TRA-001-44-21L,Square Trash BIN 21L,Trash Bins & Waste Containers,yes,S/SQUARE TRASH BIN 21L
+TRA-001-44-30L,Square Trash BIN 30L,Trash Bins & Waste Containers,yes,S/SQUARE TRASH BIN 30L
+TRA-001-44-40L,Square Trash BIN 40L,Trash Bins & Waste Containers,yes,S/SQUARE TRASH BIN 40L
+TRA-001-44-50L,Square Trash BIN 50L,Trash Bins & Waste Containers,yes,S/SQUARE TRASH BIN 50L
+TRA-001-56-15L,Trashbin 15L,Trash Bins & Waste Containers,yes,T/TRASHBIN 15L
+TRA-001-56-20L,Trashbin 20L,Trash Bins & Waste Containers,missing,
+TRA-001-56-30L,Trashbin 30L,Trash Bins & Waste Containers,yes,T/TRASHBIN 30L
+TRA-001-56-50L,Trashbin 50L,Trash Bins & Waste Containers,yes,T/TRASHBIN 50L
+TRA-001-56-80L,Trashbin 80L,Trash Bins & Waste Containers,yes,T/TRASHBIN 80L
+TRA-001-57-15L,Medical Trash BIN 15L,Trash Bins & Waste Containers,yes,M/MEDICAL TRASH BIN 15L
+TRA-001-57-20L,Medical Trash BIN 20L,Trash Bins & Waste Containers,yes,M/MEDICAL TRASH BIN 20L
+TRA-001-57-30L,Medical Trash BIN 30L,Trash Bins & Waste Containers,yes,M/MEDICAL TRASH BIN 30L
+TRA-001-57-40L,Medical Trash BIN 40L,Trash Bins & Waste Containers,yes,M/MEDICAL TRASH BIN 40L
+TRA-001-57-50L,Medical Trash BIN 50L,Trash Bins & Waste Containers,yes,M/MEDICAL TRASH BIN 50L
+TRA-001-57-60L,Medical Trash BIN 60L,Trash Bins & Waste Containers,yes,M/MEDICAL TRASH BIN 60L
+TRA-001-64-140L,Green Trash BIN 140L,Trash Bins & Waste Containers,yes,G/GREEN TRASH BIN 140L
+TRA-001-64-360L,Green Trash BIN 360L,Trash Bins & Waste Containers,yes,G/GREEN TRASH BIN 360Ll
+TRA-001-64-660L,Green Trash BIN 660L,Trash Bins & Waste Containers,yes,G/GREEN TRASH BIN 660L
+TRA-001-64-1100L,Green Trash BIN 1100L,Trash Bins & Waste Containers,yes,G/GREEN TRASH BIN 1100L
+TRA-001-07501,168L Circular Garbage CAN,Trash Bins & Waste Containers,missing,
+TRA-001-07502,120L Circular Garbage CAN,Trash Bins & Waste Containers,yes,A/120L CIRCULAR GARBAGE CAN
+TRA-001-07503,80L Circular Garbage CAN,Trash Bins & Waste Containers,yes,A/80L CIRCULAR GARBAGE CAN
+TRA-001-07506,120L Circular Garbage CAN,Trash Bins & Waste Containers,yes,A/120L CIRCULAR GARBAGE CAN
+TRA-001-07507,80L Circular Garbage CAN,Trash Bins & Waste Containers,yes,A/80L CIRCULAR GARBAGE CAN
+TRA-001-07518,120L Circular Garbage CAN,Trash Bins & Waste Containers,yes,A/120L CIRCULAR GARBAGE CAN
+TRA-001-07302,120L Solid Garbage CAN,Trash Bins & Waste Containers,yes,A/120L SOLID GARBAGE CAN
+TRA-001-07303,240L Solid Garbage CAN,Trash Bins & Waste Containers,missing,
+TRA-001-07335-R,20L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/20L PEDAL CLASSIFICATION TRASH BIN GREY RED
+TRA-001-07335-G,20L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/20L PEDAL CLASSIFICATION TRASH BIN GREY GREEN
+TRA-001-07335-B,20L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/20L PEDAL CLASSIFICATION TRASH BIN GREY BLUE
+TRA-001-07337-R,40L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/40L PEDAL CLASSIFICATION TRASH BIN GREY RED
+TRA-001-07337-G,40L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/40L PEDAL CLASSIFICATION TRASH BIN GREY GREEN
+TRA-001-07337-B,40L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/40L PEDAL CLASSIFICATION TRASH BIN
+TRA-001-07338-R,60L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/60L PEDAL CLASSIFICATION TRASH BIN GREY RED
+TRA-001-07338-G,60L Pedal Classification Trash BIN,Trash Bins & Waste Containers,yes,A/60L PEDAL CLASSIFICATION TRASH BIN GREY GREEN
+TRA-001-07338-B,60L Pedal Classification Trash BIN,Trash Bins & Waste Containers,missing,
+TRA-001-07515,60L Circular Garbage CAN,Trash Bins & Waste Containers,yes,A/60L CIRCULAR GARBAGE CAN
+TRA-001-07516,100L Circular Garbage CAN,Trash Bins & Waste Containers,yes,A/100L CIRCULAR GARBAGE CAN
+TRA-001-07006,35L Large Trash BIN With Cover,Trash Bins & Waste Containers,yes,A/35L LARGE TRASH BIN WITH COVER
+TRA-001-07008,24L Small Trash BIN With Cover,Trash Bins & Waste Containers,yes,A/24L SMALL TRASH BIN WITH COVER
+TRA-001-07215,55L Petal Trash BIN,Trash Bins & Waste Containers,yes,A/55L PETAL TRASH BIN
+WHI-001-12,PEN Light,Whistles & Signaling Devices,yes,P/PEN LIGHT
+WHI-001-07A,Whistle Omaga,Whistles & Signaling Devices,yes,W/WHISTLE
+WHI-001-08,Rescue Whistle,Whistles & Signaling Devices,yes,R/RESCUE WHISTLE
+WHI-001-09,FOX 40 OLD,Whistles & Signaling Devices,yes,F/FOX 40 OLD
+WHI-001-10,FOX 40 Hand Held,Whistles & Signaling Devices,yes,F/FOX 40 HAND HELD
+WHI-001-11,FOX 40 Stainess,Whistles & Signaling Devices,yes,F/FOX 40 STAINESS
+PPE-012-01-20,"PVC Cone 20""",Traffic Cones,yes,P/PVC CONE 20
+PPE-012-01-30,"PVC Cone 30""",Traffic Cones,yes,P/PVC CONE 30
+PPE-012-01-42,"PVC Cone 42""",Traffic Cones,yes,P/PVC CONE 42
+PPE-012-02-20,PVC Cone,Traffic Cones,yes,P/PVC CONE
+PPE-012-02-30,PVC Cone,Traffic Cones,yes,P/PVC CONE
+PPE-012-04-20,Rubber Cone 2.3KG,Traffic Cones,yes,R/RUBBER CONE 2.3KG
+PPE-012-04-28,Rubber Cone 2.3KG,Traffic Cones,yes,R/RUBBER CONE 2.3KG
+PPE-012-04-36,Rubber Cone 2.3KG,Traffic Cones,yes,R/RUBBER CONE 2.3KG
+PPE-012-05-20,Rubber Cone 2.3KG,Traffic Cones,yes,R/RUBBER CONE 2.3KG BLACKBASE
+PPE-012-05-28,Rubber Cone 2.3KG,Traffic Cones,yes,R/RUBBER CONE 2.3KG BLACKBASE
+PPE-012-05-36,Rubber Cone 2.3KG,Traffic Cones,yes,R/RUBBER CONE 2.3KG BLACKBASE
+PPE-012-06-20,Rubber Cone,Traffic Cones,yes,R/RUBBER CONE GREEN BLACK BASE
+PPE-012-06-28,Rubber Cone,Traffic Cones,yes,R/RUBBER CONE GREEN BLACK BASE
+PPE-012-06-36,Rubber Cone,Traffic Cones,yes,R/RUBBER CONE GREEN BLACK BASE
+PPE-012-11-14,"Collapsible Cone 14""",Traffic Cones,yes,C/COLLAPSIBLE CONE 14
+PPE-012-11-16,"Collapsible Cone 16""",Traffic Cones,yes,C/COLLAPSIBLE CONE 16
+PPE-012-11-24,"Collapsible Cone 24""",Traffic Cones,yes,C/COLLAPSIBLE CONE 24
+PPE-012-11-32,"Collapsible Cone 32""",Traffic Cones,yes,C/COLLAPSIBLE CONE 32
+PPE-012-44-80,Foldable Post 80CM,Traffic Cones,yes,F/FOLDABLE POST 80CM
+PPE-012-44-105,Foldable Post 105CM,Traffic Cones,yes,F/FOLDABLE POST 105CM
+PPE-012-45,Traffic Post,Traffic Cones,yes,T/TRAFFIC POST
+PPE-012-13A,Expandable Barrier,Traffic Cones,yes,E/EXPANDABLE BARRIER
+PPE-012-13B,Expandable Barrier ORD,Traffic Cones,yes,E/EXPANDABLE BARRIER ORD
+PPE-012-54,Traffic Barrier BRB-2,Traffic Cones,yes,T/TRAFFIC BARRIER BRB-2
+PPE-012-55,Traffic Barrier BRB-3,Traffic Cones,yes,T/TRAFFIC BARRIER BRB-3
+PPE-014-01A,Plastic Chain 6MM,"Barriers, Chains & Warning Tape",yes,P/PLASTIC CHAIN 6MM
+PPE-014-01B,Plastic Chain 8MM,"Barriers, Chains & Warning Tape",yes,P/PLASTIC CHAIN 8MM
+PPE-014-01C,Plastic Chain 10MM,"Barriers, Chains & Warning Tape",yes,P/PLASTIC CHAIN 10MM
+PPE-014-02,Steel Chain 25M,"Barriers, Chains & Warning Tape",yes,S/STEEL CHAIN 25M
+PPE-014-03A,Caution Tape (300M*5C),"Barriers, Chains & Warning Tape",yes,C/CAUTION TAPE (300M5C)
+PPE-014-03B,Caution Tape (1000FT*10C),"Barriers, Chains & Warning Tape",yes,C/CAUTION TAPE (1000FT10C)
+PPE-014-03C,Caution Tape (500M*5C),"Barriers, Chains & Warning Tape",yes,C/CAUTION TAPE (500M5C)
+PPE-014-03D,Caution Tape (500M*10C),"Barriers, Chains & Warning Tape",yes,C/CAUTION TAPE (500M10C)
+PPE-014-03E,Caution Tape (1000M*5C),"Barriers, Chains & Warning Tape",yes,C/CAUTION TAPE (1000M5C)
+PPE-014-03F,Caution Tape (1000M*10C),"Barriers, Chains & Warning Tape",yes,C/CAUTION TAPE (1000M10C)
+PPE-014-04A,Danger Tape (300M*5C),"Barriers, Chains & Warning Tape",yes,D/DANGER TAPE (300M5C)
+PPE-014-04B,Danger Tape (1000FT*10C),"Barriers, Chains & Warning Tape",yes,D/DANGER TAPE (1000FT10C)
+PPE-014-04C,Danger Tape (500M*5C),"Barriers, Chains & Warning Tape",yes,D/DANGER TAPE (500M5C)
+PPE-014-04D,Danger Tape (500M*10C),"Barriers, Chains & Warning Tape",yes,D/DANGER TAPE (500M10C)
+PPE-014-04E,Danger Tape (1000M*5C),"Barriers, Chains & Warning Tape",yes,D/DANGER TAPE (1000M5C)
+PPE-014-04F,Danger Tape (1000M*10C),"Barriers, Chains & Warning Tape",yes,D/DANGER TAPE (1000M10C)
+PPE-014-05A,Police Line DO NOT Cross (300M*5C),"Barriers, Chains & Warning Tape",yes,P/POLICE LINE DO NOT CROSS (300M5C)
+PPE-014-05B,Police Line DO NOT Cross (1000FT*10C),"Barriers, Chains & Warning Tape",yes,P/POLICE LINE DO NOT CROSS (1000FT10C)
+PPE-014-06A,Warning Tape,"Barriers, Chains & Warning Tape",yes,W/WARNING TAPE REDWHITE
+PPE-014-06B,Warning Tape,"Barriers, Chains & Warning Tape",yes,W/WARNING TAPE REDWHITE
+PPE-014-07A,Warning Tape,"Barriers, Chains & Warning Tape",yes,W/WARNING TAPE
+PPE-014-07B,Warning Tape,"Barriers, Chains & Warning Tape",yes,W/WARNING TAPE
+PPE-014-08A,Aluminum Foil Warning Tape,"Barriers, Chains & Warning Tape",yes,A/ALUMINUM FOIL WARNING TAPE BLUE
+PPE-014-08B,Aluminum Foil Warning Tape,"Barriers, Chains & Warning Tape",yes,A/ALUMINUM FOIL WARNING TAPE RED
+PPE-014-38A,Exit Signage,"Barriers, Chains & Warning Tape",yes,E/EXIT SIGNAGE
+PPE-014-38B,Exit Right Side Signage,"Barriers, Chains & Warning Tape",yes,E/EXIT RIGHT SIDE SIGNAGE
+PPE-014-38C,Exit Left Side Signage,"Barriers, Chains & Warning Tape",yes,E/EXIT LEFT SIDE SIGNAGE
+PPE-014-38D,Fire Exit Signage,"Barriers, Chains & Warning Tape",yes,F/FIRE EXIT SIGNAGE
+PPE-014-38E,Fire Exit Right Side Signage,"Barriers, Chains & Warning Tape",yes,F/FIRE EXIT RIGHT SIDE SIGNAGE
+PPE-014-38F,Fire Exit Left Side Signage,"Barriers, Chains & Warning Tape",yes,F/FIRE EXIT LEFT SIDE SIGNAGE
+PPE-014-38G,Toilet Signage,"Barriers, Chains & Warning Tape",yes,T/TOILET SIGNAGE
+PPE-014-38H,NO Smoking Signage,"Barriers, Chains & Warning Tape",yes,N/NO SMOKING SIGNAGE
+PPE-014-38I,Exit Signage,"Barriers, Chains & Warning Tape",yes,E/EXIT SIGNAGE BLACK BASE
+PPE-014-38J,Exit Left Side Signage,"Barriers, Chains & Warning Tape",yes,E/EXIT LEFT SIDE SIGNAGE BLACK BASE
+PPE-014-38K,Fire Exit Left Side Signage,"Barriers, Chains & Warning Tape",yes,F/FIRE EXIT LEFT SIDE SIGNAGE BLACK BASE
+PPE-014-38L,Toilet Signage,"Barriers, Chains & Warning Tape",missing,
+PPE-014-38M,Exit Arrow Down Signage,"Barriers, Chains & Warning Tape",yes,E/EXIT ARROW DOWN SIGNAGE (BLACK BASE)
+PPE-014-38N,Exit Fiber,"Barriers, Chains & Warning Tape",yes,E/EXIT FIBER
+PPE-014-38O,Exit Fiber Left Side Signage,"Barriers, Chains & Warning Tape",yes,E/EXIT FIBER LEFT SIDE SIGNAGE
+RAI-001-MGSERIES-PJ,Pants AND Jacket,Rainwear,yes,P/PANTS AND JACKET
+RAI-001-MGSERIES-PP,Poncho Plain,Rainwear,yes,P/PONCHO PLAIN
+RAI-001-MGSERIES-PR,Poncho With Reflector,Rainwear,yes,P/PONCHO WITH REFLECTOR
+RAI-001-27,Poncho Plain,Rainwear,yes,P/PONCHO PLAIN
+RAI-001-28,Pants AND Jacket 912,Rainwear,yes,P/PANTS AND JACKET 912
+RAI-001-31,Pants AND Jacket PVC Japan Quality,Rainwear,missing,
+RAI-001-37,2001 ONE Piece Long Raincoat Size: Medium XL,Rainwear,missing,
+ORD-001-17,Forklift HC,Assorted Safety Footwear,yes,F/FORKLIFT HC
+ORD-001-33B,Rockgolden Safety Shoes,Assorted Safety Footwear,yes,R/ROCKGOLDEN SAFETY SHOES
+ORD-001-33A,Super Gwapo Orange,Assorted Safety Footwear,yes,S/Super Gwapo Orange
+LCS-002-23,Jack Baggio (size 35-38),Low Cut Safety Shoes,yes,J/JACK BAGGIO (SIZE 35-38)
+LCS-002-26,MG Sports (size 39-45),Low Cut Safety Shoes,yes,M/MG SPORTS (SIZE 39-45)
+LCS-001-04,Yellow Low Cut,Low Cut Safety Shoes,yes,Y/Yellow Low Cut
+LCS-001-06,097 Low Cut,Low Cut Safety Shoes,yes,A/097 Low Cut
+LCS-001-20,Omaga Grey Low Cut,Low Cut Safety Shoes,missing,
+LCS-001-38,Safety BOY Sports,Low Cut Safety Shoes,missing,
+PLT-001-01,Portalet,Portable Toilets,yes,P/PORTALET
+PLT-001-02,"Portablet (1 Pack, 50 Pcs)",Portable Toilets,missing,
+PWR-001-01,BLUETTI Premium 20 (AC2P) Portable Power Station | 300W 230Wh,Portable Power Stations,missing,
+PWR-001-02,BLUETTI Premium 30 V2 Portable Power Station | 600W 320Wh,Portable Power Stations,missing,
+PWR-001-03,BLUETTI Premium 50 (AC50P) Portable Power Station | 700W 504Wh,Portable Power Stations,yes,BLUETTI/BLUETTI AC50P
+PWR-001-04,BLUETTI Premium 80 (AC70P) Portable Power Station | 1000W 864Wh,Portable Power Stations,yes,BLUETTI/BLUETTI AC70P
+PWR-001-06,BLUETTI Premium 150 (AC180P) Portable Power Station | 1800W 1440Wh,Portable Power Stations,missing,
+PWR-001-05,BLUETTI Premium 100 V2 Portable Power Station | 2000W 1024Wh,Portable Power Stations,missing,
+PWR-001-07,BLUETTI Premium 200 V2 Portable Power Station | 2700W 2073.6Wh,Portable Power Stations,missing,
+PWR-001-08,BLUETTI Premium 200 (AC200PL) Portable Power Station | 2400W 2304Wh,Portable Power Stations,missing,
+PWR-002-01,BLUETTI APEX300 Power Station | 3840W 2764.8Wh,Power Stations,yes,BLUETTI/BLUETTI APEX300
+PWR-002-02,BLUETTI ELITE320 Power Station | 1800W 3200Wh,Power Stations,missing,
+PWR-004-01,BLUETTI B300K LiFePO4 Battery 51.2V 54Ah | 2764.8Wh,Power Station Batteries & Accessories,missing,
+PWR-003-01,BLUETTI PV60 Solar Panel | 60W,Solar Panels,missing,
+PWR-003-02,BLUETTI PV100 Solar Panel | 100W,Solar Panels,missing,
+PWR-003-03,BLUETTI PV130 Solar Panel | 130W,Solar Panels,missing,
+PWR-003-04,BLUETTI PV200 Solar Panel | 200W,Solar Panels,missing,
+PWR-003-05,BLUETTI PV220 Solar Panel | 220W,Solar Panels,missing,
+PWR-003-06,BLUETTI PV350 Solar Panel | 350W,Solar Panels,missing,
+PWR-004-02,BLUETTI P090D-P150D Battery Cable,Power Station Batteries & Accessories,missing,
+
+unmatched folder,reason
+15L WET-DRY VACUUM CLEANER (red),empty folder
+2001 ONE PIECE LONG RAINCOAT SIZE_ MEDIUM XL,empty folder
+7 CM VEST,empty folder
+A3 DOUBLE SIDE SIGN BOARD WITH STAND SILVER-GOLD,empty folder
+A3 HORIZONTAL VERSION,empty folder
+A3 HORIZONTAL VERSION GOLD,empty folder
+A3 VERTICAL VERSION BLACK,empty folder
+A3 VERTICAL VERSION STAINLESS,empty folder
+A4 HORIZONTAL VERSION BLACK,empty folder
+A4 HORIZONTAL VERSION STAINLESS,empty folder
+A4 VERTICAL VERSION BLACK,empty folder
+A4 VERTICAL VERSION STAINLESS,empty folder
+AUTOMATIC DISPENSER (ALCOHOL 500ML),empty folder
+DELETE,empty folder
+BHH WITH BACK SUPPORT,empty folder
+CO2 CHEMICAL CARBON DIOXIDE,empty folder
+Competition Weightlifting Platform with logo,empty folder
+Customized Weightlifting Bar,empty folder
+EMS DUTY VEST,no clear masterlist match
+EXECUTIVE TABLE MAIN TABLEL160CM X W80CM X H76CM  SIDE DRAWER L120CM X W40CM X H55CM,empty folder
+EXECUTIVE TABLE MAIN TABLEL180CM X W80CM X H76CM  SIDE DRAWER L120CM X W40CM X H55CM,empty folder
+EXECUTIVE TABLE W140 D70 H75cm (Main)  W120×D40×H69cm (Side) (2 Tone Finish  Hazel Brown & Dark Gray),empty folder
+EXECUTIVE TABLE W140 D70 H75cm (Main)  W120×D40×H69cm (Side) (2 Tone Finish  Oak Gray & Beige),empty folder
+EXECUTIVE TABLE W140 D70 H75cm (Main)  W120×D40×H69cm (Side) (2 Tone Finish  Oak Gray & Dark Gray),empty folder
+EXECUTIVE TABLE W160xD80xH75cm (Main)  W120×D40×H69cm (Side) (2 Tone Finish Hazel Brown & Dark Gray),empty folder
+EXECUTIVE TABLE W180xD80xH75cm (Main)  W120×D40×H69cm (Side) (2 Tone Finish Hazel Brown & Dark Gray),empty folder
+EXECUTIVE TABLE W180xD80xH75cm (Main)  W80xD40xH69cm (Side) (2 Tone Finish Smoke Gray & Dark Gray),empty folder
+2LBS (WALL TYPE) + FREE WALL BRACKET,empty folder
+FACIAL FOR HELMET,empty folder
+FACIAL FOR HELMET (auto dimming),empty folder
+FACIAL FOR HELMET BLACK,empty folder
+FIRE ALARM BELL W MANUAL PUSH BUTTON (SOLD BY SET) - BELL SIZE 10 220v wMANUAL CALL POINT,empty folder
+FIRE ALARM BELL W MANUAL PUSH BUTTON (SOLD BY SET) - BELL SIZE 6 220v wMANUAL CALL POINT,empty folder
+FIRE ALARM BELL W MANUAL PUSH BUTTON (SOLD BY SET) - BELL SIZE 8 220v wMANUAL CALL POINT,empty folder
+FIRE BLANKET (1.5X1.8),empty folder
+FIRE EXTINGUISHER AFFF CHEMICAL 100LBS (WHEELED TYPE),empty folder
+FIRE EXTINGUISHER AFFF CHEMICAL 200LBS (WHEELED TYPE),empty folder
+FIRE EXTINGUISHER AFFF CHEMICAL 5LBS (WALL TYPE) + FREE WALL BRACKET,empty folder
+FIRE EXTINGUISHER HCFC CHEMICAL 50LBS (WHEELED TYPE),no clear masterlist match
+"FIRE HOSE CABINET (ANGLE VALVE, LOCK NIPPLE, STRAIGHT NOZZLEPOLYCARBONATE NOZZLE) - 1&12 X 100FT DOUBLE JACKET",empty folder
+"FIRE HOSE CABINET (ANGLE VALVE, LOCK NIPPLE, STRAIGHT NOZZLEPOLYCARBONATE NOZZLE) - 1&12 X 100FT SINGLE JACKET",empty folder
+"FIRE HOSE CABINET (ANGLE VALVE, LOCK NIPPLE, STRAIGHT NOZZLEPOLYCARBONATE NOZZLE) - 1&12 X 50FT DOUBLE JACKET",empty folder
+"FIRE HOSE CABINET (ANGLE VALVE, LOCK NIPPLE, STRAIGHT NOZZLEPOLYCARBONATE NOZZLE) - 1&12 X 50FT SINGLE JACKET",empty folder
+Generator - FDG 8500E- DST,no clear masterlist match
+HAND DRYER 6667,no clear masterlist match
+HAND DRYER 6668 GREY,empty folder
+Janitor Cart New Small,no clear masterlist match
+LANYARD,empty folder
+MODULAR TENT (190T) 2.5mx2.5mx1.8m,no clear masterlist match
+NO PARKING STAINLESS  CLEANING IN PROGRESS STAINLESS,empty folder
+"Office Table 120x60x75cm, Beechwood TopLegs, 3 layer side Drawer, 1 Center drawer, Gauge 22, Powder Coated Metal",empty folder
+One Power Grey,empty folder
+ORD VEST H TYPE,empty folder
+PANDA NET H TYPE,empty folder
+PANDA ORIGINAL EDGE H TYPE HD,empty folder
+PANTS AND JACKET 922,no clear masterlist match
+PANTS AND JACKET PVC JAPAN QUALITY,empty folder
+"PORTABLET (1 PACK, 50 PCS)",empty folder
+RED GREY 13_ MULTI-FUNCTIONAL BURNISHER,no clear masterlist match
+RESCUE TUBE (BIG),no clear masterlist match
+SAFETY BOY LC YL1950,empty folder
+SAFETY BOY RUBBER SOLE 1945,empty folder
+SAFETY BOY SPORTS,empty folder
+SHORT SLEEVE WITH 10CM_5CM REFLECTOR,empty folder
+SILICONE MASK DOUBLE,empty folder
+SILICONE MASK SINGLE,empty folder
+SINGLE LANYARD STRAP TYPE,empty folder
+SMOKE DETECTOR,no clear masterlist match
+SMOKE DETECTOR-ALARM (BATTERY OPERATED),empty folder
+SUN FLOWER LIGHT,empty folder
+TRASHBIN 20L,empty folder
+TRIPOD,empty folder
+SAFETY BOY RUBBER SOLE 1945,empty folder
+WARNING TAPEe,no clear masterlist match
+WHISTLE OMAGA,empty folder
+WOODEN PEDESTAL 2,empty folder
+WOODEN PEDESTAL 3,empty folder
+"WORKSTATION 2 SEATER TABLE W120×D120xH75cm (Hazel Brown & Dark Gray, 2 Built-in Drawers w lock, Dark Gray Wood Divider)",empty folder

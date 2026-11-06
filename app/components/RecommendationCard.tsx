@@ -6,6 +6,7 @@
  */
 import type { Load, StationResult } from '@/lib/power';
 import { DOD, INVERTER_EFFICIENCY, HEADROOM } from '@/lib/power';
+import { photoFor } from '@/lib/photos';
 import { formatPeso } from './SourceCard';
 import { card, eyebrow, IconAlert, IconBattery, Photo, stagger } from './ui';
 
@@ -34,7 +35,7 @@ function Pick({ r, label, i }: { r: StationResult; label: string; i: number }) {
   return (
     <div className={`flex animate-card-in flex-col overflow-hidden ${card} ${i === 0 ? 'ring-2 ring-emerald-600/30' : ''}`} style={stagger(i, 90)}>
       <div className="flex gap-3 p-3">
-        <Photo alt={r.model} size={80} className="w-16 rounded-xl sm:w-20" icon={<IconBattery className="h-7 w-7" />} />
+        <Photo src={photoFor(r.code)} alt={r.model} size={80} className="w-16 rounded-xl sm:w-20" icon={<IconBattery className="h-7 w-7" />} />
         <div className="min-w-0 flex-1">
           <span className={`inline-block rounded-full px-2 py-0.5 ${eyebrow} ${i === 0 ? 'bg-emerald-50 text-emerald-800' : 'bg-paper text-muted'}`}>{label}</span>
           <div className="mt-1 font-heading font-semibold leading-snug text-ink">{r.model}</div>

@@ -52,5 +52,6 @@ ocr_raw.json
 docs/learn/
 public/learn.html
 
-# Design preview photos: crops of the private catalogue sheets. Local only until CTI clears publication.
-public/products/
+
+# Original CTI product photos (367 MB). scripts/build_product_images.py makes public/products/ from them.
+data/raw/photos/

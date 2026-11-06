@@ -83,19 +83,33 @@ space and columns. No breakpoint takes a function away.
 
 ## D5. Product photos
 
-**Decision.** Photos come from the PICTURE column of the catalogue sheets. They never come
-from model output or from the web. `lib/photos.ts` reads `data/product-images.json`.
+**Decision.** Photos come from the product photos that CTI supplied
+(`data/raw/photos/`, gitignored, 367 MB). CTI approved publishing them on 6 Nov 2026. They
+never come from model output or from the web. `lib/photos.ts` reads
+`data/product-images.json`.
 
-- Card photos are 480 × 480 WebP on the background color of their sheet row.
+- `scripts/build_product_images.py` matches each photo folder to masterlist codes by name
+  and writes `public/products/<CODE>.webp` (480 × 480, white background, trimmed and
+  centered), the manifest and `data/product-photos-report.csv`. The WebP files are
+  committed (about 9 MB).
+- The masterlist is final. A folder whose name does not clearly match a masterlist name
+  gets no code. A digit never fuzzes: "HAND DRYER 6667" is not HAND DRYER 6668. Extra
+  folder words (a size or a colour) must agree with the code or the colours of the product.
+- `data/photo-overrides.json` maps by hand the folders the rules cannot match. Each
+  entry was checked against the photo.
+- The report lists every code with or without a photo, and every folder that is empty or
+  unmatched. On 6 Nov 2026: 853 of 1,039 codes have a photo. Most of the gap is office
+  tables, empty folders and BLUETTI.
 - The `alt` text is the masterlist name.
 - A grey skeleton shows until the photo loads. The photo then fades in over 200 ms.
 - No photo on file, or a photo that fails to load: a neutral tile with an icon. Tiles 120 px
   and wider also say "Photo not on file".
-- A `duplicate_code_conflict` item never shows a photo, because the sheet can show the
-  wrong variant.
-- BLUETTI stations have no photo yet. Their tile shows a battery icon.
-- The manifest is committed. The files in `public/products/` are gitignored. They stay local
-  until CTI agrees to publish them, so a deploy shows the "Photo not on file" tile.
+- A `duplicate_code_conflict` item never shows a photo, because the code covers two
+  different products.
+- BLUETTI: only studio shots taken from the front left and above, of the exact catalogue
+  model, are used. On 6 Nov 2026 that is 3 of 18 codes: PWR-001-03 (AC50P), PWR-001-04
+  (AC70P) and PWR-002-01 (APEX300). The supplied PV60F panel is not the catalogue PV60
+  (Sora 60), so it is not used. A BLUETTI code with no photo shows a battery icon.
 
 ## D6. Response types
 
@@ -158,12 +172,8 @@ The choice persists per browser in `localStorage` (`cti.showSources`).
 
 ## D10. Open items
 
-1. Write the full photo pipeline (`scripts/build_product_images.py`, report §5.2). The
-   current crops come from a quick script with fixed column bounds. The fire-extinguisher
-   sheet has a different layout, and the quick script failed on it.
-2. Ask CTI for BLUETTI product photos from its own material.
-3. Ask CTI to agree to publish the product photos in a public repo.
-4. Replace the cyan `₱` favicon (`app/icon.svg`) with the CTI logo.
-5. The model still repeats prices in its text, for example in the power-station answer. The
+1. Get front-left-elevated BLUETTI photos for the other 15 codes.
+2. Replace the cyan `₱` favicon (`app/icon.svg`) with the CTI logo.
+3. The model still repeats prices in its text, for example in the power-station answer. The
    cards show the exact figures from code. A prompt change can make the text point to the
    cards instead.
