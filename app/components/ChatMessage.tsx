@@ -109,6 +109,14 @@ export function ChatMessage({
         (inv.toolName === 'getProductDetails' && inv.state === 'result' && !hasShowProducts)),
   );
 
+  // Lookups that matched no variant. The sizing card names the stand-in row, so the
+  // customer never reads the figures as figures for the appliance they asked about.
+  const approximate = invocations.flatMap((inv) => {
+    if (inv.toolName !== 'lookupApplianceWattage' || inv.state !== 'result') return [];
+    const r = inv.result as { status?: string; exact?: boolean; asked?: string; suggested?: { name: string; running_w: number } };
+    return r.status === 'found' && r.exact === false && r.suggested && r.asked ? [{ asked: r.asked, ...r.suggested }] : [];
+  });
+
   // A compare table already shows its products, so the card row leaves them out.
   const compared = new Set(
     invocations.flatMap((inv) =>
@@ -158,7 +166,7 @@ export function ChatMessage({
 
         {cards.map((inv) => {
           if (inv.toolName === 'recommendPowerStation' && inv.state === 'result') {
-            return <RecommendationCard key={inv.toolCallId} loads={inv.args.loads} result={inv.result} />;
+            return <RecommendationCard key={inv.toolCallId} loads={inv.args.loads} result={inv.result} approximate={approximate} />;
           }
           if (inv.toolName === 'buildQuotation' && inv.state === 'result') {
             return <QuoteCard key={inv.toolCallId} result={inv.result} />;

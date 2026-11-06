@@ -157,3 +157,21 @@ test('repeatedLists names the second of two identical product lists', () => {
   const skip = repeatedLists([inv('a', HARNESSES), inv('b', HARNESSES), inv('c', ['PWR-001-06'])]);
   assert.deepEqual([...skip], ['b']);
 });
+
+test('pickChips: runtime-only sizing and a station compare offer the checklist', () => {
+  const rec = { toolName: 'recommendPowerStation', result: { mode: 'runtime', eligible: [], runtime: [{ code: 'PWR-002-02' }], rejected: [] } };
+  assert.deepEqual(pickChips([rec]).map((c) => c.prompt), [
+    'Add PWR-002-02 to my quote.',
+    'I want to pick my own appliances for a power station.',
+  ]);
+  const cmp = { toolName: 'compareProducts', result: { products: [], rows: [], sample_day: { source: 'sample' } } };
+  assert.deepEqual(pickChips([cmp]).map((c) => c.label), ['Use my appliances']);
+  assert.deepEqual(pickChips([{ toolName: 'compareProducts', result: { products: [], rows: [] } }]), []);
+});
+
+test('repeatedLists skips a list that a sizing card already shows', () => {
+  const rec = { toolCallId: 'r', toolName: 'recommendPowerStation', state: 'result', result: { eligible: [], runtime: [{ code: 'PWR-001-06' }, { code: 'PWR-001-05' }] } };
+  const list = (id: string, codes: string[]) => ({ toolCallId: id, toolName: 'showProducts', state: 'result', result: showProducts(codes) });
+  const skip = repeatedLists([rec, list('a', ['PWR-001-06', 'PWR-001-05']), list('b', ['PWR-001-06', 'PWR-002-02'])]);
+  assert.deepEqual([...skip], ['a']);
+});

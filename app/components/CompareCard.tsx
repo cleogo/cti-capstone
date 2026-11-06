@@ -13,7 +13,8 @@ const NOT_ON_FILE = <span className="text-faint">Not on file</span>;
 
 export function CompareCard({ result }: { result: CompareResult | { error: string; message?: string } }) {
   if ('error' in result) return null; // The answer text explains the failure. Sources show nothing either.
-  const { products, rows } = result;
+  const { products, rows, sample_day: day } = result;
+  const h = (x: number) => x.toLocaleString('en-PH', { maximumFractionDigits: 2 });
   const th = `sticky left-0 z-[1] bg-white px-3 py-2 text-left align-top text-muted ${eyebrow}`;
 
   return (
@@ -67,6 +68,34 @@ export function CompareCard({ result }: { result: CompareResult | { error: strin
                 <td key={p.code} className="px-3 py-2">{NOT_ON_FILE}</td>
               ))}
             </tr>
+          )}
+          {day && (
+            <>
+              <tr className="border-t-2 border-line bg-paper/50">
+                <th scope="row" className={`${th} bg-paper/50`}>{day.source === 'session' ? 'Your loads' : 'Sample day'}</th>
+                <td colSpan={products.length} className="px-3 py-2 text-xs text-muted">
+                  {day.loads
+                    .map((l) => `${l.qty} × ${l.name} · ${h(l.running_w)} W${l.hours !== null ? ` · ${h(l.hours)} h` : ''}`)
+                    .join(', ')}
+                </td>
+              </tr>
+              <tr className="border-t border-line">
+                <th scope="row" className={th}>Runtime on these loads</th>
+                {day.stations.map((r) => (
+                  <td key={r.code} className="px-3 py-2 font-heading font-semibold tabular-nums text-ink">{h(r.runtime_h)} h</td>
+                ))}
+              </tr>
+              {day.stations.some((r) => r.energy_wh !== null) && (
+                <tr className="border-t border-line">
+                  <th scope="row" className={th}>Covers the day</th>
+                  {day.stations.map((r) => (
+                    <td key={r.code} className="px-3 py-2 text-xs text-ink">
+                      {r.eligible ? 'Yes' : `No: ${r.reasons.join('; ')}`}
+                    </td>
+                  ))}
+                </tr>
+              )}
+            </>
           )}
         </tbody>
       </table>

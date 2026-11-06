@@ -24,10 +24,10 @@ import {
 import { getProductDetails, compareProducts } from '@/lib/details';
 import { MAX_SHOWN, showProducts } from '@/lib/show-products';
 import { lookupApplianceWattage, USER_TYPES } from '@/lib/appliances';
-import { recommendPowerStation } from '@/lib/power';
+import { recommendPowerStation, sampleDay, type Load } from '@/lib/power';
 import { buildQuotation } from '@/lib/quote';
 import { createTicket, TICKET_REASONS } from '@/lib/tickets';
-import { updateSession, type SessionState } from '@/lib/session';
+import { getSession, updateSession, type SessionState } from '@/lib/session';
 import { PROMPT_VERSION, type PromptVersion } from '@/lib/prompt';
 
 export type ToolContext = {
@@ -60,6 +60,17 @@ export async function safeExecute<T>(fn: () => T | Promise<T>): Promise<T | Tool
   }
 }
 
+/** The loads of the last sizing in this session, or null. A Redis failure gives null. */
+async function sessionLoads(ctx: ToolContext): Promise<Load[] | null> {
+  if (!ctx.sessionId) return null;
+  try {
+    return (await getSession(ctx.sessionId)).state.appliances;
+  } catch (e) {
+    console.error(`session read failed: ${e instanceof Error ? e.message : String(e)}`);
+    return null;
+  }
+}
+
 /** Write to the session if there is one. A Redis failure must not fail the tool. */
 async function remember(ctx: ToolContext, change: (s: SessionState) => void) {
   if (!ctx.sessionId) return;
@@ -81,7 +92,12 @@ const LoadSchema = z.object({
     .nullable()
     .describe('start-up watts for one unit if the lookup gave one, else null'),
   qty: z.number().int().min(1).max(50),
-  hours: z.number().min(0.5).max(24).describe('hours of use per day or per outage'),
+  hours: z
+    .number()
+    .min(0.5)
+    .max(24)
+    .nullable()
+    .describe('hours of use per day or per outage, as the user said them. null if the user gave no hours or range'),
 });
 
 /**
@@ -238,18 +254,25 @@ export function createTools(ctx: ToolContext) {
       'from the masterlist; price_php is null for a code with conflicting records. ' +
       'USE FOR: "compare PWR-001-06 and PWR-001-05", "which of A or B suits X", once ' +
       'you have the codes. Never for "which is better quality" — no sheet rates quality. ' +
+      'When every code is a power station, the result also holds sample_day: the runtime of each station ' +
+      'on the loads of the customer from this session from this session, or on a sample household day. ' +
       'DO NOT USE FOR: one product (use getProductDetails), finding products by description ' +
       '(use searchProducts first to get the codes), or ranking by price or counting (use filterProducts).',
     parameters: z.object({
       codes: z.array(z.string()).min(2).max(4).describe('2 to 4 exact product codes'),
     }),
-    execute: async ({ codes }) => safeExecute(() => compareProducts(codes)),
+    execute: async ({ codes }) =>
+      safeExecute(async () => {
+        const r = compareProducts(codes);
+        const day = sampleDay(r.products.map((p) => p.code), await sessionLoads(ctx));
+        return day ? { ...r, sample_day: day } : r;
+      }),
   }),
 
   showProducts: tool({
     description:
       'Display products to the customer as cards. Call it for EVERY answer that names one or ' +
-      'more products, after searchProducts or filterProducts gives the codes. DO NOT USE for ' +
+      'more products, after searchProducts or filterProducts gives the codes. DO NOT USE after recommendPowerStation or compareProducts: their cards already show the stations. DO NOT USE for ' +
       '2 to 4 products that the customer asked to compare (use compareProducts) or for a ' +
       'quotation (use buildQuotation).',
     parameters: z.object({
@@ -272,13 +295,17 @@ export function createTools(ctx: ToolContext) {
       'appliance, before recommendPowerStation. ' +
       'DO NOT USE FOR: CTI products or prices (use searchProducts), or when the user already gave the ' +
       'watts ("my fan is 60 W") — use their figure. ' +
-      'Returns status "found" with matches (one row per variant), or "unknown". On "unknown", ask the ' +
+      'Returns status "found" with matches (one row per variant), or "unknown". exact: false means no ' +
+      'row matched the size words: say that the details are not on file and name the variant you used. ' +
+      'On "unknown", ask the ' +
       'user for the watts from the appliance label. Never guess a wattage. ' +
       'When all matches are one appliance, "suggested" holds the variant to use if the user named ' +
       'no variant: pass its name, running_w and surge_w to recommendPowerStation unchanged. When ' +
       'there is no "suggested", the matches are different appliances: ask the user which one.',
     parameters: z.object({
-      query: z.string().describe('one appliance, e.g. "ref 16 cu ft", "aircon 1hp", "32 inch TV"'),
+      query: z
+        .string()
+        .describe('one appliance in the words of the customer, with every size word they gave ("1hp", "16 cu ft"), e.g. "ref 16 cu ft", "aircon 1hp", "32 inch TV"'),
     }),
     execute: async ({ query }) => safeExecute(() => lookupApplianceWattage(query)),
   }),
@@ -288,20 +315,29 @@ export function createTools(ctx: ToolContext) {
       'Size a BLUETTI power station for a list of loads. Code computes every figure: running watts, ' +
       'start-up peak, energy needed, usable energy, runtime, and which stations fit, with the reason ' +
       'each one fails. The app shows the result as a card. ' +
-      'USE FOR: "which power station for my ref and TV", "how long will X run". Call it after ' +
-      'lookupApplianceWattage gave you the watts for every appliance. ' +
-      'DO NOT USE FOR: a product\'s specs (use getProductDetails), or a power-station price alone ' +
+      'USE FOR: "which power station for my ref and TV", "how long will X run", "can PWR-001-06 run my ref". ' +
+      'Call it after lookupApplianceWattage gave you the watts for every appliance. ' +
+      'Do not ask for hours first: if the user gave no hours, set hours to null and the result gives ' +
+      'the runtime of each station. ' +
+      "DO NOT USE FOR: a product's specs (use getProductDetails), or a power-station price alone " +
       '(use searchProducts). ' +
-      'Returns eligible (sorted cheapest first) and rejected stations. Never redo its arithmetic.',
+      'Returns mode, eligible (meets the full need, cheapest first), runtime (can run the load, ' +
+      'longest runtime first: all stations in mode "runtime", or the fallback when eligible is empty) ' +
+      'and rejected. Never redo its arithmetic.',
     parameters: z.object({
       loads: z.array(LoadSchema).min(1).max(30),
+      codes: z
+        .array(z.string())
+        .max(10)
+        .optional()
+        .describe('only these station codes, when the user named stations. Omit to check all stations'),
     }),
-    execute: async ({ loads }) =>
+    execute: async ({ loads, codes }) =>
       safeExecute(async () => {
-        const r = recommendPowerStation(loads);
+        const r = recommendPowerStation(loads, codes);
         await remember(ctx, (s) => {
           s.appliances = loads;
-          s.lastRecommendation = r.eligible.map((e) => e.code);
+          s.lastRecommendation = [...r.eligible, ...r.runtime].map((e) => e.code);
         });
         return r;
       }),

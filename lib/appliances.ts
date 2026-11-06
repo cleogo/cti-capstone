@@ -70,7 +70,15 @@ const MAX_MATCHES = 20;
 export type Suggested = { name: string; running_w: number; surge_w: number | null };
 
 export type LookupResult =
-  | { status: 'found'; matches: Appliance[]; suggested?: Suggested; note?: string }
+  | {
+      status: 'found';
+      matches: Appliance[];
+      /** false: no variant matched the words in `asked`. The matches are every variant on file. */
+      exact: boolean;
+      asked: string;
+      suggested?: Suggested;
+      note?: string;
+    }
   | { status: 'unknown'; query: string };
 
 /**
@@ -109,17 +117,21 @@ function match(query: string): LookupResult {
     const rest = q.filter((t) => !nameTok.has(t));
     const rows = APPLIANCES.filter((a) => best.includes(a.appliance));
     const narrowed = rows.filter((a) => rest.every((t) => ROW_TOKENS.get(a)!.has(t)));
-    if (narrowed.length > 0) return { status: 'found', matches: narrowed.slice(0, MAX_MATCHES) };
+    if (narrowed.length > 0) return { status: 'found', matches: narrowed.slice(0, MAX_MATCHES), exact: true, asked: query };
     return {
       status: 'found',
       matches: rows.slice(0, MAX_MATCHES),
-      note: `No variant matched "${rest.join(' ')}". These are all the variants on file for this appliance.`,
+      exact: false,
+      asked: query,
+      note:
+        `No details on file for "${query}". These are all the variants on file for this appliance. ` +
+        'Tell the user that you used the nearest variant, name it, and ask for the label watts and hours.',
     };
   }
 
   // 2. Every query word in the appliance name or variant.
   const rows = APPLIANCES.filter((a) => q.every((t) => ROW_TOKENS.get(a)!.has(t)));
-  if (rows.length > 0) return { status: 'found', matches: rows.slice(0, MAX_MATCHES) };
+  if (rows.length > 0) return { status: 'found', matches: rows.slice(0, MAX_MATCHES), exact: true, asked: query };
   return { status: 'unknown', query };
 }
 

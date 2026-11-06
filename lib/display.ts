@@ -72,6 +72,9 @@ export function displayedAnswer(text: string, results: { name: string; result: u
 
 export type Chip = { label: string; prompt: string };
 
+/** Routes to showApplianceChecklist: a power-station request that names no appliances. */
+const PICK_APPLIANCES: Chip = { label: 'Use my appliances', prompt: 'I want to pick my own appliances for a power station.' };
+
 /**
  * Follow-up chips for the latest answer (spec 6.2), at most 3. A quotation
  * wins over a recommendation, which wins over a product list.
@@ -94,6 +97,13 @@ export function pickChips(invocations: { toolName: string; result: unknown }[]):
     if (b) chips.push({ label: 'Compare both', prompt: `Compare ${a.code} and ${b.code}.` });
     return chips;
   }
+  if (rec && !rec.eligible?.length) {
+    const runtime = (rec as { runtime?: { code: string }[] }).runtime ?? [];
+    if (runtime.length) return [{ label: 'Quote the longest runtime', prompt: `Add ${runtime[0].code} to my quote.` }, PICK_APPLIANCES];
+  }
+
+  const compared = last('compareProducts') as { sample_day?: unknown } | undefined;
+  if (compared?.sample_day) return [PICK_APPLIANCES];
 
   const products = (last('showProducts') as Partial<ShowProductsResult> | undefined)?.products ?? [];
   if (products.length === 1) {
@@ -123,16 +133,26 @@ const listKey = (result: unknown) => ((result as { products?: ShownProduct[] } |
 
 /**
  * The toolCallIds of showProducts results that repeat an earlier list in the
- * same answer, code for code. The UI skips them. The model sometimes calls
- * showProducts twice with the same codes.
+ * same answer, code for code, or whose codes a recommendPowerStation or
+ * compareProducts card in the answer already shows. The UI skips them. The
+ * model sometimes calls showProducts twice, or after a sizing card.
  */
 export function repeatedLists(invocations: { toolCallId: string; toolName: string; state?: string; result?: unknown }[]): Set<string> {
   const seen = new Set<string>();
   const skip = new Set<string>();
+  // Codes that a sizing or compare card in this answer already shows.
+  const carded = new Set<string>();
+  for (const i of invocations) {
+    if (i.state !== 'result') continue;
+    const r = i.result as { eligible?: { code: string }[]; runtime?: { code: string }[]; products?: { code: string }[] } | null;
+    if (i.toolName === 'recommendPowerStation') for (const x of [...(r?.eligible ?? []), ...(r?.runtime ?? [])]) carded.add(x.code);
+    if (i.toolName === 'compareProducts') for (const x of r?.products ?? []) carded.add(x.code);
+  }
   for (const i of invocations) {
     if (i.toolName !== 'showProducts' || i.state !== 'result') continue;
     const key = listKey(i.result);
-    if (key && seen.has(key)) skip.add(i.toolCallId);
+    const codes = key ? key.split(',') : [];
+    if ((key && seen.has(key)) || (codes.length > 0 && codes.every((c) => carded.has(c)))) skip.add(i.toolCallId);
     seen.add(key);
   }
   return skip;

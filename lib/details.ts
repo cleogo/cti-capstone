@@ -9,6 +9,7 @@
  */
 import { BY_CODE, type Product } from '@/lib/products';
 import { sheetForCode, type Sheet } from '@/lib/sheets';
+import type { SampleDay } from '@/lib/power';
 
 export type DetailsResult = {
   status: 'on_file' | 'not_on_file' | 'unknown_code';
@@ -27,6 +28,8 @@ export type CompareResult = {
   }[];
   /** A null value means "not on file" for that product. */
   rows: { label: string; values: (string | null)[] }[];
+  /** Only when every product is a power station. Added by the compareProducts tool. */
+  sample_day?: SampleDay;
 };
 
 const CONFLICT = 'duplicate_code_conflict';

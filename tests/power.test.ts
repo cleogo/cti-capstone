@@ -5,9 +5,9 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { STATIONS, evaluateStation, recommendPowerStation, type Load } from '@/lib/power';
+import { STATIONS, evaluateStation, recommendPowerStation, sampleDay, sampleLoads, type Load } from '@/lib/power';
 
-const L = (name: string, running_w: number, qty: number, hours: number, surge_w: number | null = null): Load => ({
+const L = (name: string, running_w: number, qty: number, hours: number | null, surge_w: number | null = null): Load => ({
   name,
   running_w,
   surge_w,
@@ -73,9 +73,11 @@ test('aircon one hour', () => {
 });
 
 test('aircon four hours', () => {
-  const { eligible, rejected } = recommendPowerStation([AIRCON(4)]);
+  const { eligible, runtime, rejected } = recommendPowerStation([AIRCON(4)]);
   assert.deepEqual(eligible, []);
-  assert.equal(rejected.length, 10);
+  // No station holds 4 h, so the ones that can start it are listed by runtime.
+  assert.deepEqual(codes(runtime), ['PWR-002-01', 'PWR-001-08', 'PWR-001-07', 'PWR-001-05']);
+  assert.equal(runtime.length + rejected.length, 10);
 });
 
 // ---- the ten cases from docs/evidence/calculator-cases.md ----
@@ -168,4 +170,50 @@ test('one watt over rated / 1.2 names the headroom failure', () => {
   const r = evaluateStation([L('Custom load', 239, 1, 0.5)], station('PWR-001-01'));
   assert.equal(r.eligible, false);
   assert.deepEqual(r.reasons, ['running 251 W x 1.2 = 301.2 W > rated 300 W']);
+});
+
+// ---- runtime mode and fallback ----
+
+const REF = (h: number | null) => L('Refrigerator 8-cu-ft non-inverter', 160, 1, h);
+
+test('fridge 24 h: no station holds it, so every watt fit is listed by runtime', () => {
+  const r = recommendPowerStation([REF(24)]);
+  assert.equal(r.mode, 'sizing');
+  assert.deepEqual(r.eligible, []);
+  assert.equal(r.runtime.length, 10);
+  assert.equal(r.runtime[0].code, 'PWR-002-02');
+  for (let i = 1; i < r.runtime.length; i++) assert.ok(r.runtime[i - 1].runtime_h >= r.runtime[i].runtime_h);
+});
+
+test('no hours: runtime mode checks watts only', () => {
+  const r = recommendPowerStation([REF(null)]);
+  assert.equal(r.mode, 'runtime');
+  assert.deepEqual(r.eligible, []);
+  assert.equal(r.runtime.length, 10);
+  assert.equal(r.runtime[0].energy_wh, null);
+  const a = recommendPowerStation([{ ...AIRCON(1), hours: null }]);
+  assert.ok(a.rejected.some((x) => x.code === 'PWR-002-02'), 'ELITE320 fails the start-up peak');
+});
+
+test('sizing with a fit leaves runtime empty', () => {
+  const r = recommendPowerStation([L('Laptop', 45, 1, 3)]);
+  assert.equal(r.eligible[0].code, 'PWR-001-01');
+  assert.deepEqual(r.runtime, []);
+});
+
+test('codes limit the stations', () => {
+  const r = recommendPowerStation([REF(null)], ['PWR-001-06', 'PWR-001-05']);
+  assert.deepEqual(codes(r.runtime), ['PWR-001-06', 'PWR-001-05']);
+  assert.throws(() => recommendPowerStation([REF(1)], ['PPE-001']), /not a power station/);
+});
+
+test('sampleDay: default household loads, or the session loads', () => {
+  const d = sampleDay(['PWR-001-06', 'PWR-001-05'], null)!;
+  assert.equal(d.source, 'sample');
+  assert.deepEqual(d.loads, sampleLoads());
+  assert.deepEqual(codes(d.stations), ['PWR-001-06', 'PWR-001-05']);
+  assert.ok(d.stations[0].runtime_h > d.stations[1].runtime_h, 'the 1440 Wh station runs longer');
+  const own = sampleDay(['PWR-001-06', 'PWR-001-05'], [REF(null)])!;
+  assert.equal(own.source, 'session');
+  assert.equal(sampleDay(['PWR-001-06', 'PPE-001'], null), null);
 });

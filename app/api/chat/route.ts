@@ -385,7 +385,7 @@ function memoryMessage(state: SessionState, dropped: string[]): string | null {
     lines.push(`Saved quote list (code × qty): ${state.quote.map((l) => `${l.code} × ${l.qty}`).join(', ')}`);
   }
   if (state.lastRecommendation && state.lastRecommendation.length > 0) {
-    lines.push(`Last power-station recommendation, eligible stations cheapest first: ${state.lastRecommendation.join(', ')}`);
+    lines.push(`Last power-station recommendation, stations in the order shown: ${state.lastRecommendation.join(', ')}`);
   }
   if (dropped.length > 0) {
     lines.push(`These saved codes are no longer in the catalogue and were removed: ${dropped.join(', ')}. Tell the customer.`);

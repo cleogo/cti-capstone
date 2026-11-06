@@ -61,3 +61,14 @@ test('checklistFor Residential lists only Residential items', () => {
   assert.deepEqual(checklistFor('Spaceship'), []);
   assert.ok(USER_TYPES.includes('Residential'));
 });
+
+test('an unmatched variant is flagged as not exact', () => {
+  const r = lookupApplianceWattage('1hp ref');
+  assert.equal(r.status, 'found');
+  if (r.status !== 'found') return;
+  assert.equal(r.exact, false);
+  assert.equal(r.asked, '1hp ref');
+  assert.equal(r.suggested?.name, 'Refrigerator 8-cu-ft non-inverter');
+  const ok = lookupApplianceWattage('16 cu ft ref');
+  assert.equal(ok.status === 'found' && ok.exact, true);
+});
