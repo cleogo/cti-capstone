@@ -18,7 +18,8 @@ import { QuoteCard } from './QuoteCard';
 import { ContactForm } from './ContactForm';
 import { CompareCard } from './CompareCard';
 import { ProductList } from './ProductList';
-import type { ShowProductsResult, ShownProduct } from '@/lib/display';
+import { FollowUpChips } from './FollowUpChips';
+import { pickChips, type ShowProductsResult, type ShownProduct } from '@/lib/display';
 import { IconAlert, IconSparkle, Logo } from './ui';
 import { sourcesFromMessage } from '@/lib/sources';
 
@@ -67,6 +68,7 @@ export function ChatMessage({
   onOpen,
   tray,
   onToggleTray,
+  isLatest = false,
 }: {
   message: Message;
   addToolResult?: AddToolResult;
@@ -79,6 +81,8 @@ export function ChatMessage({
   /** Codes in the compare tray. */
   tray?: string[];
   onToggleTray?: (code: string) => void;
+  /** Only the latest answer shows follow-up chips. */
+  isLatest?: boolean;
 }) {
   if (message.role === 'user') {
     return (
@@ -188,6 +192,12 @@ export function ChatMessage({
           );
         })}
 
+        {isLatest && !busy && onAsk && (
+          <FollowUpChips
+            chips={pickChips(invocations.filter((inv) => inv.state === 'result').map((inv) => ({ toolName: inv.toolName, result: inv.state === 'result' ? inv.result : null })))}
+            onAsk={onAsk}
+          />
+        )}
         {showSources && sources.length > 0 && (
           <SourceList sources={sources} defaultOpen={!invocations.some((inv) => inv.toolName === 'showProducts')} />
         )}

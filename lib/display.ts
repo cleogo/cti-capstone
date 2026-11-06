@@ -72,3 +72,47 @@ export function displayedAnswer(text: string, results: { name: string; result: u
   }
   return lines.length ? `${text}\n${lines.join('\n')}` : text;
 }
+
+export type Chip = { label: string; prompt: string };
+
+/**
+ * Follow-up chips for the latest answer (spec 6.2), at most 3. A quotation
+ * wins over a recommendation, which wins over a product list.
+ */
+export function pickChips(invocations: { toolName: string; result: unknown }[]): Chip[] {
+  const last = (name: string) => [...invocations].reverse().find((i) => i.toolName === name)?.result;
+  const quote = (code: string): Chip => ({ label: 'Add to a quote', prompt: `Add ${code} to my quote.` });
+
+  if (last('buildQuotation')) {
+    return [
+      { label: 'Add another item', prompt: 'I want to add another item to my quote.' },
+      { label: 'Talk to sales', prompt: 'Refer me to CTI sales about my quotation.' },
+    ];
+  }
+
+  const rec = last('recommendPowerStation') as { eligible?: { code: string }[] } | undefined;
+  if (rec?.eligible?.length) {
+    const [a, b] = rec.eligible;
+    const chips: Chip[] = [{ label: 'Quote the smallest fit', prompt: `Add ${a.code} to my quote.` }];
+    if (b) chips.push({ label: 'Compare both', prompt: `Compare ${a.code} and ${b.code}.` });
+    return chips;
+  }
+
+  const products = (last('showProducts') as Partial<ShowProductsResult> | undefined)?.products ?? [];
+  if (products.length === 1) {
+    const [p] = products;
+    const chips: Chip[] = [{ label: 'Show specs', prompt: `What are the specs of ${p.code}?` }];
+    if (p.price_php !== null) chips.push(quote(p.code));
+    return chips;
+  }
+  if (products.length >= 2) {
+    const [a, b] = products;
+    const chips: Chip[] = [
+      { label: 'Compare the first two', prompt: `Compare ${a.code} and ${b.code}.` },
+      { label: 'Show cheaper options', prompt: 'Show cheaper options than these.' },
+    ];
+    if (a.price_php !== null) chips.push({ label: 'Quote the first one', prompt: `Add ${a.code} to my quote.` });
+    return chips;
+  }
+  return [];
+}

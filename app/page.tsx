@@ -15,6 +15,8 @@ import { ProductSheet } from './components/ProductSheet';
 import { TRAY_MAX } from './components/ProductList';
 import type { ShownProduct } from '@/lib/display';
 import { IconAlert, IconPanel, IconPlus, IconReplay, IconSend, IconStop, Logo } from './components/ui';
+
+const AWAY_PX = 200;
 import { sourcesFromMessage } from '@/lib/sources';
 
 const SOURCES_KEY = 'cti.showSources';
@@ -71,6 +73,22 @@ export default function Page() {
     0,
   );
 
+  // Jump to latest (spec 6.3): shows when the reader is more than AWAY_PX from the end.
+  // A gold dot marks new content that arrived while they were away.
+  const [away, setAway] = useState(false);
+  const [unseen, setUnseen] = useState(false);
+  const onScroll = () => {
+    const el = scroller.current;
+    if (!el) return;
+    const isAway = el.scrollHeight - el.scrollTop - el.clientHeight > AWAY_PX;
+    setAway(isAway);
+    if (!isAway) setUnseen(false);
+  };
+  const jumpToLatest = () => {
+    scroller.current?.scrollTo({ top: scroller.current.scrollHeight, behavior: 'smooth' });
+    setUnseen(false);
+  };
+
   // Follow the conversation while the user is near the end. Do not pull them back down if
   // they scrolled up to read an earlier answer.
   const lastLen = (last?.content.length ?? 0) + (last?.toolInvocations?.length ?? 0);
@@ -78,6 +96,7 @@ export default function Page() {
     const el = scroller.current;
     if (!el) return;
     if (el.scrollHeight - el.scrollTop - el.clientHeight < 240) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+    else if (messages.length > 0) setUnseen(true);
   }, [messages.length, lastLen, status]);
 
   // One polite announcement per finished answer. The streaming text itself is not live.
@@ -127,7 +146,7 @@ export default function Page() {
 
       <div className="print-unclip flex min-h-0 flex-1">
         <main className="print-unclip flex min-w-0 flex-1 flex-col">
-          <div ref={scroller} className="print-unclip min-h-0 flex-1 overflow-y-auto overscroll-contain" aria-busy={isStreaming}>
+          <div ref={scroller} onScroll={onScroll} className="print-unclip min-h-0 flex-1 overflow-y-auto overscroll-contain" aria-busy={isStreaming}>
             {messages.length === 0 ? (
               <EmptyState onPick={ask} />
             ) : (
@@ -143,6 +162,7 @@ export default function Page() {
                     onOpen={setSheet}
                     tray={tray}
                     onToggleTray={toggleTray}
+                    isLatest={m === last}
                   />
                 ))}
                 {status === 'submitted' && last?.role === 'user' && <TypingRow />}
@@ -160,6 +180,42 @@ export default function Page() {
                   </li>
                 )}
               </ul>
+            )}
+          </div>
+
+          {/* Jump to latest and the compare bar sit just above the composer. */}
+          <div className="relative shrink-0 print:hidden">
+            {away && messages.length > 0 && (
+              <button
+                type="button"
+                onClick={jumpToLatest}
+                aria-label="Jump to latest"
+                className="absolute -top-14 right-4 z-10 flex h-11 w-11 animate-card-in items-center justify-center rounded-full border border-line bg-white text-ink shadow-md transition hover:border-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink active:scale-[0.97]"
+              >
+                <span aria-hidden="true" className="text-lg leading-none">↓</span>
+                {unseen && <span className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-brand ring-2 ring-white" aria-label="New content" />}
+              </button>
+            )}
+            {tray.length > 0 && (
+              <div className="border-t border-line bg-white px-3 py-2 sm:px-4" role="region" aria-label="Compare tray">
+                <div className="mx-auto flex max-w-3xl items-center gap-2">
+                  <span className="min-w-0 flex-1 truncate font-mono text-xs text-muted">{tray.join(' · ')}</span>
+                  <button type="button" onClick={() => setTray([])} className="min-h-[44px] rounded-xl px-3 text-sm text-muted hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink">
+                    Clear
+                  </button>
+                  <button
+                    type="button"
+                    disabled={tray.length < 2 || isBusy}
+                    onClick={() => {
+                      ask(`Compare ${tray.length === 2 ? tray.join(' and ') : `${tray.slice(0, -1).join(', ')} and ${tray[tray.length - 1]}`}.`);
+                      setTray([]);
+                    }}
+                    className="min-h-[44px] rounded-xl bg-ink px-4 text-sm font-medium text-white transition hover:bg-ink/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    Compare ({tray.length})
+                  </button>
+                </div>
+              </div>
             )}
           </div>
 

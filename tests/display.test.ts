@@ -4,7 +4,7 @@ import type { Message } from 'ai';
 import { BY_CODE } from '../lib/products';
 import { sourcesFromMessage } from '../lib/sources';
 import { createTools } from '../lib/tools';
-import { MAX_SHOWN, displayedAnswer, showProducts } from '../lib/display';
+import { MAX_SHOWN, displayedAnswer, pickChips, showProducts } from '../lib/display';
 
 test('showProducts keeps order and drops duplicates', () => {
   const r = showProducts(['MED-001-01', 'PWR-001-06', 'MED-001-01']);
@@ -70,3 +70,33 @@ test('an identical repeat of a search tool is refused', async () => {
   assert.equal(again.error, 'repeated_call');
   assert.match(again.message ?? '', /showProducts/);
 });
+
+const shown = (codes: string[]) => ({ toolName: 'showProducts', result: showProducts(codes) });
+
+test('chips for several products', () => {
+  assert.deepEqual(pickChips([shown(['PWR-001-06', 'PWR-001-05'])]).map((c) => c.prompt), [
+    'Compare PWR-001-06 and PWR-001-05.',
+    'Show cheaper options than these.',
+    'Add PWR-001-06 to my quote.',
+  ]);
+});
+
+test('chips for one product', () => {
+  assert.deepEqual(pickChips([shown(['PWR-001-06'])]).map((c) => c.label), ['Show specs', 'Add to a quote']);
+});
+
+test('a conflict code gets no quote chip', () => {
+  assert.deepEqual(pickChips([shown(['FLA-001-13'])]).map((c) => c.label), ['Show specs']);
+});
+
+test('a quotation wins over shown products', () => {
+  const q = { toolName: 'buildQuotation', result: { ok: true } };
+  assert.deepEqual(pickChips([shown(['PWR-001-06']), q]).map((c) => c.label), ['Add another item', 'Talk to sales']);
+});
+
+test('chips for a power-station recommendation', () => {
+  const rec = { toolName: 'recommendPowerStation', result: { eligible: [{ code: 'PWR-001-03' }, { code: 'PWR-001-04' }], rejected: [] } };
+  assert.deepEqual(pickChips([rec]).map((c) => c.prompt), ['Add PWR-001-03 to my quote.', 'Compare PWR-001-03 and PWR-001-04.']);
+});
+
+test('no chips for a plain answer', () => assert.deepEqual(pickChips([]), []));
