@@ -152,5 +152,26 @@
   ],
   "BLUETTI APEX300": [
     "PWR-002-01"
+  ],
+  "BLUETTI AC180P": [
+    "PWR-001-06"
+  ],
+  "BLUETTI AC200PL": [
+    "PWR-001-08"
+  ],
+  "BLUETTI B300K": [
+    "PWR-004-01"
+  ],
+  "BLUETTI PREMIUM 30 V2": [
+    "PWR-001-02"
+  ],
+  "BLUETTI SORA60": [
+    "PWR-003-01"
+  ],
+  "BLUETTI SORA130": [
+    "PWR-003-03"
+  ],
+  "BLUETTI SORA220": [
+    "PWR-003-05"
   ]
 }

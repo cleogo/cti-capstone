@@ -1021,21 +1021,21 @@ LCS-001-38,Safety BOY Sports,Low Cut Safety Shoes,missing,
 PLT-001-01,Portalet,Portable Toilets,yes,P/PORTALET
 PLT-001-02,"Portablet (1 Pack, 50 Pcs)",Portable Toilets,missing,
 PWR-001-01,BLUETTI Premium 20 (AC2P) Portable Power Station | 300W 230Wh,Portable Power Stations,missing,
-PWR-001-02,BLUETTI Premium 30 V2 Portable Power Station | 600W 320Wh,Portable Power Stations,missing,
+PWR-001-02,BLUETTI Premium 30 V2 Portable Power Station | 600W 320Wh,Portable Power Stations,yes,BLUETTI/BLUETTI PREMIUM 30 V2
 PWR-001-03,BLUETTI Premium 50 (AC50P) Portable Power Station | 700W 504Wh,Portable Power Stations,yes,BLUETTI/BLUETTI AC50P
 PWR-001-04,BLUETTI Premium 80 (AC70P) Portable Power Station | 1000W 864Wh,Portable Power Stations,yes,BLUETTI/BLUETTI AC70P
-PWR-001-06,BLUETTI Premium 150 (AC180P) Portable Power Station | 1800W 1440Wh,Portable Power Stations,missing,
+PWR-001-06,BLUETTI Premium 150 (AC180P) Portable Power Station | 1800W 1440Wh,Portable Power Stations,yes,BLUETTI/BLUETTI AC180P
 PWR-001-05,BLUETTI Premium 100 V2 Portable Power Station | 2000W 1024Wh,Portable Power Stations,missing,
 PWR-001-07,BLUETTI Premium 200 V2 Portable Power Station | 2700W 2073.6Wh,Portable Power Stations,missing,
-PWR-001-08,BLUETTI Premium 200 (AC200PL) Portable Power Station | 2400W 2304Wh,Portable Power Stations,missing,
+PWR-001-08,BLUETTI Premium 200 (AC200PL) Portable Power Station | 2400W 2304Wh,Portable Power Stations,yes,BLUETTI/BLUETTI AC200PL
 PWR-002-01,BLUETTI APEX300 Power Station | 3840W 2764.8Wh,Power Stations,yes,BLUETTI/BLUETTI APEX300
 PWR-002-02,BLUETTI ELITE320 Power Station | 1800W 3200Wh,Power Stations,missing,
-PWR-004-01,BLUETTI B300K LiFePO4 Battery 51.2V 54Ah | 2764.8Wh,Power Station Batteries & Accessories,missing,
-PWR-003-01,BLUETTI PV60 Solar Panel | 60W,Solar Panels,missing,
+PWR-004-01,BLUETTI B300K LiFePO4 Battery 51.2V 54Ah | 2764.8Wh,Power Station Batteries & Accessories,yes,BLUETTI/BLUETTI B300K
+PWR-003-01,BLUETTI PV60 Solar Panel | 60W,Solar Panels,yes,BLUETTI/BLUETTI SORA60
 PWR-003-02,BLUETTI PV100 Solar Panel | 100W,Solar Panels,missing,
-PWR-003-03,BLUETTI PV130 Solar Panel | 130W,Solar Panels,missing,
+PWR-003-03,BLUETTI PV130 Solar Panel | 130W,Solar Panels,yes,BLUETTI/BLUETTI SORA130
 PWR-003-04,BLUETTI PV200 Solar Panel | 200W,Solar Panels,missing,
-PWR-003-05,BLUETTI PV220 Solar Panel | 220W,Solar Panels,missing,
+PWR-003-05,BLUETTI PV220 Solar Panel | 220W,Solar Panels,yes,BLUETTI/BLUETTI SORA220
 PWR-003-06,BLUETTI PV350 Solar Panel | 350W,Solar Panels,missing,
 PWR-004-02,BLUETTI P090D-P150D Battery Cable,Power Station Batteries & Accessories,missing,
 
