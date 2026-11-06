@@ -47,9 +47,9 @@ Success criteria:
   compareProducts) or for a quotation (use buildQuotation)."
 - Status label: "Showing products…".
 
-### 3.2 Prompt V3
+### 3.2 Prompt V4
 
-`PROMPT_V3` replaces the V2 formatting rule for products:
+`PROMPT_V4` is `PROMPT_V3` (the plan-first prompt) with the product rules replaced. It replaces the format rule, and rules 2 and 3, which put prices in the text. It adds a "Product display" section that overrides "give the code and price" in the other rules:
 
 - Products go to the customer only through `showProducts`.
 - The text has one sentence above the products. When filterProducts ran, that sentence
@@ -57,7 +57,9 @@ Success criteria:
 - The text may have one more sentence below the products.
 - The text has no product table and no prices. The text may name codes.
 
-This closes D10 item 3. V2 stays in the file, so the evidence can compare V2 and V3.
+This closes D10 item 3. V1 to V3 stay in the file, so the evidence can compare V3 and V4.
+
+`createTools` also refuses an identical repeat of `searchProducts` or `filterProducts` in one request. Without it, V4 repeated one search up to 12 times when it found fewer products than the customer asked for.
 
 ### 3.3 Eval contract
 
@@ -197,7 +199,7 @@ Each chip sends a prompt that names the codes from the tool result.
 
 ## 7. Testing
 
-1. `scripts/check-display.ts`, one script with no framework. It checks:
+1. `tests/display.test.ts`, in the `node:test` suite (`npm test`). It checks:
    - `showProducts`: order kept, duplicates removed, unknown codes moved to `unknown`,
      a conflict code returned once with no price, the 50-code cap.
    - `displayedAnswer()`: product lines and the conflict line.
@@ -206,7 +208,7 @@ Each chip sends a prompt that names the codes from the tool result.
    - A list question calls `showProducts`.
    - A comparison calls `compareProducts` and not `showProducts`.
    - A quotation calls `buildQuotation` and not `showProducts`.
-3. Run `grade.ts`, the judge and RAGAS on V3. Commit the new evidence under
+3. Run `grade.ts`, the judge and RAGAS on V4. Commit the new evidence under
    `docs/evidence/`. This takes about 10 minutes of model calls.
 4. Check in the browser preview at 375 px and at 1280 px. Check these items:
    3 results (cards), 20 results (table), the sheet, the back gesture, compare select,
@@ -225,7 +227,7 @@ Each chip sends a prompt that names the codes from the tool result.
 |---|---|
 | `lib/display.ts` | New: `showProducts` logic, `displayedAnswer()`, chip picker |
 | `lib/tools.ts` | Register `showProducts` |
-| `lib/prompt.ts` | Add `PROMPT_V3` |
+| `lib/prompt.ts` | Add `PROMPT_V4` |
 | `app/api/products/[code]/route.ts` | New: detail API |
 | `app/components/ProductList.tsx` | New: cards or table, Select mode |
 | `app/components/ProductSheet.tsx` | New: detail sheet and actions |
@@ -234,7 +236,7 @@ Each chip sends a prompt that names the codes from the tool result.
 | `app/components/SourceList.tsx` | Becomes the closed "Sources (n)" disclosure |
 | `app/components/ChatMessage.tsx` | Render `ProductList` and chips |
 | `app/page.tsx` | Compare tray, compare bar, jump button, sheet state |
-| `scripts/check-display.ts` | New: runnable check |
+| `tests/display.test.ts` | New: runnable check |
 | `scripts/grade.ts`, `scripts/eval-judge.ts`, `scripts/eval-tools.ts`, `eval/` RAGAS input | Score `displayedAnswer()`, routing cases |
 
 ## 10. Out of scope

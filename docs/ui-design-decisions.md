@@ -118,14 +118,15 @@ from model text. This keeps the CLAUDE.md rule "Never render a price from model 
 
 | Tool | Component | Design |
 |---|---|---|
-| `searchProducts`, `filterProducts`, `getProductDetails` | `SourceList`, `ProductCard` | Photo cards with code, name, category, colors, price and price-list page. A horizontal scroll row on a phone. From 640 px, a 3-column grid of 6 with "Show all n". Guide sections and knowledge sheets are chips. |
+| `showProducts` | `ProductList`, `ProductCard`, `ProductSheet` | The products the answer names. 1 to 5: photo cards. 6 or more: a table. A tap opens the detail sheet. See D11. |
+| `searchProducts`, `filterProducts`, `getProductDetails` | `SourceList` | A "Sources (n)" disclosure with compact rows and doc chips. See D9. |
 | `compareProducts` | `CompareCard` | Photo and name at the head of each column. Rows: code, price, then each spec row from the knowledge sheets. A missing value says "Not on file". The label column stays fixed while the table scrolls sideways on a phone. The card row leaves out the compared products. |
 | `showApplianceChecklist` | `ApplianceChecklist` | "Step 1 of 2" header, purpose menu, appliance search. A ticked row turns gold-tint and opens Qty, Hours a day and My watts. Gold "Size a power station (n)" button and Skip. After the answer, the card becomes one chip: "Checklist sent: n appliances". |
 | `recommendPowerStation` | `RecommendationCard` | Load chips. Two station cards: "Smallest fit" (green ring) and "One step up". Each card shows price, runtime in large type, and three meters: power needed against rating, start-up peak against rating, energy needed against usable energy. A meter turns amber above 90 %. "How it was sized" opens the full maths table. "n stations do not fit" lists the reasons. |
 | `buildQuotation` | `QuoteCard` | Document style: black header with the logo, reference and Print button. Date and valid-until line. One row per line with a photo, code, quantity × unit price and line total. VATable sales, VAT 12 % and a large total. The masterlist note at the end. Photos do not print. |
 | `buildQuotation` (side effect) | `QuoteList` | A gold "Quote list (n)" button in the top bar. It opens a popover with the saved lines. Escape or a click outside closes it. This replaces the old box above the chat. |
 | `escalateToSales` | `ContactForm` | Headset icon, ticket number, name and contact fields, Data Privacy Act consent. The gold Send button stays disabled until the user ticks the consent. The sent state is a green card with a check icon. |
-| Price conflict | `ProductCard` | Red card: code, name, "Conflicting price on record", no price, no photo, and an "Ask CTI sales" button. The button sends "Refer me to CTI sales about the price of CODE." |
+| Price conflict | `ProductCard`, `ProductList` | Red card or red row: code, name, "Conflicting price on record", no price, no photo, and an "Ask CTI sales" button. The button sends "Refer me to CTI sales about the price of CODE." |
 | Stream error | `page.tsx` | Red notice: "Something went wrong answering that. Your message is kept." and a Retry button that calls `reload()`. |
 
 ## D7. Motion
@@ -160,8 +161,8 @@ All motion is CSS keyframes in `tailwind.config.ts`. The app adds no animation l
 
 ## D9. Sources toggle
 
-**Decision.** A "Sources" button in the top bar shows or hides all sources: the card row
-under each answer and the desktop panel. The icon fills its right column when sources show.
+**Decision.** A "Sources" button in the top bar shows or hides all sources: the "Sources (n)"
+disclosure under each answer and the desktop panel. It never hides a product list (D11). The icon fills its right column when sources show.
 The choice persists per browser in `localStorage` (`cti.showSources`).
 
 - The default is on, so R4 ("retrieved sources are shown") holds for every new visitor.
@@ -169,11 +170,41 @@ The choice persists per browser in `localStorage` (`cti.showSources`).
   sources of the latest turn as compact rows with 40 px photos.
 - Each answer keeps its own sources under it. This removes the old trade-off in which an
   earlier answer lost its sources on desktop once a later turn ran.
+- The disclosure is closed when the answer shows a product list. It is open when the answer
+  shows none (prompt v1 to v3, or a missed `showProducts` call), so the products stay visible.
 
 ## D10. Open items
 
 1. Get front-left-elevated BLUETTI photos for the other 15 codes.
 2. Replace the cyan `₱` favicon (`app/icon.svg`) with the CTI logo.
-3. The model still repeats prices in its text, for example in the power-station answer. The
-   cards show the exact figures from code. A prompt change can make the text point to the
-   cards instead.
+3. Closed on 6 Nov 2026 by prompt v4 (D11). With `gpt-4o-mini`, the v4 text still sometimes
+   lists product names, or one price, above the cards. Those prices are grounded.
+
+## D11. Product list and detail sheet
+
+**Decision.** Products reach the customer as UI, not as a markdown table. The model calls
+`showProducts` with the codes it means. The tool returns masterlist records, and the UI
+renders them. Prompt v4 keeps product tables and prices out of the text. Design spec:
+`docs/superpowers/specs/2026-11-06-product-list-ui-design.md`.
+
+- **1 to 5 products:** photo cards. Name (15 px semibold, 2 lines), category (12 px gray),
+  price, code. A snap row on a phone, where the next card shows 24 px. A 3-column grid from 640 px.
+- **6 or more:** a table. On a phone: 56 px photo, then bold name, gray category and mono
+  code, then the price. From 640 px it adds Code, Colours and Page columns. The full row is
+  one tap target. It shows 10 rows, then "Show all n".
+- **Detail sheet:** a native `<dialog>`. A bottom sheet (90 dvh) on a phone and a 480 px
+  modal from 640 px. Photo, name (20 px bold), category (13 px gray), price, then a
+  key-value list: code, colours, price-list page and the knowledge-sheet specs. Then
+  usage, advantages, cautions and the source. It reads `GET /api/products/<code>`. The
+  back gesture, X, Escape and the backdrop close it.
+- **Sheet actions:** Add to quote, Compare and Ask sales, in a sticky footer. A conflict
+  code has no Add to quote.
+- **Follow-up chips:** up to 3 under the latest answer, picked in code from its tools
+  (`pickChips` in `lib/display.ts`).
+- **Jump to latest:** a round button above the composer when the reader is more than
+  200 px from the end. A gold dot shows new content.
+- **Compare select:** "Select" on a list shows checkboxes. A sticky bar holds 2 to 4
+  products and sends one compare prompt. New chat clears it.
+- **Eval:** the harnesses score the text plus one line for each shown product
+  (`displayedAnswer`), because that is what the customer sees.
+

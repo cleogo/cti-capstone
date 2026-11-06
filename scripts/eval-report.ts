@@ -3,7 +3,7 @@
  *
  *   docs/evidence/rag-eval.md          RAGAS baseline (variant v1, the shipped prompt)
  *   docs/evidence/tool-eval.md         tool-eval baseline, judge results and agreement
- *   docs/evidence/prompt-comparison.md v1, v2 and v3 side by side, and the choice
+ *   docs/evidence/prompt-comparison.md v1 to v4 side by side, and the choice
  *
  * Every number comes from eval/out/*.json(l). Nothing is typed by hand.
  * Text below the line `<!-- notes -->` in each file is hand-written and is
@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { PROMPTS, PROMPT_VERSION } from '../lib/prompt';
 import { summarize, type ScenarioRow } from './eval-tools';
 
-const VARIANTS = ['v1', 'v2', 'v3'] as const;
+const VARIANTS = ['v1', 'v2', 'v3', 'v4'] as const;
 const NOTES = '<!-- notes -->';
 const BASELINE = 'v1';
 
@@ -224,13 +224,14 @@ function promptComparison() {
   );
   const pick = [...eligible].sort((a, b) => rate(b.comp) - rate(a.comp) || a.tokPerQ - b.tokPerQ)[0] ?? base;
   const row = (label: string, f: (c: Col) => string) => `| ${label} | ${cols.map(f).join(' | ')} |`;
-  const md = `# Prompt comparison: v1, v2, v3 (PRD §9)
+  const md = `# Prompt comparison: v1 to v4 (PRD §9)
 
-Same chat model (\`${process.env.CHAT_MODEL ?? 'gpt-4o-mini'}\`), same tools, same 30 golden questions and the same 37 scenarios for every variant. The default prompt in the code is **${PROMPT_VERSION}**.
+Same chat model (\`${process.env.CHAT_MODEL ?? 'gpt-4o-mini'}\`), same tools, same 30 golden questions and the same 37 scenarios for every variant. v4 also runs the 3 display scenarios, so its scenario counts are out of 40. The default prompt in the code is **${PROMPT_VERSION}**.
 
 - **v1**: rules. The Week 14 rules plus the M2 to M5 rules, numbered, with named failure modes.
 - **v2**: v1 condensed to the same 15 rules, plus 4 worked examples (a compare, a power sizing, a refusal, an escalation). Examples use placeholders, not real prices.
 - **v3**: v2 plus a plan inside \`<plan>\` tags before the first tool call of a multi-step request. \`stripPlan\` removes it before the client sees the text.
+- **v4**: v3 with the product rules replaced. Products reach the customer only as cards from \`showProducts\`, and the text holds no prices. The harnesses score \`displayedAnswer()\`: the text plus one line for each product card.
 
 ## How to reproduce
 
@@ -242,14 +243,14 @@ npx tsx scripts/eval-judge.ts --variant v2
 npm run eval:report
 \`\`\`
 
-Repeat with \`v1\` and \`v3\`. Every value below is read from \`eval/out/\`.
+Repeat with \`v1\`, \`v3\` and \`v4\`. Every value below is read from \`eval/out/\`.
 
 ## Result
 
 | | ${cols.map((c) => c.v).join(' | ')} |
 |---|${cols.map(() => '---').join('|')}|
 ${row('System prompt size (about tokens)', (c) => String(c.tokens))}
-${row('Task completion, all 37 scenarios', (c) => pct(c.comp))}
+${row('Task completion, all scenarios', (c) => pct(c.comp))}
 ${row('Task completion, 16 normal', (c) => pct(c.compNormal))}
 ${row('Tool-selection accuracy', (c) => pct(c.sel))}
 ${row('Argument accuracy', (c) => pct(c.args))}
@@ -268,7 +269,7 @@ ${row('Latency per run, p50', (c) => `${sec(c.latP50)} s`)}
 ${row('Latency per run, p95', (c) => `${sec(c.latP95)} s`)}
 ${row('Runs that ended in an error', (c) => String(c.errors))}
 
-Tokens and latency come from the run records. The tokens are the AI SDK usage that Langfuse also records, and each run links its trace in \`tool-eval.md\` and \`rag-eval.md\`. The three variants ran one after another under the same load, with the RAG and tool runs in parallel inside each variant.
+Tokens and latency come from the run records. The tokens are the AI SDK usage that Langfuse also records, and each run links its trace in \`tool-eval.md\` and \`rag-eval.md\`. The variants ran one after another under the same load, with the RAG and tool runs in parallel inside each variant.
 
 ## Choice (PRD §9 rule)
 
