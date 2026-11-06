@@ -55,7 +55,13 @@ function shownBy(name: string, result: unknown): ShownProduct[] {
  */
 export function displayedAnswer(text: string, results: { name: string; result: unknown }[]): string {
   const lines: string[] = [];
+  const lists = new Set<string>();
   for (const r of results) {
+    if (r.name === 'showProducts') {
+      const key = listKey(r.result);
+      if (lists.has(key)) continue;
+      lists.add(key);
+    }
     for (const p of shownBy(r.name, r.result)) {
       const price = p.price_php === null ? 'price to be confirmed by sales' : formatPeso(p.price_php);
       lines.push(`${p.code} · ${p.name} · ${price}`);
@@ -111,4 +117,23 @@ export function pickChips(invocations: { toolName: string; result: unknown }[]):
 /** True when the answer shows at least one product card (showProducts or a details card). */
 export function listsProducts(invocations: { toolName: string; result: unknown }[]): boolean {
   return invocations.some((i) => (i.toolName === 'showProducts' || i.toolName === 'getProductDetails') && shownBy(i.toolName, i.result).length > 0);
+}
+
+const listKey = (result: unknown) => ((result as { products?: ShownProduct[] } | null)?.products ?? []).map((p) => p.code).join(',');
+
+/**
+ * The toolCallIds of showProducts results that repeat an earlier list in the
+ * same answer, code for code. The UI skips them. The model sometimes calls
+ * showProducts twice with the same codes.
+ */
+export function repeatedLists(invocations: { toolCallId: string; toolName: string; state?: string; result?: unknown }[]): Set<string> {
+  const seen = new Set<string>();
+  const skip = new Set<string>();
+  for (const i of invocations) {
+    if (i.toolName !== 'showProducts' || i.state !== 'result') continue;
+    const key = listKey(i.result);
+    if (key && seen.has(key)) skip.add(i.toolCallId);
+    seen.add(key);
+  }
+  return skip;
 }

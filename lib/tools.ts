@@ -256,7 +256,7 @@ export function createTools(ctx: ToolContext) {
       codes: z.array(z.string()).min(1).max(MAX_SHOWN).describe('product codes, in display order'),
     }),
     execute: async ({ codes }) =>
-      safeExecute(() => {
+      repeated('showProducts', codes) ? REPEATED_CALL : safeExecute(() => {
         const r = showProducts(codes);
         if (r.unknown.length) console.warn(`showProducts: unknown codes ${r.unknown.join(', ')}`);
         return r;

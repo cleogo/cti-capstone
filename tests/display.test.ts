@@ -4,7 +4,7 @@ import type { Message } from 'ai';
 import { BY_CODE } from '../lib/products';
 import { sourcesFromMessage } from '../lib/sources';
 import { createTools } from '../lib/tools';
-import { displayedAnswer, listsProducts, pickChips, shownFromDetails } from '../lib/display';
+import { displayedAnswer, listsProducts, pickChips, repeatedLists, shownFromDetails } from '../lib/display';
 import { compareProducts, getProductDetails } from '../lib/details';
 import { MAX_SHOWN, showProducts } from '../lib/show-products';
 
@@ -130,4 +130,30 @@ test('listsProducts is false when showProducts showed nothing', () => {
 test('showProducts is offered to prompt v4 only', () => {
   assert.ok('showProducts' in createTools({ sessionId: null, variant: 'v4' }));
   assert.ok(!('showProducts' in createTools({ sessionId: null, variant: 'v1' })));
+});
+
+// "Show me your Fall Protection Harnesses": v4 called showProducts twice with the same 8 codes, 3 runs of 3.
+const HARNESSES = ['BOD-001-14', 'BOD-001-11', 'BOD-001-15'];
+
+test('an identical repeat of showProducts is refused', async () => {
+  const t = createTools({ sessionId: null, variant: 'v4' });
+  const opts = { toolCallId: 'x', messages: [] } as never;
+  const args = { codes: HARNESSES } as never;
+  const show = (t as unknown as Record<string, { execute: (a: never, o: never) => Promise<unknown> }>).showProducts;
+  const first = (await show.execute(args, opts)) as { products?: unknown[] };
+  const again = (await show.execute(args, opts)) as { error?: string };
+  assert.equal(first.products?.length, 3);
+  assert.equal(again.error, 'repeated_call');
+});
+
+test('displayedAnswer lists a repeated product list once', () => {
+  const r = { name: 'showProducts', result: showProducts(HARNESSES) };
+  const out = displayedAnswer('Eight harnesses.', [r, r]);
+  assert.equal(out.split('\n').filter((l) => l.startsWith('BOD-001-14 ')).length, 1);
+});
+
+test('repeatedLists names the second of two identical product lists', () => {
+  const inv = (id: string, codes: string[]) => ({ toolCallId: id, toolName: 'showProducts', state: 'result', result: showProducts(codes) });
+  const skip = repeatedLists([inv('a', HARNESSES), inv('b', HARNESSES), inv('c', ['PWR-001-06'])]);
+  assert.deepEqual([...skip], ['b']);
 });

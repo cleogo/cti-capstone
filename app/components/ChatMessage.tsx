@@ -19,7 +19,7 @@ import { ContactForm } from './ContactForm';
 import { CompareCard } from './CompareCard';
 import { ProductList } from './ProductList';
 import { FollowUpChips } from './FollowUpChips';
-import { listsProducts, pickChips, shownFromDetails, type ShowProductsResult, type ShownProduct } from '@/lib/display';
+import { listsProducts, pickChips, repeatedLists, shownFromDetails, type ShowProductsResult, type ShownProduct } from '@/lib/display';
 import { IconAlert, IconSparkle, Logo } from './ui';
 import { sourcesFromMessage } from '@/lib/sources';
 
@@ -98,12 +98,15 @@ export function ChatMessage({
   const hasShowProducts = invocations.some((inv) => inv.toolName === 'showProducts');
   const runningTools = invocations.filter((inv) => inv.state === 'call' && !CLIENT_TOOLS.has(inv.toolName));
   const finishedTools = invocations.filter((inv) => inv.state === 'result' && !CLIENT_TOOLS.has(inv.toolName));
+  // The model sometimes calls showProducts twice with the same codes. Show that list once.
+  const repeats = repeatedLists(invocations as { toolCallId: string; toolName: string; state: string; result?: unknown }[]);
   const cards = invocations.filter(
     (inv) =>
-      inv.toolName === 'showApplianceChecklist' ||
-      (RESULT_CARDS.has(inv.toolName) && inv.state === 'result') ||
-      // A details answer shows its product as a card, unless showProducts already lists it.
-      (inv.toolName === 'getProductDetails' && inv.state === 'result' && !hasShowProducts),
+      !repeats.has(inv.toolCallId) &&
+      (inv.toolName === 'showApplianceChecklist' ||
+        (RESULT_CARDS.has(inv.toolName) && inv.state === 'result') ||
+        // A details answer shows its product as a card, unless showProducts already lists it.
+        (inv.toolName === 'getProductDetails' && inv.state === 'result' && !hasShowProducts)),
   );
 
   // A compare table already shows its products, so the card row leaves them out.
